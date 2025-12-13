@@ -5,7 +5,8 @@
 | Missing | 271 |
 ## Missing routes
 total: 271
-</br>- [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
+
+- [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
 - [ ] **JOIN_CONTEXTLESS_EMBEDDED_ACTIVITY_VIA_PRESENCE**: `/users/:param/sessions/:param/embedded-activities/:param/1`
 - [ ] **JOIN_CONTEXTLESS_EMBEDDED_ACTIVITY_VIA_INSTANCE**: `/activity-instances/:param/embedded-activities/:param/join`
@@ -279,7 +280,8 @@ total: 271
 
 ## Covered routes
 total: 434
-</br>- [x] **USER**: `/users/:param`
+
+- [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
 - [x] **USER_RELATIONSHIP**: `/users/@me/relationships/:param`
 - [x] **USER_BULK_RELATIONSHIPS**: `/users/@me/relationships/bulk`
