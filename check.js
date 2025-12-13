@@ -23,13 +23,15 @@ for (let route of routes) {
 }
 
 const mdify = (logs) => {
-    let res = "# Results\n\n## Missing routes:\n"
+    const [covered, missing] = [logs.covered.length, logs.missing.length]
+    const table = `| Covered | ${covered} |\n|---------|------------|\n| Missing | ${missing} |`
+    let res = "# Results\n\n" + table + "\n## Missing routes\ntotal: " + missing
     for (let item of logs.missing) {
-        res += `- [ ] *${item[0]}*: \`${item[1]}\`\n`
+        res += `- [ ] **${item[0]}**: \`${item[1]}\`\n`
     }
-    res += "\n\n## Covered routes:"
+    res += "\n## Covered routes\ntotal: " + covered
     for (let item of logs.covered) {
-        res += `- [x] *${item[0]}*: \`${item[1]}\`\n`
+        res += `- [x] **${item[0]}**: \`${item[1]}\`\n`
     }
     return res
 }
