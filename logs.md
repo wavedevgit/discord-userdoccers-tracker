@@ -1,0 +1,705 @@
+- [ ] USER_GUILD_PROFILE: /guilds/:param/profile/:param
+- [ ] USER_ACTIVITY_JOIN: /users/:param/sessions/:param/activities/:param/1
+- [ ] JOIN_CONTEXTLESS_EMBEDDED_ACTIVITY_VIA_PRESENCE: /users/:param/sessions/:param/embedded-activities/:param/1
+- [ ] JOIN_CONTEXTLESS_EMBEDDED_ACTIVITY_VIA_INSTANCE: /activity-instances/:param/embedded-activities/:param/join
+- [ ] NETWORKING_TOKEN: /networking/token
+- [ ] USER_GAMES_NOTIFICATIONS: /users/@me/settings/game-notifications
+- [ ] USER_GAMES_NOTIFICATIONS_OVERRIDES: /users/@me/settings/game-notifications/overrides
+- [ ] BULK_ACK: /read-states/ack-bulk
+- [ ] GUILD_MEMBER_NICK: /guilds/:param/members/:param/nick
+- [ ] GUILD_MEMBER_AVATAR: /guilds/:param/users/:param/avatars/:param.:param
+- [ ] GUILD_ONBOARDING_PROMPT: /guilds/:param/onboarding-prompts/:param
+- [ ] GUILD_ONBOARDING_RESPONSES: /guilds/:param/onboarding-responses
+- [ ] ROLE_ICON: /roles/:param/icons/:param.png
+- [ ] GUILD_ICON: /guilds/:param/icons/:param.:param
+- [ ] GUILD_TEMPLATE_ICON: /templates/:param/icons/:param.:param
+- [ ] GUILD_DISCOVERY_CHECKLIST: /guilds/:param/discovery-checklist
+- [ ] GUILD_ANALYTICS_OVERVIEW: /guilds/:param/analytics/overview
+- [ ] EMOJI: /emojis/:param.:param
+- [ ] GUILD_SPLASH: /guilds/:param/splashes/:param.jpg
+- [ ] GUILD_DISCOVERY_SPLASH: /guilds/:param/discovery-splashes/:param.jpg
+- [ ] GUILD_BANNER: /guilds/:param/banners/:param.:param
+- [ ] GUILD_RESOURCE_CHANNELS_ICON: /guilds/:param/avatars/:param.:param
+- [ ] GUILD_NEW_MEMBER_ACTIONS_ICON: /guilds/:param/avatars/:param.:param
+- [ ] GUILD_HOME_HEADER: /guilds/:param/home-headers/:param.jpg
+- [ ] GUILD_DELETE: /guilds/:param/delete
+- [ ] CHANNELS: /channels
+- [ ] ALL_ARCHIVED_THREADS: /channels/:param/threads/archived/:param
+- [ ] VOICE_CHANNEL_NOTIFICATIONS: /channels/:param/voice-push
+- [ ] PARTNER_REQUIREMENTS: /partners/:param/requirements
+- [ ] AVATAR: /users/:param/avatars/:param.:param
+- [ ] ARCHIVED_AVATAR: /avatars/:param/archived/:param/:param.:param
+- [ ] USER_BANNER: /users/:param/banners/:param.:param
+- [ ] AVATAR_DECORATION_PRESETS: /avatar-decoration-presets/:param.:param
+- [ ] GUILD_MEMBER_BANNER: /guilds/:param/users/:param/banners/:param.:param
+- [ ] MESSAGE_LOG_PRIVATE_CHANNELS: /messages-log/private-channels/get
+- [ ] MESSAGE_LOG_GUILD_CHANNELS: /messages-log/guild-channels/get
+- [ ] BACKGROUND_SYNC: /users/@me/background-sync
+- [ ] GUILD_FEED_MESSAGE_SET_PREFERENCE: /guilds/:param/guild-feed/preference
+- [ ] GUILD_FEED_FEATURE_ITEM: /guilds/:param/guild-feed/feature
+- [ ] GUILD_FEED_MARK_SEEN: /guilds/:param/guild-feed/mark-seen
+- [ ] PIN: /channels/:param/pins/:param
+- [ ] CHANNEL_RECIPIENTS: /channels/:param/recipients
+- [ ] CHANNEL_ICON: /channels/:param/icons/:param.jpg
+- [ ] CHANNEL_CONVERT: /channels/:param/convert
+- [ ] CHANNEL_STORE_LISTING: /channels/:param/store-listing
+- [ ] CHANNEL_STORE_LISTING_SKU: /channels/:param/store-listings/:param
+- [ ] CHANNEL_ENTITLEMENT_GRANT: /channels/:param/store-listing/entitlement-grant
+- [ ] CHANNEL_FOLLOWER_STATS: /channels/:param/follower-stats
+- [ ] CHANNEL_FOLLOWER_MESSAGE_STATS: /channels/:param/follower-message-stats
+- [ ] FRIEND_FINDER: /friend-finder/find-friends
+- [ ] TUTORIAL_INDICATORS: /tutorial/indicators
+- [ ] USERS: /users
+- [ ] GRAVITY_ATTACHMENTS: /users/@me/gravity-attachments
+- [ ] GRAVITY_ATTACHMENTS_UPLOAD: /users/@me/gravity-attachments-upload
+- [ ] GRAVITY_ITEMS_DEHYDRATED: /users/@me/gravity-icymi
+- [ ] GRAVITY_ITEMS_DEHYDRATED_LEGACY: /users/@me/gravity-icymi-legacy
+- [ ] GRAVITY_RECOMMENDED_GUILDS: /gravity-recommended-guilds
+- [ ] GRAVITY_ITEMS_NEGATIVE: /users/@me/gravity-icymi-negative
+- [ ] GRAVITY_ITEMS_HYDRATE: /gravity-content
+- [ ] GRAVITY_CUSTOM_GUILD_SCORES: /gravity-custom-guild-score
+- [ ] GRAVITY_CUSTOM_SCORES: /gravity-custom-channel-scores
+- [ ] GRAVITY_JOIN_GUILD: /guilds/gravity-join
+- [ ] GRAVITY_TOPIC_GUILDS: /gravity-topic-guilds
+- [ ] POMELO_SUGGESTIONS_UNAUTHED: /unique-username/username-suggestions-unauthed
+- [ ] POMELO_ATTEMPT_UNAUTHED: /unique-username/username-attempt-unauthed
+- [ ] PHONE_VERIFY_NO_PASSWORD: /users/@me/phone/verify
+- [ ] VERIFY_PHONE_FOR_TICKET: /phone-verifications/validate-support-ticket
+- [ ] CONNECTIONS_SESSION_HANDOFF: /connections/:param/callback/session-handoff
+- [ ] CONNECTION_SYNC_CONTACTS: /users/@me/connections/contacts/@me/external-friend-list-entries
+- [ ] CONNECTIONS_LINK_DISPATCH_AUTH_CALLBACK: /connections/:param/link-dispatch-auth-callback
+- [ ] XBOX_HANDOFF: /consoles/xbox-handoff
+- [ ] CAPTCHA_TEST: /captcha/decider
+- [ ] AGE_ASSURANCE_TEST: /age-verification/test
+- [ ] LOGIN: /auth/login
+- [ ] LOGIN_MFA: /auth/mfa/:param
+- [ ] LOGIN_SMS_SEND: /auth/mfa/sms/send
+- [ ] LOGOUT: /auth/logout
+- [ ] REGISTER: /auth/register
+- [ ] REGISTER_PHONE: /auth/register/phone
+- [ ] WEBAUTHN_CONDITIONAL_UI_CHALLENGE: /auth/conditional/start
+- [ ] WEBAUTHN_CONDITIONAL_UI_LOGIN: /auth/conditional/finish
+- [ ] WEBAUTHN_PASSWORDLESS_CHALLENGE: /auth/passwordless/start
+- [ ] TRACK: /science
+- [ ] METRICS: /metrics
+- [ ] METRICS_V2: /metrics/v2
+- [ ] SSO: /sso
+- [ ] SSO_TOKEN: /sso-token
+- [ ] AUTHORIZE_IP: /auth/authorize-ip
+- [ ] FORGOT_PASSWORD: /auth/forgot
+- [ ] RESET_PASSWORD: /auth/reset
+- [ ] DEBUG_LOG: /debug-logs/:param/:param
+- [ ] DEBUG_LOGS: /debug-logs/multi/:param
+- [ ] INTEGRATIONS: /integrations
+- [ ] INTEGRATION_SEARCH: /integrations/:param/search
+- [ ] APPLICATIONS_GAMES_SUPPLEMENTAL: /applications/games-supplemental
+- [ ] APPLICATION_ICON: /applications/:param/app-icons/:param.png
+- [ ] APPLICATION_RPC: /oauth2/applications/:param/rpc
+- [ ] OWNED_APPLICATION_BRANCHES: /applications/:param/branches
+- [ ] OAUTH2_AUTHORIZE_SAMSUNG: /oauth2/samsung/authorize
+- [ ] OAUTH2_AUTHORIZE_SAMSUNG_CALLBACK: /oauth2/samsung/authorize/callback
+- [ ] OAUTH2_AUTHORIZE_WEBHOOK_CHANNELS: /oauth2/authorize/webhook-channels
+- [ ] OAUTH2_DEVICE_VERIFY: /oauth2/device/verify
+- [ ] OAUTH2_DEVICE_FINISH: /oauth2/device/finish
+- [ ] MFA_TOTP_ENABLE_VERIFY: /users/@me/mfa/totp/enable/verify
+- [ ] MFA_TOTP_ENABLE_RESEND: /users/@me/mfa/totp/enable/resend
+- [ ] DISABLE_EMAIL_NOTIFICATIONS: /users/disable-email-notifications
+- [ ] DISABLE_SERVER_HIGHLIGHT_NOTIFICATIONS: /users/disable-server-highlight-notifications
+- [ ] REACTION: /channels/:param/messages/:param/reactions/:param/:param
+- [ ] REACTION_WITH_TYPE: /channels/:param/messages/:param/reactions/:param/:param/:param
+- [ ] SEARCH_FAVORITES: /search/favorites
+- [ ] SEARCH_DMS: /users/@me/messages/search
+- [ ] CHANGELOG_MESSAGES: /changelogs/@me/messages
+- [ ] SEARCH_CHANNEL: /channels/:param/messages/search
+- [ ] BILLING_PAYMENTS_REFUND: /users/@me/billing/payments/:param/refund
+- [ ] BILLING_INVOICE_PDF: /users/@me/billing/invoice
+- [ ] BILLING_STRIPE_PAYMENT_INTENTS: /users/@me/billing/stripe/payment-intents/payments/:param
+- [ ] BILLING_STRIPE_PAYMENT_INTENTS_VIA_ID: /users/@me/billing/stripe/payment-intents/:param
+- [ ] BILLING_STANDALONE_CHECKOUT_PAGE: /billing/premium/subscribe?plan_id=:param&gift=:param&load_id=:param&payment_method_type=:param
+- [ ] BILLING_STANDALONE_CHECKOUT_LOGIN_HANDOFF: //canary.discord.com/billing/premium/subscribe/login-handoff?handoff_key=:param&handoff_token=:param&destination=:param
+- [ ] BILLING_PERKS_RELEVANCE: /users/@me/billing/perks-relevance
+- [ ] BILLING_APPLY_APPLE_RECEIPT: /billing/apple/apply-receipt
+- [ ] BILLING_APPLE_SUBSCRIPTION: /billing/apple/subscriptions/:param
+- [ ] BILLING_GENERATE_APPLE_TRIAL_OFFER_SIGNATURE: /users/@me/billing/apple/trial-offer-signature
+- [ ] BILLING_CREATE_APPLE_IAP_JWT_TOKEN: /billing/apple/jwt-token
+- [ ] BILLING_SUBSCRIPTION_REWARDS: /users/@me/billing/subscriptions/:param/rewards
+- [ ] Billing_SUBSCRIPTION_REWARD_ELIGIBILITY: /users/@me/billing/subscriptions/:param/reward-eligibility
+- [ ] VERIFY_PURCHASE: /google-play/verify-purchase-token
+- [ ] DOWNGRADE_SUBSCRIPTION: /google-play/downgrade-subscription
+- [ ] GOOGLE_PLAY_VALIDATE_PURCHASE: /google-play/validate-purchase
+- [ ] HANDOFF: /auth/handoff
+- [ ] HANDOFF_EXCHANGE: /auth/handoff/exchange
+- [ ] LIBRARY: /users/@me/library
+- [ ] LIBRARY_APPLICATION_BRANCH: /users/@me/library/:param/:param
+- [ ] LIBRARY_APPLICATION_DELETE: /users/@me/library/:param
+- [ ] AUTH_LOCATION_METADATA: /auth/location-metadata
+- [ ] APPLICATION_LIVE_BUILD: /applications/:param/branches/:param/builds/live
+- [ ] APPLICATION_BUILD_SIZE: /applications/:param/branches/:param/builds/:param/size
+- [ ] APPLICATION_BRANCHES: /branches
+- [ ] APPLICATIONS_TRENDING: /applications/trending/global
+- [ ] APPLICATION_BRANCH_LIST: /applications/:param/branches
+- [ ] LIBRARY_APPLICATION_INSTALLED: /users/@me/library/:param/:param/installed
+- [ ] STOREFRONT_PREMIUM_BUTTON: /applications/storefront/interactions/premium-button/:param
+- [ ] STORE_DIRECTORY_LAYOUT: /store/directory-layouts/:param
+- [ ] STORE_DIRECTORY: /store/directory/:param
+- [ ] STORE_PUBLISHED_LISTINGS_SKU_JOIN_GUILD: /store/published-listings/skus/:param/guild/join
+- [ ] APPLICATION_SKUS: /applications/:param/skus
+- [ ] ENTITLEMENT_TICKET: /users/@me/applications/:param/entitlement-ticket
+- [ ] APPLICATION_TICKET: /users/@me/applications/:param/ticket
+- [ ] STORE_ASSET: /store/applications/:param/assets/:param.:param
+- [ ] APPLICATION_ASSET: /applications/:param/app-assets/:param.:param
+- [ ] APPLICATION_STORAGE: /applications/:param/branches/:param/storage
+- [ ] PARTNER_PROMOTIONS: /entitlements/partner-promotions/:param
+- [ ] USER_PERKS_DEMOS: /users/@me/perks-demos
+- [ ] USER_PERKS_DEMOS_ACTIVATE: /users/@me/activate-perk-demo/:param
+- [ ] FUNIMATION_PROMOTION: /promotions/funimation
+- [ ] PARTNERS_CONNECTIONS: /partners/connections
+- [ ] PARTNERS_APPLY: /partners/apply
+- [ ] STORE_DIRECTORY_LAYOUT_STICKER_PACKS: /sticker-packs/directory-v2/:param
+- [ ] USER_STICKER_PACKS: /users/@me/sticker-packs
+- [ ] STICKER_ASSET: /stickers/:param.:param
+- [ ] ACTIVITY_JOIN_INSTANCE: /activities/applications/:param/activity-instances/:param/join
+- [ ] APPLICATION_BOT_GUILD_COMMAND_PERMISSIONS: /applications/:param/guilds/:param/commands/:param/permissions
+- [ ] STAGE_INSTANCES_EXTRA: /stage-instances/extra
+- [ ] GUILD_EVENTS: /guild-events
+- [ ] GUILD_EVENT_IMAGE: /guild-events/:param/images/:param.:param
+- [ ] GUILD_EVENT_USERS: /guilds/:param/scheduled-events/:param/:param/users
+- [ ] GUILD_EVENT_EXCEPTIONS: /guilds/:param/scheduled-events/:param/exceptions
+- [ ] GUILD_EVENT_EXCEPTION: /guilds/:param/scheduled-events/:param/exceptions/:param
+- [ ] HUB_EMAIL_VERIFY: /guilds/automations/email-domain-lookup/verify
+- [ ] OUTBOUND_PROMOTIONS: /outbound-promotions
+- [ ] OUTBOUND_PROMOTIONS_PREVIEW: /outbound-promotions/preview
+- [ ] BOGO_PROMOTIONS: /bogo-promotions
+- [ ] CLAIMED_OUTBOUND_PROMOTION_CODES: /users/@me/outbound-promotions/codes
+- [ ] CLAIM_OUTBOUND_PROMOTION_CODE: /outbound-promotions/:param/claim
+- [ ] GUILD_PRODUCT_CREATE_ATTACHMENT_UPLOAD: /guilds/:param/products/attachments
+- [ ] CHAT_WALLPAPERS: /chat-wallpapers
+- [ ] GUILD_ROLE_SUBSCRIPTIONS_SETTINGS: /guilds/:param/role-subscriptions/settings
+- [ ] GUILD_ROLE_SUBSCRIPTION_GROUP_LISTINGS: /guilds/:param/role-subscriptions/group-listings/:param
+- [ ] GUILD_ROLE_SUBSCRIPTION_LISTINGS: /guilds/:param/role-subscriptions/group-listings/:param/subscription-listings/:param
+- [ ] GUILD_ROLE_SUBSCRIPTION_GROUP_LISTING_ARCHIVE: /guilds/:param/role-subscriptions/group-listings/:param/subscription-listings/:param/archive
+- [ ] GUILD_ROLE_SUBSCRIPTION_TRIALS: /guilds/:param/role-subscriptions/trials
+- [ ] GUILD_ROLE_SUBSCRIPTION_LISTING_TRIAL: /guilds/:param/role-subscriptions/subscription-listings/:param/trial
+- [ ] GUILD_ROLE_SUBSCRIPTION_LISTING_TEMPLATES: /guilds/:param/role-subscriptions/templates
+- [ ] CREATOR_MONETIZATION_ENABLE_REQUESTS: /guilds/:param/creator-monetization/enable-requests
+- [ ] CREATOR_MONETIZATION_ELIGIBILITY: /guilds/:param/creator-monetization/requirements
+- [ ] CREATOR_MONETIZATION_ACCEPT_TERMS: /guilds/:param/creator-monetization/enable-requests/:param/accept-terms
+- [ ] CREATOR_MONETIZATION_ACCEPT_TERMS_V2: /guilds/:param/creator-monetization/accept-terms
+- [ ] CREATOR_MONETIZATION_RESTRICTIONS: /guilds/:param/creator-monetization/restrictions
+- [ ] GUILD_ROLE_SUBSCRIPTION_TRIAL_ELIGIBILITY: /guilds/:param/role-subscriptions/subscription-listings/:param/trial/:param/eligibility
+- [ ] CREATOR_MONETIZATION_MARKETING_ONBOARDING: /guilds/:param/creator-monetization/marketing/onboarding
+- [ ] CREATOR_MONETIZATION_NAG_ACTIVATE_ELIGIBLITY: /creator-monetization/marketing/nag-activate/eligibility
+- [ ] CREATOR_MONETIZATION_OWNERSHIP_TRANSFER_ONBOARD: /guilds/:param/creator-monetization/ownership-transfer/onboarding
+- [ ] CREATOR_MONETIZATION_ACCEPT_NEW_TERMS: /guilds/:param/creator-monetization/accept-new-terms
+- [ ] CREATOR_MONETIZATION_ACCEPT_NEW_TERMS_DEMONETIZED: /guilds/:param/creator-monetization/accept-new-terms-demonetized
+- [ ] CREATOR_MONETIZATION_REMOVE_MONETIZATION: /guilds/:param/creator-monetization/remove-monetization
+- [ ] SUBSCRIPTION_PLAN_GROUP_LISTING: /subscription-plans/:param/subscription-group-listing
+- [ ] SUBSCRIPTION_PLAN_GUILD_ROLE_GROUP_LISTING: /subscription-plans/:param/guild-role-subscription-group-listing
+- [ ] BUG_REPORTS: /private/bug-reports
+- [ ] PAYMENT_PAYOUT_GROUPS: /applications/:param/payment-payout-groups
+- [ ] GUILD_PRODUCTS: /guilds/:param/products
+- [ ] GUILD_PRODUCT_LISTINGS: /guilds/:param/products/listings/:param
+- [ ] GUILD_PRODUCT_ATTACHMENT_DOWNLOAD: /guilds/:param/products/listings/:param/attachments/:param/download
+- [ ] GUILD_CONVERT_TO_CLAN: /clan/:param
+- [ ] GUILD_CLAN_DISCOVERY_INFO: /discovery/:param/clan
+- [ ] GUILD_PROFILE_VISIBILITY: /guilds/:param/profile/visibility
+- [ ] CLAN_SETTINGS: /clan/:param/settings
+- [ ] DISABLE_CLAN: /clan/:param/disable
+- [ ] TENOR_ASSET_PATH: /tenor
+- [ ] VIDEO_FILTER_ASSETS: /users/@me/video-filters/assets
+- [ ] VIDEO_FILTER_ASSET: /users/@me/video-filters/assets/:param
+- [ ] VIDEO_FILTER_ASSET_LAST_USED: /users/@me/video-filters/assets/:param/last-used
+- [ ] VIDEO_FILTER_ASSET_STORAGE: /users/:param/video-filter-assets/:param/:param.:param
+- [ ] SOUNDBOARD_SOUND: /soundboard-sounds/:param
+- [ ] APPLICATION_COMMANDS_SEARCH: /channels/:param/application-commands/search
+- [ ] GUILD_COMMANDS_FOR_APPLICATION: /guilds/:param/application-commands/:param
+- [ ] APPLICATION_DIRECTORY_APPLICATION: /application-directory-static/applications/:param
+- [ ] APPLICATION_DIRECTORY_EMBED_APPLICATION: /application-directory/applications/:param/embed
+- [ ] APPLICATION_DIRECTORY_CATEGORIES: /application-directory-static/categories
+- [ ] APPLICATION_DIRECTORY_SIMILAR: /application-directory-static/applications/:param/similar
+- [ ] APPLICATION_DIRECTORY_SEARCH: /application-directory-static/search
+- [ ] APPLICATION_DIRECTORY_COLLECTIONS: /application-directory-static/collections
+- [ ] APPLICATION_DIRECTORY_COLLECTION_ITEM_IMAGE: /application-directory/collection-items/:param/:param.:param
+- [ ] APP_RECOMMENDATIONS: /app-recommendations
+- [ ] GUILD_FEED: /guilds/:param/guild-feed
+- [ ] ACTIVE_CHANNELS: /guilds/:param/active-channels
+- [ ] NOTIF_CENTER_ITEMS: /users/@me/notification-center/items/:param
+- [ ] NOTIF_CENTER_ITEMS_ACK: /users/@me/notification-center/items/:param/ack
+- [ ] NOTIF_CENTER_ITEMS_BULK_ACK: /users/@me/notification-center/items/bulk-ack
+- [ ] AUTH_SESSIONS: /auth/sessions
+- [ ] AUTH_SESSION_NOTIFICATIONS_DEBUG: /auth/sessions/debug/notifications
+- [ ] AUTH_SESSIONS_LOGOUT: /auth/sessions/logout
+- [ ] CUSTOM_CALL_SOUNDS: /channels/:param/custom-call-sounds
+- [ ] APPLICATION_SUBSCRIPTION_GROUP_LISTING: /applications/:param/subscription-group-listings/:param
+- [ ] ELIGIBLE_APPLICATION_SUBSCRIPTION_GUILDS: /users/@me/billing/eligible-application-subscription-guilds
+- [ ] SHARED_CANVAS_LINES: /channels/:param/:param/shared-canvas/lines
+- [ ] SHARED_CANVAS_EMOJI_HOSES: /channels/:param/:param/shared-canvas/emoji-hose
+- [ ] SHARED_CANVAS_EMOJI_HOSE: /channels/:param/:param/shared-canvas/emoji-hose/:param
+- [ ] BURST_CREDIT_BALANCE: /users/@me/burst-credits
+- [ ] FAMILY_CENTER_TEEN_ACTIVITY: /family-center/:param/activity
+- [ ] FAMILY_CENTER_TEEN_ACTIVITY_MORE: /family-center/more-activity/:param/:param/:param/:param
+- [ ] FAMILY_CENTER_FETCH_TEEN_USER: /family-center/teen-user/:param
+- [ ] APPLICATIONS_SHELF: /applications/shelf
+- [ ] DISCORDIFY_ME: /users/@me/avatars/discordify
+- [ ] BADGE_ICON: /badge-icons/:param.png
+- [ ] FINISH_MFA_CHECK: /mfa/finish
+- [ ] CREATE_USER_OFFER: /user-offers/create/:param/:param
+- [ ] UPDATE_USER_OFFER: /user-offers/:param/:param
+- [ ] USER_OFFERS: /user-offers
+- [ ] USER_OFFER_IDS: /user-offer-ids
+- [ ] EMOJI_CAPTIONS_GET: /users/@me/emoji-captions
+- [ ] INITIATE_CHANNEL_PROMPTS: /initiate-prompts
+- [ ] FORCE_SEND_PROMPT: /:param/force-send-prompt
+- [ ] SEND_GAMING_STATS: /:param/gaming-stats
+- [ ] UPDATE_GAMING_STATS: /:param/:param/update-gaming-stats
+- [ ] PREMIUM_MARKETING: /premium-marketing
+- [ ] QUEST_FETCH_QUEST_TO_DELIVER: /quests/decision?placement=:param&client_heartbeat_session_id=:param
+- [ ] MY_CONTENT_INVENTORY: /content-inventory/users/@me?refresh_token=:param
+- [ ] CONTENT_INVENTORY_OUTBOX: /content-inventory/users/:param/outbox
+- [ ] DELETE_MY_CONTENT_INVENTORY_OUTBOX_ENTRY_HISTORY: /content-inventory/users/@me/outbox/entries/id/:param/history
+- [ ] MY_SPOTIFY_CONTENT_INVENTORY: /content-inventory/users/@me/spotify
+- [ ] MY_CONTENT_INVENTORY_APPLICATION: /content-inventory/users/@me/applications/:param
+- [ ] TENURE_REWARD_SYNC: /users/@me/tenure-reward/sync
+- [ ] STORE_LAYOUT: /applications/:param/store-layout
+- [ ] CAMPAIGN_CONTEXT: /users/@me/billing/campaign-context
+- [ ] SIMILAR_GAMES: /content-inventory/users/@me/similar-games/:param
+- [ ] ACCOUNT_REVERT: /auth/revert
+- [ ] GUILD_LEADERBOARD: /guilds/:param/leaderboards/:param
+- [ ] UPDATE_MY_LOL_LEADERBOARD: /users/@me/update-league-of-legends-leaderboard
+- [ ] GUILD_LEADERBOARD_SETTINGS: /guilds/:param/leaderboards/:param/settings
+- [ ] SCHEDULED_MESSAGES: /users/@me/scheduled-messages
+- [ ] SCHEDULED_MESSAGE: /users/@me/scheduled-messages/:param
+- [x] USER: /users/:param
+- [x] USER_RELATIONSHIPS: /users/:param/relationships
+- [x] USER_RELATIONSHIP: /users/@me/relationships/:param
+- [x] USER_BULK_RELATIONSHIPS: /users/@me/relationships/bulk
+- [x] USER_GAME_RELATIONSHIP: /users/@me/game-relationships/:param/:param
+- [x] USER_PROFILE: /users/:param/profile
+- [x] USER_CHANNELS: /users/@me/channels
+- [x] DM_CHANNEL: /users/@me/dms/:param
+- [x] USER_SETTINGS_PROTO: /users/@me/settings-proto/:param
+- [x] USER_ACTIVITY_METADATA: /users/:param/sessions/:param/activities/:param/metadata
+- [x] USER_ACTIVITY_STATISTICS: /users/@me/activities/statistics/applications
+- [x] USER_ACTIVITY_SUBSCRIBE: /users/@me/activities/subscribe
+- [x] APPLICATION_ACTIVITY_STATISTICS: /activities/statistics/applications/:param
+- [x] ACTIVITIES: /activities
+- [x] UNVERIFIED_APPLICATIONS: /unverified-applications
+- [x] UNVERIFIED_APPLICATIONS_ICONS: /unverified-applications/icons
+- [x] GUILD_FEATURE_ACK: /guilds/:param/ack/:param/:param
+- [x] USER_NON_CHANNEL_ACK: /users/@me/:param/:param/ack
+- [x] DM_SETTINGS_UPSELL_ACK: /users/@me/guilds/:param/member/ack-dm-upsell-settings
+- [x] GUILD_CHANNELS: /guilds/:param/channels
+- [x] GUILD_MEMBERS: /guilds/:param/members
+- [x] GUILD_MEMBER: /guilds/:param/members/:param
+- [x] SET_GUILD_MEMBER: /guilds/:param/members/@me
+- [x] GUILD_JOIN: /guilds/:param/members/@me
+- [x] GUILD_LEAVE: /users/@me/guilds/:param
+- [x] GUILD_INTEGRATIONS: /guilds/:param/integrations
+- [x] GUILD_INTEGRATION: /guilds/:param/integrations/:param
+- [x] GUILD_INTEGRATION_SYNC: /guilds/:param/integrations/:param/sync
+- [x] GUILD_MIGRATE_COMMAND_SCOPE: /guilds/:param/migrate-command-scope
+- [x] GUILD_BANS_SEARCH: /guilds/:param/bans/search
+- [x] GUILD_BANS: /guilds/:param/bans
+- [x] GUILD_BAN: /guilds/:param/bans/:param
+- [x] GUILD_ROLES: /guilds/:param/roles
+- [x] GUILD_ROLE_MEMBER_COUNTS: /guilds/:param/roles/member-counts
+- [x] GUILD_ROLE_CONNECTIONS_CONFIGURATIONS: /guilds/:param/roles/connections-configurations
+- [x] GUILD_ROLE_MEMBER_IDS: /guilds/:param/roles/:param/member-ids
+- [x] GUILD_ROLE: /guilds/:param/roles/:param
+- [x] GUILD_ROLE_MEMBERS: /guilds/:param/roles/:param/members
+- [x] GUILD_ROLE_CONNECTIONS_ELIGIBILITY: /guilds/:param/roles/:param/connections/eligibility
+- [x] GUILD_ROLE_CONNECTIONS_ASSIGN: /guilds/:param/roles/:param/connections/assign
+- [x] GUILD_ROLE_CONNECTIONS_UNASSIGN: /guilds/:param/roles/:param/connections/unassign
+- [x] GUILD_ONBOARDING: /guilds/:param/onboarding
+- [x] GUILD_INSTANT_INVITES: /guilds/:param/invites
+- [x] GUILD_WIDGET: /guilds/:param/widget
+- [x] GUILD_VANITY_URL: /guilds/:param/vanity-url
+- [x] GUILD_MFA: /guilds/:param/mfa
+- [x] GUILD_PRUNE: /guilds/:param/prune
+- [x] GUILD_DISCOVERY_REQUIREMENTS: /guilds/:param/discovery-requirements
+- [x] GUILD_EMOJIS: /guilds/:param/emojis
+- [x] GUILD_EMOJI: /guilds/:param/emojis/:param
+- [x] GUILD_AUDIT_LOG: /guilds/:param/audit-logs
+- [x] GUILD_ANALYTICS_ENGAGEMENT_OVERVIEW: /guilds/:param/analytics/engagement/overview
+- [x] GUILD_ANALYTICS_GROWTH_ACTIVATION_OVERVIEW: /guilds/:param/analytics/growth-activation/overview
+- [x] GUILD_ANALYTICS_GROWTH_ACTIVATION_RETENTION: /guilds/:param/analytics/growth-activation/retention
+- [x] GUILD_TOP_GAMES: /guilds/:param/top-games
+- [x] GUILD_TOP_READ_CHANNELS: /guilds/:param/top-read-channels
+- [x] EMOJI_GUILD_DATA: /emojis/:param/guild
+- [x] EMOJI_SOURCE_DATA: /emojis/:param/source
+- [x] TOP_EMOJIS_FOR_GUILD: /guilds/:param/top-emojis
+- [x] GUILD_HOME_SETTINGS: /guilds/:param/new-member-welcome
+- [x] RESOURCE_CHANNEL: /guilds/:param/resource-channels/:param
+- [x] NEW_MEMBER_ACTION: /guilds/:param/new-member-actions/:param
+- [x] GUILD_MEMBER_ACTIONS: /guilds/:param/new-member-actions
+- [x] GUILD_MEMBER_ACTION_UPDATE: /guilds/:param/new-member-action/:param
+- [x] GUILD_WELCOME_SCREEN: /guilds/:param/welcome-screen
+- [x] GUILD_MEMBER_VERIFICATION: /guilds/:param/member-verification
+- [x] GUILD_JOIN_REQUEST_BY_ID: /join-requests/:param
+- [x] GUILD_JOIN_REQUESTS: /guilds/:param/requests
+- [x] USER_JOIN_REQUEST_GUILDS: /users/@me/join-request-guilds
+- [x] GUILD_MEMBER_REQUEST_TO_JOIN: /guilds/:param/requests/@me
+- [x] GUILD_MEMBER_JOIN_REQUEST_COOLDOWN: /guilds/:param/requests/@me/cooldown
+- [x] GUILD_JOIN_REQUEST: /guilds/:param/requests/:param
+- [x] GUILD_JOIN_REQUEST_ID: /guilds/:param/requests/id/:param
+- [x] GUILD_JOIN_REQUEST_ACK: /guilds/:param/requests/:param/ack
+- [x] GUILD_JOIN_REQUEST_INTERVIEW: /join-requests/:param/interview
+- [x] GUILDS: /guilds
+- [x] GUILD: /guilds/:param
+- [x] GUILD_BASIC: /guilds/:param/basic
+- [x] GUILD_PINCODE: /guilds/:param/pincode
+- [x] CHANNEL: /channels/:param
+- [x] THREAD_MEMBER: /channels/:param/thread-members/:param
+- [x] THREAD_MEMBER_SETTINGS: /channels/:param/thread-members/@me/settings
+- [x] MY_ARCHIVED_THREADS: /channels/:param/users/@me/threads/archived/private
+- [x] THREAD_SEARCH: /channels/:param/threads/search
+- [x] FORUM_POSTS: /channels/:param/post-data
+- [x] USER_PROFILE_EFFECTS: /user-profile-effects
+- [x] COLLECTIBLES_CATEGORIES: /collectibles-categories
+- [x] COLLECTIBLES_CLAIM: /users/@me/claim-premium-collectibles-product
+- [x] COLLECTIBLES_PURCHASES: /users/@me/collectibles-purchases
+- [x] COLLECTIBLES_PRODUCTS: /collectibles-products/:param
+- [x] COLLECTIBLES_VALID_GIFT_RECIPIENT: /users/@me/valid-collectibles-gift-recipient
+- [x] COLLECTIBLES_MARKETING: /users/@me/collectibles-marketing
+- [x] COLLECTIBLES_SHOP: /collectibles-shop
+- [x] CONSUMABLE_FETCH_PRICE: /store/consumable/pricing/:param
+- [x] CONSUME_HD_STREAMING_POTION: /users/@me/consumable/hd-streaming
+- [x] FETCH_HD_STREAMING_ENTITLEMENT: /users/@me/consumable/hd-streaming
+- [x] CONSUME_MESSAGE_CONFETTI_POTION: /users/@me/consumable/confetti
+- [x] FETCH_MESSAGE_CONFETTI_ENTITLEMENT: /users/@me/consumable/confetti
+- [x] MESSAGES: /channels/:param/messages
+- [x] MESSAGES_GREET: /channels/:param/greet
+- [x] MESSAGE: /channels/:param/messages/:param
+- [x] MESSAGE_ACK: /channels/:param/messages/:param/ack
+- [x] MESSAGE_CREATE_ATTACHMENT_UPLOAD: /channels/:param/attachments
+- [x] UPDATE_VOICE_CHANNEL_STATUS: /channels/:param/voice-status
+- [x] MESSAGE_DELETE_UPLOAD: /attachments/:param
+- [x] MESSAGE_CROSSPOST: /channels/:param/messages/:param/crosspost
+- [x] MESSAGE_PREVIEWS: /channels/preload-messages
+- [x] GUILD_FEED_MESSAGE_REMOVE: /channels/:param/messages/:param/hide-guild-feed
+- [x] PINS_ACK: /channels/:param/pins/ack
+- [x] PINS: /channels/:param/pins
+- [x] INSTANT_INVITES: /channels/:param/invites
+- [x] TYPING: /channels/:param/typing
+- [x] CHANNEL_PERMISSIONS_OVERWRITE: /channels/:param/permissions/:param
+- [x] CHANNEL_RECIPIENT: /channels/:param/recipients/:param
+- [x] CHANNEL_RECIPIENT_ME: /channels/:param/recipients/@me
+- [x] CHANNEL_RECIPIENT_REJECT_BATCH: /channels/recipients/@me/batch-reject
+- [x] CHANNEL_ACK: /channels/:param/messages/ack
+- [x] CHANNEL_FOLLOWERS: /channels/:param/followers
+- [x] CHANNEL_INTEGRATIONS: /channels/:param/integrations
+- [x] CHANNEL_INTEGRATION: /channels/:param/integrations/:param
+- [x] CHANNEL_SAFETY_WARNINGS_ACK: /channels/:param/safety-warnings/ack
+- [x] CHANNEL_BLOCKED_USER_WARNING_ACK: /channels/:param/blocked-user-warning-dismissal
+- [x] FORUM_TAGS: /channels/:param/tags
+- [x] FORUM_TAG: /channels/:param/tags/:param
+- [x] FRIEND_SUGGESTIONS: /friend-suggestions
+- [x] FRIEND_SUGGESTION: /friend-suggestions/:param
+- [x] TUTORIAL_INDICATORS_SUPPRESS: /tutorial/indicators/suppress
+- [x] TUTORIAL_INDICATOR: /tutorial/indicators/:param
+- [x] ME: /users/@me
+- [x] POMELO_SUGGESTIONS: /users/@me/pomelo-suggestions
+- [x] POMELO_ATTEMPT: /users/@me/pomelo-attempt
+- [x] POMELO_CREATE: /users/@me/pomelo
+- [x] DELETE_ACCOUNT: /users/@me/delete
+- [x] DISABLE_ACCOUNT: /users/@me/disable
+- [x] DEVICES: /users/@me/devices
+- [x] DEVICES_SYNC_TOKEN: /users/@me/devices/sync-token
+- [x] DEVICES_SYNC: /users/@me/devices/sync
+- [x] SETTINGS: /users/@me/settings
+- [x] SETTINGS_CONSENT: /users/@me/consent
+- [x] PHONE: /users/@me/phone
+- [x] PHONE_REVERIFY: /users/@me/phone/reverify
+- [x] FRIEND_INVITES: /users/@me/invites
+- [x] VERIFY_PHONE: /phone-verifications/verify
+- [x] RESEND_PHONE: /phone-verifications/resend
+- [x] RECENT_AVATARS: /users/@me/avatars
+- [x] RECENT_AVATARS_DELETE: /users/@me/avatars/:param
+- [x] CONNECTIONS: /users/@me/connections
+- [x] CONNECTIONS_AUTHORIZE: /connections/:param/authorize
+- [x] CONNECTIONS_CALLBACK: /connections/:param/callback
+- [x] CONNECTION: /users/@me/connections/:param/:param
+- [x] CONNECTION_REFRESH: /users/@me/connections/:param/:param/refresh
+- [x] CONNECTION_ACCESS_TOKEN: /users/@me/connections/:param/:param/access-token
+- [x] NOTES: /users/@me/notes
+- [x] NOTE: /users/@me/notes/:param
+- [x] MENTIONS: /users/@me/mentions
+- [x] MENTIONS_MESSAGE_ID: /users/@me/mentions/:param
+- [x] CAPTCHA: /users/@me/captcha/verify
+- [x] VERIFY_AGE: /age-verification/verify
+- [x] EXPERIMENTS: /experiments
+- [x] REMOTE_AUTH_INITIALIZE: /users/@me/remote-auth
+- [x] REMOTE_AUTH_CANCEL: /users/@me/remote-auth/cancel
+- [x] REMOTE_AUTH_LOGIN: /users/@me/remote-auth/login
+- [x] REMOTE_AUTH_FINISH: /users/@me/remote-auth/finish
+- [x] MFA_WEBAUTHN_CREDENTIALS: /users/@me/mfa/webauthn/credentials
+- [x] MFA_WEBAUTHN_CREDENTIAL: /users/@me/mfa/webauthn/credentials/:param
+- [x] INVITE: /invites/:param
+- [x] UNRESOLVED_GUILD_TEMPLATE: /guilds/templates/:param
+- [x] GUILD_TEMPLATES: /guilds/:param/templates
+- [x] GUILD_TEMPLATE: /guilds/:param/templates/:param
+- [x] VERIFY: /auth/verify
+- [x] AUTHORIZE_PAYMENT: /billing/verify-purchase-request
+- [x] VERIFY_RESEND: /auth/verify/resend
+- [x] REGIONS: /guilds/:param/regions
+- [x] REPORT_V2: /reports
+- [x] STAGE_REPORT: /reports/channels/:param/messages/:param
+- [x] REPORT_OPTIONS: /report/options
+- [x] INTEGRATION_JOIN: /integrations/:param/join
+- [x] INTEGRATION_APPLICATION_IDS_FOR_MY_GUILDS: /users/@me/guilds/integration-application-ids
+- [x] USER_GUILD_SETTINGS_BULK: /users/@me/guilds/settings
+- [x] USER_GUILD_SETTINGS: /users/@me/guilds/:param/settings
+- [x] APPLICATIONS_DETECTABLE: /applications/detectable
+- [x] APPLICATION_ASSETS: /oauth2/applications/:param/assets
+- [x] APPLICATION_EXTERNAL_ASSETS: /applications/:param/external-assets
+- [x] OAUTH2_AUTHORIZE: /oauth2/authorize
+- [x] OAUTH2_CURRENT_AUTH: /oauth2/@me
+- [x] OAUTH2_TOKENS: /oauth2/tokens
+- [x] OAUTH2_TOKEN: /oauth2/tokens/:param
+- [x] OAUTH2_WHITELIST_ACCEPT: /oauth2/allowlist/accept
+- [x] MFA_TOTP_ENABLE: /users/@me/mfa/totp/enable
+- [x] MFA_TOTP_DISABLE: /users/@me/mfa/totp/disable
+- [x] MFA_SMS_ENABLE: /users/@me/mfa/sms/enable
+- [x] MFA_SMS_DISABLE: /users/@me/mfa/sms/disable
+- [x] MFA_CODES_VERIFICATION: /users/@me/mfa/codes-verification
+- [x] MFA_SEND_VERIFICATION_KEY: /auth/verify/view-backup-codes-challenge
+- [x] CALL: /channels/:param/call
+- [x] CALL_RING: /channels/:param/call/ring
+- [x] CALL_STOP_RINGING: /channels/:param/call/stop-ringing
+- [x] CHANNEL_WEBHOOKS: /channels/:param/webhooks
+- [x] GUILD_WEBHOOKS: /guilds/:param/webhooks
+- [x] WEBHOOK: /webhooks/:param
+- [x] WEBHOOK_INTEGRATION: /webhooks/:param/:param
+- [x] REACTIONS: /channels/:param/messages/:param/reactions/:param
+- [x] REMOVE_REACTIONS: /channels/:param/messages/:param/reactions
+- [x] REMOVE_EMOJI_REACTIONS: /channels/:param/messages/:param/reactions/:param
+- [x] SEARCH_GUILD: /guilds/:param/messages/search
+- [x] SEARCH_TABS_GUILD: /guilds/:param/messages/search/tabs
+- [x] SEARCH_TABS_DMS: /users/@me/messages/search/tabs
+- [x] GUILD_APPLICATIONS: /guilds/:param/applications
+- [x] APPLIED_GUILD_BOOSTS_FOR_GUILD: /guilds/:param/premium/subscriptions
+- [x] APPLIED_GUILD_BOOST: /guilds/:param/premium/subscriptions/:param
+- [x] APPLIED_GUILD_BOOST_COOLDOWN: /users/@me/guilds/premium/subscriptions/cooldown
+- [x] USER_APPLIED_GUILD_BOOSTS: /users/@me/guilds/premium/subscriptions
+- [x] USER_GUILD_BOOST_SLOTS: /users/@me/guilds/premium/subscription-slots
+- [x] USER_GUILD_BOOST_SLOT_CANCEL: /users/@me/guilds/premium/subscription-slots/:param/cancel
+- [x] USER_GUILD_BOOST_SLOT_UNCANCEL: /users/@me/guilds/premium/subscription-slots/:param/uncancel
+- [x] GUILD_POWERUPS: /guilds/:param/powerups
+- [x] GUILD_POWERUP_TOGGLE: /guilds/:param/skus/:param
+- [x] SEARCH_TABS_CHANNEL: /channels/:param/messages/search/tabs
+- [x] BILLING_STRIPE_SETUP_INTENT_SECRET: /users/@me/billing/stripe/setup-intents
+- [x] BILLING_ADYEN_PAYMENT_METHODS: /users/@me/billing/adyen/payment-methods
+- [x] BILLING_PAYMENT_SOURCES: /users/@me/billing/payment-sources
+- [x] BILLING_PAYMENT_SOURCES_VALIDATE_BILLING_ADDRESS: /users/@me/billing/payment-sources/validate-billing-address
+- [x] BILLING_PAYMENT_SOURCE: /users/@me/billing/payment-sources/:param
+- [x] BILLING_PAYMENTS: /users/@me/billing/payments
+- [x] BILLING_PAYMENT: /users/@me/billing/payments/:param
+- [x] BILLING_PAYMENTS_VOID: /users/@me/billing/payments/:param/void
+- [x] BILLING_INVOICE_BREAKDOWN: /users/@me/billing/invoice/breakdown
+- [x] BILLING_PAYPAL_BILLING_AGREEMENT_TOKENS: /users/@me/billing/paypal/billing-agreement-tokens
+- [x] BILLING_POPUP_BRIDGE: /billing/popup-bridge/:param
+- [x] BILLING_POPUP_BRIDGE_CALLBACK: /billing/popup-bridge/:param/callback
+- [x] BILLING_POPUP_BRIDGE_CALLBACK_REDIRECT_PREFIX: /billing/popup-bridge/:param/callback/:param/:param
+- [x] BILLING_SUBSCRIPTIONS: /users/@me/billing/subscriptions
+- [x] BILLING_NITRO_AFFINITY: /users/@me/billing/nitro-affinity
+- [x] BILLING_SUBSCRIPTIONS_PREVIEW: /users/@me/billing/subscriptions/preview
+- [x] BILLING_SUBSCRIPTION: /users/@me/billing/subscriptions/:param
+- [x] BILLING_SUBSCRIPTION_PREVIEW: /users/@me/billing/subscriptions/:param/preview
+- [x] BILLING_SUBSCRIPTION_INVOICE: /users/@me/billing/subscriptions/:param/invoices
+- [x] BILLING_INVOICE_MANUAL_PAYMENT: /users/@me/billing/subscriptions/:param/invoices/:param/pay
+- [x] BILLING_COUNTRY_CODE: /users/@me/billing/country-code
+- [x] BILLING_LOCALIZED_PROMO: /users/@me/billing/localized-pricing-promo
+- [x] USER_AGREEMENTS: /users/@me/agreements
+- [x] USER_HARVEST: /users/@me/harvest
+- [x] APPLICATION_PUBLIC: /applications/:param/public
+- [x] APPLICATIONS_PUBLIC: /applications/public
+- [x] STORE_EMAIL_RESEND_PAYMENT_VERIFICATION: /store/email/resend-payment-verification
+- [x] STORE_PUBLISHED_LISTINGS_APPLICATIONS: /store/published-listings/applications
+- [x] STORE_PUBLISHED_LISTINGS_APPLICATION: /store/published-listings/applications/:param
+- [x] STORE_PUBLISHED_LISTINGS_SKUS: /store/published-listings/skus
+- [x] STORE_PUBLISHED_LISTINGS_SKU: /store/published-listings/skus/:param
+- [x] STORE_PUBLISHED_LISTINGS_SUBSCRIPTION_PLANS: /store/published-listings/skus/:param/subscription-plans
+- [x] STORE_SKU: /store/skus/:param
+- [x] STORE_SKU_PURCHASE: /store/skus/:param/purchase
+- [x] STORE_LISTING: /store/listings/:param
+- [x] STORE_LISTINGS_SKU: /store/skus/:param/listings
+- [x] APPLICATION_MANAGED_ACTIVITY_LINK: /applications/:param/managed-links/:param
+- [x] STORE_EULA: /store/eulas/:param
+- [x] ENTITLEMENTS_FOR_APPLICATION: /users/@me/applications/:param/entitlements
+- [x] ENTITLEMENTS_FOR_USER: /users/@me/entitlements
+- [x] ENTITLEMENTS_GIFTABLE: /users/@me/entitlements/gifts
+- [x] HYPESQUAD_ONLINE: /hypesquad/online
+- [x] APPLICATION_DISCLOSURES: /applications/:param/disclosures
+- [x] GIFS_SEARCH: /gifs/search
+- [x] GIFS_TRENDING: /gifs/trending
+- [x] GIFS_TRENDING_GIFS: /gifs/trending-gifs
+- [x] GIFS_SELECT: /gifs/select
+- [x] GIFS_SUGGEST: /gifs/suggest
+- [x] GIFS_TRENDING_SEARCH: /gifs/trending-search
+- [x] GIFT_CODE_RESOLVE: /entitlements/gift-codes/:param
+- [x] GIFT_CODE_REDEEM: /entitlements/gift-codes/:param/redeem
+- [x] USER_GIFT_CODE_CREATE: /users/@me/entitlements/gift-codes
+- [x] USER_GIFT_CODE_REVOKE: /users/@me/entitlements/gift-codes/:param
+- [x] USER_GIFT_CODES: /users/@me/entitlements/gift-codes
+- [x] USER_TRIAL_OFFER: /users/@me/billing/user-trial-offer
+- [x] USER_TRIAL_OFFER_ACKNOWLEDGED: /users/@me/billing/user-trial-offer/:param/ack
+- [x] USER_OFFER: /users/@me/billing/user-offer
+- [x] USER_OFFER_ACKNOWLEDGED: /users/@me/billing/user-offer/ack
+- [x] CHURN_USER_OFFER: /users/@me/billing/churn-user-offer
+- [x] USER_OFFER_REDEEM: /users/@me/billing/user-offer/redeem
+- [x] GUILD_DISCOVERY: /discoverable-guilds
+- [x] GUILD_DISCOVERY_SEARCH: /discoverable-guilds/search
+- [x] GUILD_DISCOVERY_CATEGORIES: /discovery/categories
+- [x] GUILD_DISCOVERY_SLUG: /discovery/:param
+- [x] GUILD_DISCOVERY_METADATA: /guilds/:param/discovery-metadata
+- [x] GUILD_DISCOVERY_UPDATE_CATEGORY: /guilds/:param/discovery-categories/:param
+- [x] STREAM_PREVIEW: /streams/:param/preview
+- [x] STREAM_NOTIFY: /streams/:param/notify
+- [x] STREAM: /streams/:param/stream
+- [x] GUILD_PREVIEW: /guilds/:param/preview
+- [x] USER_AFFINITIES: /users/@me/affinities/users
+- [x] USER_AFFINITIES_V2: /users/@me/affinities/v2/users
+- [x] GUILD_AFFINITIES: /users/@me/affinities/guilds
+- [x] CHANNEL_AFFINITIES: /users/@me/affinities/channels
+- [x] STICKER_PACK: /sticker-packs/:param
+- [x] STICKER: /stickers/:param
+- [x] STICKER_PACKS: /sticker-packs
+- [x] GUILD_STICKER_PACKS: /guilds/:param/stickers
+- [x] GUILD_STICKER: /guilds/:param/stickers/:param
+- [x] STICKER_GUILD_DATA: /stickers/:param/guild
+- [x] INTERACTIONS: /interactions
+- [x] MESSAGE_INTERACTION_DATA: /channels/:param/messages/:param/interaction-data
+- [x] ACTIVITY_SHELF: /activities/shelf
+- [x] ACTIVITY_CHANNEL_LAUNCH: /activities/:param/:param
+- [x] ACTIVITY_TEST_MODE: /activities/:param/test-mode
+- [x] ACTIVITY_LEAVE: /applications/:param/activities/:param/instances/:param/leave
+- [x] APPLICATION_UPLOAD_ATTACHMENT: /applications/:param/attachment
+- [x] CHANNEL_THREADS: /channels/:param/threads
+- [x] CHANNEL_MESSAGE_THREADS: /channels/:param/messages/:param/threads
+- [x] CHANNEL_LINKED_LOBBY: /channels/:param/linked-lobby
+- [x] UPDATE_VOICE_STATE: /guilds/:param/voice-states/:param
+- [x] GET_REPORT_MENU: /reporting/menu/:param
+- [x] GET_UNAUTHENTICATED_REPORT_MENU: /reporting/unauthenticated/menu/:param
+- [x] SUBMIT_REPORT_MENU: /reporting/:param
+- [x] SUBMIT_UNAUTHENTICATED_REPORT_MENU: /reporting/unauthenticated/:param
+- [x] SEND_UNAUTHENTICATED_REPORT_PINCODE: /reporting/unauthenticated/:param/code
+- [x] VERIFY_UNAUTHENTICATED_REPORT: /reporting/unauthenticated/:param/verify
+- [x] DSA_EXPERIMENT_UNAUTHENTICATED: /reporting/unauthenticated/experiment
+- [x] SUBMIT_REPORT_SECOND_LOOK: /reporting/review
+- [x] STAGE_INSTANCES: /stage-instances
+- [x] STAGE_INSTANCE: /stage-instances/:param
+- [x] USER_SURVEY: /users/@me/survey
+- [x] USER_SURVEY_SEEN: /users/@me/survey/:param/seen
+- [x] GUILD_EVENT: /guilds/:param/scheduled-events/:param
+- [x] GUILD_EVENTS_FOR_GUILD: /guilds/:param/scheduled-events
+- [x] GUILD_EVENT_USER_COUNTS: /guilds/:param/scheduled-events/:param/users/counts
+- [x] USER_GUILD_EVENT: /guilds/:param/scheduled-events/:param/:param/users/@me
+- [x] USER_GUILD_EVENTS: /users/@me/scheduled-events
+- [x] MEMBER_SAFETY_SUPPLEMENTAL: /guilds/:param/members/supplemental
+- [x] GUILD_MEMBER_SEARCH: /guilds/:param/members-search
+- [x] GUILD_AUTOMOD_RULES: /guilds/:param/auto-moderation/rules
+- [x] GUILD_AUTOMOD_RULE: /guilds/:param/auto-moderation/rules/:param
+- [x] GUILD_AUTOMOD_VALIDATE_RULE: /guilds/:param/auto-moderation/rules/validate
+- [x] GUILD_AUTOMOD_CLEAR_MENTION_RAID: /guilds/:param/auto-moderation/clear-mention-raid
+- [x] GUILD_AUTOMOD_ALERT_ACTION: /guilds/:param/auto-moderation/alert-action
+- [x] GUILD_INCIDENT_ACTIONS: /guilds/:param/incident-actions
+- [x] GUILD_INCIDENT_REPORT_FALSE_ALARM: /guilds/:param/auto-moderation/false-alarm
+- [x] GUILD_INCIDENT_REPORT_RAID: /guilds/:param/auto-moderation/report-raid
+- [x] DIRECTORY_CHANNEL_ENTRIES: /channels/:param/directory-entries
+- [x] DIRECTORY_CHANNEL_ENTRY: /channels/:param/directory-entry/:param
+- [x] DIRECTORY_ENTRIES_SEARCH: /channels/:param/directory-entries/search
+- [x] DIRECTORY_CHANNEL_CATEGORY_COUNTS: /channels/:param/directory-entries/counts
+- [x] DIRECTORY_CHANNEL_LIST_BY_ID: /channels/:param/directory-entries/list
+- [x] DIRECTORY_ENTRIES_BROADCAST_INFO: /guilds/:param/directory-entries/broadcast
+- [x] PRICE_TIERS: /store/price-tiers
+- [x] TEAMS: /teams
+- [x] APPLICATIONS: /applications
+- [x] APPLICATIONS_WITH_ASSETS: /applications-with-assets
+- [x] APPLICATION_OWNER_TRANSFER: /applications/:param/transfer
+- [x] HUB_WAITLIST_SIGNUP: /hub-waitlist/signup
+- [x] HUB_EMAIL_VERIFY_CODE: /guilds/automations/email-domain-lookup/verify-code
+- [x] HUB_EMAIL_VERIFY_SEND: /guilds/automations/email-domain-lookup
+- [x] MEDIA_POST_RESHARE_GET_PREVIEW: /channels/:param/media-post-preview
+- [x] UNFURL_EMBED_URLS: /unfurler/embed-urls
+- [x] GUILD_PROFILE: /guilds/:param/profile
+- [x] USER_SET_CLAN_IDENTITY: /users/@me/clan
+- [x] EMAIL_SETTINGS: /users/@me/email-settings
+- [x] ACCOUNT_NOTIFICATION_SETTINGS: /users/@me/notification-settings
+- [x] GUILD_SOUNDBOARD_SOUNDS: /guilds/:param/soundboard-sounds
+- [x] GUILD_SOUNDBOARD_SOUND: /guilds/:param/soundboard-sounds/:param
+- [x] SOUNDBOARD_SOUND_GUILD_DATA: /soundboard-sounds/:param/guild/:param
+- [x] SOUNDBOARD_DEFAULT_SOUNDS: /soundboard-default-sounds
+- [x] SEND_SOUNDBOARD_SOUND: /channels/:param/send-soundboard-sound
+- [x] APPLICATION_COMMAND_INDEX_CHANNEL: /channels/:param/application-command-index
+- [x] APPLICATION_COMMAND_INDEX_GUILD: /guilds/:param/application-command-index
+- [x] APPLICATION_COMMAND_INDEX_USER: /users/@me/application-command-index
+- [x] APPLICATION_COMMAND_INDEX_APPLICATION: /applications/:param/application-command-index
+- [x] USER_EMAIL: /users/@me/email
+- [x] USER_EMAIL_VERIFY_CODE: /users/@me/email/verify-code
+- [x] PREMIUM_USAGE: /users/@me/premium-usage
+- [x] NOTIFICATION_SNAPSHOTS: /users/@me/notification-settings/snapshots
+- [x] NOTIFICATION_SNAPSHOT: /users/@me/notification-settings/snapshots/:param
+- [x] RESTORE_NOTIFICATION_SNAPSHOT: /users/@me/notification-settings/snapshots/:param/restore-guilds
+- [x] GUILD_ADMIN_SERVER_ELIGIBILITY: /guilds/:param/admin-server-eligibility
+- [x] JOIN_ADMIN_SERVER: /guilds/:param/join-admin-server
+- [x] VOICE_CHANNEL_EFFECTS: /channels/:param/voice-channel-effects
+- [x] GUILD_ENTITLEMENTS: /guilds/:param/entitlements
+- [x] GUILD_ROLE_CONNECTIONS_CONFIGURATION: /guilds/:param/roles/:param/connections/configuration
+- [x] MESSAGE_REQUESTS_SUPPLEMENTAL_DATA: /users/@me/message-requests/supplemental-data
+- [x] CONNECT_REQUEST_CREATE: /consoles/connect-request
+- [x] CONNECT_REQUEST: /consoles/connect-request/:param
+- [x] CONSOLES_DEVICES: /consoles/:param/devices
+- [x] CONSOLES_DEVICES_COMMANDS: /consoles/:param/devices/:param/commands
+- [x] CONSOLES_DEVICES_COMMAND: /consoles/:param/devices/:param/commands/:param
+- [x] APPLICATION_USER_ROLE_CONNECTIONS: /users/@me/applications/role-connections
+- [x] GET_SAVED_MESSAGES: /users/@me/saved-messages
+- [x] PUT_SAVED_MESSAGE: /users/@me/saved-messages/:param/:param
+- [x] DELETE_SAVED_MESSAGE: /users/@me/saved-messages/:param/:param
+- [x] GET_REFERRALS_REMAINING: /users/@me/referrals/eligibility
+- [x] GET_REFERRAL_ELIGIBLE_USERS: /users/@me/referrals/eligible-users
+- [x] CREATE_REFERRAL: /users/@me/referrals/:param
+- [x] FAMILY_CENTER_TEEN_ACTIVITY_ME: /family-center/@me
+- [x] FAMILY_CENTER_LINKED_USERS: /users/@me/linked-users
+- [x] FAMILY_CENTER_LINK_CODE: /family-center/@me/link-code
+- [x] REFERRAL_OFFER_ID_RESOLVE: /referrals/:param
+- [x] GUILD_MEMBERS_UNUSUAL_DM_ACTIVITY: /guilds/:param/members/unusual-dm-activity
+- [x] SAFETY_HUB: /safety-hub/@me
+- [x] SAFETY_HUB_REQUEST_REVIEW: /safety-hub/request-review/:param
+- [x] SAFETY_HUB_REQUEST_SUSPENDED_USER_REVIEW: /safety-hub/suspended/request-review/:param
+- [x] SAFETY_HUB_SUSPENDED: /safety-hub/suspended/@me
+- [x] SAFETY_HUB_REQUEST_SUSPENDED_AGE_VERIFICATION: /safety-hub/suspended/request-verification
+- [x] SAFETY_HUB_CHECK_SUSPENDED_AGE_VERIFICATION: /safety-hub/suspended/check-verification
+- [x] EXPLICIT_MEDIA_REPORT_FALSE_POSITIVE: /attachments/report-false-positive
+- [x] EXPLICIT_MEDIA_SENDER_REPORT_FALSE_POSITIVE: /attachments/sender-report-false-positive
+- [x] BULK_GUILD_BAN: /guilds/:param/bulk-ban
+- [x] EXPLICIT_MEDIA_SCAN_MESSAGES: /channels/:param/explicit-media
+- [x] EXPLICIT_MEDIA_SCAN_MULTI_CHANNEL_MESSAGES: /messages/explicit-media
+- [x] POLL_ANSWERS: /channels/:param/polls/:param/answers/@me
+- [x] POLL_EXPIRE: /channels/:param/polls/:param/expire
+- [x] POLL_ANSWER_VOTERS: /channels/:param/polls/:param/answers/:param
+- [x] QUESTS_CURRENT_QUESTS: /quests/@me
+- [x] QUESTS_CLAIMED_QUESTS: /quests/@me/claimed
+- [x] QUEST: /quests/:param
+- [x] QUESTS_ENROLL: /quests/:param/enroll
+- [x] QUEST_ON_CONSOLE_START: /quests/:param/console/start
+- [x] QUEST_ON_CONSOLE_STOP: /quests/:param/console/stop
+- [x] QUESTS_HEARTBEAT: /quests/:param/heartbeat
+- [x] QUESTS_VIDEO_PROGRESS: /quests/:param/video-progress
+- [x] QUESTS_REWARD_CODE: /quests/:param/reward-code
+- [x] QUESTS_CLAIM_REWARD: /quests/:param/claim-reward
+- [x] QUESTS_DISMISS_CONTENT: /quests/:param/dismissible-content/:param/dismiss
+- [x] QUESTS_PREVIEW_STATUS: /quests/:param/preview/status
+- [x] QUESTS_PREVIEW_DISMISSIBILITY: /quests/:param/preview/dismissibility
+- [x] QUESTS_PREVIEW_COMPLETE: /quests/:param/preview/complete
+- [x] ATTACHMENTS_REFRESH_URLS: /attachments/refresh-urls
+- [x] GAME_INVITE: /game-invite/@me/:param
+- [x] GAME_INVITES: /game-invite/@me
+- [x] ADD_SAFETY_WARNING: /channels/:param/add-safety-warning
+- [x] DELETE_SAFETY_WARNINGS: /channels/:param/safety-warnings
+- [x] SAFETY_WARNING_FALSE_POSITIVE: /channels/:param/safety-warning/report-false-positive
+- [x] CHECKOUT_RECOVERY: /users/@me/billing/checkout-recovery
+- [x] VOICE_PUBLIC_KEYS: /voice/public-keys
+- [x] VOICE_MATCH_PUBLIC_KEY: /voice/:param/match-public-key
+- [x] VIRTUAL_CURRENCY_SKU_REDEEM: /virtual-currency/skus/:param/redeem
+- [x] VIRTUAL_CURRENCY_USER_BALANCE: /users/@me/virtual-currency/balance
+- [x] IGNORE_USER: /users/@me/relationships/:param/ignore
