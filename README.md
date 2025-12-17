@@ -1,6 +1,6 @@
 # discord-userdoccers-tracker
 
-Tracking missing routes on Discord Userdoccers.
+Tracking missing routes on [Discord Userdoccers](https://discord.food).
 
 ## Files & Folders
 
