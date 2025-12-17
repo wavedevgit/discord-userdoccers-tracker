@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 434 |
+| Covered | 435 |
 |---------|------------|
-| Missing | 271 |
+| Missing | 270 |
 ## Missing routes
-total: 271
+total: 270
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -118,7 +118,6 @@ total: 271
 - [ ] **SEARCH_FAVORITES**: `/search/favorites`
 - [ ] **SEARCH_DMS**: `/users/@me/messages/search`
 - [ ] **CHANGELOG_MESSAGES**: `/changelogs/@me/messages`
-- [ ] **SEARCH_CHANNEL**: `/channels/:param/messages/search`
 - [ ] **BILLING_PAYMENTS_REFUND**: `/users/@me/billing/payments/:param/refund`
 - [ ] **BILLING_INVOICE_PDF**: `/users/@me/billing/invoice`
 - [ ] **BILLING_STRIPE_PAYMENT_INTENTS**: `/users/@me/billing/stripe/payment-intents/payments/:param`
@@ -279,7 +278,7 @@ total: 271
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 434
+total: 435
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -498,6 +497,7 @@ total: 434
 - [x] **USER_GUILD_BOOST_SLOT_UNCANCEL**: `/users/@me/guilds/premium/subscription-slots/:param/uncancel`
 - [x] **GUILD_POWERUPS**: `/guilds/:param/powerups`
 - [x] **GUILD_POWERUP_TOGGLE**: `/guilds/:param/skus/:param`
+- [x] **SEARCH_CHANNEL**: `/channels/:param/messages/search`
 - [x] **SEARCH_TABS_CHANNEL**: `/channels/:param/messages/search/tabs`
 - [x] **BILLING_STRIPE_SETUP_INTENT_SECRET**: `/users/@me/billing/stripe/setup-intents`
 - [x] **BILLING_ADYEN_PAYMENT_METHODS**: `/users/@me/billing/adyen/payment-methods`

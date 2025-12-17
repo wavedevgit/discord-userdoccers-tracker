@@ -4527,15 +4527,12 @@
     },
     {
         "title": "Acknowledge Guild Join Request",
-        "method": "POST\n",
-        "": true,
-        "url": "/guilds/{guild.id}/requests/@me/ack OR /guilds/{guild.id}/requests/{guild_join_request.id}/ack",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/requests/{guild_join_request.id}/ack",
         "urls": [
-            "/guilds/{guild.id}/requests/@me/ack",
             "/guilds/{guild.id}/requests/{guild_join_request.id}/ack"
         ],
         "urlEmpty": [
-            "/guilds/:param/requests/@me/ack",
             "/guilds/:param/requests/:param/ack"
         ]
     },
@@ -5152,6 +5149,18 @@
         ]
     },
     {
+        "title": "Get Invite Friend Members",
+        "method": "GET",
+        "url": "/invites/{invite.code}/friend-members",
+        "supportsBot": true,
+        "urls": [
+            "/invites/{invite.code}/friend-members"
+        ],
+        "urlEmpty": [
+            "/invites/:param/friend-members"
+        ]
+    },
+    {
         "title": "Get Guild Invites",
         "method": "GET",
         "url": "/guilds/{guild.id}/invites",
@@ -5425,33 +5434,58 @@
         ]
     },
     {
-        "title": "Search Messages",
-        "method": "GET\n",
-        "": true,
-        "url": "/guilds/{guild.id}/messages/search OR /channels/{channel.id}/messages/search\n",
+        "title": "Search Guild Messages",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/messages/search",
         "supportsBot": true,
         "urls": [
-            "/guilds/{guild.id}/messages/search",
-            "/channels/{channel.id}/messages/search\n"
+            "/guilds/{guild.id}/messages/search"
         ],
         "urlEmpty": [
-            "/guilds/:param/messages/search",
-            "/channels/:param/messages/search\n"
+            "/guilds/:param/messages/search"
         ]
     },
     {
-        "title": "Search Messages by Tab",
-        "method": "POST\n",
-        "": true,
-        "url": "/guilds/{guild.id}/messages/search/tabs OR /channels/{channel.id}/messages/search/tabs OR /users/@me/messages/search/tabs",
+        "title": "Search Channel Messages",
+        "method": "GET",
+        "url": "/channels/{channel.id}/messages/search",
         "urls": [
-            "/guilds/{guild.id}/messages/search/tabs",
-            "/channels/{channel.id}/messages/search/tabs",
+            "/channels/{channel.id}/messages/search"
+        ],
+        "urlEmpty": [
+            "/channels/:param/messages/search"
+        ]
+    },
+    {
+        "title": "Search Guild Messages by Tab",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/messages/search/tabs",
+        "urls": [
+            "/guilds/{guild.id}/messages/search/tabs"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/messages/search/tabs"
+        ]
+    },
+    {
+        "title": "Search Channel Messages by Tab",
+        "method": "POST",
+        "url": "/channels/{channel.id}/messages/search/tabs",
+        "urls": [
+            "/channels/{channel.id}/messages/search/tabs"
+        ],
+        "urlEmpty": [
+            "/channels/:param/messages/search/tabs"
+        ]
+    },
+    {
+        "title": "Search User Messages by Tab",
+        "method": "POST",
+        "url": "/users/@me/messages/search/tabs",
+        "urls": [
             "/users/@me/messages/search/tabs"
         ],
         "urlEmpty": [
-            "/guilds/:param/messages/search/tabs",
-            "/channels/:param/messages/search/tabs",
             "/users/@me/messages/search/tabs"
         ]
     },
@@ -9007,13 +9041,13 @@
     {
         "title": "Get OAuth2 Device Code",
         "method": "POST",
-        "url": "/oauth2/authorize/device",
+        "url": "/oauth2/device/authorize",
         "unauthenticated": true,
         "urls": [
-            "/oauth2/authorize/device"
+            "/oauth2/device/authorize"
         ],
         "urlEmpty": [
-            "/oauth2/authorize/device"
+            "/oauth2/device/authorize"
         ]
     },
     {

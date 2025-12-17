@@ -3004,8 +3004,8 @@ Further complicating things, some optional fields may be omitted if their value 
 | 1 << 20     | EMBEDDED_FIRST_PARTY                   | Embedded application is created by Discord                                                                                                                 | Yes     |
 | 1 << 21     | APPLICATION_COMMAND_MIGRATED           | Unknown                                                                                                                                                    | Yes     |
 | 1 << 23     | APPLICATION_COMMAND_BADGE              | Application has registered global application commands                                                                                                     | Yes     |
-| ~~1 << 24~~ | ~~ACTIVE~~                             | ~~Application has had at least one global application command used in the last 30 days~~                                                                   | ~~No~~  |
-| ~~1 << 25~~ | ~~ACTIVE_GRACE_PERIOD ^1^~~            | ~~Application has not had any global application commands used in the last 30 days and has lost the `ACTIVE` flag~~                                        | ~~No~~  |
+| 1 << 24     | ACTIVE                                 | Application has had at least one global application command used in the last 30 days                                                                       | No      |
+| 1 << 25     | ACTIVE_GRACE_PERIOD                    | Application has not had any global application commands used in the last 30 days and has lost the `ACTIVE` flag                                            | No      |
 | 1 << 26     | IFRAME_MODAL                           | Application can use IFrames within modals                                                                                                                  | Yes     |
 | 1 << 27     | SOCIAL_LAYER_INTEGRATION               | Application can use the social layer SDK                                                                                                                   | Yes     |
 | 1 << 29     | PROMOTED                               | Application is promoted by Discord in the application directory                                                                                            | Yes     |
@@ -3016,8 +3016,6 @@ Further complicating things, some optional fields may be omitted if their value 
 | ~~1 << 9~~  | ~~ALLOW_ACTIVITY_ACTION_SPECTATE~~     | ~~Application can enable spectating activities~~                                                                                                           | ~~No~~  |
 | ~~1 << 10~~ | ~~ALLOW_ACTIVITY_ACTION_JOIN_REQUEST~~ | ~~Application can enable activity join requests~~                                                                                                          | ~~No~~  |
 | ~~1 << 11~~ | ~~RPC_HAS_CONNECTED~~                  | ~~Application has accessed the client RPC server before~~                                                                                                  | ~~Yes~~ |
-
-^1^ The active grace period lasts for 30 days, after which the [`ACTIVE_DEVELOPER` user flag](/resources/user#user-flags) will be removed from developers that claimed it.
 
 ###### Overlay Method Flags
 
@@ -16812,10 +16810,7 @@ Submits a request to join a guild. Returns a partial [guild join request](#guild
 
 Resets the current user's join request for the guild. Returns a partial [guild join request](#guild-join-request-object) object on success. Fires a [Guild Join Request Delete](/topics/gateway-events#guild-join-request-delete) and [Guild Join Request Create](/topics/gateway-events#guild-join-request-create) Gateway event.
 
-<RouteHeader
-  method="POST"
-  url="/guilds/{guild.id}/requests/@me/ack OR /guilds/{guild.id}/requests/{guild_join_request.id}/ack"
->
+<RouteHeader method="POST" url="/guilds/{guild.id}/requests/{guild_join_request.id}/ack">
   Acknowledge Guild Join Request
 </RouteHeader>
 
@@ -16823,7 +16818,7 @@ Acknowledges an approved join request for the current user. Returns a 204 empty 
 
 <Alert type="info">
 
-Users can only acknowledge their own join requests, and only if the request is approved and is not already acknowledged (has a `last_seen` of `null`).
+Users can only acknowledge their own join requests (`{guild_join_request.id}` may be `@me` or the user's ID), and only if the request is approved and is not already acknowledged (has a `last_seen` of `null`).
 Upon acknowledgement, the join request is no longer considered active and will not be returned in the [Ready event](/topics/gateway-events#ready).
 
 </Alert>
@@ -18015,6 +18010,18 @@ Users who have been blocked by the inviter cannot accept friend invites.
 </RouteHeader>
 
 Deletes an invite. Requires the `MANAGE_CHANNELS` permission on the channel this invite belongs to, or `MANAGE_GUILD` to remove any invite across the guild, if the invite is to a guild. Returns an [invite](#invite-object) object on success. May fire an [Invite Delete](/topics/gateway-events#invite-delete) Gateway event.
+
+<RouteHeader method="GET" url="/invites/{invite.code}/friend-members" supportsBot>
+  Get Invite Friend Members
+</RouteHeader>
+
+Returns the user IDs of friends in the target guild. Always returns an empty array for group DMs and friend invites.
+
+###### Response Body
+
+| Field             | Type             | Description                             |
+| ----------------- | ---------------- | --------------------------------------- |
+| friend_member_ids | array[snowflake] | User IDs of friends in the target guild |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/invites" supportsBot>
   Get Guild Invites
@@ -19833,15 +19840,11 @@ Preloads the last message sent in a series of private channels. Returns a list o
 | ----------- | ---------------- | ---------------------------------------------------------- |
 | channel_ids | array[snowflake] | The IDs of the channels to preload messages from (max 100) |
 
-<RouteHeader
-  method="GET"
-  url="/guilds/{guild.id}/messages/search OR /channels/{channel.id}/messages/search"
-  supportsBot
->
-  Search Messages
+<RouteHeader method="GET" url="/guilds/{guild.id}/messages/search" supportsBot>
+  Search Guild Messages
 </RouteHeader>
 
-Returns a list of messages without the `reactions` key that match a search query in the guild or private channel. Requires the `READ_MESSAGE_HISTORY` permission if operating on a guild channel.
+Returns a list of messages without the `reactions` key that match a search query in the guild. Requires the `READ_MESSAGE_HISTORY` permission.
 
 <Alert type="warn">
 
@@ -20017,15 +20020,19 @@ These do not correspond 1:1 to actual [embed types](#embed-type) and encompass a
 }
 ```
 
-<RouteHeader
-  method="POST"
-  url="/guilds/{guild.id}/messages/search/tabs OR /channels/{channel.id}/messages/search/tabs OR /users/@me/messages/search/tabs"
->
-  Search Messages by Tab
+<RouteHeader method="GET" url="/channels/{channel.id}/messages/search">
+  Search Channel Messages
 </RouteHeader>
 
-Returns a list of messages without the `reactions` key that match a set of parallelized search queries in the guild, private channel, or globally across all user private channels.
-Requires the `READ_MESSAGE_HISTORY` permission if operating on a guild channel.
+Returns a list of messages without the `reactions` key that match a search query in the private channel.
+
+See [Search Guild Messages](#search-guild-messages) for more information.
+
+<RouteHeader method="POST" url="/guilds/{guild.id}/messages/search/tabs">
+  Search Guild Messages by Tab
+</RouteHeader>
+
+Returns a list of messages without the `reactions` key that match a set of parallelized search queries in the guild. Requires the `READ_MESSAGE_HISTORY` permission.
 
 <Alert type="warn">
 
@@ -20165,6 +20172,22 @@ While the tab names themselves are enforced, what they are used for is not. Clie
 ^2^ Will be an empty object if there is no more data to paginate.
 
 ^3^ Amount will be capped at 1001 if `track_exact_total_hits` is set to `false`.
+
+<RouteHeader method="POST" url="/channels/{channel.id}/messages/search/tabs">
+  Search Channel Messages by Tab
+</RouteHeader>
+
+Returns a list of messages without the `reactions` key that match a set of parallelized search queries in the private channel.
+
+See [Search Guild Messages by Tab](#search-guild-messages-by-tab) for more information.
+
+<RouteHeader method="POST" url="/users/@me/messages/search/tabs">
+  Search User Messages by Tab
+</RouteHeader>
+
+Returns a list of messages without the `reactions` key that match a set of parallelized search queries across all user private channels.
+
+See [Search Guild Messages by Tab](#search-guild-messages-by-tab) for more information.
 
 <RouteHeader method="GET" url="/channels/{channel.id}/messages/{message.id}" supportsBot>
   Get Message
@@ -21382,12 +21405,13 @@ If a user has more than 15 active sessions, the connecting client may not have i
 
 ###### Client Type
 
-| Value   | Description      |
-| ------- | ---------------- |
-| desktop | Desktop client   |
-| web     | Web-based client |
-| mobile  | Mobile client    |
-| unknown | Unknown          |
+| Value   | Description       |
+| ------- | ----------------- |
+| desktop | Desktop client    |
+| web     | Web-based client  |
+| mobile  | Mobile client     |
+| vr      | VR headset client |
+| unknown | Unknown           |
 
 ###### Operating System Type
 
@@ -21412,16 +21436,19 @@ Active sessions are indicated with a status per platform. If a user is offline o
 | mobile?   | string | The user's [status](#status-type) on an active mobile (iOS, Android) application session         |
 | web? ^1^  | string | The user's [status](#status-type) on an active web (browser) application session                 |
 | embedded? | string | The user's [status](#status-type) on an active embedded (Xbox, PlayStation) session              |
+| vr? ^2^   | string | The user's [status](#status-type) on an active VR (Meta Quest 3) session                         |
 
 ^1^ Used as the default when the platform is not known.
+
+^2^ Only available through [headless sessions](#create-headless-session)
 
 ###### Status Type
 
 | Value         | Description      |
 | ------------- | ---------------- |
 | online        | Online           |
+| idle          | Idle             |
 | dnd           | Do Not Disturb   |
-| idle          | AFK              |
 | invisible ^1^ | Shown as offline |
 | offline ^1^   | Offline          |
 | unknown ^2^   | Unknown          |
@@ -26319,7 +26346,7 @@ The team owner cannot be modified.
   Remove Team Member
 </RouteHeader>
 
-Removes a team member. User must be the an admin of the team unless removing themselves. Returns a 204 empty response on success.
+Removes a team member. User must be an admin of the team unless removing themselves. Returns a 204 empty response on success.
 
 <RouteHeader method="GET" url="/teams/{team.id}/applications">
   Get Team Applications
@@ -32858,7 +32885,7 @@ These events directly correspond with a specific action or state change that has
 | [Call Create](#call-create)                                                                 | Private channel call was created                                                               |
 | [Call Update](#call-update)                                                                 | Private channel call was updated                                                               |
 | [Call Delete](#call-delete)                                                                 | Private channel call was deleted                                                               |
-| [Channel Create](#channel-create)                                                           | New guild channel created                                                                      |
+| [Channel Create](#channel-create)                                                           | Channel was created                                                                            |
 | [Channel Update](#channel-update)                                                           | Channel was updated                                                                            |
 | [Channel Delete](#channel-delete)                                                           | Channel was deleted                                                                            |
 | [Channel Statuses](#channel-statuses)                                                       | Response to [Request Channel Statuses](#request-channel-statuses)                              |
@@ -33420,7 +33447,7 @@ Sent when a call is deleted, or becomes unavailable due to an outage.
 
 #### Channel Create
 
-Sent when a new guild channel is created, relevant to the current user. The inner payload is a [channel](/resources/channel#channel-object) object.
+Sent when a channel was created, relevant to the current user. The inner payload is a [channel](/resources/channel#channel-object) object.
 
 ###### Channel Create Structure Extra Fields
 
@@ -36372,7 +36399,7 @@ After you create your application with Discord, make sure that you have your `cl
 | URL                                             | Description                                                 |
 | ----------------------------------------------- | ----------------------------------------------------------- |
 | https://discord.com/oauth2/authorize            | Authorization URL                                           |
-| https://discord.com/oauth2/authorize/device     | Device Code Authorization URL                               |
+| https://discord.com/activate                    | Device Code Authorization URL                               |
 | https://discord.com/api/v10/oauth2/token        | Token URL                                                   |
 | https://discord.com/api/v10/oauth2/token/revoke | [Token Revocation](https://tools.ietf.org/html/rfc7009) URL |
 | https://discord.com/api/v10/oauth2/keys         | JWKS URI                                                    |
@@ -36711,7 +36738,7 @@ def get_device_code():
   headers = {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
-  r = requests.post('%s/oauth2/authorize/device' % API_ENDPOINT, data=data, headers=headers)
+  r = requests.post('%s/oauth2/device/authorize' % API_ENDPOINT, data=data, headers=headers)
   r.raise_for_status()
   return r.json()
 ```
@@ -37044,7 +37071,7 @@ This endpoint is only usable with an OAuth2 access token with the `openid` scope
 }
 ```
 
-<RouteHeader method="POST" url="/oauth2/authorize/device" unauthenticated>
+<RouteHeader method="POST" url="/oauth2/device/authorize" unauthenticated>
   Get OAuth2 Device Code
 </RouteHeader>
 

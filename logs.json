@@ -449,10 +449,6 @@
             "/changelogs/@me/messages"
         ],
         [
-            "SEARCH_CHANNEL",
-            "/channels/:param/messages/search"
-        ],
-        [
             "BILLING_PAYMENTS_REFUND",
             "/users/@me/billing/payments/:param/refund"
         ],
@@ -1953,6 +1949,10 @@
         [
             "GUILD_POWERUP_TOGGLE",
             "/guilds/:param/skus/:param"
+        ],
+        [
+            "SEARCH_CHANNEL",
+            "/channels/:param/messages/search"
         ],
         [
             "SEARCH_TABS_CHANNEL",
