@@ -403,6 +403,50 @@
         ]
     },
     {
+        "title": "Translate Message",
+        "method": "POST",
+        "url": "/ai/translate",
+        "urls": [
+            "/ai/translate"
+        ],
+        "urlEmpty": [
+            "/ai/translate"
+        ]
+    },
+    {
+        "title": "Paraphrase Thread Title",
+        "method": "POST",
+        "url": "/ai/title",
+        "urls": [
+            "/ai/title"
+        ],
+        "urlEmpty": [
+            "/ai/title"
+        ]
+    },
+    {
+        "title": "Fix Grammar",
+        "method": "POST",
+        "url": "/ai/fix-grammar",
+        "urls": [
+            "/ai/fix-grammar"
+        ],
+        "urlEmpty": [
+            "/ai/fix-grammar"
+        ]
+    },
+    {
+        "title": "Summarize Thread",
+        "method": "POST",
+        "url": "/ai/summarize-thread/{channel.id}",
+        "urls": [
+            "/ai/summarize-thread/{channel.id}"
+        ],
+        "urlEmpty": [
+            "/ai/summarize-thread/:param"
+        ]
+    },
+    {
         "title": "Get Applications",
         "method": "GET",
         "url": "/applications",
