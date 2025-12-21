@@ -2267,6 +2267,7 @@
         "method": "GET",
         "url": "/user-profile-effects",
         "unauthenticated": true,
+        "deprecated": true,
         "urls": [
             "/user-profile-effects"
         ],
