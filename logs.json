@@ -29,10 +29,6 @@
             "/users/@me/settings/game-notifications/overrides"
         ],
         [
-            "BULK_ACK",
-            "/read-states/ack-bulk"
-        ],
-        [
             "GUILD_MEMBER_NICK",
             "/guilds/:param/members/:param/nick"
         ],
@@ -1153,6 +1149,10 @@
         [
             "USER_NON_CHANNEL_ACK",
             "/users/@me/:param/:param/ack"
+        ],
+        [
+            "BULK_ACK",
+            "/read-states/ack-bulk"
         ],
         [
             "DM_SETTINGS_UPSELL_ACK",

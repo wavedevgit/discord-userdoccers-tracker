@@ -2195,6 +2195,28 @@
         ]
     },
     {
+        "title": "Get Checkpoint",
+        "method": "GET",
+        "url": "/checkpoint",
+        "urls": [
+            "/checkpoint"
+        ],
+        "urlEmpty": [
+            "/checkpoint"
+        ]
+    },
+    {
+        "title": "Claim Checkpoint Avatar Decoration",
+        "method": "POST",
+        "url": "/checkpoint/loot",
+        "urls": [
+            "/checkpoint/loot"
+        ],
+        "urlEmpty": [
+            "/checkpoint/loot"
+        ]
+    },
+    {
         "title": "Get Collectibles Categories",
         "method": "GET",
         "url": "/collectibles-categories",
@@ -9345,6 +9367,18 @@
         ]
     },
     {
+        "title": "Acknowledge Guild",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/ack",
+        "deprecated": true,
+        "urls": [
+            "/guilds/{guild.id}/ack"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/ack"
+        ]
+    },
+    {
         "title": "Acknowledge Guild Feature",
         "method": "POST",
         "url": "/guilds/{guild.id}/ack/{read_state.type}/{entity.id}",
@@ -9364,6 +9398,17 @@
         ],
         "urlEmpty": [
             "/users/@me/:param/:param/ack"
+        ]
+    },
+    {
+        "title": "Bulk Update Read States",
+        "method": "POST",
+        "url": "/read-states/ack-bulk",
+        "urls": [
+            "/read-states/ack-bulk"
+        ],
+        "urlEmpty": [
+            "/read-states/ack-bulk"
         ]
     },
     {

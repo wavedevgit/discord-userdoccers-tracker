@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 435 |
+| Covered | 436 |
 |---------|------------|
-| Missing | 270 |
+| Missing | 269 |
 ## Missing routes
-total: 270
+total: 269
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -13,7 +13,6 @@ total: 270
 - [ ] **NETWORKING_TOKEN**: `/networking/token`
 - [ ] **USER_GAMES_NOTIFICATIONS**: `/users/@me/settings/game-notifications`
 - [ ] **USER_GAMES_NOTIFICATIONS_OVERRIDES**: `/users/@me/settings/game-notifications/overrides`
-- [ ] **BULK_ACK**: `/read-states/ack-bulk`
 - [ ] **GUILD_MEMBER_NICK**: `/guilds/:param/members/:param/nick`
 - [ ] **GUILD_MEMBER_AVATAR**: `/guilds/:param/users/:param/avatars/:param.:param`
 - [ ] **GUILD_ONBOARDING_PROMPT**: `/guilds/:param/onboarding-prompts/:param`
@@ -278,7 +277,7 @@ total: 270
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 435
+total: 436
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -298,6 +297,7 @@ total: 435
 - [x] **UNVERIFIED_APPLICATIONS_ICONS**: `/unverified-applications/icons`
 - [x] **GUILD_FEATURE_ACK**: `/guilds/:param/ack/:param/:param`
 - [x] **USER_NON_CHANNEL_ACK**: `/users/@me/:param/:param/ack`
+- [x] **BULK_ACK**: `/read-states/ack-bulk`
 - [x] **DM_SETTINGS_UPSELL_ACK**: `/users/@me/guilds/:param/member/ack-dm-upsell-settings`
 - [x] **GUILD_CHANNELS**: `/guilds/:param/channels`
 - [x] **GUILD_MEMBERS**: `/guilds/:param/members`

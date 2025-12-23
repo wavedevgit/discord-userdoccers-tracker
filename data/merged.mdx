@@ -8256,6 +8256,346 @@ Returns the linked accounts for users in a group DM.
 Unlinks the linked lobby from the channel. Requires the `MANAGE_CHANNELS` permission. Returns the updated [channel](#channel-object) object on success. Fires a [Lobby Update](/topics/gateway-events#lobby-update) and [Channel Update](/topics/gateway-events#channel-update) Gateway event.
 
 
+----- discord-userdoccers/pages/resources/checkpoint.mdx -----
+# Checkpoint
+
+A recap of the user's yearly activity, inspired by [Spotify Wrapped](https://www.spotify.com/us/wrapped/).
+
+### Endpoints
+
+<RouteHeader method="GET" url="/checkpoint">
+  Get Checkpoint
+</RouteHeader>
+
+Retrieves the user's current yearly checkpoint.  
+
+###### Response Body
+
+| Field                   | Type                                                                                                       | Description                                                                   |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| card_id?                | integer                                                                                                    | The [type of checkpoint card](#checkpoint-card-type)                          |
+| avatar_decoration       | [avatar decoration collectible item](/resources/collectibles#avatar-decoration-collectible-item-structure) | A free avatar decoration granted by viewing the checkpoint                    |
+| power_level?            | float                                                                                                      | A power level representing how active the user was on Discord                 |
+| power_level_percentile? | float                                                                                                      | The power level expressed as a percentile                                     |
+| messages?               | [checkpoint message statistics](#checkpoint-message-statistics-structure) object                           | Statistics about messages sent by the current user during the year            |
+| emojis?                 | [checkpoint emoji statistics](#checkpoint-emoji-statistics-structure) object                               | Statistics about emojis the current user used during the year                 |
+| voice?                  | [checkpoint voice statistics](#checkpoint-voice-statistics-structure) object                               | Statistics about voice activity from the current user during the year         |
+| guilds?                 | [checkpoint guilds statistics](#checkpoint-guilds-statistics-structure) object                             | Statistics about guilds the current user was active in during the year        |
+| sidekick?               | [checkpoint sidekick](#checkpoint-sidekick-structure) object                                               | The user the current user talk to the most                                    |
+| users?                  | array[[checkpoint user](#checkpoint-user-structure) object]                                                | Additional users the current user spent the most time with during the year    |
+| applications?           | [checkpoint games statistics](#checkpoint-games-statistics-structure) object                               | Games played during the year                                                  |
+| quests?                 | [checkpoint quest statistics](#checkpoint-quest-statistics-structure) object                               | Number of completed quests and collected orbs during the year                 |
+
+###### Checkpoint Card Type
+
+| Value | Name                 |
+| ----- | -------------------- |
+| 0     | PLANT                |
+| 1     | DONUT                |
+| 2     | DOG_IN_SWIM_RING     |
+| 3     | DISCO_BALL           |
+| 4     | ORIGAMI_PAPER_CRANE  |
+| 5     | SNAIL                |
+| 6     | DUCK_WITH_SUNGLASSES |
+| 7     | BANANA               |
+| 8     | CAT                  |
+| 9     | CARTRIDGE            |
+
+###### Checkpoint Message Statistics Structure
+
+| Field                        | Type                                                                                                  | Description                                                                                  |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| num_messages_sent            | integer                                                                                               | Number of messages the current user sent during the year                                     |
+| num_messages_sent_percentile | ?float                                                                                                | The user's rank in message-sending activity compared to all users, expressed as a percentile |
+| top_month                    | ?[checkpoint message top month statistics](#checkpoint-message-top-month-statistics-structure) object | The month the current user sent the most messages during the year                            |
+
+###### Checkpoint Message Top Month Statistics Structure
+
+| Field             | Type    | Description                                               |
+| ----------------- | ------- | --------------------------------------------------------- |
+| month             | integer | The top month (1-12)                                      |
+| num_messages_sent | integer | Number of messages the current user sent within the month |
+
+###### Checkpoint Emoji Statistics Structure
+
+| Field           | Type                                                         | Description                                                         |
+| --------------- | ------------------------------------------------------------ | ------------------------------------------------------------------- |
+| num_emojis_sent | integer                                                      | Number of emojis used (includes messages with emojis and reactions) |
+| emojis          | array[partial [emoji](/resources/emoji#emoji-object) object] | Up to 5 emojis the current user used the most                       |
+
+###### Checkpoint Voice Statistics Structure
+
+| Field                          | Type                                                                                              | Description                                                                        |
+| ------------------------------ | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| total_voice_minutes            | float                                                                                             | Duration in seconds how much time the user spent in voice channels for year        |
+| total_voice_minutes_percentile | ?float                                                                                            | The user's rank in voice activity compared to all users, expressed as a percentile |
+| top_month                      | ?[checkpoint voice top month statistics](#checkpoint-voice-top-month-statistics-structure) object | The month the current user participated in calls the most                          |
+
+###### Checkpoint Voice Top Month Statistics Structure
+
+| Field                | Type    | Description                                               |
+| -------------------- | ------- | --------------------------------------------------------- |
+| month                | integer | The top month (1-12)                                      |
+| num_minutes_in_voice | float   | Duration in minutes that the current user spent in a call |
+
+###### Checkpoint Guilds Statistics Structure
+
+| Field             | Type                                                                                | Description                                              |
+| ----------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| num_guilds_joined | integer                                                                             | Number of guilds the current user joined                 |
+| guilds            | array[[checkpoint guild statistics](#checkpoint-guild-statistics-structure) object] | Up to 3 guilds the current user participated in the most |
+
+###### Checkpoint Guild Statistics Structure
+
+| Field              | Type                                                  | Description                                                            |
+| ------------------ | ----------------------------------------------------- | ---------------------------------------------------------------------- |
+| num_messages_sent? | integer                                               | Number of messages the current user sent in the guild during the year  |
+| num_voice_minutes? | float                                                 | Duration in minutes that the current user spent in guild voice         |
+| guild              | partial [guild](/resources/guild#guild-object) object | The guild                                                              |
+
+###### Checkpoint Sidekick Structure
+
+| Field             | Type                                               | Description                                                            |
+| ----------------- | -------------------------------------------------- | ---------------------------------------------------------------------- |
+| user              | partial [user](/resources/user#user-object) object | The sidekick user                                                      |
+| num_messages_sent | integer                                            | Number of messages the current user sent in the user's DM              |
+| num_voice_minutes | float                                              | Duration in minutes the current user spent being in call with the user |
+
+###### Checkpoint User Structure
+
+| Field | Type                                               | Description |
+| ----- | -------------------------------------------------- | ----------- |
+| user  | partial [user](/resources/user#user-object) object | The user    |
+
+###### Checkpoint Games Statistics Structure
+
+| Field              | Type                                                                              | Description                   |
+| ------------------ | --------------------------------------------------------------------------------- | ----------------------------- |
+| total_games_played | integer                                                                           | Total amount of games played  |
+| applications       | array[[checkpoint game statistics](#checkpoint-game-statistics-structure) object] | Statistics about games played |
+
+###### Checkpoint Game Statistics Structure
+
+| Field        | Type                                                                    | Description             |
+| ------------ | ----------------------------------------------------------------------- | ----------------------- |
+| num_sessions | integer                                                                 | Number of game sessions |
+| game         | partial [application](/resources/application#application-object) object | The game application    |
+
+###### Checkpoint Quest Statistics Structure
+
+| Field         | Type    | Description                          |
+| ------------- | ------- | ------------------------------------ |
+| num_completed | integer | Number of completed quests           |
+| num_orbs      | integer | Amount of collected Orbs from quests |
+
+###### Example Response Body
+
+```json
+{
+  "card_id": 5,
+  "avatar_decoration": {
+    "type": 0,
+    "id": "1440174720640352344",
+    "sku_id": "1440174638930853954",
+    "asset": "a_523d7733d1b88cfbad5b082d062defc4",
+    "assets": {
+      "static_image_url": "https://cdn.discordapp.com/assets/content/0a5c302e0a0e20ee64754723466ab8cc740b304901697cf9ede00211bda6e138",
+      "animated_image_url": "https://cdn.discordapp.com/assets/content/d8a4a1544816b6034e28b06a52c2c0489677c6626c977671959a9e9f68915670"
+    },
+    "label": "A snail avatar decoration."
+  },
+  "power_level": 83732.32311666667,
+  "power_level_percentile": 87.039,
+  "messages": {
+    "num_messages_sent": 53146,
+    "num_messages_sent_percentile": 99.19,
+    "top_month": {
+      "month": 7,
+      "num_messages_sent": 6811
+    }
+  },
+  "emojis": {
+    "num_emojis_sent": 13096,
+    "emojis": [
+      {
+        "id": "1145727546747535412",
+        "name": "blobcatcozy",
+        "animated": false
+      },
+      {
+        "name": "💀"
+      },
+      {
+        "id": "1030570693903011921",
+        "name": "husk",
+        "animated": false
+      }
+      {
+        "name": "😭"
+      },
+      {
+        "name": "🔥"
+      }
+    ]
+  },
+  "voice": {
+    "total_voice_minutes": 6.3231166666666665,
+    "total_voice_minutes_percentile": null,
+    "top_month": {
+      "month": 7,
+      "num_minutes_in_voice": 6.23785
+    }
+  },
+  "guilds": {
+    "num_guilds_joined": 11,
+    "guilds": [
+      {
+        "num_messages_sent": 3711,
+        "num_voice_minutes": 0.0,
+        "guild": {
+          "id": "1046920999469330512",
+          "name": "Alien Network",
+          "icon": "66b0f4d96c145970fa9d96ada8afadf3",
+          "description": "Where the 👽s 👽 and sometimes very 👽 things happen 😨.",
+          "home_header": "39ba384a31e9c285649ad00b359946ab",
+          "splash": "b40e61f7730b8781b9a551964570e0cc",
+          "discovery_splash": "0e11ae8d9f1c86958be05e61b0c90ac3",
+          "features": []
+        }
+      },
+      {
+        "guild": {
+          "id": "302094807046684672",
+          "name": "MINECRAFT",
+          "icon": "24f8bc7ec317e6eaaa0d8352720a7dfe",
+          "description": "The official Minecraft Discord!",
+          "home_header": null,
+          "splash": "5d84dff0dfaa9c2f4f23a0612564383b",
+          "discovery_splash": "5d84dff0dfaa9c2f4f23a0612564383b",
+          "features": [
+            "ANIMATED_BANNER"
+            "ANIMATED_ICON",
+            "BANNER",
+            "COMMUNITY",
+            "DISCOVERABLE",
+            "ENABLED_DISCOVERABLE_BEFORE",
+            "PREVIEW_ENABLED",
+            "VANITY_URLS",
+            "VERIFIED",
+            "VIP_REGIONS"
+          ]
+        }
+      },
+      {
+        "guild": {
+          "id": "322850917248663552",
+          "name": "Official Fortnite",
+          "icon": "aeed50fc9dadcdb03958f66d53aed053",
+          "description": "The Official Fortnite Discord Server! Join to follow news & updates, LFG, and chat about all things Fortnite!",
+          "home_header": null,
+          "splash": "e942dd9672490882b3c1cccb1bddc365",
+          "discovery_splash": "64f47845f91d4b77ab2af0cfd4551978",
+          "features": [
+            "ANIMATED_BANNER",
+            "ANIMATED_ICON",
+            "BANNER",
+            "COMMUNITY",
+            "DISCOVERABLE",
+            "FEATURABLE",
+            "INVITE_SPLASH",
+            "VANITY_URL",
+            "VERIFIED",
+            "VIP_REGIONS"
+          ]
+        }
+      }
+    ]
+  },
+  "sidekick": {
+    "user": {
+      "id": "852892297661906993",
+      "username": "dolfies",
+      "global_name": "Dolfies",
+      "avatar": "c78ef8fb1db15a3d5f1b4c057856c5c9",
+      "avatar_decoration_data": null,
+      "collectibles": null,
+      "discriminator": "0",
+      "display_name_styles": null,
+      "public_flags": 264,
+      "primary_guild": null
+    },
+    "num_messages_sent": 869,
+    "num_voice_minutes": 0.0
+  },
+  "users": [
+    {
+      "user": {
+        "id": "246877849162743818",
+        "username": "jay_taelien",
+        "global_name": "Jay",
+        "avatar": "91b7bc37e924f78625f7ea582fdbac5d",
+        "avatar_decoration_data": null,
+        "collectibles": null,
+        "discriminator": "0",
+        "display_name_styles": null,
+        "public_flags": 16512,
+        "primary_guild": null
+      }
+    },
+    {
+      "user": {
+        "id": "1001086404203389018",
+        "username": ".dziurwa",
+        "global_name": "Dziurwa💕",
+        "avatar": "f6c0363fbab45668fcf8f88fea56db9c",
+        "avatar_decoration_data": null,
+        "collectibles": null,
+        "discriminator": "0",
+        "display_name_styles": null,
+        "public_flags": 16640,
+        "primary_guild": null
+      }
+    }
+  ],
+  "applications": {
+    "total_games_played": 2,
+    "applications": [
+      {
+        "num_sessions": 7,
+        "game": {
+          "id": "363445589247131668",
+          "name": "Roblox",
+          "icon_hash": "f2b60e350a2097289b3b0b877495e55f",
+          "banner_hash": "e970e33dd647f87dc87f4dc4b28f4627",
+          "cover_image_hash": "82f092687242e81976b955927df9cd24"
+         }
+      },
+      {
+        "num_sessions": 3,
+        "game": {
+          "id": "1402418703554842694",
+          "name": "Fortnite",
+          "icon_hash": "f2b60e350a2097289b3b0b877495e55f",
+          "banner_hash": null,
+          "cover_image_hash": "c1864b38910c209afd5bf6423b672022"
+        }
+      }
+    ]
+  },
+  "quests": {
+    "num_completed": 73,
+    "num_orbs": 22500
+  }
+}
+```
+
+<RouteHeader method="POST" url="/checkpoint/loot">
+  Claim Checkpoint Avatar Decoration
+</RouteHeader>
+
+Claims the free avatar decoration collectible from the checkpoint. Returns a 204 empty response.  
+
+
 ----- discord-userdoccers/pages/resources/collectibles.mdx -----
 # Collectibles
 
@@ -9094,6 +9434,7 @@ Additionally, components of messages preceding components v2 will contain an `id
 | 17    | [CONTAINER](#container) ^1^                             | Container that visually groups a set of components             | Layout      | Message                         |
 | 18    | [LABEL](#label)                                         | Container associating a label and description with a component | Layout      | Modal                           |
 | 19    | [FILE_UPLOAD](#file-upload)                             | Component to upload one or more files                          | Interactive | Modal                           |
+| 20    | [CHECKPOINT_CARD](#checkpoint-card) ^2^                 | Displays a [checkpoint](/resources/checkpoint)                 | Content     | Message                         |
 
 ^1^ Requires the [`IS_COMPONENTS_V2` message flag](/resources/message#message-flags).
 
@@ -9141,7 +9482,7 @@ Action Rows can contain:
 | id?        | integer                                      | An optional identifier for the component                                            |
 | components | array[[component](#component-object) object] | Up to 5 [button](#button) components or a single [select](#string-select) component |
 
-###### Example
+###### Example Action Row
 
 ```json
 {
@@ -9632,7 +9973,7 @@ Media Galleries are only available in messages.
 | description? | string                                                    | Alt text for the media (max 1024 characters)            |
 | spoiler?     | boolean                                                   | Whether the media should be a spoilered (default false) |
 
-###### Example
+###### Example Media Gallery
 
 ```json
 {
@@ -9673,7 +10014,7 @@ Files are only available in messages.
 
 ^1^ This field is received only and cannot be set.
 
-###### Example
+###### Example File Component
 
 ```json
 {
@@ -9706,7 +10047,7 @@ Separators are only available in messages.
 | 1     | SMALL | 8px gap between elements, 16px with divider hidden  |
 | 2     | LARGE | 16px gap between elements, 32px with divider hidden |
 
-###### Example
+###### Example Separator
 
 ```json
 {
@@ -9909,7 +10250,7 @@ Content Inventory Entries cannot be sent directly.
 | kid       | string  | Key ID for the signature        |
 | version   | integer | Signature version (currently 1) |
 
-###### Example
+###### Example Content Inventory Entry
 
 ```json
 {
@@ -9964,7 +10305,7 @@ Containers are only available in messages.
 | accent_color? | ?integer                                     | Color for the accent on the container encoded as an integer representation of a hexadecimal color code                                                                                  |
 | spoiler?      | boolean                                      | Whether the container should be spoilered (default false)                                                                                                                               |
 
-###### Example
+###### Example Container
 
 ```json
 {
@@ -10050,6 +10391,90 @@ File Uploads can only be used within modals and must be placed inside a [Label](
 | min_values? | integer | Minimum number of items that must be uploaded (max 10, default 0)   |
 | max_values? | integer | Maximum number of items that can be chosen (max 10, default 10)     |
 | required?   | boolean | Whether the user must upload a file (default false)                 |
+
+### Checkpoint Card
+
+A Checkpoint Card is a top-level component that displays a summary of the user's [checkpoint](/resources/checkpoint).  
+
+Checkpoint cards cannot be sent directly.
+
+###### Checkpoint Card Structure
+
+| Field           | Type                                                 | Description                                 |
+| --------------- | ---------------------------------------------------- | ------------------------------------------- |
+| type            | integer                                              | Always [`CHECKPOINT_CARD`](#component-type) |
+| id?             | integer                                              | An optional identifier for the component    |
+| checkpoint_data | [checkpoint data](#checkpoint-data-structure) object | Checkpoint data                             |
+
+###### Checkpoint Data Structure
+
+| Field                  | Type                                                             | Description                                                                        |
+| ---------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| version                | integer                                                          | The version of checkpoint cards                                                    |
+| card_id                | integer                                                          | The [type of checkpoint card](/resources/checkpoint#checkpoint-card-type)          |
+| power_level            | float                                                            | A power level representing how active the user was on Discord                      |
+| power_level_percentile | float                                                            | The power level expressed as a percentile                                          |
+| num_messages_sent      | integer                                                          | Number of messages that the user during the year                                   |
+| total_voice_minutes    | float                                                            | Duration in seconds how much time the user spent in voice channels during the year |
+| num_emojis_sent        | integer                                                          | Number of emojis that the user during the year (includes messages and reactions)   |
+| top_guild?             | [checkpoint card guild](#checkpoint-card-guild-structure) object | The guild that the user have been participating the most in                        |
+| top_emoji?             | [checkpoint card emoji](#checkpoint-card-emoji-structure) object | The emoji that the user used the most                                              |
+| top_game?              | [checkpoint card game](#checkpoint-card-game-structure) object   | The game that the user have been played the most                                   |
+
+###### Checkpoint Card Guild Structure
+
+| Field      | Type      | Description                                        |
+| ---------- | --------- | -------------------------------------------------- |
+| guild_id   | snowflake | The ID of the guild                                |
+| guild_name | string    | The name of the guild                              |
+| guild_icon | ?string   | The guild's [icon hash](/reference#cdn-formatting) |
+
+###### Checkpoint Card Emoji Structure
+
+| Field      | Type       | Description                                |
+| ---------- | ---------- | ------------------------------------------ |
+| emoji_id   | ?snowflake | The ID of the guild's custom emoji         |
+| emoji_name | string     | The unicode character or name of the emoji |
+
+###### Checkpoint Card Game Structure
+
+| Field                | Type      | Description                                              |
+| -------------------- | --------- | -------------------------------------------------------- |
+| application_id       | snowflake | The ID of the application                                |
+| application_name     | string    | The name of the application                              |
+| application_image_id | ?string   | The application's [icon hash](/reference#cdn-formatting) |
+
+###### Example Checkpoint Card
+
+```json
+{
+  "type": 20,
+  "id": 1,
+  "checkpoint_data": {
+    "version": 0,
+    "num_messages_sent": 53146,
+    "total_voice_minutes": 6.3231166666666665,
+    "num_emojis_sent": 13096,
+    "top_emoji": {
+      "emoji_id": "1145727546747535412",
+      "emoji_name": "blobcatcozy"
+    },
+    "top_guild": {
+      "guild_id": "1046920999469330512",
+      "guild_name": "Alien Network",
+      "guild_icon": "66b0f4d96c145970fa9d96ada8afadf3",
+    },
+    "top_game": {
+      "application_id": "363445589247131668",
+      "application_name": "Roblox",
+      "application_image_id": "f2b60e350a2097289b3b0b877495e55f"
+    },
+    "card_id": 5,
+    "power_level": 83732.32311666667,
+    "power_level_percentile": 96.71
+  }
+}
+```
 
 ## Unfurled Media Item Object
 
@@ -11200,7 +11625,7 @@ When this endpoint is paginated normally, only discoverable guilds that are veri
 | guild_ids? ^1^       | array[snowflake] | The IDs of the discoverable guilds to return (max 48)                                  |
 | application_ids? ^1^ | array[snowflake] | The IDs of the applications to return matching discoverable guilds for (max 48)        |
 | categories? ^1^      | array[integer]   | The IDs of the [discovery categories](#discovery-category-object) to filter results by |
-| limit? ^2^           | integer          | The maximum number of guilds to return (max 48, default 48)                            |
+| limit? ^2^           | integer          | The maximum number of guilds to return (max 48, default 30)                            |
 | offset? ^2^          | integer          | Number of guilds to skip before returning guilds                                       |
 
 ^1^ Only one of `guild_ids`, `application_ids`, or `categories` may be specified. If both are specified, only `guild_ids` or `application_ids` is respected.
@@ -14201,7 +14626,7 @@ Guilds in Discord represent an isolated collection of users and channels, and ar
 
 ^1^ Only included when fetched from the [Get Guild Preview](#get-guild-preview) endpoint.
 
-^2^ Not included when fetched from the [Get Guild Basic](#get-guild-basic) or [Get Join Request Guilds](#get-join-request-guilds) endpoints.
+^2^ Not included when fetched from the [Get Guild Basic](#get-guild-basic), [Get Join Request Guilds](#get-join-request-guilds), or [Get Checkpoint](/resources/checkpoint#get-checkpoint) endpoints.
 
 ###### Guild Identity Structure
 
@@ -18815,13 +19240,17 @@ Activity invites are only valid while the user is still participating in the act
 
 ###### Message Activity Structure
 
-| Field          | Type    | Description                                                              |
-| -------------- | ------- | ------------------------------------------------------------------------ |
-| type           | integer | The [type of activity request](/resources/presence#activity-action-type) |
-| session_id ^1^ | string  | The session ID associated with this activity                             |
-| party_id?      | string  | The activity's party ID                                                  |
+| Field              | Type    | Description                                                                                   |
+| ------------------ | ------- | --------------------------------------------------------------------------------------------- |
+| type               | integer | The [type of activity request](/resources/presence#activity-action-type)                      |
+| session_id ^1^     | string  | The session ID associated with this activity                                                  |
+| party_id?          | string  | The activity's party ID                                                                       |
+| name_override? ^2^ | string  | The overridden activity name for the invite                                                   |
+| icon_override? ^2^ | string  | The overriden [activity asset image](/resources/presence#activity-asset-image) for the invite |
 
 ^1^ This field is send-only.
+
+^2^ This field is receive-only.
 
 ### Message Call Object
 
@@ -20312,7 +20741,7 @@ Files must be attached using a `multipart/form-data` body (or pre-uploaded to Di
 
 <Alert type="info">
 
-Note that when sending a message, you must provide a value for **at least one of** `content`, `embeds`, `components`, `sticker_ids`, `activity`, `files[n]`, `poll`, `shared_client_theme`, or a forwarded `message_reference`.
+Note that when sending a message, you must provide a value for **at least one of** `content`, `embeds`, `components`, `sticker_ids`, `activity`, `files[n]`, `poll`, `shared_client_theme`, `with_checkpoint`, or a forwarded `message_reference`.
 
 </Alert>
 
@@ -20336,6 +20765,7 @@ Note that when sending a message, you must provide a value for **at least one of
 | poll?                | [poll create](#poll-create-structure) object                              | A poll!                                                                                                                                                                     |
 | confetti_potion?     | [confetti potion](#confetti-potion-structure) object                      | A confetti potion to apply to the message                                                                                                                                   |
 | shared_client_theme? | [shared client theme](#shared-client-theme-object) object                 | A shared client theme                                                                                                                                                       |
+| with_checkpoint?     | boolean                                                                   | Whether to send a [checkpoint card](/resources/components#checkpoint-card) component (default false)                                                                        |
 
 ^1^ See [Uploading Files](/reference#uploading-files) for details.
 
@@ -20419,22 +20849,22 @@ Creates attachment URLs to upload the intended attachments directly to Discord's
 
 ###### Upload Attachment Structure
 
-| Field        | Type    | Description                                                                                                                              |
-| ------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| id?          | ?string | The ID of the attachment to reference in the response                                                                                    |
-| filename     | string  | The name of the file being uploaded                                                                                                      |
-| file_size    | integer | The size of the file being uploaded in bytes                                                                                             |
-| is_clip? ^1^ | boolean | Whether the file being uploaded is a [clipped recording of a stream](https://support.discord.com/hc/en-us/articles/16861982215703-Clips) |
+| Field        | Type       | Description                                                                                                                              |
+| ------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| id?          | ?snowflake | The ID of the attachment to reference in the response                                                                                    |
+| filename     | string     | The name of the file being uploaded                                                                                                      |
+| file_size    | integer    | The size of the file being uploaded in bytes                                                                                             |
+| is_clip? ^1^ | boolean    | Whether the file being uploaded is a [clipped recording of a stream](https://support.discord.com/hc/en-us/articles/16861982215703-Clips) |
 
 ^1^ When uploading a clip, `is_clip` must be `true`. [See message types](#clips) for more information.
 
 ###### Cloud Attachment Structure
 
-| Field           | Type    | Description                                                 |
-| --------------- | ------- | ----------------------------------------------------------- |
-| id              | ?string | The ID of the attachment upload, if provided in the request |
-| upload_url      | string  | The URL to upload the file to                               |
-| upload_filename | string  | The name of the uploaded file                               |
+| Field           | Type       | Description                                                 |
+| --------------- | ---------- | ----------------------------------------------------------- |
+| id              | ?snowflake | The ID of the attachment upload, if provided in the request |
+| upload_url      | string     | The URL to upload the file to                               |
+| upload_filename | string     | The name of the uploaded file                               |
 
 ###### Example Response
 
@@ -24508,21 +24938,21 @@ All objects serialized in the SKU inherit this behavior.
 
 ###### SKU Product Line
 
-| Value | Name                   | Description                           |
-| ----- | ---------------------- | ------------------------------------- |
-| 1     | PREMIUM                | Premium (Nitro) subscription          |
-| 2     | PREMIUM_GUILD          | Premium guild (boosting) subscription |
-| 3     | ACTIVITY_IAP           | Embedded activity in-app purchase     |
-| 4     | GUILD_ROLE             | Guild role subscription               |
-| 5     | GUILD_PRODUCT          | Guild product                         |
-| 6     | APPLICATION            | Application item                      |
-| 7     | COLLECTIBLE            | Discord collectible                   |
-| 9     | PARTNER_QUEST_REWARD   | Partner quest reward                  |
-| 10    | QUEST_REWARD           | Quest reward                          |
-| 11    | FRACTIONAL_PREMIUM     | Fractional premium subscription       |
-| 12    | VIRTUAL_CURRENCY       | Virtual currency (Orbs)               |
-| 13    | GUILD_POWERUP          | Guild powerup                         |
-| 14    | SOCIAL_LAYER_GAME_ITEM | Social SDK game item                  |
+| Value | Name                   | Description                               |
+| ----- | ---------------------- | ----------------------------------------- |
+| 1     | PREMIUM                | Premium (Nitro) subscription              |
+| 2     | PREMIUM_GUILD          | Premium guild (boosting) subscription     |
+| 3     | ACTIVITY_IAP           | Embedded activity in-app purchase         |
+| 4     | GUILD_ROLE             | Guild role subscription or ticketed event |
+| 5     | GUILD_PRODUCT          | Guild product                             |
+| 6     | APPLICATION            | Application item                          |
+| 7     | COLLECTIBLES           | Discord collectible                       |
+| 9     | QUEST_IN_GAME_REWARD   | In-game quest reward                      |
+| 10    | QUEST_REWARD_CODE      | Quest reward code                         |
+| 11    | FRACTIONAL_PREMIUM     | Fractional premium subscription           |
+| 12    | VIRTUAL_CURRENCY       | Virtual currency (Orbs)                   |
+| 13    | GUILD_POWERUP          | Guild powerup                             |
+| 14    | SOCIAL_LAYER_GAME_ITEM | Social SDK game item                      |
 
 ###### SKU Flags
 
@@ -24533,7 +24963,7 @@ All objects serialized in the SKU inherit this behavior.
 | 1 << 2  | AVAILABLE                          | SKU is available for purchase                                       |
 | 1 << 3  | PREMIUM_AND_DISTRIBUTION           | SKU is available for free to premium users and purchasable normally |
 | 1 << 4  | STICKER                            | SKU is a paid sticker pack                                          |
-| 1 << 5  | GUILD_ROLE                         | SKU is a guild role subscription                                    |
+| 1 << 5  | GUILD_ROLE                         | SKU is a guild role subscription or ticketed event                  |
 | 1 << 6  | AVAILABLE_FOR_SUBSCRIPTION_GIFTING | SKU is a giftable Discord premium subscription                      |
 | 1 << 7  | APPLICATION_GUILD_SUBSCRIPTION     | SKU is an application subscription for guilds                       |
 | 1 << 8  | APPLICATION_USER_SUBSCRIPTION      | SKU is an application subscription for users                        |
@@ -32992,6 +33422,8 @@ These events directly correspond with a specific action or state change that has
 | [Entitlement Create](#entitlement-create)                                                   | Entitlement was created                                                                        |
 | [Entitlement Update](#entitlement-update)                                                   | Entitlement was updated                                                                        |
 | [Entitlement Delete](#entitlement-delete)                                                   | Entitlement was deleted                                                                        |
+| [Experiment Session Override Create](#experiment-session-override-create)                   | Apex experiment override was created                                                           |
+| [Experiment Session Override Delete](#experiment-session-override-delete)                   | Apex experiment override was deleted                                                           |
 | [Friend Suggestion Create](#friend-suggestion-create)                                       | Friend suggestion was created                                                                  |
 | [Friend Suggestion Delete](#friend-suggestion-delete)                                       | Friend suggestion was deleted                                                                  |
 | [Game Server Create](#game-server-create)                                                   | Guild game server was created                                                                  |
@@ -33813,6 +34245,29 @@ Entitlement deletions are infrequent, and occur when:
 - A test entitlement is deleted
 
 Entitlements are _not_ deleted when they expire.
+
+### Experiments
+
+#### Experiment Session Override Create
+
+Sent when an apex experiment override is created.
+
+###### Experiment Session Override Create Structure
+
+| Field           | Type    | Description                     |
+| --------------- | ------- | ------------------------------- |
+| experiment_name | string  | The name of the experiment      |
+| variant_id      | integer | The ID of the overriden variant |
+
+#### Experiment Session Override Delete
+
+Sent when an apex experiment override is deleted.
+
+###### Experiment Session Override Delete Structure
+
+| Field           | Type   | Description                |
+| --------------- | ------ | -------------------------- |
+| experiment_name | string | The name of the experiment |
 
 ### Friend Suggestions
 
@@ -34653,8 +35108,8 @@ Sent when the channel read state is updated for the current user. This indicates
 | message_id         | snowflake | The ID of the last acknowledged message                                      |
 | manual?            | boolean   | Whether the acknowleged message ID is manually set                           |
 | mention_count? ^1^ | integer   | The number of mentions the user has in the channel                           |
-| flags ^1^          | ?integer  | The [read state flags](/topics/read-state#read-state-flags) for the channel  |
-| last_viewed ^1^    | ?integer  | When the channel was last viewed (in days since the Discord epoch)           |
+| flags? ^1^         | ?integer  | The [read state flags](/topics/read-state#read-state-flags) for the channel  |
+| last_viewed? ^1^   | ?integer  | When the channel was last viewed (in days since the Discord epoch)           |
 | version            | integer   | The user read state version                                                  |
 
 ^1^ If omitted or `null`, the current value is retained.
@@ -38542,6 +38997,18 @@ In this case, `mention_count` should also be updated to the amount of mentions u
 
 Acknowledges the currently pinned messages in a channel. Returns a 204 empty response on success. Fires a [Channel Pins Ack](/topics/gateway-events#channel-pins-ack) Gateway event.
 
+<RouteHeader method="POST" url="/guilds/{guild.id}/ack" deprecated>
+  Acknowledge Guild
+</RouteHeader>
+
+Updates all read states in a guild to acknowledge all features and messages. Fires multiple [Message Ack](/topics/gateway-events#message-ack) and [Guild Feature Ack](/topics/gateway-events#guild-feature-ack) Gateway events.
+
+<Alert type="warn">
+
+This endpoint is deprecated. It is replaced by [Bulk Update Read States](#bulk-update-read-states).
+
+</Alert>
+
 <RouteHeader method="POST" url="/guilds/{guild.id}/ack/{read_state.type}/{entity.id}">
   Acknowledge Guild Feature
 </RouteHeader>
@@ -38577,6 +39044,30 @@ Updates a non-channel feature's read state for the current user. Fires a [User N
 | Field | Type    | Description                      |
 | ----- | ------- | -------------------------------- |
 | token | ?string | The new [ack token](#ack-tokens) |
+
+<RouteHeader method="POST" url="/read-states/ack-bulk">
+  Bulk Update Read States
+</RouteHeader>
+
+Updates multiple read states for the current user. Returns a 204 empty response on success. Fires multiple [Message Ack](/topics/gateway-events#message-ack), [Guild Feature Ack](/topics/gateway-events#guild-feature-ack), and [User Non Channel Ack](/topics/gateway-events#user-non-channel-ack) Gateway events.
+
+###### JSON Params
+
+| Field       | Type                                                            | Description                      |
+| ----------- | --------------------------------------------------------------- | -------------------------------- |
+| read_states | array[[read state update](#read-state-update-structure) object] | The read state updates to update |
+
+###### Read State Update Structure
+
+| Field              | Type      | Description                                                                          |
+| ------------------ | --------- | ------------------------------------------------------------------------------------ |
+| read_state_type?   | integer   | The [type of read state](#read-state-type) (default `CHANNEL`)                       |
+| channel_id         | snowflake | The ID of the resource the read state is for                                         |
+| message_id ^1^ ^2^ | snowflake | The ID of the entity to set the read state to (message, guild scheduled event, etc.) |
+
+^1^ Unlike standalone ack endpoints, the message ID must be greater than `0` or the read state update will be ignored.
+
+^2^ As bulk updates do not accept a `manual` fields, it is not recommended to set channel read states to a message ID lower than the current acknowledged one using this endpoint, as it will lead to undefined behavior.
 
 <RouteHeader method="DELETE" url="/channels/{read_state.id}/messages/ack">
   Delete Read State
