@@ -14055,6 +14055,7 @@ Deletes a guild scheduled event. Returns a a 204 empty response on success. Fire
   method="POST"
   url="/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/exceptions"
   supportsAuditReason
+  supportsBot
 >
   Create Guild Scheduled Event Exception
 </RouteHeader>
@@ -14066,9 +14067,11 @@ Creates an exception to the recurrence rule for a guild scheduled event. Returns
 | Field                         | Type               | Description                                                       |
 | ----------------------------- | ------------------ | ----------------------------------------------------------------- |
 | original_scheduled_start_time | ISO8601 timestamp  | When the scheduled event would have started without the exception |
-| is_canceled?                  | boolean            | Whether the scheduled event will be skipped on this recurrence    |
-| scheduled_start_time?         | ?ISO8601 timestamp | The scheduled event's modified start time for this recurrence     |
-| scheduled_end_time?           | ?ISO8601 timestamp | The scheduled event's modified end time for this recurrence       |
+| is_canceled? ^1^              | boolean            | Whether the scheduled event will be skipped on this recurrence    |
+| scheduled_start_time? ^1^     | ?ISO8601 timestamp | The scheduled event's modified start time for this recurrence     |
+| scheduled_end_time? ^1^       | ?ISO8601 timestamp | The scheduled event's modified end time for this recurrence       |
+
+^1^ At minimum, you must provide a value for one of `is_canceled`, `scheduled_start_time`, or `scheduled_end_time`. Otherwise, the request will fail with an [`180005` JSON error code](/topics/opcodes-and-status-codes#json-error-codes).
 
 <RouteHeader
   method="PATCH"
@@ -21425,6 +21428,142 @@ Returns a list of [user message summary](#user-message-summary-structure) object
 | last_message_id | snowflake | The ID of the last message sent in DM channel (may not point to an existing resource) |
 
 
+----- discord-userdoccers/pages/resources/notification-center.mdx -----
+# Notification Center
+
+Notification center is a feature that aggregates important notifications for users in one place. It includes various types of notifications such as friend requests, mentions, and activity updates.
+
+### Notification Center Item Object
+
+###### Notification Center Item Structure
+
+| Field                    | Type                                                                     | Description                                                                                                      |
+| ------------------------ | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| id                       | snowflake                                                                | The ID of the notification center item                                                                           |
+| bundle_id                | string                                                                   | An ID that can be used to group related notification center items together                                       |
+| type                     | string                                                                   | The [type of notification center item](#notification-center-item-type)                                           |
+| item_enum                | ?integer                                                                 | The [sub-type](#notification-center-item-enum) of the notification center item (only for `lifecycle_item` items) |
+| body                     | string                                                                   | The body text of the notification center item                                                                    |
+| acked                    | boolean                                                                  | Whether the notification center item is acknowledged                                                             |
+| deeplink                 | string                                                                   | The URL used for deep linking                                                                                    |
+| icon_url ^1^             | ?string                                                                  | The URL of the icon to display                                                                                   |
+| icon_name ^1^            | ?string                                                                  | The internal name of the icon to display                                                                         |
+| other_user               | ?partial [user](/resources/user#user-object) object                      | The other user associated with the item                                                                          |
+| message                  | ?[message](/resources/message#message-object) object                     | The message associated with the item                                                                             |
+| completed                | boolean                                                                  | Whether the item is completed                                                                                    |
+| guild_id                 | ?snowflake                                                               | The ID of the guild associated with the item                                                                     |
+| message_id               | ?snowflake                                                               | The ID of the message associated with the item                                                                   |
+| message_channel_id       | ?snowflake                                                               | The ID of the channel of the message associated with the item                                                    |
+| guild_scheduled_event_id | ?snowflake                                                               | The ID of the scheduled event associated with the item                                                           |
+| disable_action           | boolean                                                                  | Whether the item is non-actionable                                                                               |
+| callout                  | ?string                                                                  | Additional information about the item (e.g. poll question)                                                       |
+| application              | ?partial [application](/resources/application#application-object) object | The application associated with the item                                                                         |
+| emoji_id ^2^             | ?snowflake                                                               | The ID of the custom emoji associated with the item                                                              |
+| emoji_name ^2^           | ?string                                                                  | The unicode character of the emoji associated with the item                                                      |
+| message_content          | ?string                                                                  | Contents of the message associated with the item                                                                 |
+| message_embed_count      | ?integer                                                                 | Number of the embeds that the associated message has                                                             |
+| message_attachment_count | ?integer                                                                 | Number of the attachments that the associated message has                                                        |
+| message_sticker_count    | ?integer                                                                 | Number of the stickers that the associated message has                                                           |
+| is_voice_message         | boolean                                                                  | Whether the associated message is a voice message                                                                |
+
+^1^ Only either `icon_url` or `icon_name` may be present.
+
+^2^ At most one of `emoji_id` and `emoji_name` may be set to a non-null value.
+
+###### Notification Center Item Type
+
+| Value                         | Description                                           |
+| ----------------------------- | ----------------------------------------------------- |
+| go_live_push                  | Friend started a stream                               |
+| friend_request_accepted       | Outgoing friend request was accepted                  |
+| friend_request_pending        | A friend request is pending                           |
+| friend_suggestion_created     | A friend suggestion was created                       |
+| friend_request_reminder       | Reminder about pending friend requests                |
+| dm_friend_nudge               | Reminder to message friends                           |
+| recent_mention                | Recent mention                                        |
+| reply_mention                 | Mention through a reply ping                          |
+| scheduled_guild_event_started | A guild scheduled event started                       |
+| system_demo                   | Demo notification                                     |
+| missed_messages               | Missed messages from frequently read channel          |
+| top_messages **(deprecated)** | Top messages from a frequently read guild's home feed |
+| lifecycle_item                | New user tutorial item                                |
+| trending_content              | Unknown                                               |
+| ~~poll_ended~~                | ~~Poll ended~~                                        |
+| game_friend_request_accepted  | Outgoing game friend request was accepted             |
+| reaction_sent                 | Reaction was added on the user's message              |
+
+###### Notification Center Item Enum
+
+| Value | Name           | Description    |
+| ----- | -------------- | -------------- |
+| 0     | UPDATE_PROFILE | Update profile |
+| 1     | FIND_FRIENDS   | Find friends   |
+| 2     | ADD_FRIEND     | Add friend     |
+| 3     | FIRST_MESSAGE  | First message  |
+
+<RouteHeader method="GET" url="/users/@me/notification-center/items">
+  Get Notification Center Items
+</RouteHeader>
+
+Returns the user's notification center items. Items are ordered by most recent first.
+
+###### Query String Params
+
+| Field            | Type      | Description                                                           |
+| ---------------- | --------- | --------------------------------------------------------------------- |
+| after?           | snowflake | Get notification center items after this notification center item ID  |
+| with_mentions?   | boolean   | Whether to include recent mention notifications (default false)       |
+| roles_filter?    | boolean   | Whether to include role mentions (default true)                       |
+| everyone_filter? | boolean   | Whether to include @everyone and @here mentions (default true)        |
+| limit?           | integer   | Max number of notification center items to return (1-100, default 25) |
+
+###### Response Body
+
+| Field    | Type                                                                       | Description                                                                                                    |
+| -------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| limit    | integer                                                                    | The requested limit                                                                                            |
+| items    | array[[notification center item](#notification-center-item-object) object] | The notification center items                                                                                  |
+| cursor   | ?snowflake                                                                 | The cursor for pagination                                                                                      |
+| has_more | boolean                                                                    | Whether there are potentially additional notification center items that could be returned on a subsequent call |
+
+<RouteHeader method="DELETE" url="/users/@me/notification-center/items/{notification_center_item.id}">
+  Delete Notification Center Item
+</RouteHeader>
+
+Deletes a notification center item. Returns a 204 empty response on success. Fires a [Notification Center Item Delete](/topics/gateway-events#notification-center-item-delete) Gateway event.
+
+###### JSON Params
+
+| Field      | Type   | Description                                                                               |
+| ---------- | ------ | ----------------------------------------------------------------------------------------- |
+| item_type? | string | The [type of notification center item](#notification-center-item-deletion-type) to delete |
+
+###### Notification Center Item Deletion Type
+
+| Value   | Description                                                                                             |
+| ------- | ------------------------------------------------------------------------------------------------------- |
+| mention | The item is a mention (`type` of [`reply_mention` or `recent_mention`](#notification-center-item-type)) |
+| regular | The item is a regular item                                                                              |
+
+<RouteHeader method="POST" url="/users/@me/notification-center/items/{notification_center_item.id}/ack">
+  Acknowledge Notification Center Item
+</RouteHeader>
+
+Acknowledges a notification center item. Returns a 204 empty response on success. Fires a [Notification Center Items Ack](/topics/gateway-events#notification-center-items-ack) Gateway event.
+
+<RouteHeader method="POST" url="/users/@me/notification-center/items/bulk-ack">
+  Bulk Acknowledge Notification Center Items
+</RouteHeader>
+
+Acknowledges multiple notification center items in bulk. Returns a 204 empty response on success. Fires multiple [Notification Center Items Ack](/topics/gateway-events#notification-center-items-ack) Gateway events.
+
+###### Query String Parameters
+
+| Field    | Type             | Description                                             |
+| -------- | ---------------- | ------------------------------------------------------- |
+| item_ids | array[snowflake] | The IDs of the notification center items to acknowledge |
+
+
 ----- discord-userdoccers/pages/resources/payment.mdx -----
 # Payments
 
@@ -22665,6 +22804,165 @@ Updates the current user's subscribed hidden activities. Returns a 204 empty res
 | party_id       | snowflake | The ID of the party the user is in                         |
 | message_id     | snowflake | The ID of the message containing the rich presence invite  |
 | channel_id     | snowflake | The ID of the channel the rich presence invite was sent in |
+
+
+----- discord-userdoccers/pages/resources/promotion.mdx -----
+# Promotions
+
+Promotions are special offers that users can redeem for various benefits, such as discounts or free trials. Outbound promotions are offers to third-party services, while inbound promotions are in-platform offers sponsored by third-party services.
+
+### Promotion Object
+
+###### Promotion Structure
+
+| Field                                   | Type                                                                                 | Description                                                                                                                                   |
+| --------------------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                                      | snowflake                                                                            | The ID of the promotion                                                                                                                       |
+| trial_id?                               | snowflake                                                                            | The ID of the subscription trial associated with the promotion                                                                                |
+| start_date                              | ISO8601 timestamp                                                                    | When the promotion starts                                                                                                                     |
+| end_date                                | ISO8601 timestamp                                                                    | When the promotion ends                                                                                                                       |
+| outbound_redemption_end_date?           | ISO8601 timestamp                                                                    | When the promotion's redemption period ends                                                                                                   |
+| inbound_header_text?                    | string                                                                               | The title of the inbound promotion                                                                                                            |
+| inbound_body_text?                      | string                                                                               | The description of the inbound promotion                                                                                                      |
+| inbound_help_center_link?               | string                                                                               | The help center link of the inbound promotion                                                                                                 |
+| outbound_title?                         | string                                                                               | The title of the outbound promotion                                                                                                           |
+| outbound_redemption_modal_body?         | string                                                                               | The description of the outbound promotion                                                                                                     |
+| outbound_terms_and_conditions?          | string                                                                               | The terms and conditions of the promotion                                                                                                     |
+| outbound_redemption_page_link? ^1^      | string                                                                               | The redemption page to claim the outbound promotion                                                                                           |
+| outbound_redemption_url_format? ^1^ ^2^ | string                                                                               | The redemption page to claim the outbound promotion                                                                                           |
+| flags?                                  | integer                                                                              | The [promotion's flags](#promotion-flags)                                                                                                     |
+| inbound_restricted_countries?           | array[string]                                                                        | The [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) codes of countries that the inbound promotion is not available in  |
+| outbound_restricted_countries?          | array[string]                                                                        | The [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) codes of countries that the outbound promotion is not available in |
+| promotion_type                          | integer                                                                              | The [type of promotion](#promotion-type)                                                                                                      |
+| partner_id?                             | string                                                                               | The [type of promotion partner](#promotion-partner-type)                                                                                      |
+| marketing_components?                   | array[[promotion marketing component](#promotion-marketing-component-object) object] | The components used in marketing                                                                                                              |
+
+^1^ Only either `outbound_redemption_page_link` or `outbound_redemption_url_format` will be present.
+
+^2^ This field is a formatted string. `{code}` should be replaced with the claimed `code`.
+
+###### Promotion Flags
+
+| Value  | Name                                  | Description                                      |
+| ------ | ------------------------------------- | ------------------------------------------------ |
+| 1 << 5 | IS_BLOCKED_IOS                        | Promotion is not shown on iOS                    |
+| 1 << 6 | IS_OUTBOUND_REDEEMABLE_BY_TRIAL_USERS | Promotion is redeemable by trial user            |
+| 1 << 7 | SUPPRESS_NOTIFICATION                 | Notifications about the promotion are suppressed |
+
+###### Promotion Type
+
+| Value | Name                 | Description                    |
+| ----- | -------------------- | ------------------------------ |
+| 0     | THIRD_PARTY          | Third-party promotion          |
+| 1     | BOGO                 | BOGO promotion                 |
+| 3     | THIRD_PARTY_INBOUND  | Third-party inbound promotion  |
+| 4     | THIRD_PARTY_OUTBOUND | Third-party outbound promotion |
+| 5     | MARKETING_MOMENT     | Marketing moment               |
+| 6     | GIFT_PROMOTION       | Gift promotion                 |
+
+###### Promotion Partner Type
+
+| Value        | Description                                   |
+| ------------ | --------------------------------------------- |
+| steelseries  | [SteelSeries](https://steelseries.com/)       |
+| kontrolfreek | [KontrolFreek](https://www.kontrolfreek.com/) |
+
+### Promotion Marketing Component Object
+
+###### Promotion Marketing Component Structure
+
+| Field          | Type      | Description                                                                                                                                                                                                                   |
+| -------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| component_type | integer   | The [type of marketing component](#promotion-marketing-component-type)                                                                                                                                                        |
+| id             | integer   | The ID of the component                                                                                                                                                                                                       |
+| promotion_id   | snowflake | The ID of the promotion                                                                                                                                                                                                       |
+| properties     | string    | The base64-encoded serialized [PremiumMarketingComponentProperties](https://github.com/discord-userdoccers/discord-protos/blob/master/discord_protos/premium_marketing/v1/PremiumMarketingComponentProperties.proto) protobuf |
+
+###### Promotion Marketing Component Type
+
+| Value | Name                  | Description            |
+| ----- | --------------------- | ---------------------- |
+| 0     | ANNOUNCEMENT_MODAL    | Annonucement modal     |
+| 1     | PREMIUM_TAB           | Premium tab            |
+| 2     | MARKETING_PAGE_BANNER | Marketing page banner  |
+| 3     | PAYMENT_MODAL_BANNER  | Payment modal banner   |
+| 4     | MOBILE_BOTTOM_SHEET   | Bottom sheet on mobile |
+
+### Claimed Promotion Object
+
+###### Claimed Promotion Structure
+
+| Field      | Type                                  | Description                                  |
+| ---------- | ------------------------------------- | -------------------------------------------- |
+| code       | string                                | The code of the claimed promotion            |
+| user_id    | snowflake                             | The ID of the user who claimed the promotion |
+| claimed_at | ISO8601 timestamp                     | When the promotion was claimed at            |
+| promotion  | [promotion](#promotion-object) object | The promotion                                |
+
+## Endpoints
+
+<RouteHeader method="GET" url="/outbound-promotions" deprecated supportsBot>
+  Get Outbound Promotions
+</RouteHeader>
+
+Returns a list of [promotion](#promotion-object) objects the current user is eligible for.
+
+###### Query String Params
+
+| Field     | Type    | Description                                                    |
+| --------- | ------- | -------------------------------------------------------------- |
+| locale?   | string  | The [language](/reference#locales) to return promotions in     |
+| platform? | integer | The [platform](#promotion-platform-type) to get promotions for |
+
+###### Promotion Platform Type
+
+| Value | Name    | Description |
+| ----- | ------- | ----------- |
+| 0     | DESKTOP | Desktop     |
+| 1     | MOBILE  | Mobile      |
+
+<RouteHeader method="GET" url="/promotions" supportsBot>
+  Get Promotions
+</RouteHeader>
+
+Returns a list of [promotion](#promotion-object) objects the current user is eligible for.
+
+###### Query String Params
+
+| Field     | Type    | Description                                                    |
+| --------- | ------- | -------------------------------------------------------------- |
+| locale?   | string  | The [language](/reference#locales) to return promotions in     |
+| platform? | integer | The [platform](#promotion-platform-type) to get promotions for |
+
+<RouteHeader method="GET" url="/bogo-promotions">
+  Get BOGO Promotions
+</RouteHeader>
+
+Same as above, except only returns promotions of type [`BOGO`](#promotion-type).
+
+###### Query String Params
+
+| Field     | Type    | Description                                                |
+| --------- | ------- | ---------------------------------------------------------- |
+| locale?   | string  | The [language](/reference#locales) to return promotions in |
+
+<RouteHeader method="GET" url="/users/@me/outbound-promotions/codes">
+  Get Claimed Promotions
+</RouteHeader>
+
+Returns a list of [claimed promotion](#claimed-promotion-object) for the current user.
+
+###### Query String Params
+
+| Field     | Type    | Description                                                |
+| --------- | ------- | ---------------------------------------------------------- |
+| locale?   | string  | The [language](/reference#locales) to return promotions in |
+
+<RouteHeader method="POST" url="/outbound-promotions/{promotion.id}/claim">
+  Claim Promotion
+</RouteHeader>
+
+Claims a promotion. Returns a [claimed promotion](#claimed-promotion-object) object on success.
 
 
 ----- discord-userdoccers/pages/resources/quests.mdx -----
@@ -26491,6 +26789,27 @@ Pays the subscription invoice. Returns a [subscription](#subscription-object) ob
 | payment_source_token? | string     | The token used to authorize with the payment source                                          |
 | currency?             | string     | The lower-cased [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code to pay with |
 | return_url?           | string     | The URL to return to after the payment is complete                                           |
+
+<RouteHeader method="POST" url="/users/@me/billing/subscriptions/{subscription.id}/promotion-reward">
+  Claim Subscription Promotion Reward
+</RouteHeader>
+
+Claims a promotion reward from the given subscription.
+
+###### Response Body
+
+| Field        | Type                                                            | Description                                                                                          |
+| ------------ | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| eligible     | boolean                                                         | Whether the subscription is eligible for the reward                                                  |
+| reason       | string                                                          | The [reason whether the subscription is eligible](#subscription-promotion-reward-eligibility-reason) |
+| entitlement? | [entitlement](/resources/entitlement#entitlement-object) object | The granted reward entitlement                                                                       |
+
+###### Subscription Promotion Reward Eligibility Reason
+
+| Value                            | Description                                  |
+| -------------------------------- | -------------------------------------------- |
+| user_eligible_for_reward         | User is eligible for reward                  |
+| user_not_eligible_for_experiment | User is not eligible for relevant experiment |
 
 <RouteHeader method="GET" url="/users/@me/guilds/premium/subscriptions/cooldown">
   Get Premium Guild Subscription Cooldown
@@ -33496,6 +33815,10 @@ These events directly correspond with a specific action or state change that has
 | [Message Reaction Remove Emoji](#message-reaction-remove-emoji)                             | All reactions for a given emoji were explicitly removed from a message                         |
 | [Recent Mention Delete](#recent-mention-delete)                                             | Recent message that mentioned the current user was acknowledged                                |
 | [Last Messages](#last-messages)                                                             | Response to [Request Last Messages](#request-last-messages)                                    |
+| [Notification Center Item Create](#notification-center-item-create)                         | Notification center item was created                                                           |
+| [Notification Center Item Delete](#notification-center-item-delete)                         | Notification center item was deleted                                                           |
+| [Notification Center Items Ack](#notification-center-items-ack)                             | Notification center item was acknowledged                                                      |
+| [Notification Center Item Completed](#notification-center-item-completed)                   | Notification center item of a certain action type was completed                                |
 | [Notification Settings Update](#notification-settings-update)                               | User notification settings were updated                                                        |
 | [OAuth2 Token Create](#oauth2-token-create)                                                 | OAuth2 authorization was created                                                               |
 | [OAuth2 Token Delete](#oauth2-token-delete)                                                 | OAuth2 authorization was deleted                                                               |
@@ -35246,6 +35569,43 @@ Sent in response to [Request Last Messages](#request-last-messages).
 | -------- | ---------------------------------------------------------- | --------------------------------------- |
 | guild_id | snowflake                                                  | The ID of the guild                     |
 | messages | array[[message](/resources/message#message-object) object] | Last messages of the requested channels |
+
+### Notification Center
+
+#### Notification Center Item Create
+
+Sent when a notification center item is created. The inner payload is a [notification center item](/resources/notification-center#notification-center-item-object) object.
+
+#### Notification Center Item Delete
+
+Sent when a notification center item is deleted.
+
+###### Notification Center Item Delete Structure
+
+| Field   | Type      | Description                                    |
+| ------- | --------- | ---------------------------------------------- |
+| id      | snowflake | The ID of the deleted notification center item |
+| user_id | snowflake | The ID of the current user                     |
+
+#### Notification Center Items Ack
+
+Sent when a notification center item is acknowledged.
+
+###### Notification Center Items Ack Structure
+
+| Field | Type      | Description                                         |
+| ----- | --------- | --------------------------------------------------- |
+| id    | snowflake | The ID of the acknowledged notification center item |
+
+#### Notification Center Item Completed
+
+Sent when a notification center action set is completed.
+
+###### Notification Center Item Completed Structure
+
+| Field     | Type    | Description                                                                                                    |
+| --------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| item_enum | integer | The [type of completed notification center item](/resources/notification-center#notification-center-item-enum) |
 
 ### Notification Settings
 
@@ -40007,6 +40367,12 @@ Once a call exists, clients can choose to [ring the channel recipients](/resourc
 Once we retrieve a `session_id`, `token`, and `endpoint` information, we can connect and handshake with the voice server over another secure WebSocket.
 Unlike the Gateway endpoint we receive in a [Get Gateway](/topics/gateway#get-gateway) request, the endpoint received from our [Voice Server Update](/topics/gateway-events#voice-server-update) payload does not contain a URL protocol,
 so some libraries may require manually prepending it with `wss://` before connecting. Once connected to the voice WebSocket endpoint, we can immediately send an [Opcode 0 Identify](#gateway-commands) payload:
+
+<Alert type="danger">
+
+All payloads sent to the voice WebSocket must be text frames. Binary frames are not supported.
+
+</Alert>
 
 ###### Identify Structure
 

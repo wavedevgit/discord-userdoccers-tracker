@@ -3610,6 +3610,7 @@
         "": true,
         "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/exceptions\n",
         "supportsAuditReason": true,
+        "supportsBot": true,
         "urls": [
             "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/exceptions\n"
         ],
@@ -6022,6 +6023,50 @@
         ]
     },
     {
+        "title": "Get Notification Center Items",
+        "method": "GET",
+        "url": "/users/@me/notification-center/items",
+        "urls": [
+            "/users/@me/notification-center/items"
+        ],
+        "urlEmpty": [
+            "/users/@me/notification-center/items"
+        ]
+    },
+    {
+        "title": "Delete Notification Center Item",
+        "method": "DELETE",
+        "url": "/users/@me/notification-center/items/{notification_center_item.id}",
+        "urls": [
+            "/users/@me/notification-center/items/{notification_center_item.id}"
+        ],
+        "urlEmpty": [
+            "/users/@me/notification-center/items/:param"
+        ]
+    },
+    {
+        "title": "Acknowledge Notification Center Item",
+        "method": "POST",
+        "url": "/users/@me/notification-center/items/{notification_center_item.id}/ack",
+        "urls": [
+            "/users/@me/notification-center/items/{notification_center_item.id}/ack"
+        ],
+        "urlEmpty": [
+            "/users/@me/notification-center/items/:param/ack"
+        ]
+    },
+    {
+        "title": "Bulk Acknowledge Notification Center Items",
+        "method": "POST",
+        "url": "/users/@me/notification-center/items/bulk-ack",
+        "urls": [
+            "/users/@me/notification-center/items/bulk-ack"
+        ],
+        "urlEmpty": [
+            "/users/@me/notification-center/items/bulk-ack"
+        ]
+    },
+    {
         "title": "Verify Purchase Request",
         "method": "POST",
         "url": "/billing/verify-purchase-request",
@@ -6285,6 +6330,64 @@
         ],
         "urlEmpty": [
             "/users/@me/activities/subscribe"
+        ]
+    },
+    {
+        "title": "Get Outbound Promotions",
+        "method": "GET",
+        "url": "/outbound-promotions",
+        "deprecated": true,
+        "supportsBot": true,
+        "urls": [
+            "/outbound-promotions"
+        ],
+        "urlEmpty": [
+            "/outbound-promotions"
+        ]
+    },
+    {
+        "title": "Get Promotions",
+        "method": "GET",
+        "url": "/promotions",
+        "supportsBot": true,
+        "urls": [
+            "/promotions"
+        ],
+        "urlEmpty": [
+            "/promotions"
+        ]
+    },
+    {
+        "title": "Get BOGO Promotions",
+        "method": "GET",
+        "url": "/bogo-promotions",
+        "urls": [
+            "/bogo-promotions"
+        ],
+        "urlEmpty": [
+            "/bogo-promotions"
+        ]
+    },
+    {
+        "title": "Get Claimed Promotions",
+        "method": "GET",
+        "url": "/users/@me/outbound-promotions/codes",
+        "urls": [
+            "/users/@me/outbound-promotions/codes"
+        ],
+        "urlEmpty": [
+            "/users/@me/outbound-promotions/codes"
+        ]
+    },
+    {
+        "title": "Claim Promotion",
+        "method": "POST",
+        "url": "/outbound-promotions/{promotion.id}/claim",
+        "urls": [
+            "/outbound-promotions/{promotion.id}/claim"
+        ],
+        "urlEmpty": [
+            "/outbound-promotions/:param/claim"
         ]
     },
     {
@@ -7462,6 +7565,17 @@
         ],
         "urlEmpty": [
             "/users/@me/billing/subscriptions/:param/invoices/:param/pay"
+        ]
+    },
+    {
+        "title": "Claim Subscription Promotion Reward",
+        "method": "POST",
+        "url": "/users/@me/billing/subscriptions/{subscription.id}/promotion-reward",
+        "urls": [
+            "/users/@me/billing/subscriptions/{subscription.id}/promotion-reward"
+        ],
+        "urlEmpty": [
+            "/users/@me/billing/subscriptions/:param/promotion-reward"
         ]
     },
     {

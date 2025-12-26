@@ -669,24 +669,8 @@
             "/guilds/automations/email-domain-lookup/verify"
         ],
         [
-            "OUTBOUND_PROMOTIONS",
-            "/outbound-promotions"
-        ],
-        [
             "OUTBOUND_PROMOTIONS_PREVIEW",
             "/outbound-promotions/preview"
-        ],
-        [
-            "BOGO_PROMOTIONS",
-            "/bogo-promotions"
-        ],
-        [
-            "CLAIMED_OUTBOUND_PROMOTION_CODES",
-            "/users/@me/outbound-promotions/codes"
-        ],
-        [
-            "CLAIM_OUTBOUND_PROMOTION_CODE",
-            "/outbound-promotions/:param/claim"
         ],
         [
             "GUILD_PRODUCT_CREATE_ATTACHMENT_UPLOAD",
@@ -891,18 +875,6 @@
         [
             "ACTIVE_CHANNELS",
             "/guilds/:param/active-channels"
-        ],
-        [
-            "NOTIF_CENTER_ITEMS",
-            "/users/@me/notification-center/items/:param"
-        ],
-        [
-            "NOTIF_CENTER_ITEMS_ACK",
-            "/users/@me/notification-center/items/:param/ack"
-        ],
-        [
-            "NOTIF_CENTER_ITEMS_BULK_ACK",
-            "/users/@me/notification-center/items/bulk-ack"
         ],
         [
             "AUTH_SESSIONS",
@@ -2483,6 +2455,22 @@
             "/guilds/automations/email-domain-lookup/verify-code"
         ],
         [
+            "OUTBOUND_PROMOTIONS",
+            "/outbound-promotions"
+        ],
+        [
+            "BOGO_PROMOTIONS",
+            "/bogo-promotions"
+        ],
+        [
+            "CLAIMED_OUTBOUND_PROMOTION_CODES",
+            "/users/@me/outbound-promotions/codes"
+        ],
+        [
+            "CLAIM_OUTBOUND_PROMOTION_CODE",
+            "/outbound-promotions/:param/claim"
+        ],
+        [
             "HUB_EMAIL_VERIFY_SEND",
             "/guilds/automations/email-domain-lookup"
         ],
@@ -2557,6 +2545,18 @@
         [
             "PREMIUM_USAGE",
             "/users/@me/premium-usage"
+        ],
+        [
+            "NOTIF_CENTER_ITEMS",
+            "/users/@me/notification-center/items/:param"
+        ],
+        [
+            "NOTIF_CENTER_ITEMS_ACK",
+            "/users/@me/notification-center/items/:param/ack"
+        ],
+        [
+            "NOTIF_CENTER_ITEMS_BULK_ACK",
+            "/users/@me/notification-center/items/bulk-ack"
         ],
         [
             "NOTIFICATION_SNAPSHOTS",

@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 436 |
+| Covered | 443 |
 |---------|------------|
-| Missing | 269 |
+| Missing | 262 |
 ## Missing routes
-total: 269
+total: 262
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -173,11 +173,7 @@ total: 269
 - [ ] **GUILD_EVENT_EXCEPTIONS**: `/guilds/:param/scheduled-events/:param/exceptions`
 - [ ] **GUILD_EVENT_EXCEPTION**: `/guilds/:param/scheduled-events/:param/exceptions/:param`
 - [ ] **HUB_EMAIL_VERIFY**: `/guilds/automations/email-domain-lookup/verify`
-- [ ] **OUTBOUND_PROMOTIONS**: `/outbound-promotions`
 - [ ] **OUTBOUND_PROMOTIONS_PREVIEW**: `/outbound-promotions/preview`
-- [ ] **BOGO_PROMOTIONS**: `/bogo-promotions`
-- [ ] **CLAIMED_OUTBOUND_PROMOTION_CODES**: `/users/@me/outbound-promotions/codes`
-- [ ] **CLAIM_OUTBOUND_PROMOTION_CODE**: `/outbound-promotions/:param/claim`
 - [ ] **GUILD_PRODUCT_CREATE_ATTACHMENT_UPLOAD**: `/guilds/:param/products/attachments`
 - [ ] **CHAT_WALLPAPERS**: `/chat-wallpapers`
 - [ ] **GUILD_ROLE_SUBSCRIPTIONS_SETTINGS**: `/guilds/:param/role-subscriptions/settings`
@@ -229,9 +225,6 @@ total: 269
 - [ ] **APP_RECOMMENDATIONS**: `/app-recommendations`
 - [ ] **GUILD_FEED**: `/guilds/:param/guild-feed`
 - [ ] **ACTIVE_CHANNELS**: `/guilds/:param/active-channels`
-- [ ] **NOTIF_CENTER_ITEMS**: `/users/@me/notification-center/items/:param`
-- [ ] **NOTIF_CENTER_ITEMS_ACK**: `/users/@me/notification-center/items/:param/ack`
-- [ ] **NOTIF_CENTER_ITEMS_BULK_ACK**: `/users/@me/notification-center/items/bulk-ack`
 - [ ] **AUTH_SESSIONS**: `/auth/sessions`
 - [ ] **AUTH_SESSION_NOTIFICATIONS_DEBUG**: `/auth/sessions/debug/notifications`
 - [ ] **AUTH_SESSIONS_LOGOUT**: `/auth/sessions/logout`
@@ -277,7 +270,7 @@ total: 269
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 436
+total: 443
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -630,6 +623,10 @@ total: 436
 - [x] **APPLICATION_OWNER_TRANSFER**: `/applications/:param/transfer`
 - [x] **HUB_WAITLIST_SIGNUP**: `/hub-waitlist/signup`
 - [x] **HUB_EMAIL_VERIFY_CODE**: `/guilds/automations/email-domain-lookup/verify-code`
+- [x] **OUTBOUND_PROMOTIONS**: `/outbound-promotions`
+- [x] **BOGO_PROMOTIONS**: `/bogo-promotions`
+- [x] **CLAIMED_OUTBOUND_PROMOTION_CODES**: `/users/@me/outbound-promotions/codes`
+- [x] **CLAIM_OUTBOUND_PROMOTION_CODE**: `/outbound-promotions/:param/claim`
 - [x] **HUB_EMAIL_VERIFY_SEND**: `/guilds/automations/email-domain-lookup`
 - [x] **MEDIA_POST_RESHARE_GET_PREVIEW**: `/channels/:param/media-post-preview`
 - [x] **UNFURL_EMBED_URLS**: `/unfurler/embed-urls`
@@ -649,6 +646,9 @@ total: 436
 - [x] **USER_EMAIL**: `/users/@me/email`
 - [x] **USER_EMAIL_VERIFY_CODE**: `/users/@me/email/verify-code`
 - [x] **PREMIUM_USAGE**: `/users/@me/premium-usage`
+- [x] **NOTIF_CENTER_ITEMS**: `/users/@me/notification-center/items/:param`
+- [x] **NOTIF_CENTER_ITEMS_ACK**: `/users/@me/notification-center/items/:param/ack`
+- [x] **NOTIF_CENTER_ITEMS_BULK_ACK**: `/users/@me/notification-center/items/bulk-ack`
 - [x] **NOTIFICATION_SNAPSHOTS**: `/users/@me/notification-settings/snapshots`
 - [x] **NOTIFICATION_SNAPSHOT**: `/users/@me/notification-settings/snapshots/:param`
 - [x] **RESTORE_NOTIFICATION_SNAPSHOT**: `/users/@me/notification-settings/snapshots/:param/restore-guilds`
