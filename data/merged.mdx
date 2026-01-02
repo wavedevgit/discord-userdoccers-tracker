@@ -31701,13 +31701,11 @@ Discord offers a web client that can be used in a browser. This same web client 
 
 ###### Web Release Channel
 
-The JSON files linked below contain the `hash` of the latest client build for the respective release channel, as well as whether the update is `required`.
-
-| Value      | URL                            | Description       | Version Info                                                                           |
-| ---------- | ------------------------------ | ----------------- | -------------------------------------------------------------------------------------- |
-| stable     | https://discord.com/app        | Stable build      | [`/assets/version.stable.json`](https://discord.com/assets/version.stable.json)        |
-| ptb ^1^    | https://ptb.discord.com/app    | Public test build | [`/assets/version.ptb.json`](https://ptb.discord.com/assets/version.ptb.json)          |
-| canary ^1^ | https://canary.discord.com/app | Alpha test build  | [`/assets/version.canary.json`](https://canary.discord.com/assets/version.canary.json) |
+| Value      | URL                            | Description       |
+| ---------- | ------------------------------ | ----------------- |
+| stable     | https://discord.com/app        | Stable build      | 
+| ptb ^1^    | https://ptb.discord.com/app    | Public test build | 
+| canary ^1^ | https://canary.discord.com/app | Alpha test build  |
 
 ^1^ See the [Help Center article](https://support.discord.com/hc/en-us/articles/360035675191-Discord-Testing-Clients) for more information on Discord testing clients.
 
@@ -38538,7 +38536,7 @@ A special `40333` JSON error code is returned if your request is blocked by Clou
 
 ###### JSON Error Codes
 
-<Alert>
+<Alert type="info">
 
 This is now maintained in our new [datamining section](/datamining/errors). Are we missing something? Help us out by submitting!
 
@@ -41034,7 +41032,8 @@ The resume may be unsuccessful if the buffer for the session no longer contains 
 
 ### Client Connections
 
-At connection start, and when a client thereafter connects to voice, the voice server will send a series of events, including an [Opcode 11 Client Connect](#gateway-events), and [Opcode 18 Client Flags](#gateway-events) and [Opcode 20 Client Platform](#gateway-events) for every joined user.
+At connection start, and when a client thereafter connects to voice, the voice server will send a series of events.
+This includes an [Opcode 11 Client Connect](#gateway-events) containing every connected user, as well as individual [Opcode 18 Client Flags](#gateway-events) and [Opcode 20 Client Platform](#gateway-events) for each user.
 
 These events are meant to inform a new client of all existing clients and their flags/platform, and inform existing clients of a newly-connected client.
 
