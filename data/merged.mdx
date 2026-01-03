@@ -3454,6 +3454,10 @@ The values of this enum are currently unknown. Help us by figuring them out and 
 | google_play    | Google Play Store   |
 | nvidia_gdn_app | NVIDIA Cloud Gaming |
 | gop            | Gameopedia          |
+| roblox         | Roblox Game         |
+| gdco           | GameDiscover.co     |
+| xbox           | Xbox Store          |
+| playstation    | PlayStation Store   |
 
 ###### Example Application SKU
 
@@ -8267,24 +8271,24 @@ A recap of the user's yearly activity, inspired by [Spotify Wrapped](https://www
   Get Checkpoint
 </RouteHeader>
 
-Retrieves the user's current yearly checkpoint.  
+Retrieves the user's current yearly checkpoint.
 
 ###### Response Body
 
-| Field                   | Type                                                                                                       | Description                                                                   |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| card_id?                | integer                                                                                                    | The [type of checkpoint card](#checkpoint-card-type)                          |
-| avatar_decoration       | [avatar decoration collectible item](/resources/collectibles#avatar-decoration-collectible-item-structure) | A free avatar decoration granted by viewing the checkpoint                    |
-| power_level?            | float                                                                                                      | A power level representing how active the user was on Discord                 |
-| power_level_percentile? | float                                                                                                      | The power level expressed as a percentile                                     |
-| messages?               | [checkpoint message statistics](#checkpoint-message-statistics-structure) object                           | Statistics about messages sent by the current user during the year            |
-| emojis?                 | [checkpoint emoji statistics](#checkpoint-emoji-statistics-structure) object                               | Statistics about emojis the current user used during the year                 |
-| voice?                  | [checkpoint voice statistics](#checkpoint-voice-statistics-structure) object                               | Statistics about voice activity from the current user during the year         |
-| guilds?                 | [checkpoint guilds statistics](#checkpoint-guilds-statistics-structure) object                             | Statistics about guilds the current user was active in during the year        |
-| sidekick?               | [checkpoint sidekick](#checkpoint-sidekick-structure) object                                               | The user the current user talk to the most                                    |
-| users?                  | array[[checkpoint user](#checkpoint-user-structure) object]                                                | Additional users the current user spent the most time with during the year    |
-| applications?           | [checkpoint games statistics](#checkpoint-games-statistics-structure) object                               | Games played during the year                                                  |
-| quests?                 | [checkpoint quest statistics](#checkpoint-quest-statistics-structure) object                               | Number of completed quests and collected orbs during the year                 |
+| Field                   | Type                                                                                                       | Description                                                                |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| card_id?                | integer                                                                                                    | The [type of checkpoint card](#checkpoint-card-type)                       |
+| avatar_decoration       | [avatar decoration collectible item](/resources/collectibles#avatar-decoration-collectible-item-structure) | A free avatar decoration granted by viewing the checkpoint                 |
+| power_level?            | float                                                                                                      | A power level representing how active the user was on Discord              |
+| power_level_percentile? | float                                                                                                      | The power level expressed as a percentile                                  |
+| messages?               | [checkpoint message statistics](#checkpoint-message-statistics-structure) object                           | Statistics about messages sent by the current user during the year         |
+| emojis?                 | [checkpoint emoji statistics](#checkpoint-emoji-statistics-structure) object                               | Statistics about emojis the current user used during the year              |
+| voice?                  | [checkpoint voice statistics](#checkpoint-voice-statistics-structure) object                               | Statistics about voice activity from the current user during the year      |
+| guilds?                 | [checkpoint guilds statistics](#checkpoint-guilds-statistics-structure) object                             | Statistics about guilds the current user was active in during the year     |
+| sidekick?               | [checkpoint sidekick](#checkpoint-sidekick-structure) object                                               | The user the current user talk to the most                                 |
+| users?                  | array[[checkpoint user](#checkpoint-user-structure) object]                                                | Additional users the current user spent the most time with during the year |
+| applications?           | [checkpoint games statistics](#checkpoint-games-statistics-structure) object                               | Games played during the year                                               |
+| quests?                 | [checkpoint quest statistics](#checkpoint-quest-statistics-structure) object                               | Number of completed quests and collected orbs during the year              |
 
 ###### Checkpoint Card Type
 
@@ -8347,11 +8351,11 @@ Retrieves the user's current yearly checkpoint.
 
 ###### Checkpoint Guild Statistics Structure
 
-| Field              | Type                                                  | Description                                                            |
-| ------------------ | ----------------------------------------------------- | ---------------------------------------------------------------------- |
-| num_messages_sent? | integer                                               | Number of messages the current user sent in the guild during the year  |
-| num_voice_minutes? | float                                                 | Duration in minutes that the current user spent in guild voice         |
-| guild              | partial [guild](/resources/guild#guild-object) object | The guild                                                              |
+| Field              | Type                                                  | Description                                                           |
+| ------------------ | ----------------------------------------------------- | --------------------------------------------------------------------- |
+| num_messages_sent? | integer                                               | Number of messages the current user sent in the guild during the year |
+| num_voice_minutes? | float                                                 | Duration in minutes that the current user spent in guild voice        |
+| guild              | partial [guild](/resources/guild#guild-object) object | The guild                                                             |
 
 ###### Checkpoint Sidekick Structure
 
@@ -8593,7 +8597,7 @@ Retrieves the user's current yearly checkpoint.
   Claim Checkpoint Avatar Decoration
 </RouteHeader>
 
-Claims the free avatar decoration collectible from the checkpoint. Returns a 204 empty response.  
+Claims the free avatar decoration collectible from the checkpoint. Returns a 204 empty response.
 
 
 ----- discord-userdoccers/pages/resources/collectibles.mdx -----
@@ -10394,7 +10398,7 @@ File Uploads can only be used within modals and must be placed inside a [Label](
 
 ### Checkpoint Card
 
-A Checkpoint Card is a top-level component that displays a summary of the user's [checkpoint](/resources/checkpoint).  
+A Checkpoint Card is a top-level component that displays a summary of the user's [checkpoint](/resources/checkpoint).
 
 Checkpoint cards cannot be sent directly.
 
@@ -10462,7 +10466,7 @@ Checkpoint cards cannot be sent directly.
     "top_guild": {
       "guild_id": "1046920999469330512",
       "guild_name": "Alien Network",
-      "guild_icon": "66b0f4d96c145970fa9d96ada8afadf3",
+      "guild_icon": "66b0f4d96c145970fa9d96ada8afadf3"
     },
     "top_game": {
       "application_id": "363445589247131668",
@@ -22942,9 +22946,9 @@ Same as above, except only returns promotions of type [`BOGO`](#promotion-type).
 
 ###### Query String Params
 
-| Field     | Type    | Description                                                |
-| --------- | ------- | ---------------------------------------------------------- |
-| locale?   | string  | The [language](/reference#locales) to return promotions in |
+| Field   | Type   | Description                                                |
+| ------- | ------ | ---------------------------------------------------------- |
+| locale? | string | The [language](/reference#locales) to return promotions in |
 
 <RouteHeader method="GET" url="/users/@me/outbound-promotions/codes">
   Get Claimed Promotions
@@ -22954,9 +22958,9 @@ Returns a list of [claimed promotion](#claimed-promotion-object) for the current
 
 ###### Query String Params
 
-| Field     | Type    | Description                                                |
-| --------- | ------- | ---------------------------------------------------------- |
-| locale?   | string  | The [language](/reference#locales) to return promotions in |
+| Field   | Type   | Description                                                |
+| ------- | ------ | ---------------------------------------------------------- |
+| locale? | string | The [language](/reference#locales) to return promotions in |
 
 <RouteHeader method="POST" url="/outbound-promotions/{promotion.id}/claim">
   Claim Promotion
@@ -31703,8 +31707,8 @@ Discord offers a web client that can be used in a browser. This same web client 
 
 | Value      | URL                            | Description       |
 | ---------- | ------------------------------ | ----------------- |
-| stable     | https://discord.com/app        | Stable build      | 
-| ptb ^1^    | https://ptb.discord.com/app    | Public test build | 
+| stable     | https://discord.com/app        | Stable build      |
+| ptb ^1^    | https://ptb.discord.com/app    | Public test build |
 | canary ^1^ | https://canary.discord.com/app | Alpha test build  |
 
 ^1^ See the [Help Center article](https://support.discord.com/hc/en-us/articles/360035675191-Discord-Testing-Clients) for more information on Discord testing clients.
