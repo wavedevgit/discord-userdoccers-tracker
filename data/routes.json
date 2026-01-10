@@ -3622,28 +3622,28 @@
         "title": "Modify Guild Scheduled Event Exception",
         "method": "PATCH\n",
         "": true,
-        "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/{guild_scheduled_event_exception.id}\n",
+        "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/exceptions/{guild_scheduled_event_exception.id}\n",
         "supportsAuditReason": true,
         "supportsBot": true,
         "urls": [
-            "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/{guild_scheduled_event_exception.id}\n"
+            "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/exceptions/{guild_scheduled_event_exception.id}\n"
         ],
         "urlEmpty": [
-            "/guilds/:param/scheduled-events/:param/:param\n"
+            "/guilds/:param/scheduled-events/:param/exceptions/:param\n"
         ]
     },
     {
         "title": "Delete Guild Scheduled Event Exception",
         "method": "DELETE\n",
         "": true,
-        "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/{guild_scheduled_event_exception.id}\n",
+        "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/exceptions/{guild_scheduled_event_exception.id}\n",
         "supportsAuditReason": true,
         "supportsBot": true,
         "urls": [
-            "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/{guild_scheduled_event_exception.id}\n"
+            "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/exceptions/{guild_scheduled_event_exception.id}\n"
         ],
         "urlEmpty": [
-            "/guilds/:param/scheduled-events/:param/:param\n"
+            "/guilds/:param/scheduled-events/:param/exceptions/:param\n"
         ]
     },
     {
