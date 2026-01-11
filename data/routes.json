@@ -9313,7 +9313,18 @@
         ]
     },
     {
-        "title": "Get OAuth2 Authorization",
+        "title": "Get Application OAuth2 Authorizations",
+        "method": "GET",
+        "url": "/oauth2/applications/{application.id}/tokens",
+        "urls": [
+            "/oauth2/applications/{application.id}/tokens"
+        ],
+        "urlEmpty": [
+            "/oauth2/applications/:param/tokens"
+        ]
+    },
+    {
+        "title": "Preview OAuth2 Authorization",
         "method": "GET",
         "url": "/oauth2/authorize",
         "urls": [
