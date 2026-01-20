@@ -8142,6 +8142,28 @@
         ]
     },
     {
+        "title": "Modify Profile Widgets",
+        "method": "PUT",
+        "url": "/users/@me/widgets",
+        "urls": [
+            "/users/@me/widgets"
+        ],
+        "urlEmpty": [
+            "/users/@me/widgets"
+        ]
+    },
+    {
+        "title": "Get Profile Widgets Suggested Games",
+        "method": "GET",
+        "url": "/users/@me/widgets/suggested-games",
+        "urls": [
+            "/users/@me/widgets/suggested-games"
+        ],
+        "urlEmpty": [
+            "/users/@me/widgets/suggested-games"
+        ]
+    },
+    {
         "title": "Enable TOTP MFA",
         "method": "POST",
         "url": "/users/@me/mfa/totp/enable",
