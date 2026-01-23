@@ -2063,7 +2063,7 @@ def handle_interaction():
     })
 ```
 
-Optionally, you can also return a `204` status code and response to the interaction with a regular HTTP request, as described below. Note that **this does not apply to `PING` interactions**, which must be responded to directly.
+Optionally, you can also return a `202` status code and response to the interaction with a regular HTTP request, as described below. Note that **this does not apply to `PING` interactions**, which must be responded to directly.
 
 If you are receiving interactions over the Gateway, you will **also need to respond via HTTP**. Note that responses to interactions **are not sent as commands over the Gateway**.
 
@@ -3050,6 +3050,7 @@ Further complicating things, some optional fields may be omitted if their value 
 | storefront_available                         | boolean                                                                                                                   | Whether the application has public subscriptions or products available for purchase                                                                                             |
 | max_participants? ^5^                        | integer                                                                                                                   | The maximum possible participants in the application's embedded activity (-1 for no limit)                                                                                      |
 | embedded_activity_config? ^5^                | [embedded activity config](#embedded-activity-config-object) object                                                       | The configuration for the application's embedded activity                                                                                                                       |
+| parent_id?                                   | snowflake                                                                                                                 | The ID of the parent application                                                                                                                                                |
 
 ^1^ The `primary_sku_id` and `slug` fields can be combined to form a URL to the application's primary store page like so: `https://discord.com/store/skus/{primary_sku_id}/{slug}`.
 
@@ -3918,13 +3919,15 @@ Each metadata type offers a comparison operation that allows guilds to configure
 
 ###### Application Identity Provider Type
 
-| Value                | Description                                                                                                   |
-| -------------------- | ------------------------------------------------------------------------------------------------------------- |
-| OIDC                 | OpenID Connect                                                                                                |
-| EPIC_ONLINE_SERVICES | [Epic Online Services](https://dev.epicgames.com/docs/epic-online-services/eos-overview)-based authentication |
-| STEAM                | Steam-based authentication                                                                                    |
-| UNITY                | [Unity](https://docs.unity.com/ugs/manual/authentication/manual/unity-player-accounts)-based authentication   |
-| DISCORD_BOT ^1^      | Authentication via a Discord bot                                                                              |
+| Value                | Description                                                                                                                                             |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| OIDC                 | OpenID Connect                                                                                                                                          |
+| EPIC_ONLINE_SERVICES | [Epic Online Services](https://dev.epicgames.com/docs/epic-online-services/eos-overview)-based authentication                                           |
+| STEAM                | Steam-based authentication                                                                                                                              |
+| UNITY                | [Unity](https://docs.unity.com/ugs/manual/authentication/manual/unity-player-accounts)-based authentication                                             |
+| DISCORD_BOT ^1^      | Authentication via a Discord bot                                                                                                                        |
+| APPLE                | [Apple ID](https://developer.apple.com/documentation/devicemanagement/implementing-the-oauth2-authentication-user-enrollment-flow)-based authentication |
+| PLAYSTATION_NETWORK  | PlayStation Network-based authentication                                                                                                                |
 
 ^1^ This provider type is not external and therefore cannot be created or modified.
 
@@ -5179,6 +5182,64 @@ Returns a reason for why an application cannot be deleted.
 | ---------- | -------- | ----------------------------------------------------------------------------------- |
 | deletable? | ?boolean | Whether the application is deletable (default false)                                |
 | reason?    | ?integer | The [reason](#application-undeletable-reason) why the application cannot be deleted |
+
+<RouteHeader method="POST" url="/application-identities" supportsOAuth2>
+  Get Bulk Application Identities
+</RouteHeader>
+
+Returns a list of partial [application identity](#partial-application-identity-structure) objects connected to the authorized application.
+
+<Alert type="warn">
+
+This endpoint is only usable with an OAuth2 access token.
+
+</Alert>
+
+###### JSON Params
+
+| Field        | Type             | Description                                            |
+| ------------ | ---------------- | ------------------------------------------------------ |
+| user_ids ^1^ | array[snowflake] | The IDs of the users to retrieve identities for (1-100) |
+
+^1^ Invalid IDs are ignored.
+
+###### Partial Application Identity Structure
+
+| Field            | Type      | Description                                          |
+| ---------------- | --------- | ---------------------------------------------------- |
+| user_id          | snowflake | The ID of the user                                   |
+| external_user_id | string    | The ID of the user on the external identity provider |
+
+<RouteHeader method="GET" url="/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile" supportsBot>
+  Get User Application Profile
+</RouteHeader>
+
+Returns an [user application profile](/topics/gateway-events#user-application-profile-structure) object for the given application, user, and external user IDs.
+
+<Alert type="warn">
+
+This endpoint is not usable by user accounts.
+
+</Alert>
+
+<RouteHeader method="PATCH" url="/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile" supportsBot>
+  Modify User Application Profile
+</RouteHeader>
+
+Modifies the user's application profile. Returns an [user application profile](/topics/gateway-events#user-application-profile-structure) object on success.
+
+<Alert type="warn">
+
+This endpoint is not usable by user accounts.
+
+</Alert>
+
+###### JSON Params
+
+| Field     | Type   | Description                                                                                       |
+| --------- | ------ | ------------------------------------------------------------------------------------------------- |
+| username? | string | The username (max 1024)                                                                           |
+| metadata? | object | Custom metadata for the user application profile (max 25 keys, 1024 characters per key and value) |
 
 
 ----- discord-userdoccers/pages/resources/audit-log.mdx -----
@@ -10508,6 +10569,7 @@ Checkpoint cards cannot be sent directly.
 
 | Field                      | Type                                                                               | Description                                                                                                   |
 | -------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| id? ^1^                    | snowflake                                                                          | The ID of the media item                                                                                      |
 | url                        | string                                                                             | The URL of the media, supports arbitrary URLs and `attachment://<filename>` references (max 2048 characters)  |
 | proxy_url? ^1^             | string                                                                             | The proxied URL of the media item                                                                             |
 | height? ^1^                | ?integer                                                                           | The height of the media item                                                                                  |
@@ -17860,6 +17922,7 @@ Integrations represent a connection between a service and a guild. This may incl
 | is_verified                            | boolean                                                                        | Whether the application is verified                                                                                                                                                  |
 | is_discoverable                        | boolean                                                                        | Whether the application is discoverable in the application directory                                                                                                                 |
 | is_monetized                           | boolean                                                                        | Whether the application has monetization enabled                                                                                                                                     |
+| parent_id?                             | snowflake                                                                      | The ID of the parent application                                                                                                                                                     |
 
 ^1^ Only present when fetched from the [Get Guild Integrations](#get-guild-integrations) endpoint with `include_role_connections_metadata` set to `true`.
 
@@ -18265,6 +18328,7 @@ A code that when used, adds a user to a guild or group DM channel, or creates a 
 | target_type?                    | integer                                                                                       | The [type of target](#invite-target-type) for this guild invite                                                      |
 | target_user?                    | partial [user](/resources/user#user-object) object                                            | The user whose stream to display for this voice channel stream invite                                                |
 | target_application?             | partial [application](/resources/application#application-object) object                       | The embedded application to open for this voice channel embedded application invite                                  |
+| roles?                          | array[[role](/resources/guild#role-object) object]                                            | The roles to grant to the invitee upon acceptance                                                                    |
 | approximate_member_count? ^1^   | integer                                                                                       | Approximate count of total members in the guild or group DM                                                          |
 | approximate_presence_count? ^1^ | integer                                                                                       | Approximate count of non-offline members in the guild                                                                |
 | expires_at                      | ?ISO8601 timestamp                                                                            | The expiry date of the invite, if it expires                                                                         |
@@ -18519,6 +18583,64 @@ Bots and users who have been blocked by the inviter cannot retrieve friend invit
 | with_permissions?         | boolean   | Whether the invite should contain permission-related fields (default false)                                               |
 | guild_scheduled_event_id? | snowflake | The guild scheduled event to include with the invite                                                                      |
 
+<RouteHeader method="GET" url="/invites/{invite.code}/friend-members" supportsBot>
+  Get Invite Friend Members
+</RouteHeader>
+
+Returns the user IDs of friends in the target guild. Always returns an empty array for group DMs and friend invites.
+
+###### Response Body
+
+| Field             | Type             | Description                             |
+| ----------------- | ---------------- | --------------------------------------- |
+| friend_member_ids | array[snowflake] | User IDs of friends in the target guild |
+
+<RouteHeader method="GET" url="/invites/{invite.code}/target-users" supportsBot>
+  Get Invite Target Users
+</RouteHeader>
+
+Returns the IDs of the users allowed to see and accept the given invite. Invite must have a target users file associated with it. Requires the `MANAGE_GUILD` permission. Returns the CSV file contents as uploaded.
+
+<RouteHeader method="PUT" url="/invites/{invite.code}/target-users" supportsBot>
+  Update Invite Target Users
+</RouteHeader>
+
+Replaces the target users file associated with the given invite. Processing is done asynchronously. Invite must have been created with a target users file. Requires the `MANAGE_GUILD` permission. Returns a 204 empty response on success.
+
+###### Form Params
+
+| Field                 | Type          | Description                                                           |
+| --------------------- | ------------- | --------------------------------------------------------------------- |
+| target_users_file ^1^ | file contents | A CSV file with a single column of user IDs to restrict the invite to |
+
+^1^ See [Uploading Files](/reference#uploading-files) for details.
+
+<RouteHeader method="GET" url="/invites/{invite.code}/target-users/job-status" supportsBot>
+  Get Invite Target Users Job Status
+</RouteHeader>
+
+Returns the status of the target users file processing job for the given invite. Invite must have a target users file associated with it. Requires the `MANAGE_GUILD` permission.
+
+###### Response Body
+
+| Field           | Type               | Description                                                                          |
+| --------------- | ------------------ | ------------------------------------------------------------------------------------ |
+| status          | integer            | The [status](#invite-target-users-job-status) of the job processing the target users |
+| total_users     | integer            | The total number of user IDs in the target users file                                |
+| processed_users | integer            | The number of user IDs processed so far                                              |
+| created_at      | ?ISO8601 timestamp | When the job was created                                                             |
+| completed_at    | ?ISO8601 timestamp | When the job was completed                                                           |
+| error_message   | ?string            | An error message, if the job failed                                                  |
+
+###### Invite Target Users Job Status
+
+| Value | Name        | Description                          |
+| ----- | ----------- | ------------------------------------ |
+| 0     | UNSPECIFIED | Job status is unspecified            |
+| 1     | PROCESSING  | Job is currently being processed     |
+| 2     | COMPLETED   | Job has been completed               |
+| 3     | FAILED      | Job has failed (see `error_message`) |
+
 <RouteHeader method="POST" url="/invites/{invite.code}" supportsOAuth2="guilds.join">
   Accept Invite
 </RouteHeader>
@@ -18562,18 +18684,6 @@ Users who have been blocked by the inviter cannot accept friend invites.
 
 Deletes an invite. Requires the `MANAGE_CHANNELS` permission on the channel this invite belongs to, or `MANAGE_GUILD` to remove any invite across the guild, if the invite is to a guild. Returns an [invite](#invite-object) object on success. May fire an [Invite Delete](/topics/gateway-events#invite-delete) Gateway event.
 
-<RouteHeader method="GET" url="/invites/{invite.code}/friend-members" supportsBot>
-  Get Invite Friend Members
-</RouteHeader>
-
-Returns the user IDs of friends in the target guild. Always returns an empty array for group DMs and friend invites.
-
-###### Response Body
-
-| Field             | Type             | Description                             |
-| ----------------- | ---------------- | --------------------------------------- |
-| friend_member_ids | array[snowflake] | User IDs of friends in the target guild |
-
 <RouteHeader method="GET" url="/guilds/{guild.id}/invites" supportsBot>
   Get Guild Invites
 </RouteHeader>
@@ -18606,20 +18716,26 @@ In the case of a guild with the instant invite operation disabled by Discord, th
 
 ###### JSON/Form Params
 
-| Field                  | Type      | Description                                                                                                                                                    |
-| ---------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| flags? ^1^             | integer   | The [invite's flags](#invite-flags) (only `IS_GUEST_INVITE` and `IS_APPLICATION_BYPASS` can be set)                                                            |
-| max_age? ^2^           | integer   | Number of seconds before expiry, or 0 for never (0-5184000, default 86400)                                                                                     |
-| max_uses?              | integer   | Max number of uses or 0 for unlimited (0-100, default 0)                                                                                                       |
-| temporary?             | boolean   | Whether this invite only grants temporary membership (default false)                                                                                           |
-| unique?                | boolean   | Whether to try to reuse a similar invite (useful for creating many unique one time use invites, default false)                                                 |
-| target_type?           | integer   | The [type of target](#invite-target-type) for this voice channel invite                                                                                        |
-| target_user_id?        | snowflake | The ID of the user whose stream to display for this invite, required if `target_type` is `STREAM`; the user must be streaming in the channel                   |
-| target_application_id? | snowflake | The ID of the embedded application to open for this invite, required if `target_type` is `EMBEDDED_APPLICATION`; the application must have the `EMBEDDED` flag |
+| Field                  | Type             | Description                                                                                                                                                   |
+| ---------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| flags? ^1^             | integer          | The [invite's flags](#invite-flags) (only `IS_GUEST_INVITE` and `IS_APPLICATION_BYPASS` can be set)                                                           |
+| max_age? ^2^           | integer          | Number of seconds before expiry, or 0 for never (0-5184000, default 86400)                                                                                    |
+| max_uses?              | integer          | Max number of uses or 0 for unlimited (0-100, default 0)                                                                                                      |
+| temporary?             | boolean          | Whether the invite only grants temporary membership (default false)                                                                                           |
+| unique?                | boolean          | Whether to try to reuse a similar invite (useful for creating many unique one time use invites, default false)                                                |
+| target_type?           | integer          | The [type of target](#invite-target-type) for the invite                                                                                                      |
+| target_user_id?        | snowflake        | The ID of the user whose stream to display for the invite, required if `target_type` is `STREAM`; the user must be streaming in the channel                   |
+| target_application_id? | snowflake        | The ID of the embedded application to open for the invite, required if `target_type` is `EMBEDDED_APPLICATION`; the application must have the `EMBEDDED` flag |
+| target_users_file? ^3^ | file contents    | A CSV file with a single column of user IDs to restrict the invite to                                                                                         |
+| role_ids? ^4^          | array[snowflake] | The IDs of the roles to grant to the invitee upon acceptance                                                                                                  |
 
 ^1^ Creating an invite with the `APPLICATION_BYPASS` flag requires the `KICK_MEMBERS` permission.
 
 ^2^ For group DMs, `max_age` is the only supported parameter, and it accepts a value from 1 to 604800 (7 days).
+
+^3^ Requires the `MANAGE_GUILD` permission. Processing is done asynchronously. See [Uploading Files](/reference#uploading-files) for details.
+
+^4^ Requires the `MANAGE_ROLES` permission. Cannot grant roles that are equal to or higher than the creator's highest role.
 
 <RouteHeader method="GET" url="/users/@me/invites">
   Get User Invites
@@ -19056,18 +19172,19 @@ A message sent in a channel within Discord.
 
 This structure is a subset of the [message](#message-object) object above with the following fields:
 
-| Field             | Type                                                 | Description                                             |
-| ----------------- | ---------------------------------------------------- | ------------------------------------------------------- |
-| id                | snowflake                                            | The ID of the message                                   |
-| lobby_id?         | snowflake                                            | The ID of the lobby the message was sent in             |
-| channel_id ^1^    | snowflake                                            | The ID of the channel the message was sent in           |
-| type?             | integer                                              | The [type of message](/resources/message#message-type)  |
-| content           | string                                               | Contents of the message                                 |
-| author            | partial [user](/resources/user#user-object) object   | The author of the message                               |
-| flags?            | integer                                              | The [message's flags](/resources/message#message-flags) |
-| application_id?   | snowflake                                            | The ID of the application                               |
-| channel? ^2^      | [channnel](/resources/channel#channel-object) object | The channel the message was sent in                     |
-| recipient_id? ^2^ | snowflake                                            | The ID of the other recipient                           |
+| Field                  | Type                                                 | Description                                             |
+| ---------------------- | ---------------------------------------------------- | ------------------------------------------------------- |
+| id                     | snowflake                                            | The ID of the message                                   |
+| lobby_id?              | snowflake                                            | The ID of the lobby the message was sent in             |
+| channel_id ^1^         | snowflake                                            | The ID of the channel the message was sent in           |
+| type?                  | integer                                              | The [type of message](/resources/message#message-type)  |
+| content                | string                                               | Contents of the message                                 |
+| author                 | partial [user](/resources/user#user-object) object   | The author of the message                               |
+| flags?                 | integer                                              | The [message's flags](/resources/message#message-flags) |
+| application_id?        | snowflake                                            | The ID of the application                               |
+| parent_application_id? | snowflake                                            | The ID of the parent application                        |
+| channel? ^2^           | [channnel](/resources/channel#channel-object) object | The channel the message was sent in                     |
+| recipient_id? ^2^      | snowflake                                            | The ID of the other recipient                           |
 
 ^1^ If the message was sent in a lobby and the lobby has no channel linked, this will be equal to the ID of the lobby.
 
@@ -22154,31 +22271,32 @@ Active sessions are indicated with a status per platform. If a user is offline o
 
 ###### Activity Structure
 
-| Field                | Type                                                         | Description                                                                                   |
-| -------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| id ^5^               | string                                                       | The ID of the activity; only unique across a single user's activities                         |
-| name ^1^             | string                                                       | The name of the activity (1-128 characters)                                                   |
-| type                 | integer                                                      | The [activity type](#activity-type)                                                           |
-| url? ^2^             | ?string                                                      | The stream URL (max 512 characters)                                                           |
-| created_at ^5^       | integer                                                      | Unix timestamp (in milliseconds) of when the activity was added to the user's session         |
-| session_id? ^5^      | ?string                                                      | The ID of the session associated with the activity                                            |
-| platform? ^3^        | string                                                       | The [platform](#activity-platform-type) the activity is being played on                       |
-| supported_platforms? | array[string]                                                | The [platforms](#activity-platform-type) the activity is supported on (max 10)                |
-| timestamps?          | [activity timestamps](#activity-timestamps-structure) object | Unix timestamps (in milliseconds) for start and/or end of the game                            |
-| application_id?      | snowflake                                                    | The ID of the application representing the game the user is playing                           |
-| status_display_type? | ?integer                                                     | [Which field is displayed](#status-display-type) in the user's status text in the member list |
-| details? ^6^         | ?string                                                      | What the user is currently doing (max 128 characters)                                         |
-| details_url?         | ?string                                                      | URL that is opened when clicking on the details text (max 256 characters)                     |
-| state? ^7^           | ?string                                                      | The user's current party status, or text used for a custom status (max 128 characters)        |
-| state_url?           | ?string                                                      | URL that is opened when clicking on the state text (max 256 characters)                       |
-| sync_id?             | string                                                       | The ID of the synced activity (e.g. Spotify song ID)                                          |
-| flags?               | integer                                                      | The [activity's flags](#activity-flags)                                                       |
-| buttons?             | array[string]                                                | Custom buttons shown in rich presence (max 2)                                                 |
-| emoji?               | ?[activity emoji](#activity-emoji-structure) object          | The emoji used for a custom or hang status                                                    |
-| party?               | [activity party](#activity-party-structure) object           | Information for the current party of the user                                                 |
-| assets?              | [activity assets](#activity-assets-structure) object         | Images for the presence and their hover texts                                                 |
-| secrets? ^4^         | [activity secrets](#activity-secrets-structure) object       | Secrets for rich presence joining and spectating                                              |
-| metadata? ^4^        | [activity metadata](#activity-metadata-object) object        | Additional metadata for the activity                                                          |
+| Field                  | Type                                                         | Description                                                                                   |
+| ---------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| id ^5^                 | string                                                       | The ID of the activity; only unique across a single user's activities                         |
+| name ^1^               | string                                                       | The name of the activity (1-128 characters)                                                   |
+| type                   | integer                                                      | The [activity type](#activity-type)                                                           |
+| url? ^2^               | ?string                                                      | The stream URL (max 512 characters)                                                           |
+| created_at ^5^         | integer                                                      | Unix timestamp (in milliseconds) of when the activity was added to the user's session         |
+| session_id? ^5^        | ?string                                                      | The ID of the session associated with the activity                                            |
+| platform? ^3^          | string                                                       | The [platform](#activity-platform-type) the activity is being played on                       |
+| supported_platforms?   | array[string]                                                | The [platforms](#activity-platform-type) the activity is supported on (max 10)                |
+| timestamps?            | [activity timestamps](#activity-timestamps-structure) object | Unix timestamps (in milliseconds) for start and/or end of the game                            |
+| application_id?        | snowflake                                                    | The ID of the application representing the game the user is playing                           |
+| parent_application_id? | snowflake                                                    | The ID of the parent application representing the game the user is playing                    |
+| status_display_type?   | ?integer                                                     | [Which field is displayed](#status-display-type) in the user's status text in the member list |
+| details? ^6^           | ?string                                                      | What the user is currently doing (max 128 characters)                                         |
+| details_url?           | ?string                                                      | URL that is opened when clicking on the details text (max 256 characters)                     |
+| state? ^7^             | ?string                                                      | The user's current party status, or text used for a custom status (max 128 characters)        |
+| state_url?             | ?string                                                      | URL that is opened when clicking on the state text (max 256 characters)                       |
+| sync_id?               | string                                                       | The ID of the synced activity (e.g. Spotify song ID)                                          |
+| flags?                 | integer                                                      | The [activity's flags](#activity-flags)                                                       |
+| buttons?               | array[string]                                                | Custom buttons shown in rich presence (max 2)                                                 |
+| emoji?                 | ?[activity emoji](#activity-emoji-structure) object          | The emoji used for a custom or hang status                                                    |
+| party?                 | [activity party](#activity-party-structure) object           | Information for the current party of the user                                                 |
+| assets?                | [activity assets](#activity-assets-structure) object         | Images for the presence and their hover texts                                                 |
+| secrets? ^4^           | [activity secrets](#activity-secrets-structure) object       | Secrets for rich presence joining and spectating                                              |
+| metadata? ^4^          | [activity metadata](#activity-metadata-object) object        | Additional metadata for the activity                                                          |
 
 ^1^ The `name` of a `CUSTOM` activity should always be "Custom Status". The `name` of a `HANG` activity should always be "Hang Status".
 
@@ -25642,13 +25760,14 @@ All objects serialized in the SKU inherit this behavior.
 
 ###### Social Layer Metadata Structure
 
-| Field                           | Type                                                                | Description                                      |
-| ------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------ |
-| carousel_items                  | array[[store carousel item](#store-carousel-item-structure) object] | The carousel items for the listing               |
-| label                           | string                                                              | The label for the listing                        |
-| expires_at                      | ?ISO8601 datetime                                                   | When the listing expires                         |
-| card_image_asset_id?            | snowflake                                                           | The store asset ID for the card image            |
-| card_background_image_asset_id? | snowflake                                                           | The store asset ID for the card background image |
+| Field                           | Type                                                                | Description                                         |
+| ------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------- |
+| carousel_items                  | array[[store carousel item](#store-carousel-item-structure) object] | The carousel items for the listing                  |
+| label                           | string                                                              | The label for the listing                           |
+| expires_at                      | ?ISO8601 datetime                                                   | When the listing expires                            |
+| card_image_asset_id?            | snowflake                                                           | The store asset ID for the card image               |
+| card_background_image_asset_id? | snowflake                                                           | The store asset ID for the card background image    |
+| price_tier?                     | integer                                                             | The [base price](#get-store-price-tiers) of the SKU |
 
 ###### Example SKU
 
@@ -25757,14 +25876,14 @@ All objects serialized in the listing inherit this behavior.
 
 ###### Store Carousel Item Structure
 
-| Field                 | Type      | Description                           |
-| --------------------- | --------- | ------------------------------------- |
-| youtube_video_id? ^1^ | string    | The YouTube video ID for the item     |
-| asset_id? ^1^         | snowflake | The store asset ID for the item       |
-| thumbnail_asset_id?   | snowflake | The store asset ID for the thumbnail  |
-| background_asset_id?  | snowflake | The store asset ID for the background |
-| label?                | string    | The label for the item                |
-| label_icon_asset_id?  | snowflake | The store asset ID for the label icon |
+| Field                 | Type       | Description                           |
+| --------------------- | ---------- | ------------------------------------- |
+| youtube_video_id? ^1^ | ?string    | The YouTube video ID for the item     |
+| asset_id? ^1^         | snowflake  | The store asset ID for the item       |
+| thumbnail_asset_id?   | snowflake  | The store asset ID for the thumbnail  |
+| background_asset_id?  | ?snowflake | The store asset ID for the background |
+| label?                | string     | The label for the item                |
+| label_icon_asset_id?  | snowflake  | The store asset ID for the label icon |
 
 ^1^ One of `youtube_video_id` or `asset_id` must be provided.
 
@@ -25941,6 +26060,47 @@ An End User License Agreement represents a legal agreement between the applicati
 | id      | snowflake | The ID of the EULA      |
 | name    | string    | The name of the EULA    |
 | content | string    | The content of the EULA |
+
+### Storefront Object
+
+A collection of store listings in a unified showcase.
+
+###### Storefront Structure
+
+| Field                      | Type                                                                    | Description                                    |
+| -------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------- |
+| application_id             | snowflake                                                               | The ID of the application                      |
+| application?               | partial [application](/resources/application#application-object) object | The application                                |
+| title                      | string                                                                  | The title of the storefront                    |
+| logo_asset_id?             | snowflake                                                               | The ID of the logo store asset                 |
+| light_theme_logo_asset_id? | snowflake                                                               | The ID of the logo store asset for light theme |
+| pages                      | array[[storefront page](#storefront-page-structure) object]             | The pages of the storefront                    |
+| store_listings             | array[[store listing](#store-listing-object) object]                    | The store listings                             |
+| assets                     | array[[store asset](#store-asset-object) object]                        | The store assets                               |
+
+###### Storefront Page Structure
+
+| Field        | Type                                                                        | Description                                |
+| ------------ | --------------------------------------------------------------------------- | ------------------------------------------ |
+| title?       | string                                                                      | The title of the page (max 256 characters) |
+| leaderboard? | [storefront leaderboard](#storefront-leaderboard-structure) object          | The leaderboard on the page                |
+| sku_ids      | array[snowflake]                                                            | The IDs of the SKUs on the page (max 100)  |
+| sections?    | array[[storefront page section](#storefront-page-section-structure) object] | The sections on the page (max 5)           |
+
+###### Storefront Leaderboard Structure
+
+| Field                      | Type      | Description                                             |
+| -------------------------- | --------- | ------------------------------------------------------- |
+| title?                     | string    | The title of the leaderboard (max 256 characters)       |
+| description?               | string    | The description of the leaderboard (max 512 characters) |
+| background_image_asset_id? | snowflake | The ID of the background image store asset              |
+
+###### Storefront Page Section Structure
+
+| Field   | Type             | Description                                        |
+| ------- | ---------------- | -------------------------------------------------- |
+| title?  | string           | The title of the page section (max 256 characters) |
+| sku_ids | array[snowflake] | The IDs of the SKUs on the page section (max 100)  |
 
 ## Endpoints
 
@@ -26456,6 +26616,149 @@ Fires [Payment Update](/topics/gateway-events#payment-update), [Virtual Currency
 | Field               | Type   | Description                                                           |
 | ------------------- | ------ | --------------------------------------------------------------------- |
 | checkout_session_id | string | A client-generated UUID used to identify the current checkout session |
+
+<RouteHeader method="GET" url="/applications/storefront/interactions/premium-button/{store_listing.id}">
+  Get Application Storefront for Premium Button
+</RouteHeader>
+
+Returns information about store listing, relevant SKUs, and subscription plans.
+
+###### Response Body
+
+| Field               | Type                                                         | Description            |
+| ------------------- | ------------------------------------------------------------ | ---------------------- |
+| skus?               | array[[SKU](#sku-object) object]                             | The relevant SKUs      |
+| store_listings      | array[[store listing](#store-listing-object) object]         | The store listings     |
+| subscription_plans? | array[[subscription plan](#subscription-plan-object) object] | The subscription plans |
+
+<RouteHeader method="GET" url="/partner-sdk/guilds/{guild.id}/application-storefront">
+  Get Guild Application Storefront
+</RouteHeader>
+
+Returns a [storefront](#storefront-object) object for the application linked to the given guild ID.
+
+<RouteHeader method="GET" url="/partner-sdk/applications/{application.id}/skus/recommendations">
+  Get Application SKU Recommendations
+</RouteHeader>
+
+Returns recommended giftable SKUs for the specified users.
+
+###### Query String Parameters
+
+| Field                | Type             | Description                                                |
+| -------------------- | ---------------- | ---------------------------------------------------------- |
+| user_ids             | array[snowflake] | The IDs of the users to return recommendations for (1-100) |
+| max_recommendations? | integer          | Max number of recommendations to return (1-25, default ?)  |
+| include_wishlists?   | boolean          | Whether to include SKUs on the users' wishlists            |
+
+###### Response Body
+
+| Field             | Type                                                                                               | Description                               |
+| ----------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| skus              | array[[SKU](#sku-object) object]                                                                   | The SKUs                                  |
+| skus_to_user_ids  | map[snowflake, [application SKU recommendation](#application-sku-recommendation-structure) object] | A mapping of SKU IDs to recommended users |
+| application       | partial [application](/resources/application#application-object) object                            | The application                           |
+
+###### Application SKU Recommendation Structure
+
+| Field   | Type      | Description                                                                                  |
+| ------- | --------- | -------------------------------------------------------------------------------------------- |
+| user_id | snowflake | The ID of the user                                                                           |
+| reason  | string    | The [reason why the SKU was recommended to the user](#application-sku-recommendation-reason) |
+
+###### Application SKU Recommendation Reason
+
+| Value          | Description                     |
+| -------------- | ------------------------------- |
+| WISHLIST       | User has the SKU wishlisted     |
+| RECOMMENDATION | SKU is recommended for the user |
+
+<RouteHeader method="GET" url="/partner-sdk/application/{application.id}/skus">
+  Get Social Layer SKUs
+</RouteHeader>
+
+Returns a list of [SKU](#sku-object) objects related to in-game items for the given application. Requires a partner application with access to the social layer SDK and monetization. User must be the owner of the application or member of the owning team.
+
+<RouteHeader method="POST" url="/partner-sdk/application/{application.id}/skus">
+  Create Social Layer SKU
+</RouteHeader>
+
+Creates a new SKU for in-game item. Returns the created [SKU](#sku-object) object on success. Requires a partner application with access to the social layer SDK and monetization. User must be the owner of the application or member of the owning team.
+
+###### JSON Params
+
+| Field      | Type    | Description                                         |
+| ---------- | ------- | --------------------------------------------------- |
+| name       | string  | The name of the SKU (max 256 characters)            |
+| price_tier | integer | The [base price](#get-store-price-tiers) of the SKU |
+
+<RouteHeader method="GET" url="/partner-sdk/applications/{application.id}/storefront">
+  Get Application Storefront
+</RouteHeader>
+
+Returns a [storefront](#storefront-object) object for the given application ID.
+
+<RouteHeader method="PUT" url="/partner-sdk/applications/{application.id}/storefront">
+  Modify Application Storefront
+</RouteHeader>
+
+Modifies the application's storefront. Returns the modified [storefront](#storefront-object) object on success. User must be the owner of the application or developer of the owning team.
+
+###### JSON Params
+
+| Field                      | Type                                                                    | Description                                      |
+| -------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------ |
+| title                      | string                                                                  | The title of the storefront (max 256 characters) |
+| logo_asset_id?             | snowflake                                                               | The ID of the logo store asset                   |
+| light_theme_logo_asset_id? | snowflake                                                               | The ID of the logo store asset for light theme   |
+| pages                      | array[[storefront page](#storefront-page-structure) object]             | The pages of the storefront (max 5)              |
+
+<RouteHeader method="DELETE" url="/partner-sdk/applications/{application.id}/storefront">
+  Delete Application Storefront
+</RouteHeader>
+
+Deletes the application's storefront. Returns a 204 empty response on success. User must be the owner of the application or developer of the owning team.
+
+<RouteHeader method="GET" url="/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}">
+  Get Guild Application SKU Storefront
+</RouteHeader>
+
+Returns the storefront associated with the given SKU ID.
+
+###### Response Body
+
+| Field         | Type                                             | Description       |
+| ------------- | ------------------------------------------------ | ----------------- |
+| store_listing | [store listing](#store-listing-object) object    | The store listing |
+| assets        | array[[store asset](#store-asset-object) object] | The store assets  |
+
+<RouteHeader method="GET" url="/partner-sdk/guilds/{guild.id}/application-storefront/announcement">
+  Get Guild Application Storefront Announcement
+</RouteHeader>
+
+Returns the most recent announcement on the storefront for the application linked to the given guild ID.
+
+###### Response Body
+
+| Field                     | Type      | Description                                |
+| ------------------------- | --------- | ------------------------------------------ |
+| id                        | snowflake | The ID of the announcement                 |
+| application_id            | snowflake | The ID of the application                  |
+| application_name          | string    | The name of the application                |
+| asset_id                  | snowflake | The ID of the announcement store asset     |
+| background_image_asset_id | snowflake | The ID of the background image store asset |
+
+###### Example Response
+
+```json
+{
+    "id": "1461677124166483968",
+    "application_id": "1346069614634864772",
+    "application_name": "Marvel Rivals",
+    "asset_id": "1461676869303664640",
+    "background_image_asset_id": "1461676874102214730"
+}
+```
 
 
 ----- discord-userdoccers/pages/resources/subscription.mdx -----
@@ -30941,6 +31244,114 @@ This endpoint is deprecated. Applications must now belong to a team to be verifi
 
 </Alert>
 
+<RouteHeader method="GET" url="/users/{user.id}/application-identities">
+  Get User Application Identities
+</RouteHeader>
+
+Returns the user's external identities for connected applications.
+
+###### Query String Params
+
+| Field          | Type    | Description                                                        |
+| -------------- | ------- | ------------------------------------------------------------------ |
+| with_profiles? | boolean | Whether to include application profile information (default false) |
+
+###### Response Body
+
+| Field      | Type                                                                            | Description                 |
+| ---------- | ------------------------------------------------------------------------------- | --------------------------- |
+| identities | array[[user application identity](#user-application-identity-structure) object] | The identities for the user |
+
+###### User Application Identity Structure
+
+| Field                   | Type                                                                                          | Description                                          |
+| ----------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| application_id          | snowflake                                                                                     | The ID of the application                            |
+| provider_issued_user_id | string                                                                                        | The ID of the user on the external identity provider |
+| profile?                | partial [user application profile](#partial-user-application-profile-structure) object        | The primary user application profile of the user     |
+| profiles?               | array[partial [user application profile](#partial-user-application-profile-structure) object] | The user application profile                         |
+
+###### Partial User Application Profile Structure
+
+| Field              | Type                                                                             | Description                                          |
+| ------------------ | -------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| username           | ?string                                                                          | The external username of the user                    |
+| metadata           | ?string                                                                          | Custom metadata                                      |
+| data?              | [user application profile data](#user-application-profile-data-structure) object | The user application data                            |
+| data_trusted?      | boolean                                                                          | Whether the data is trusted (set by application bot) |
+| connection_visible | boolean                                                                          | Unknown                                              |
+
+###### User Application Profile Data Structure
+
+| Field    | Type                                                                                             | Description                       |
+| -------- | ------------------------------------------------------------------------------------------------ | --------------------------------- |
+| primary? | [user application profile primary data](#user-application-profile-primary-data-structure) object | The primary user application data |
+
+###### User Application Profile Primary Data Structure
+
+| Field                            | Type                                                                           | Description                                               |
+| -------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| season?                          | string                                                                         | The game season                                           |
+| rank_name?                       | string                                                                         | The current rank the user has in-game                     |
+| highest_rank?                    | string                                                                         | The highest rank the user ever had in-game                |
+| featured_played_character?       | string                                                                         | The name of the featured played character                 |
+| featured_played_character_image? | [unfurled media item](/resources/components#unfurled-media-item-object) object | The image of the featured played character                |
+| playtime_hours?                  | float                                                                          | Duration (in hours) that the user has played the game for |
+| total_wins?                      | integer                                                                        | Number of total wins                                      |
+| current_period_wins?             | integer                                                                        | Number of wins in the current period                      |
+| total_games?                     | integer                                                                        | Number of total matches                                   |
+| current_period_games?            | integer                                                                        | Number of matches in the current period                   |
+| total_kills?                     | integer                                                                        | Number of total kills                                     |
+| current_period_kills?            | integer                                                                        | Number of kills in the current period                     |
+| total_assists?                   | integer                                                                        | Number of total assists                                   |
+| current_period_assists?          | integer                                                                        | Number of assists in the current period                   |
+| total_deaths?                    | integer                                                                        | Number of total deaths                                    |
+| current_period_deaths?           | integer                                                                        | Number of deaths in the current period                    |
+| server_name? ^1^                 | string                                                                         | The name of the game server                               |
+| user_id? ^1^                     | string                                                                         | The ID of the in-game account                             |
+| union_level? ^1^                 | string                                                                         | The union level                                           |
+| total_resonators? ^1^            | integer                                                                        | Number of total resonators                                |
+| total_achievements? ^1^          | integer                                                                        | Number of total achievements                              |
+| total_echoes? ^1^                | integer                                                                        | Number of total echoes                                    |
+| login_days? ^1^                  | integer                                                                        | Number of login days                                      |
+| data_bank_level? ^1^             | string                                                                         | The data bank level                                       |
+
+^1^ Only applicable for the "Wuthering Waves" application.
+
+###### Example User Application Profile Primary Data
+
+```json
+{
+  "season": "Season 5.0",
+  "rank_name": "No Season Data",
+  "highest_rank": "No Season Data",
+  "featured_played_character": "HulkBanner",
+  "featured_played_character_image": {
+    "id": "1443231705250136105",
+    "url": "https://x20na.gsf.easebar.com/nzgxowi1zdq3ztfmn2rhn2fiyjm2ndiznj.png",
+    "proxy_url": "https://images-ext-1.discordapp.net/external/kzlmI6xU3yzi4a-ipRusyF7IYGbHDgtjquG9jpGVDl0/https/x20na.gsf.easebar.com/nzgxowi1zdq3ztfmn2rhn2fiyjm2ndiznj.png",
+    "width": 300,
+    "height": 450,
+    "placeholder": "l+iFEwAryG8lphhnbmAS+RVnUHeRRlk=",
+    "placeholder_version": 1,
+    "content_type": "image/png",
+    "loading_state": 2,
+    "flags": 0
+  },
+  "playtime_hours": 2.29,
+  "total_wins": 12,
+  "current_period_wins": 0,
+  "total_games": 17,
+  "current_period_games": 0,
+  "total_kills": 245,
+  "current_period_kills": 0,
+  "total_assists": 27,
+  "current_period_assists": 0,
+  "total_deaths": 85,
+  "current_period_deaths": 0
+}
+```
+
 
 ----- discord-userdoccers/pages/resources/voice.mdx -----
 # Voice
@@ -33852,6 +34263,7 @@ These events directly correspond with a specific action or state change that has
 | [Ready Supplemental](#ready-supplemental)                                                   | Supplemental information for the initial state, not critical to beginning use of the platform  |
 | [Resumed](#resumed)                                                                         | Acknowledges a successful [Resume](#resume)                                                    |
 | [Remote Command](<#remote-command-(receive)>)                                               | Received a message from another Gateway session                                                |
+| [Activity Invite Create](#activity-invite-create)                                           | Activity invite was created                                                                    |
 | [Auth Session Change](#auth-session-change)                                                 | Current session's associated auth session ID changed                                           |
 | [Authenticator Create](#authenticator-create)                                               | WebAuthn authenticator was created                                                             |
 | [Authenticator Update](#authenticator-update)                                               | WebAuthn authenticator was updated                                                             |
@@ -33869,6 +34281,7 @@ These events directly correspond with a specific action or state change that has
 | [Channel Create](#channel-create)                                                           | Channel was created                                                                            |
 | [Channel Update](#channel-update)                                                           | Channel was updated                                                                            |
 | [Channel Delete](#channel-delete)                                                           | Channel was deleted                                                                            |
+| [Channel Update Partial](#channel-update-partial)                                           | Channel was partially updated                                                                  |
 | [Channel Statuses](#channel-statuses)                                                       | Response to [Request Channel Statuses](#request-channel-statuses)                              |
 | [Channel Info](#channel-info)                                                               | Response to [Request Channel Info](#request-channel-info)                                      |
 | [Channel Member Count Update](#channel-member-count-update)                                 | Response to [Request Channel Member Count](#request-channel-member-count)                      |
@@ -34015,6 +34428,8 @@ These events directly correspond with a specific action or state change that has
 | [User Update](#user-update)                                                                 | Current user changed                                                                           |
 | [User Application Update](#user-application-update)                                         | User installed an application or an application was updated                                    |
 | [User Application Remove](#user-application-remove)                                         | User uninstalled an application                                                                |
+| [User Application Identity Update](#user-application-identity-update)                       | Application identity is updated for the current user                                           |
+| [User Application Identity Remove](#user-application-identity-remove)                       | Application identity is removed for the current user                                           |
 | [User Connections Update](#user-connections-update)                                         | User connection was created, updated, or deleted                                               |
 | [User Guild Settings Update](#user-guild-settings-update)                                   | User guild settings were updated                                                               |
 | [User Merge Operation Completed](#user-merge-operation-completed)                           | User has been merged with a provisional account                                                |
@@ -34094,6 +34509,7 @@ Sent when a client has completed the initial handshake with the Gateway (for new
 | feature_flags? ^11^                    | [gateway feature flags](#gateway-feature-flags-structure) object                                                           | Social layer SDK feature flags                                                                                                                                                                                                                                         |
 | lobbies? ^11^ ^12^                     | array[[lobby](/resources/lobby#lobby-object) object]                                                                       | The lobbies the connected user is in                                                                                                                                                                                                                                   |
 | user_application_profiles? ^11^        | map[snowflake, array[[user application profile](#user-application-profile-structure) object]]                              | A mapping of user IDs to provisional user accounts application profiles encountered across all objects in the event                                                                                                                                                    |
+| connection_request_data? ^11^          | [console connection request data](#console-connection-request-data-structure) object                                       | Pending connection request data                                                                                                                                                                                                                                        |
 
 ^1^ Feature is not available to or not tracked for bots. This field may be empty, omitted, or `null`.
 
@@ -34147,11 +34563,12 @@ A generic object used to represent versioned data. Depends on specific capabilit
 
 ###### Gateway Application Structure
 
-| Field     | Type      | Description                                                         |
-| --------- | --------- | ------------------------------------------------------------------- |
-| id        | snowflake | The ID of the application                                           |
-| flags     | integer   | The [application's flags](/resources/application#application-flags) |
-| name? ^1^ | string    | The name of the application                                         |
+| Field          | Type      | Description                                                         |
+| -------------- | --------- | ------------------------------------------------------------------- |
+| id             | snowflake | The ID of the application                                           |
+| flags          | integer   | The [application's flags](/resources/application#application-flags) |
+| name? ^1^      | string    | The name of the application                                         |
+| parent_id? ^1^ | snowflake | The ID of the parent application                                    |
 
 ^1^ Only available in [OAuth2 contexts](/topics/gateway#oauth2-and-the-gateway).
 
@@ -34164,12 +34581,14 @@ A generic object used to represent versioned data. Depends on specific capabilit
 
 ###### User Application Profile Structure
 
-| Field       | Type                                                                                           | Description                                         |
-| ----------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| username    | ?string                                                                                        | The external username of the provisional account    |
-| metadata    | ?string                                                                                        | Custom metadata                                     |
-| external_id | [user application profile external ID](#user-application-profile-external-id-structure) object | The external ID of the provisional account          |
-| avatar_hash | ?string                                                                                        | The user's [avatar hash](/reference#cdn-formatting) |
+| Field         | Type                                                                                             | Description                                          |
+| ------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------- |
+| username      | ?string                                                                                          | The external username of the provisional account     |
+| metadata      | ?string                                                                                          | Custom metadata                                      |
+| data?         | ?[user application profile data](/resources/user#user-application-profile-data-structure) object | The user application data                            |
+| data_trusted? | ?boolean                                                                                         | Whether the data is trusted (set by application bot) |
+| external_id   | [user application profile external ID](#user-application-profile-external-id-structure) object   | The external ID of the provisional account           |
+| avatar_hash   | ?string                                                                                          | The user's [avatar hash](/reference#cdn-formatting)  |
 
 ###### User Application Profile External ID Structure
 
@@ -34197,6 +34616,12 @@ A generic object used to represent versioned data. Depends on specific capabilit
   "avatar_hash": null
 }
 ```
+
+###### Console Connection Request Data Structure
+
+| Field                 | Type                                                                                                    | Description                       |
+| --------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| analytics_properties? | [connect request properties](/resources/connected-accounts#connect-request-properties-structure) object | The properties used for analytics |
 
 ###### Session Type
 
@@ -34267,6 +34692,26 @@ Sent when a client has sent a [resume payload](#resume) to the Gateway (for resu
 #### Remote Command (Receive)
 
 Sent when a message is received from another Gateway session. The inner payload is the [sent message](<#remote-command-(send)>).
+
+#### Activity Invite Create
+
+Sent when the current user receives an activity invite but the session doesn't have the `dm_channels.messages.read` scope.
+
+<Alert type="warn">
+
+This event is only received in OAuth2 contexts.
+
+</Alert>
+
+###### Activity Invite Create Structure
+
+| Field        | Type                                                                                    | Description                                                          |
+| ------------ | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| message_id?  | snowflake                                                                               | The ID of the message                                                |
+| channel_id?  | snowflake                                                                               | The ID of the channel                                                |
+| author?      | partial [user](/resources/user#user-object) object                                      | The user that is inviting the current user to rich presence activity |
+| application? | [integration application](/resources/integration#integration-application-object) object | The application of the message's rich presence activity              |
+| activity?    | [message activity](/resources/message#message-activity-object) object                   | The rich presence activity the author is inviting current user to    |
 
 ### Authentication
 
@@ -34457,6 +34902,16 @@ Sent when a channel relevant to the current user is deleted. The inner payload i
 <Alert type="warn">
 
 For private channels, the received channel object will be partial.
+
+</Alert>
+
+#### Channel Update Partial
+
+Sent instead of [Channel Unread Update](#channel-unread-update) in OAuth2 contexts. Inner payload is a [channel unread](#channel-unread-structure) object.
+
+<Alert type="warn">
+
+This event is only received in OAuth2 contexts.
 
 </Alert>
 
@@ -35482,6 +35937,7 @@ This event is not received by user accounts.
 | target_type?        | integer                                                                 | The [type of target](/resources/invite#invite-target-type) for this guild invite    |
 | target_user?        | partial [user](/resources/user#user-object) object                      | The user whose stream to display for this voice channel stream invite               |
 | target_application? | partial [application](/resources/application#application-object) object | The embedded application to open for this voice channel embedded application invite |
+| role_ids?           | array[snowflake]                                                        | The IDs of the roles to grant to the invitee upon acceptance                        |
 | expires_at          | ?ISO8601 timestamp                                                      | The expiry date of the invite, if it expires                                        |
 | created_at          | ISO8601 timestamp                                                       | When this invite was created                                                        |
 | uses                | integer                                                                 | Number of times this invite has been used                                           |
@@ -35517,13 +35973,14 @@ Unlike persistent messages, ephemeral messages are sent directly to the user and
 
 ###### Message Object Extra Fields
 
-| Field           | Type                                                                | Description                                                                                                                                             |
-| --------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| channel_type    | integer                                                             | The [type of channel](/resources/channel#channel-type) this message was sent in                                                                         |
-| guild_id? ^1^   | snowflake                                                           | The ID of the guild the message was sent in                                                                                                             |
-| member? ^1^ ^2^ | partial [guild member](/resources/guild#guild-member-object) object | Guild member data for this message's author, without the [`user`](/resources/user#user-object) key                                                      |
-| mentions ^1^    | array[partial [user](/resources/user#user-object) object]           | Users specifically mentioned in the message, with an extra optional [`member`](/resources/guild#guild-member-object) key representing guild member data |
-| metadata?       | object                                                              | Custom metadata for the message (max 25 keys, 1024 characters per key and value)                                                                        |
+| Field                | Type                                                                | Description                                                                                                                                             |
+| -------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| channel_type         | integer                                                             | The [type of channel](/resources/channel#channel-type) this message was sent in                                                                         |
+| guild_id? ^1^        | snowflake                                                           | The ID of the guild the message was sent in                                                                                                             |
+| member? ^1^ ^2^      | partial [guild member](/resources/guild#guild-member-object) object | Guild member data for this message's author, without the [`user`](/resources/user#user-object) key                                                      |
+| mentions ^1^         | array[partial [user](/resources/user#user-object) object]           | Users specifically mentioned in the message, with an extra optional [`member`](/resources/guild#guild-member-object) key representing guild member data |
+| metadata?            | map[string, string]                                                 | Custom metadata for the message (max 25 keys, 1024 characters per key and value)                                                                        |
+| moderation_metadata? | map[string, string]                                                 | Custom moderation metadata for the message (max 25 keys, 1024 characters per key and value)                                                             |
 
 ^1^ Ephemeral messages will not include these fields.
 
@@ -36360,6 +36817,21 @@ Sent when the current user deauthorizes an integrated application.
 
 | Field          | Type      | Description               |
 | -------------- | --------- | ------------------------- |
+| application_id | snowflake | The ID of the application |
+
+#### User Application Identity Update
+
+Sent when application identity is updated for the current user. The inner payload is an [user application profile](#user-application-profile-structure) object.
+
+#### User Application Identity Remove
+
+Sent when application identity is removed for the current user.
+
+###### User Application Identity Remove Structure
+
+| Field          | Type      | Description               |
+| -------------- | --------- | ------------------------- |
+| user_id        | snowflake | The ID of the user        |
 | application_id | snowflake | The ID of the application |
 
 #### User Connections Update
@@ -38151,6 +38623,48 @@ Retrieves a device code and user code for the [device code grant](#device-code-g
 | expires_in                | integer | The duration (in seconds) after which the device code expires                          |
 | interval                  | integer | The interval (in seconds) at which to poll the token endpoint for authorization status |
 
+<RouteHeader method="POST" url="/oauth2/device/verify">
+  Get OAuth2 Device Flow
+</RouteHeader>
+
+Returns information about the OAuth2 device code grant flow.
+
+###### JSON Params
+
+| Field     | Type   | Description     |
+| --------- | ------ | --------------- |
+| user_code | string | The device code |
+
+###### Response Body
+
+| Field             | Type          | Description                                                        |
+| ----------------- | ------------- | ------------------------------------------------------------------ |
+| scopes            | array[string] | The scopes the user is authorizing the application for             |
+| client_id         | snowflake     | The ID of the application                                          |
+| two_way_link_code | ?string       | The code to use for two-way linking                                |
+| type              | string        | The [status of the OAuth2 device flow](#oauth2-device-flow-status) |
+
+###### OAuth2 Device Flow Status
+
+| Value   | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| pending | The device flow is pending                                   |
+| granted | The device flow is completed and an access token was granted |
+| denied  | The device flow is completed but no access token was granted |
+
+<RouteHeader method="POST" url="/oauth2/device/finish">
+  Finish OAuth2 Device Flow
+</RouteHeader>
+
+Finishes the OAuth2 device code grant flow. Returns a 204 empty response on success.
+
+###### JSON Params
+
+| Field     | Type   | Description                                                                                    |
+| --------- | ------ | ---------------------------------------------------------------------------------------------- |
+| user_code | string | The device code                                                                                |
+| result    | string | The [result of the flow](#oauth2-device-flow-status) (only `granted` and `denied` are allowed) |
+
 <RouteHeader method="POST" url="/oauth2/token" unauthenticated>
   Get OAuth2 Token
 </RouteHeader>
@@ -38254,6 +38768,9 @@ This indicates that the provisional account has been merged with a user account,
   not expose any username, and thus the game will need to configure the display name manually.
 - For [Unity Services ID Tokens](https://services.docs.unity.com/docs/client-auth/),
   the display name of the user's Unity Player Account is used as the provisional account's display name.
+- For [Apple ID Tokens](https://developer.apple.com/documentation/signinwithapplerestapi),
+  the name of the user's Apple ID account is used as the provisional account's display name.
+- For PlayStation Network ID Tokens, the name of the user's PlayStation Network account is used as the provisional account's display name.
 
 To change the display name of a provisional account, use the [Modify Current User Account](/resources/user#modify-current-user-account) endpoint.
 
@@ -38280,6 +38797,21 @@ To change the display name of a provisional account, use the [Modify Current Use
 | STEAM_SESSION_TICKET              | A Steam authentication ticket for web generated with `discord` set as the `identity`                |
 | UNITY_SERVICES_ID_TOKEN           | ID token for Unity Auth Services                                                                    |
 | DISCORD_BOT_ISSUED_ACCESS_TOKEN   | An access token for a user authenticated [via a bot token](#get-provisional-account-token-with-bot) |
+| APPLE_ID_TOKEN                    | ID token for Apple ID                                                                               |
+| PLAYSTATION_NETWORK_ID_TOKEN      | ID token for PlayStation Network                                                                    |
+
+<RouteHeader method="POST" url="/partner-sdk/child-token">
+  Exchange Provisional Account Child Token
+</RouteHeader>
+
+Exchanges a parent application token for a child application token. Returns an [OAuth2 access token](#oauth2-access-token-object) object on success.
+
+###### JSON Params
+
+| Field                | Type      | Description                                         |
+| -------------------- | --------- | --------------------------------------------------- |
+| child_application_id | snowflake | The ID of the child application                     |
+| parent_access_token  | string    | The parent application token (max 10240 characters) |
 
 <RouteHeader method="POST" url="/partner-sdk/token/bot">
   Get Provisional Account Token with Bot

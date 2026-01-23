@@ -1168,6 +1168,42 @@
         ]
     },
     {
+        "title": "Get Bulk Application Identities",
+        "method": "POST",
+        "url": "/application-identities",
+        "supportsOAuth2": true,
+        "urls": [
+            "/application-identities"
+        ],
+        "urlEmpty": [
+            "/application-identities"
+        ]
+    },
+    {
+        "title": "Get User Application Profile",
+        "method": "GET",
+        "url": "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile"
+        ],
+        "urlEmpty": [
+            "/applications/:param/users/:param/identities/:param/profile"
+        ]
+    },
+    {
+        "title": "Modify User Application Profile",
+        "method": "PATCH",
+        "url": "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile"
+        ],
+        "urlEmpty": [
+            "/applications/:param/users/:param/identities/:param/profile"
+        ]
+    },
+    {
         "title": "Get Guild Audit Log",
         "method": "GET",
         "url": "/guilds/{guild.id}/audit-logs",
@@ -5192,6 +5228,54 @@
         ]
     },
     {
+        "title": "Get Invite Friend Members",
+        "method": "GET",
+        "url": "/invites/{invite.code}/friend-members",
+        "supportsBot": true,
+        "urls": [
+            "/invites/{invite.code}/friend-members"
+        ],
+        "urlEmpty": [
+            "/invites/:param/friend-members"
+        ]
+    },
+    {
+        "title": "Get Invite Target Users",
+        "method": "GET",
+        "url": "/invites/{invite.code}/target-users",
+        "supportsBot": true,
+        "urls": [
+            "/invites/{invite.code}/target-users"
+        ],
+        "urlEmpty": [
+            "/invites/:param/target-users"
+        ]
+    },
+    {
+        "title": "Update Invite Target Users",
+        "method": "PUT",
+        "url": "/invites/{invite.code}/target-users",
+        "supportsBot": true,
+        "urls": [
+            "/invites/{invite.code}/target-users"
+        ],
+        "urlEmpty": [
+            "/invites/:param/target-users"
+        ]
+    },
+    {
+        "title": "Get Invite Target Users Job Status",
+        "method": "GET",
+        "url": "/invites/{invite.code}/target-users/job-status",
+        "supportsBot": true,
+        "urls": [
+            "/invites/{invite.code}/target-users/job-status"
+        ],
+        "urlEmpty": [
+            "/invites/:param/target-users/job-status"
+        ]
+    },
+    {
         "title": "Accept Invite",
         "method": "POST",
         "url": "/invites/{invite.code}",
@@ -5214,18 +5298,6 @@
         ],
         "urlEmpty": [
             "/invites/:param"
-        ]
-    },
-    {
-        "title": "Get Invite Friend Members",
-        "method": "GET",
-        "url": "/invites/{invite.code}/friend-members",
-        "supportsBot": true,
-        "urls": [
-            "/invites/{invite.code}/friend-members"
-        ],
-        "urlEmpty": [
-            "/invites/:param/friend-members"
         ]
     },
     {
@@ -7457,6 +7529,116 @@
         ]
     },
     {
+        "title": "Get Application Storefront for Premium Button",
+        "method": "GET",
+        "url": "/applications/storefront/interactions/premium-button/{store_listing.id}",
+        "urls": [
+            "/applications/storefront/interactions/premium-button/{store_listing.id}"
+        ],
+        "urlEmpty": [
+            "/applications/storefront/interactions/premium-button/:param"
+        ]
+    },
+    {
+        "title": "Get Guild Application Storefront",
+        "method": "GET",
+        "url": "/partner-sdk/guilds/{guild.id}/application-storefront",
+        "urls": [
+            "/partner-sdk/guilds/{guild.id}/application-storefront"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/guilds/:param/application-storefront"
+        ]
+    },
+    {
+        "title": "Get Application SKU Recommendations",
+        "method": "GET",
+        "url": "/partner-sdk/applications/{application.id}/skus/recommendations",
+        "urls": [
+            "/partner-sdk/applications/{application.id}/skus/recommendations"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/applications/:param/skus/recommendations"
+        ]
+    },
+    {
+        "title": "Get Social Layer SKUs",
+        "method": "GET",
+        "url": "/partner-sdk/application/{application.id}/skus",
+        "urls": [
+            "/partner-sdk/application/{application.id}/skus"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/application/:param/skus"
+        ]
+    },
+    {
+        "title": "Create Social Layer SKU",
+        "method": "POST",
+        "url": "/partner-sdk/application/{application.id}/skus",
+        "urls": [
+            "/partner-sdk/application/{application.id}/skus"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/application/:param/skus"
+        ]
+    },
+    {
+        "title": "Get Application Storefront",
+        "method": "GET",
+        "url": "/partner-sdk/applications/{application.id}/storefront",
+        "urls": [
+            "/partner-sdk/applications/{application.id}/storefront"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/applications/:param/storefront"
+        ]
+    },
+    {
+        "title": "Modify Application Storefront",
+        "method": "PUT",
+        "url": "/partner-sdk/applications/{application.id}/storefront",
+        "urls": [
+            "/partner-sdk/applications/{application.id}/storefront"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/applications/:param/storefront"
+        ]
+    },
+    {
+        "title": "Delete Application Storefront",
+        "method": "DELETE",
+        "url": "/partner-sdk/applications/{application.id}/storefront",
+        "urls": [
+            "/partner-sdk/applications/{application.id}/storefront"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/applications/:param/storefront"
+        ]
+    },
+    {
+        "title": "Get Guild Application SKU Storefront",
+        "method": "GET",
+        "url": "/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}",
+        "urls": [
+            "/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/guilds/:param/application-storefront/skus/:param"
+        ]
+    },
+    {
+        "title": "Get Guild Application Storefront Announcement",
+        "method": "GET",
+        "url": "/partner-sdk/guilds/{guild.id}/application-storefront/announcement",
+        "urls": [
+            "/partner-sdk/guilds/{guild.id}/application-storefront/announcement"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/guilds/:param/application-storefront/announcement"
+        ]
+    },
+    {
         "title": "Get Subscriptions",
         "method": "GET",
         "url": "/users/@me/billing/subscriptions",
@@ -8663,6 +8845,17 @@
         ]
     },
     {
+        "title": "Get User Application Identities",
+        "method": "GET",
+        "url": "/users/{user.id}/application-identities",
+        "urls": [
+            "/users/{user.id}/application-identities"
+        ],
+        "urlEmpty": [
+            "/users/:param/application-identities"
+        ]
+    },
+    {
         "title": "Get Voice Regions",
         "method": "GET",
         "url": "/voice/regions",
@@ -9254,6 +9447,28 @@
         ]
     },
     {
+        "title": "Get OAuth2 Device Flow",
+        "method": "POST",
+        "url": "/oauth2/device/verify",
+        "urls": [
+            "/oauth2/device/verify"
+        ],
+        "urlEmpty": [
+            "/oauth2/device/verify"
+        ]
+    },
+    {
+        "title": "Finish OAuth2 Device Flow",
+        "method": "POST",
+        "url": "/oauth2/device/finish",
+        "urls": [
+            "/oauth2/device/finish"
+        ],
+        "urlEmpty": [
+            "/oauth2/device/finish"
+        ]
+    },
+    {
         "title": "Get OAuth2 Token",
         "method": "POST",
         "url": "/oauth2/token",
@@ -9287,6 +9502,17 @@
         ],
         "urlEmpty": [
             "/partner-sdk/token"
+        ]
+    },
+    {
+        "title": "Exchange Provisional Account Child Token",
+        "method": "POST",
+        "url": "/partner-sdk/child-token",
+        "urls": [
+            "/partner-sdk/child-token"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/child-token"
         ]
     },
     {

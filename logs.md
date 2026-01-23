@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 443 |
+| Covered | 446 |
 |---------|------------|
-| Missing | 262 |
+| Missing | 259 |
 ## Missing routes
-total: 262
+total: 259
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -106,8 +106,6 @@ total: 262
 - [ ] **OAUTH2_AUTHORIZE_SAMSUNG**: `/oauth2/samsung/authorize`
 - [ ] **OAUTH2_AUTHORIZE_SAMSUNG_CALLBACK**: `/oauth2/samsung/authorize/callback`
 - [ ] **OAUTH2_AUTHORIZE_WEBHOOK_CHANNELS**: `/oauth2/authorize/webhook-channels`
-- [ ] **OAUTH2_DEVICE_VERIFY**: `/oauth2/device/verify`
-- [ ] **OAUTH2_DEVICE_FINISH**: `/oauth2/device/finish`
 - [ ] **MFA_TOTP_ENABLE_VERIFY**: `/users/@me/mfa/totp/enable/verify`
 - [ ] **MFA_TOTP_ENABLE_RESEND**: `/users/@me/mfa/totp/enable/resend`
 - [ ] **DISABLE_EMAIL_NOTIFICATIONS**: `/users/disable-email-notifications`
@@ -145,7 +143,6 @@ total: 262
 - [ ] **APPLICATIONS_TRENDING**: `/applications/trending/global`
 - [ ] **APPLICATION_BRANCH_LIST**: `/applications/:param/branches`
 - [ ] **LIBRARY_APPLICATION_INSTALLED**: `/users/@me/library/:param/:param/installed`
-- [ ] **STOREFRONT_PREMIUM_BUTTON**: `/applications/storefront/interactions/premium-button/:param`
 - [ ] **STORE_DIRECTORY_LAYOUT**: `/store/directory-layouts/:param`
 - [ ] **STORE_DIRECTORY**: `/store/directory/:param`
 - [ ] **STORE_PUBLISHED_LISTINGS_SKU_JOIN_GUILD**: `/store/published-listings/skus/:param/guild/join`
@@ -270,7 +267,7 @@ total: 262
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 443
+total: 446
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -461,6 +458,8 @@ total: 443
 - [x] **OAUTH2_TOKENS**: `/oauth2/tokens`
 - [x] **OAUTH2_TOKEN**: `/oauth2/tokens/:param`
 - [x] **OAUTH2_WHITELIST_ACCEPT**: `/oauth2/allowlist/accept`
+- [x] **OAUTH2_DEVICE_VERIFY**: `/oauth2/device/verify`
+- [x] **OAUTH2_DEVICE_FINISH**: `/oauth2/device/finish`
 - [x] **MFA_TOTP_ENABLE**: `/users/@me/mfa/totp/enable`
 - [x] **MFA_TOTP_DISABLE**: `/users/@me/mfa/totp/disable`
 - [x] **MFA_SMS_ENABLE**: `/users/@me/mfa/sms/enable`
@@ -518,6 +517,7 @@ total: 443
 - [x] **USER_HARVEST**: `/users/@me/harvest`
 - [x] **APPLICATION_PUBLIC**: `/applications/:param/public`
 - [x] **APPLICATIONS_PUBLIC**: `/applications/public`
+- [x] **STOREFRONT_PREMIUM_BUTTON**: `/applications/storefront/interactions/premium-button/:param`
 - [x] **STORE_EMAIL_RESEND_PAYMENT_VERIFICATION**: `/store/email/resend-payment-verification`
 - [x] **STORE_PUBLISHED_LISTINGS_APPLICATIONS**: `/store/published-listings/applications`
 - [x] **STORE_PUBLISHED_LISTINGS_APPLICATION**: `/store/published-listings/applications/:param`

@@ -401,14 +401,6 @@
             "/oauth2/authorize/webhook-channels"
         ],
         [
-            "OAUTH2_DEVICE_VERIFY",
-            "/oauth2/device/verify"
-        ],
-        [
-            "OAUTH2_DEVICE_FINISH",
-            "/oauth2/device/finish"
-        ],
-        [
             "MFA_TOTP_ENABLE_VERIFY",
             "/users/@me/mfa/totp/enable/verify"
         ],
@@ -555,10 +547,6 @@
         [
             "LIBRARY_APPLICATION_INSTALLED",
             "/users/@me/library/:param/:param/installed"
-        ],
-        [
-            "STOREFRONT_PREMIUM_BUTTON",
-            "/applications/storefront/interactions/premium-button/:param"
         ],
         [
             "STORE_DIRECTORY_LAYOUT",
@@ -1807,6 +1795,14 @@
             "/oauth2/allowlist/accept"
         ],
         [
+            "OAUTH2_DEVICE_VERIFY",
+            "/oauth2/device/verify"
+        ],
+        [
+            "OAUTH2_DEVICE_FINISH",
+            "/oauth2/device/finish"
+        ],
+        [
             "MFA_TOTP_ENABLE",
             "/users/@me/mfa/totp/enable"
         ],
@@ -2033,6 +2029,10 @@
         [
             "APPLICATIONS_PUBLIC",
             "/applications/public"
+        ],
+        [
+            "STOREFRONT_PREMIUM_BUTTON",
+            "/applications/storefront/interactions/premium-button/:param"
         ],
         [
             "STORE_EMAIL_RESEND_PAYMENT_VERIFICATION",
