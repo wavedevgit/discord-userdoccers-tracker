@@ -1181,26 +1181,28 @@
     },
     {
         "title": "Get User Application Profile",
-        "method": "GET",
-        "url": "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile",
+        "method": "GET\n",
+        "": true,
+        "url": "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n",
         "supportsBot": true,
         "urls": [
-            "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile"
+            "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n"
         ],
         "urlEmpty": [
-            "/applications/:param/users/:param/identities/:param/profile"
+            "/applications/:param/users/:param/identities/:param/profile\n"
         ]
     },
     {
         "title": "Modify User Application Profile",
-        "method": "PATCH",
-        "url": "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile",
+        "method": "PATCH\n",
+        "": true,
+        "url": "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n",
         "supportsBot": true,
         "urls": [
-            "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile"
+            "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n"
         ],
         "urlEmpty": [
-            "/applications/:param/users/:param/identities/:param/profile"
+            "/applications/:param/users/:param/identities/:param/profile\n"
         ]
     },
     {
