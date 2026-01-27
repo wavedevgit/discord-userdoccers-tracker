@@ -1866,15 +1866,15 @@ All options have names, and an option can either be a parameter, in which case `
 
 ###### Modal Submit Component Data Structure
 
-| Field      | Type                                                                                | Description                                                       | Component Type                                                                                                     |
-| ---------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| id ^1^     | integer                                                                             | The ID of the component                                           | All                                                                                                                |
-| type       | integer                                                                             | The [type](/resources/components#component-type) of the component | All                                                                                                                |
-| custom_id  | string                                                                              | The developer-defined identifier for the component                | `STRING_SELECT`, `USER_SELECT`, `ROLE_SELECT`, `MENTIONABLE_SELECT`, `CHANNEL_SELECT`, `TEXT_INPUT`, `FILE_UPLOAD` |
-| value      | string                                                                              | The value that the user inputted                                  | `TEXT_INPUT`                                                                                                       |
-| values     | array[snowflake] \| array[string]                                                   | The values that the user selected or uploaded                     | `STRING_SELECT`, `USER_SELECT`, `ROLE_SELECT`, `MENTIONABLE_SELECT`, `CHANNEL_SELECT`, `FILE_UPLOAD`               |
-| component  | [modal submit component data](#modal-submit-component-data-structure) object        | Inner component                                                   | `LABEL`                                                                                                            |
-| components | array[[modal submit component data](#modal-submit-component-data-structure) object] | Inner components                                                  | `ACTION_ROW`                                                                                                       |
+| Field      | Type                                                                                | Description                                                       | Component Type                                                                                                                                                  |
+| ---------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id ^1^     | integer                                                                             | The ID of the component                                           | All                                                                                                                                                             |
+| type       | integer                                                                             | The [type](/resources/components#component-type) of the component | All                                                                                                                                                             |
+| custom_id  | string                                                                              | The developer-defined identifier for the component                | `STRING_SELECT`, `USER_SELECT`, `ROLE_SELECT`, `MENTIONABLE_SELECT`, `CHANNEL_SELECT`, `TEXT_INPUT`, `FILE_UPLOAD`, `RADIO_GROUP`, `CHECKBOX_GROUP`, `CHECKBOX` |
+| value      | string \| boolean                                                                   | The value that the user inputted                                  | `TEXT_INPUT`, `RADIO_GROUP`, `CHECKBOX`                                                                                                                         |
+| values     | array[snowflake] \| array[string]                                                   | The values that the user selected or uploaded                     | `STRING_SELECT`, `USER_SELECT`, `ROLE_SELECT`, `MENTIONABLE_SELECT`, `CHANNEL_SELECT`, `FILE_UPLOAD`, `CHECKBOX_GROUP`                                          |
+| component  | [modal submit component data](#modal-submit-component-data-structure) object        | Inner component                                                   | `LABEL`                                                                                                                                                         |
+| components | array[[modal submit component data](#modal-submit-component-data-structure) object] | Inner components                                                  | `ACTION_ROW`                                                                                                                                                    |
 
 ^1^ `id` does not need to be provided when [creating an interaction](#create-interaction).
 
@@ -2167,8 +2167,52 @@ Currently, interactions are sent with a user agent of `Discord-Interactions/1.0 
   Create Interaction Response
 </RouteHeader>
 
-Create a response to an interaction from the Gateway. Accepts an [interaction response](#interaction-response-object) object.
+Create a response to an interaction from the Gateway. Accepts an [interaction response](#interaction-response-object) object. Returns a 204 empty response or the object below depending on the `with_response` parameter.
 This endpoint also supports file attachments similar to the webhook endpoints. Refer to [Uploading Files](/reference#uploading-files) for details on uploading files and `multipart/form-data` requests.
+
+###### Query String Params
+
+| Field          | Type    | Description                                                                       |
+| -------------- | ------- | --------------------------------------------------------------------------------- |
+| with_response? | boolean | Whether to include an interaction callback result as the response (default false) |
+
+###### Response Body
+
+| Field       | Type                                                                             | Description                                               |
+| ----------- | -------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| interaction | [interaction callback](#interaction-callback-structure) object                   | The interaction associated with the interaction response  |
+| resource?   | [interaction callback resource](#interaction-callback-resource-structure) object | The resource that was created by the interaction response |
+
+###### Interaction Callback Structure
+
+| Field                       | Type      | Description                                                                               |
+| --------------------------- | --------- | ----------------------------------------------------------------------------------------- |
+| id                          | snowflake | The ID of the interaction                                                                 |
+| type                        | integer   | The [type](#interaction-type) of interaction                                              |
+| response_message_id?        | snowflake | The ID of the message that was created by the interaction                                 |
+| response_message_loading?   | boolean   | Whether the response message has the [`LOADING`](/resources/message#message-flags) flag   |
+| response_message_ephemeral? | boolean   | Whether the response message has the [`EPHEMERAL`](/resources/message#message-flags) flag |
+| activity_instance_id?       | string    | The ID of the launched activity instance                                                  |
+| channel_id?                 | snowflake | The ID of the channel the interaction was created in                                      |
+| guild_id?                   | snowflake | The ID of the guild the interaction was created in                                        |
+
+###### Interaction Callback Resource Structure
+
+| Field                  | Type                                                                                                                 | Description                                                    |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| type                   | integer                                                                                                              | The [type](#interaction-callback-type) of interaction callback |
+| activity_instance? ^1^ | [interaction callback activity instance resource](#interaction-callback-activity-instance-resource-structure) object | The activity launched by the interaction callback              |
+| message? ^2^           | [message](/resources/message#message-object) object                                                                  | The message created by the interaction callback                |
+
+^1^ Only applicable if `type` is [`LAUNCH_ACTIVITY`](#interaction-callback-type).
+
+^2^ Only applicable if `type` is [`CHANNEL_MESSAGE_WITH_SOURCE`, or `UPDATE_MESSAGE`](#interaction-callback-type).
+
+###### Interaction Callback Activity Instance Resource Structure
+
+| Field | Type   | Description                              |
+| ----- | ------ | ---------------------------------------- |
+| id    | string | The ID of the launched activity instance |
 
 <RouteHeader method="GET" url="/webhooks/{application.id}/{interaction.token}/messages/@original" unauthenticated>
   Get Original Interaction Response
@@ -9530,6 +9574,9 @@ Additionally, components of messages preceding components v2 will contain an `id
 | 18    | [LABEL](#label)                                         | Container associating a label and description with a component | Layout      | Modal                           |
 | 19    | [FILE_UPLOAD](#file-upload)                             | Component to upload one or more files                          | Interactive | Modal                           |
 | 20    | [CHECKPOINT_CARD](#checkpoint-card) ^2^                 | Displays a [checkpoint](/resources/checkpoint)                 | Content     | Message                         |
+| 21    | [RADIO_GROUP](#radio-group)                             | Single-choice set of radio options                             | Interactive | Modal                           |
+| 22    | [CHECKBOX_GROUP](#checkbox-group)                       | Multi-select group of checkboxes                               | Interactive | Modal                           |
+| 23    | [CHECKBOX](#checkbox)                                   | Single checkbox for binary choice                              | Interactive | Modal                           |
 
 ^1^ Requires the [`IS_COMPONENTS_V2` message flag](/resources/message#message-flags).
 
@@ -10462,13 +10509,13 @@ The description may display above or below the component depending on platform.
 
 ###### Label Structure
 
-| Field        | Type                                  | Description                                                                                                                                                                                                                   |
-| ------------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type         | integer                               | Always [`LABEL`](#component-type)                                                                                                                                                                                             |
-| id?          | integer                               | An optional identifier for the component                                                                                                                                                                                      |
-| label        | string                                | The label text (max 45 characters)                                                                                                                                                                                            |
-| description? | string                                | An optional description text for the label (max 100 characters)                                                                                                                                                               |
-| component    | [component](#component-object) object | Inner component of the type [text input](#text-input), [user select](#user-select), [role select](#role-select), [mentionable select](#mentionable-select), [channel select](#channel-select), or [file upload](#file-upload) |
+| Field        | Type                                  | Description                                                                                                                                                                                                                                                                                                                                           |
+| ------------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type         | integer                               | Always [`LABEL`](#component-type)                                                                                                                                                                                                                                                                                                                     |
+| id?          | integer                               | An optional identifier for the component                                                                                                                                                                                                                                                                                                              |
+| label        | string                                | The label text (max 45 characters)                                                                                                                                                                                                                                                                                                                    |
+| description? | string                                | An optional description text for the label (max 100 characters)                                                                                                                                                                                                                                                                                       |
+| component    | [component](#component-object) object | Inner component of the type [string select](#string-select), [text input](#text-input), [user select](#user-select), [role select](#role-select), [mentionable select](#mentionable-select), [channel select](#channel-select), [file upload](#file-upload), [radio group](#radio-group), [checkbox group](#checkbox-group), or [checkbox](#checkbox) |
 
 ### File Upload
 
@@ -10570,6 +10617,73 @@ Checkpoint cards cannot be sent directly.
   }
 }
 ```
+
+### Radio Group
+
+Radio Group is an interactive component for selecting exactly one option from a defined list.
+
+Radio Groups can only be used within modals and must be placed inside a [Label](#label).
+
+###### Radio Group Structure
+
+| Field           | Type                                                              | Description                                                         |
+| --------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
+| type            | integer                                                           | Always [`RADIO_GROUP`](#component-type)                             |
+| id?             | integer                                                           | An optional identifier for the component                            |
+| custom_id       | string                                                            | Developer-defined identifier for the radio group (1-100 characters) |
+| options         | array[[radio group option](#radio-group-option-structure) object] | Options to render (min 2, max 10)                                   |
+| required?       | boolean                                                           | Whether the user must select an option (default true)               |
+
+###### Radio Group Option Structure
+
+| Field        | Type                                                  | Description                                                        |
+| ------------ | ----------------------------------------------------- | ------------------------------------------------------------------ |
+| value        | string                                                | Developer-defined value of the option (1-100 characters)           |
+| label        | string                                                | User-facing name of the option (max 100 characters)                |
+| description? | string                                                | Additional description of the option (max 100 characters)          |
+| default?     | boolean                                               | Whether to show this option as selected by default (default false) |
+
+### Checkbox Group
+
+Checkbox Group is an interactive component for selecting one or many options via checkboxes.
+
+Checkbox Groups can only be used within modals and must be placed inside a [Label](#label).
+
+###### Checkbox Group Structure
+
+| Field           | Type                                                                    | Description                                                            |
+| --------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| type            | integer                                                                 | Always [`CHECKBOX_GROUP`](#component-type)                             |
+| id?             | integer                                                                 | An optional identifier for the component                               |
+| custom_id       | string                                                                  | Developer-defined identifier for the checkbox group (1-100 characters) |
+| options         | array[[checkbox group option](#checkbox-group-option-structure) object] | Options to render (min 2, max 10)                                      |
+| min_values?     | integer                                                                 | Minimum number of boxes that must be checked (max 10, default 1)       |
+| max_values?     | integer                                                                 | Maximum number of boxes that can be checked (1-10)                     |
+| required?       | boolean                                                                 | Whether the user must select an option (default true)                  |
+
+###### Checkbox Group Option Structure
+
+| Field        | Type                                                  | Description                                                       |
+| ------------ | ----------------------------------------------------- | ----------------------------------------------------------------- |
+| value        | string                                                | Developer-defined value of the option (1-100 characters)          |
+| label        | string                                                | User-facing name of the option (max 100 characters)               |
+| description? | string                                                | Additional description of the option (max 100 characters)         |
+| default?     | boolean                                               | Whether to show this option as checked by default (default false) |
+
+### Checkbox
+
+Checkbox is a single interactive component for simple yes/no style questions.
+
+Checkboxes can only be used within modals and must be placed inside a [Label](#label).
+
+###### Checkbox Structure
+
+| Field     | Type    | Description                                                      |
+| --------- | ------- | ---------------------------------------------------------------- |
+| type      | integer | Always [`CHECKBOX`](#component-type)                             |
+| id?       | integer | An optional identifier for the component                         |
+| custom_id | string  | Developer-defined identifier for the checkbox (1-100 characters) |
+| default?  | boolean | Whether the box is checked by default (default false)            |
 
 ## Unfurled Media Item Object
 
@@ -16611,8 +16725,8 @@ See [the unavailable resources section](/topics/rate-limits#unavailable-resource
 | user_id?            | [query](#query-structure) object (snowflake)       | Query to match member IDs against                                                                                 | `or_query`, `range`     |
 | usernames?          | [query](#query-structure) object (string)          | Query to match display name(s), username(s), and nickname(s) against                                              | `or_query`              |
 | role_ids?           | [query](#query-structure) object (snowflake)       | IDs of roles to match members against                                                                             | `or_query`, `and_query` |
-| guild_joined_at?    | [query](#query-structure) object (integer)         | When the user joined the guild                                                                                    | `range`                 |
-| safety_signals?     | [safety signals](#safety-signals-structure) object | Safety signals to match members against                                                                           |
+| guild_joined_at?    | [query](#query-structure) object (integer)         | Unix timestamp (in milliseconds) of when the user joined the guild                                                | `range`                 |
+| safety_signals?     | [safety signals](#safety-signals-structure) object | Safety signals to match members against                                                                           |                         |
 | is_pending?         | boolean                                            | Whether the member has not yet passed the guild's [member verification](#member-verification-object) requirements | `true`, `false`         |
 | did_rejoin?         | boolean                                            | Whether the member left and rejoined the guild                                                                    | `true`, `false`         |
 | join_source_type?   | [query](#query-structure) object (integer)         | [How the user joined the guild](#join-source-type)                                                                | `or_query`              |
@@ -16622,8 +16736,8 @@ See [the unavailable resources section](/topics/rate-limits#unavailable-resource
 
 | Field                         | Type                                       | Description                                                                                                                                                             | Queries         |
 | ----------------------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| unusual_dm_activity_until?    | [query](#query-structure) object (integer) | When the member's unusual DM activity flag will expire                                                                                                                  | `range`         |
-| communication_disabled_until? | [query](#query-structure) object (integer) | When the member's [timeout](https://support.discord.com/hc/en-us/articles/4413305239191-Time-Out-FAQ) will expire                                                       | `range`         |
+| unusual_dm_activity_until?    | [query](#query-structure) object (integer) | Unix timestamp (in milliseconds) of when the member's unusual DM activity flag will expire                                                                              | `range`         |
+| communication_disabled_until? | [query](#query-structure) object (integer) | Unix timestamp (in milliseconds) of when the member's [timeout](https://support.discord.com/hc/en-us/articles/4413305239191-Time-Out-FAQ) will expire                   | `range`         |
 | unusual_account_activity?     | boolean                                    | Whether the user has the [`SPAMMER` flag](/resources/user#user-flags)                                                                                                   | `true`, `false` |
 | automod_quarantined_username? | boolean                                    | Whether the member has been indefinitely quarantined by [an AutoMod Rule](/resources/auto-moderation#automod-rule-object) for their username, display name, or nickname | `true`, `false` |
 
@@ -16644,10 +16758,10 @@ See [the unavailable resources section](/topics/rate-limits#unavailable-resource
 
 ###### Member Pagination Filter Structure
 
-| Field           | Type      | Description                                     |
-| --------------- | --------- | ----------------------------------------------- |
-| user_id         | snowflake | The ID of the user to paginate past             |
-| guild_joined_at | integer   | When the user to paginate past joined the guild |
+| Field           | Type      | Description                                                                         |
+|-----------------|-----------|-------------------------------------------------------------------------------------|
+| user_id         | snowflake | The ID of the user to paginate past                                                 |
+| guild_joined_at | integer   | Unix timestamp (in milliseconds) of when the user to paginate past joined the guild |
 
 ###### Response Body
 
@@ -37967,6 +38081,7 @@ These are all the OAuth2 scopes that Discord supports. Some scopes require appro
 | applications.commands.update ^2^         | Allows your app to update its own [commands](/interactions/application-commands/)                                                                 | Yes    |
 | applications.entitlements                | Allows [managing entitlements for the user's applications](/resources/entitlement)                                                                | Yes    |
 | applications.store.update                | Allows [managing store data (SKUs, store listings, achievements, etc.) for the user's applications](/resources/store)                             | Yes    |
+| application_identities.write             | Allows [managing application identities](/resources/application)                                                                                  | No     |
 | bot                                      | Adds the application's bot to a user-selected guild                                                                                               | Yes    |
 | connections                              | Allows [retrieving a user's connected accounts](/resources/connected-accounts#get-user-connections), both public and private                      | Yes    |
 | dm_channels.read                         | Allows [reading information about the user's DMs and group DMs](/resources/channel)                                                               | No     |
@@ -38024,10 +38139,10 @@ These are all the OAuth2 scopes that Discord supports. Some scopes require appro
 
 The following scopes are considered "umbrella" scopes, meaning that they are used to request access to multiple scopes at once. These are currently only used by the social layer integration.
 
-| Value                     | Description                                                                                                                                                                                   |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| sdk.social_layer_presence | Includes the scopes `activities.invites.write`, `activities.read`, `activities.write`, `gateway.connect`, `identify`, `relationships.read`, and `relationships.write`                         |
-| sdk.social_layer          | Includes everything in `sdk.social_layer_presence`, plus `dm_channels.read`, `dm_channels.messages.read`, `dm_channels.messages.write`, `guilds`, `guilds.channels.read`, and `lobbies.write` |
+| Value                     | Description                                                                                                                                                                                           |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| sdk.social_layer_presence | Includes the scopes `activities.invites.write`, `activities.read`, `activities.write`, `application_identities.write`, `gateway.connect`, `identify`, `relationships.read`, and `relationships.write` |
+| sdk.social_layer          | Includes everything in `sdk.social_layer_presence`, plus `dm_channels.read`, `dm_channels.messages.read`, `dm_channels.messages.write`, `guilds`, `guilds.channels.read`, and `lobbies.write`         |
 
 ###### Authorization URL Structure
 
