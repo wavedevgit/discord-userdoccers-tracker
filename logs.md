@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 446 |
+| Covered | 447 |
 |---------|------------|
-| Missing | 259 |
+| Missing | 258 |
 ## Missing routes
-total: 259
+total: 258
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -16,7 +16,6 @@ total: 259
 - [ ] **GUILD_MEMBER_NICK**: `/guilds/:param/members/:param/nick`
 - [ ] **GUILD_MEMBER_AVATAR**: `/guilds/:param/users/:param/avatars/:param.:param`
 - [ ] **GUILD_ONBOARDING_PROMPT**: `/guilds/:param/onboarding-prompts/:param`
-- [ ] **GUILD_ONBOARDING_RESPONSES**: `/guilds/:param/onboarding-responses`
 - [ ] **ROLE_ICON**: `/roles/:param/icons/:param.png`
 - [ ] **GUILD_ICON**: `/guilds/:param/icons/:param.:param`
 - [ ] **GUILD_TEMPLATE_ICON**: `/templates/:param/icons/:param.:param`
@@ -267,7 +266,7 @@ total: 259
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 446
+total: 447
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -312,6 +311,7 @@ total: 446
 - [x] **GUILD_ROLE_CONNECTIONS_ASSIGN**: `/guilds/:param/roles/:param/connections/assign`
 - [x] **GUILD_ROLE_CONNECTIONS_UNASSIGN**: `/guilds/:param/roles/:param/connections/unassign`
 - [x] **GUILD_ONBOARDING**: `/guilds/:param/onboarding`
+- [x] **GUILD_ONBOARDING_RESPONSES**: `/guilds/:param/onboarding-responses`
 - [x] **GUILD_INSTANT_INVITES**: `/guilds/:param/invites`
 - [x] **GUILD_WIDGET**: `/guilds/:param/widget`
 - [x] **GUILD_VANITY_URL**: `/guilds/:param/vanity-url`

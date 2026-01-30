@@ -16087,20 +16087,26 @@ The [onboarding](https://support.discord.com/hc/en-us/articles/11074987197975-Co
 
 <Alert type="info">
 
-Onboarding enforces constraints when enabled. These constraints are that there must be at least 7 default channels and at least 5 of them must allow sending messages to the default (@everyone) role. The `mode` field modifies what is considered when enforcing these constraints.
+Onboarding enforces constraints when enabled. These constraints are that at least one default channel must allow sending messages to the default (@everyone) role. The `mode` field modifies what is considered when enforcing these constraints.
 
 </Alert>
 
 ###### Onboarding Structure
 
-| Field               | Type                                                            | Description                                                        |
-| ------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------ |
-| guild_id            | snowflake                                                       | The ID of the guild this onboarding is part of                     |
-| prompts             | array[[onboarding prompt](#onboarding-prompt-structure) object] | The prompts shown during onboarding and in community customization |
-| default_channel_ids | array[snowflake]                                                | The channel IDs that members get opted into automatically          |
-| enabled             | boolean                                                         | Whether onboarding is enabled in the guild                         |
-| below_requirements  | boolean                                                         | Whether the guild is below the requirements for onboarding         |
-| mode                | integer                                                         | The current [criteria mode](#onboarding-mode) for onboarding       |
+| Field                          | Type                                                                    | Description                                                                                                        |
+| ------------------------------ | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| guild_id                       | snowflake                                                               | The ID of the guild this onboarding is part of                                                                     |
+| prompts                        | array[[onboarding prompt](#onboarding-prompt-structure) object]         | The prompts shown during onboarding and in community customization                                                 |
+| default_channel_ids            | array[snowflake]                                                        | The channel IDs that members get opted into automatically                                                          |
+| enabled                        | boolean                                                                 | Whether onboarding is enabled in the guild                                                                         |
+| below_requirements             | boolean                                                                 | Whether the guild is below the requirements for onboarding                                                         |
+| mode                           | integer                                                                 | The current [criteria mode](#onboarding-mode) for onboarding                                                       |
+| connections?                   | array[[onboarding connection](#onboarding-connection-structure) object] | Connection recommendations shown during onboarding                                                                 |
+| responses? ^1^                 | array[snowflake]                                                        | The onboarding prompt option IDs the current user has chosen                                                       |
+| onboarding_prompts_seen? ^1^   | map[snowflake, integer]                                                 | A mapping of prompt IDs to Unix timestamps (in milliseconds) of when the current user saw the prompt               |
+| onboarding_responses_seen? ^1^ | map[snowflake, integer]                                                 | A mapping of prompt option IDs to Unix timestamps (in milliseconds) of when the current user saw the prompt option |
+
+^1^ Only included when fetched from the [Get Guild Onboarding](#get-guild-onboarding) endpoint.
 
 ###### Onboarding Mode
 
@@ -16140,6 +16146,26 @@ Defines the criteria used to satisfy onboarding constraints that are required fo
 | ----- | --------------- | --------------------------------------------- |
 | 0     | MULTIPLE_CHOICE | Prompt offers multiple options to select from |
 | 1     | DROPDOWN        | Prompt offers a dropdown menu to select from  |
+
+###### Onboarding Connection Structure
+
+| Field              | Type       | Description                                                              |
+| ------------------ | ---------- | ------------------------------------------------------------------------ |
+| connection_type    | integer    | The [type of onboarding connection](#onboarding-connection-type)         |
+| application_id ^1^ | ?snowflake | The ID of the application                                                |
+| provider_id ^2^    | ?string    | The [connection provider](/resources/connected-accounts#connection-type) |
+| description        | string     | The connection description                                               |
+
+^1^ Only applicable if `connection_type` is `APPLICATION`.
+
+^2^ Only applicable if `connection_type` is `PROVIDER_CONNECTED_ACCOUNT`.
+
+###### Onboarding Connection Type
+
+| Value | Name                       | Description                            |
+| ----- | -------------------------- | -------------------------------------- |
+| 0     | APPLICATION                | Application role connection suggestion |
+| 1     | PROVIDER_CONNECTED_ACCOUNT | Connected account suggestion           |
 
 ###### Example Onboarding
 
@@ -16196,6 +16222,19 @@ Defines the criteria used to satisfy onboarding constraints that are required fo
   "below_requirements": false
 }
 ```
+
+### Onboarding Responses Object
+
+###### Onboarding Responses Structure
+
+| Field                     | Type                    | Description                                                                                                        |
+| ------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| guild_id                  | snowflake               | The ID of the guild the onboarding responses are for                                                               |
+| user_id                   | snowflake               | The ID of the user that did onboarding                                                                             |
+| onboarding_responses      | array[snowflake]        | The onboarding prompt option IDs the current user has chosen                                                       |
+| onboarding_prompts_seen   | map[snowflake, integer] | A mapping of prompt IDs to Unix timestamps (in milliseconds) of when the current user saw the prompt               |
+| onboarding_responses_seen | map[snowflake, integer] | A mapping of prompt option IDs to Unix timestamps (in milliseconds) of when the current user saw the prompt option |
+
 
 ### New Member Welcome Object
 
@@ -17628,7 +17667,7 @@ Modifies the onboarding configuration of the guild. Returns the updated [onboard
 
 <Alert type="info">
 
-Onboarding enforces constraints when enabled. These constraints are that there must be at least 7 default channels and at least 5 of them must allow sending messages to the default (@everyone) role. The `mode` field modifies what is considered when enforcing these constraints.
+Onboarding enforces constraints when enabled. These constraints are that at least one default channel must allow sending messages to the default (@everyone) role. The `mode` field modifies what is considered when enforcing these constraints.
 
 </Alert>
 
@@ -17640,6 +17679,47 @@ Onboarding enforces constraints when enabled. These constraints are that there m
 | default_channel_ids? | array[snowflake]                                                | The channel IDs that members get opted into automatically          |
 | enabled?             | boolean                                                         | Whether onboarding is enabled in the guild                         |
 | mode?                | integer                                                         | The current [criteria mode](#onboarding-mode) for onboarding       |
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/onboarding/allowed-applications">
+  Get Guild Onboarding Allowed Applications
+</RouteHeader>
+
+Returns the applications that are allowed to be used as onboarding connections.
+
+###### Response Body
+
+| Field           | Type             | Description                 |
+| --------------- | ---------------- | --------------------------- |
+| application_ids | array[snowflake] | The allowed application IDs |
+
+<RouteHeader method="POST" url="/guilds/{guild.id}/onboarding-responses">
+  Create Guild Onboarding Responses
+</RouteHeader>
+
+Creates the initial onboarding response for the current user in the guild. If responses are not empty, returns an [onboarding responses](#onboarding-responses-object) object on success. Otherwise, returns a 204 empty response. May fire a [Guild Member Update](/topics/gateway-events#guild-member-update) Gateway event.
+
+###### JSON Params
+
+| Field                      | Type                    | Description                                                                                                        |
+| -------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| onboarding_responses?      | array[snowflake]        | The onboarding prompt option IDs the current user chose (max 750)                                                  |
+| onboarding_prompts_seen?   | map[snowflake, integer] | A mapping of prompt IDs to Unix timestamps (in milliseconds) of when the current user saw the prompt               |
+| onboarding_responses_seen? | map[snowflake, integer] | A mapping of prompt option IDs to Unix timestamps (in milliseconds) of when the current user saw the prompt option |
+
+
+<RouteHeader method="PUT" url="/guilds/{guild.id}/onboarding-responses">
+  Update Guild Onboarding Responses
+</RouteHeader>
+
+Updates the onboarding response for the current user in the guild. If responses are not empty, returns an [onboarding responses](#onboarding-responses-object) object on success. Otherwise, returns a 204 empty response. May fire a [Guild Member Update](/topics/gateway-events#guild-member-update) Gateway event.
+
+###### JSON Params
+
+| Field                      | Type                    | Description                                                                                                        |
+| -------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| onboarding_responses?      | array[snowflake]        | The onboarding prompt option IDs the current user chose (max 750)                                                  |
+| onboarding_prompts_seen?   | map[snowflake, integer] | A mapping of prompt IDs to Unix timestamps (in milliseconds) of when the current user saw the prompt               |
+| onboarding_responses_seen? | map[snowflake, integer] | A mapping of prompt option IDs to Unix timestamps (in milliseconds) of when the current user saw the prompt option |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/new-member-welcome" supportsBot>
   Get Guild New Member Welcome
@@ -18458,12 +18538,15 @@ A code that when used, adds a user to a guild or group DM channel, or creates a 
 | new_member? ^2^                 | boolean                                                                                       | Whether the user is a new member of the guild                                                                        |
 | show_verification_form? ^2^     | boolean                                                                                       | Whether the user should be shown the guild's [member verification](/resources/guild#member-verification-object) form |
 | is_nickname_changeable? ^3^     | boolean                                                                                       | Whether the @everyone role has the `CHANGE_NICKNAME` permission in the guild this invite is for                      |
+| target_users_job_status? ^4^    | [invite target users job](#invite-target-users-job-object) object                             | The status of the target users file processing job for the given invite                                              |
 
 ^1^ Only included when fetched from the [Get Invite](#get-invite) endpoint with `with_counts` set to `true`. Also included when fetched from the [Accept Invite](#accept-invite) endpoint on [non-previewable guilds](/resources/guild#guild-previewing).
 
 ^2^ Only included when fetched from the [Accept Invite](#accept-invite) endpoint. Note that `new_member` is erroneously set to `true` for non-guild invites and is missing when accepting an invite to a [non-previewable guild](/resources/guild#guild-previewing).
 
 ^3^ Only included when fetched from the [Get Invite](#get-invite) endpoint with `with_permissions` set to `true`.
+
+^4^ Only included when fetched from the [Get Guild Invites](#get-guild-invites) endpoint.
 
 ###### Invite Type
 
@@ -18683,6 +18766,30 @@ The guild an invite is for.
 | nsfw **(deprecated)**       | boolean       | Whether the guild is considered NSFW (`EXPLICIT` or `AGE_RESTRICTED`)                |
 | nsfw_level                  | integer       | The guild's [NSFW level](/resources/guild#nsfw-level)                                |
 
+### Invite Target Users Job Object
+
+The status of the target users file processing job for an invite.
+
+###### Invite Target Users Job Structure
+
+| Field           | Type               | Description                                                                          |
+| --------------- | ------------------ | ------------------------------------------------------------------------------------ |
+| status          | integer            | The [status](#invite-target-users-job-status) of the job processing the target users |
+| total_users     | integer            | The total number of user IDs in the target users file                                |
+| processed_users | integer            | The number of user IDs processed so far                                              |
+| created_at      | ?ISO8601 timestamp | When the job was created                                                             |
+| completed_at    | ?ISO8601 timestamp | When the job was completed                                                           |
+| error_message   | ?string            | An error message, if the job failed                                                  |
+
+###### Invite Target Users Job Status
+
+| Value | Name        | Description                          |
+| ----- | ----------- | ------------------------------------ |
+| 0     | UNSPECIFIED | Job status is unspecified            |
+| 1     | PROCESSING  | Job is currently being processed     |
+| 2     | COMPLETED   | Job has been completed               |
+| 3     | FAILED      | Job has failed (see `error_message`) |
+
 ## Endpoints
 
 <RouteHeader method="GET" url="/invites/{invite.code}" unauthenticated>
@@ -18721,7 +18828,7 @@ Returns the user IDs of friends in the target guild. Always returns an empty arr
   Get Invite Target Users
 </RouteHeader>
 
-Returns the IDs of the users allowed to see and accept the given invite. Invite must have a target users file associated with it. Requires the `MANAGE_GUILD` permission if the requestor is not the inviter. Returns the CSV file contents as uploaded.
+Returns the IDs of the users allowed to see and accept the given invite. Invite must have a target users file associated with it. Requires the `MANAGE_GUILD` or `VIEW_AUDIT_LOG` permission if the requestor is not the inviter. Returns the CSV file contents as uploaded.
 
 <RouteHeader method="PUT" url="/invites/{invite.code}/target-users" supportsBot>
   Update Invite Target Users
@@ -18741,27 +18848,7 @@ Replaces the target users file associated with the given invite. Processing is d
   Get Invite Target Users Job Status
 </RouteHeader>
 
-Returns the status of the target users file processing job for the given invite. Invite must have a target users file associated with it. Requires the `MANAGE_GUILD` permission if the requestor is not the inviter.
-
-###### Response Body
-
-| Field           | Type               | Description                                                                          |
-| --------------- | ------------------ | ------------------------------------------------------------------------------------ |
-| status          | integer            | The [status](#invite-target-users-job-status) of the job processing the target users |
-| total_users     | integer            | The total number of user IDs in the target users file                                |
-| processed_users | integer            | The number of user IDs processed so far                                              |
-| created_at      | ?ISO8601 timestamp | When the job was created                                                             |
-| completed_at    | ?ISO8601 timestamp | When the job was completed                                                           |
-| error_message   | ?string            | An error message, if the job failed                                                  |
-
-###### Invite Target Users Job Status
-
-| Value | Name        | Description                          |
-| ----- | ----------- | ------------------------------------ |
-| 0     | UNSPECIFIED | Job status is unspecified            |
-| 1     | PROCESSING  | Job is currently being processed     |
-| 2     | COMPLETED   | Job has been completed               |
-| 3     | FAILED      | Job has failed (see `error_message`) |
+Returns an [invite target users job](#invite-target-users-job-object) object for the given invite. Invite must have a target users file associated with it. Requires the `MANAGE_GUILD` or `VIEW_AUDIT_LOG` permission if the requestor is not the inviter.
 
 <RouteHeader method="POST" url="/invites/{invite.code}" supportsOAuth2="guilds.join">
   Accept Invite
@@ -40265,7 +40352,7 @@ Updates multiple read states for the current user. Returns a 204 empty response 
 
 ^1^ Unlike standalone ack endpoints, the message ID must be greater than `0` or the read state update will be ignored.
 
-^2^ As bulk updates do not accept a `manual` fields, it is not recommended to set channel read states to a message ID lower than the current acknowledged one using this endpoint, as it will lead to undefined behavior.
+^2^ As bulk updates do not accept a `manual` field, it is not recommended to set channel read states to a message ID lower than the current acknowledged one using this endpoint, as it will lead to undefined behavior.
 
 <RouteHeader method="DELETE" url="/channels/{read_state.id}/messages/ack">
   Delete Read State

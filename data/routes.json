@@ -4748,6 +4748,39 @@
         ]
     },
     {
+        "title": "Get Guild Onboarding Allowed Applications",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/onboarding/allowed-applications",
+        "urls": [
+            "/guilds/{guild.id}/onboarding/allowed-applications"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/onboarding/allowed-applications"
+        ]
+    },
+    {
+        "title": "Create Guild Onboarding Responses",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/onboarding-responses",
+        "urls": [
+            "/guilds/{guild.id}/onboarding-responses"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/onboarding-responses"
+        ]
+    },
+    {
+        "title": "Update Guild Onboarding Responses",
+        "method": "PUT",
+        "url": "/guilds/{guild.id}/onboarding-responses",
+        "urls": [
+            "/guilds/{guild.id}/onboarding-responses"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/onboarding-responses"
+        ]
+    },
+    {
         "title": "Get Guild New Member Welcome",
         "method": "GET",
         "url": "/guilds/{guild.id}/new-member-welcome",
