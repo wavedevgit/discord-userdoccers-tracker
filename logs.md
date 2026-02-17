@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 447 |
+| Covered | 448 |
 |---------|------------|
-| Missing | 258 |
+| Missing | 257 |
 ## Missing routes
-total: 258
+total: 257
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -255,7 +255,6 @@ total: 258
 - [ ] **MY_SPOTIFY_CONTENT_INVENTORY**: `/content-inventory/users/@me/spotify`
 - [ ] **MY_CONTENT_INVENTORY_APPLICATION**: `/content-inventory/users/@me/applications/:param`
 - [ ] **TENURE_REWARD_SYNC**: `/users/@me/tenure-reward/sync`
-- [ ] **STORE_LAYOUT**: `/applications/:param/store-layout`
 - [ ] **CAMPAIGN_CONTEXT**: `/users/@me/billing/campaign-context`
 - [ ] **SIMILAR_GAMES**: `/content-inventory/users/@me/similar-games/:param`
 - [ ] **ACCOUNT_REVERT**: `/auth/revert`
@@ -266,7 +265,7 @@ total: 258
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 447
+total: 448
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -709,6 +708,7 @@ total: 447
 - [x] **ADD_SAFETY_WARNING**: `/channels/:param/add-safety-warning`
 - [x] **DELETE_SAFETY_WARNINGS**: `/channels/:param/safety-warnings`
 - [x] **SAFETY_WARNING_FALSE_POSITIVE**: `/channels/:param/safety-warning/report-false-positive`
+- [x] **STORE_LAYOUT**: `/applications/:param/store-layout`
 - [x] **CHECKOUT_RECOVERY**: `/users/@me/billing/checkout-recovery`
 - [x] **VOICE_PUBLIC_KEYS**: `/voice/public-keys`
 - [x] **VOICE_MATCH_PUBLIC_KEY**: `/voice/:param/match-public-key`

@@ -7487,6 +7487,28 @@
         ]
     },
     {
+        "title": "Get Application Store Layout",
+        "method": "GET",
+        "url": "/applications/{application.id}/store-layout",
+        "urls": [
+            "/applications/{application.id}/store-layout"
+        ],
+        "urlEmpty": [
+            "/applications/:param/store-layout"
+        ]
+    },
+    {
+        "title": "Modify Application Storefront Publish States",
+        "method": "POST",
+        "url": "/applications/{application.id}/storefront/publish",
+        "urls": [
+            "/applications/{application.id}/storefront/publish"
+        ],
+        "urlEmpty": [
+            "/applications/:param/storefront/publish"
+        ]
+    },
+    {
         "title": "Get Consumable SKU Pricing",
         "method": "GET",
         "url": "/store/consumable/pricing/{sku.id}",
@@ -7671,6 +7693,17 @@
         ],
         "urlEmpty": [
             "/partner-sdk/guilds/:param/application-storefront/announcement"
+        ]
+    },
+    {
+        "title": "Check Social Layer SKU Purchase Eligibility",
+        "method": "POST",
+        "url": "/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}/eligibility",
+        "urls": [
+            "/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}/eligibility"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/guilds/:param/application-storefront/skus/:param/eligibility"
         ]
     },
     {

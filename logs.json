@@ -997,10 +997,6 @@
             "/users/@me/tenure-reward/sync"
         ],
         [
-            "STORE_LAYOUT",
-            "/applications/:param/store-layout"
-        ],
-        [
             "CAMPAIGN_CONTEXT",
             "/users/@me/billing/campaign-context"
         ],
@@ -2797,6 +2793,10 @@
         [
             "SAFETY_WARNING_FALSE_POSITIVE",
             "/channels/:param/safety-warning/report-false-positive"
+        ],
+        [
+            "STORE_LAYOUT",
+            "/applications/:param/store-layout"
         ],
         [
             "CHECKOUT_RECOVERY",
