@@ -5574,6 +5574,18 @@
         ]
     },
     {
+        "title": "Update Lobby Message Moderation Metadata",
+        "method": "PUT",
+        "url": "/lobbies/{lobby.id}/messages/{message.id}/moderation-metadata",
+        "supportsBot": true,
+        "urls": [
+            "/lobbies/{lobby.id}/messages/{message.id}/moderation-metadata"
+        ],
+        "urlEmpty": [
+            "/lobbies/:param/messages/:param/moderation-metadata"
+        ]
+    },
+    {
         "title": "Get Messages",
         "method": "GET",
         "url": "/channels/{channel.id}/messages",
@@ -6127,6 +6139,19 @@
         ],
         "urlEmpty": [
             "/partner-sdk/users/@me/channels"
+        ]
+    },
+    {
+        "title": "Update User Message Moderation Metadata",
+        "method": "PUT\n",
+        "": true,
+        "url": "/partner-sdk/dms/{user_1.id}/{user_2.id}/messages/{message.id}/moderation-metadata\n",
+        "supportsBot": true,
+        "urls": [
+            "/partner-sdk/dms/{user_1.id}/{user_2.id}/messages/{message.id}/moderation-metadata\n"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/dms/:param/:param/messages/:param/moderation-metadata\n"
         ]
     },
     {
@@ -9398,7 +9423,7 @@
         "title": "Get Experiment Assignments",
         "method": "GET",
         "url": "/experiments",
-        "supportsBot": true,
+        "unauthenticated": true,
         "urls": [
             "/experiments"
         ],
@@ -9410,6 +9435,7 @@
         "title": "Create Fingerprint",
         "method": "POST",
         "url": "/auth/fingerprint",
+        "unauthenticated": true,
         "deprecated": true,
         "urls": [
             "/auth/fingerprint"
@@ -9422,7 +9448,7 @@
         "title": "Get Apex Experiment Assignments",
         "method": "GET",
         "url": "/apex/experiments",
-        "supportsBot": true,
+        "unauthenticated": true,
         "urls": [
             "/apex/experiments"
         ],
