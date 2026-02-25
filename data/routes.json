@@ -1,5 +1,29 @@
 [
     {
+        "title": "Get Gateway",
+        "method": "GET",
+        "url": "/gateway",
+        "unauthenticated": true,
+        "urls": [
+            "/gateway"
+        ],
+        "urlEmpty": [
+            "/gateway"
+        ]
+    },
+    {
+        "title": "Get Gateway Bot",
+        "method": "GET",
+        "url": "/gateway/bot",
+        "supportsBot": true,
+        "urls": [
+            "/gateway/bot"
+        ],
+        "urlEmpty": [
+            "/gateway/bot"
+        ]
+    },
+    {
         "title": "Get Application Command Index",
         "method": "GET",
         "url": "/applications/{application.id}/application-command-index",
@@ -9466,30 +9490,6 @@
         ],
         "urlEmpty": [
             "/apex/experiments/metadata"
-        ]
-    },
-    {
-        "title": "Get Gateway",
-        "method": "GET",
-        "url": "/gateway",
-        "unauthenticated": true,
-        "urls": [
-            "/gateway"
-        ],
-        "urlEmpty": [
-            "/gateway"
-        ]
-    },
-    {
-        "title": "Get Gateway Bot",
-        "method": "GET",
-        "url": "/gateway/bot",
-        "supportsBot": true,
-        "urls": [
-            "/gateway/bot"
-        ],
-        "urlEmpty": [
-            "/gateway/bot"
         ]
     },
     {
