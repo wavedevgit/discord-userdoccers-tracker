@@ -4794,7 +4794,7 @@
         ]
     },
     {
-        "title": "Update Guild Onboarding Responses",
+        "title": "Modify Guild Onboarding Responses",
         "method": "PUT",
         "url": "/guilds/{guild.id}/onboarding-responses",
         "urls": [
