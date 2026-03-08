@@ -7646,6 +7646,61 @@
         ]
     },
     {
+        "title": "Get Storefront Collection",
+        "method": "GET",
+        "url": "/storefront/collections/{collection.id}",
+        "urls": [
+            "/storefront/collections/{collection.id}"
+        ],
+        "urlEmpty": [
+            "/storefront/collections/:param"
+        ]
+    },
+    {
+        "title": "Get Storefront Product",
+        "method": "GET",
+        "url": "/storefront/products/{product.id}",
+        "urls": [
+            "/storefront/products/{product.id}"
+        ],
+        "urlEmpty": [
+            "/storefront/products/:param"
+        ]
+    },
+    {
+        "title": "Get Storefront Product By SKU ID",
+        "method": "GET",
+        "url": "/storefront/products/sku/{sku.id}",
+        "urls": [
+            "/storefront/products/sku/{sku.id}"
+        ],
+        "urlEmpty": [
+            "/storefront/products/sku/:param"
+        ]
+    },
+    {
+        "title": "Get Storefront Products By SKU ID",
+        "method": "GET",
+        "url": "/storefront/products/skus",
+        "urls": [
+            "/storefront/products/skus"
+        ],
+        "urlEmpty": [
+            "/storefront/products/skus"
+        ]
+    },
+    {
+        "title": "Get Storefront SKU Prices",
+        "method": "GET",
+        "url": "/storefront/skus/prices",
+        "urls": [
+            "/storefront/skus/prices"
+        ],
+        "urlEmpty": [
+            "/storefront/skus/prices"
+        ]
+    },
+    {
         "title": "Get Guild Application Storefront",
         "method": "GET",
         "url": "/partner-sdk/guilds/{guild.id}/application-storefront",
@@ -7753,6 +7808,17 @@
         ],
         "urlEmpty": [
             "/partner-sdk/guilds/:param/application-storefront/skus/:param/eligibility"
+        ]
+    },
+    {
+        "title": "Get Social Layer Storefront Config",
+        "method": "GET",
+        "url": "/partner-sdk/storefront-config",
+        "urls": [
+            "/partner-sdk/storefront-config"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/storefront-config"
         ]
     },
     {
