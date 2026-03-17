@@ -4176,24 +4176,24 @@ The effects of specific capabilities are documented in the [Gateway events](/gat
 
 Below is a list of all capabilities and a general description of their effects. For more information, see the documentation for the specific event or feature that is affected.
 
-| Value   | Name                                  | Description                                                                                                                                                                                                                                                                                                                                      |
-| ------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1 << 0  | LAZY_USER_NOTES                       | Removes the `notes` field from the [Ready](/gateway/gateway-events#ready) event                                                                                                                                                                                                                                                                  |
-| 1 << 1  | NO_AFFINE_USER_IDS                    | Prevents member/presence syncing and [Presence Update](/gateway/gateway-events#presence-update) events for [implicit relationships](/resources/relationships#relationship-object)                                                                                                                                                                |
-| 1 << 2  | VERSIONED_READ_STATES                 | Enables versioned read states, changing the `read_state` field in the [Ready](/gateway/gateway-events#ready) event to an object and allowing it to be cached when re-identifying                                                                                                                                                                 |
-| 1 << 3  | VERSIONED_USER_GUILD_SETTINGS         | Enables versioned user guild settings, changing the `user_guild_settings` field in the [Ready](/gateway/gateway-events#ready) event to an object and allowing it to be cached when re-identifying                                                                                                                                                |
-| 1 << 4  | DEDUPE_USER_OBJECTS                   | Dehydrates the [Ready](/gateway/gateway-events#ready) payload, moving all user objects to the `users` field and replacing them in various places in the payload with `user_id` or `recipient_id`, and merging the `members` fields of all guilds into a single `merged_members` field                                                            |
-| 1 << 5  | PRIORITIZED_READY_PAYLOAD ^1^         | Separates the [Ready](/gateway/gateway-events#ready) payload into two parts ([Ready](/gateway/gateway-events#ready) and [Ready Supplemental](/gateway/gateway-events#ready-supplemental)) allowing the client to receive the [Ready](/gateway/gateway-events#ready) payload faster and then receive the rest of the payload later                |
-| 1 << 6  | MULTIPLE_GUILD_EXPERIMENT_POPULATIONS | Changes the `populations` entry of [`guild_experiments`](/topics/experiments#guild-experiments) in the [Ready](/gateway/gateway-events#ready) event to be an array of populations rather than a single population                                                                                                                                |
-| 1 << 7  | NON_CHANNEL_READ_STATES               | Includes read states tied to non-channel resources (e.g. guild scheduled events and notification center) in the `read_states` field of the [Ready](/gateway/gateway-events#ready) event                                                                                                                                                          |
-| 1 << 8  | AUTH_TOKEN_REFRESH                    | Enables auth token refresh, allowing the client to optionally receive a new auth token in the `auth_token` field of the [Ready](/gateway/gateway-events#ready) event                                                                                                                                                                             |
-| 1 << 9  | USER_SETTINGS_PROTO                   | Removes the `user_settings` field from the [Ready](/gateway/gateway-events#ready) event and prevents [User Settings Update](/gateway/gateway-events#user-settings-update) events; the `user_settings_proto` field and [User Settings Proto Update](/gateway/gateway-events#user-settings-proto-update) event is used instead                     |
-| 1 << 10 | CLIENT_STATE_V2                       | Enables client state caching v2                                                                                                                                                                                                                                                                                                                  |
-| 1 << 11 | PASSIVE_GUILD_UPDATE                  | Enables passive guild updates, allowing the client to receive [Passive Update V1](/gateway/gateway-events#passive-update-v1) events instead of [Channel Unread Update](/gateway/gateway-events#channel-unread-update) and [Voice State Update](/gateway/gateway-events#voice-state-update) events for guilds it is not subscribed to             |
-| 1 << 12 | AUTO_CALL_CONNECT                     | Connects the client to all pre-existing calls upon connecting to the Gateway; this means clients will receive [Call Create](/gateway/gateway-events#call-create) events for all calls created before the Gateway connection was established without needing to send a [Request Call Connect](/gateway/gateway-events#request-call-connect) first |
-| 1 << 13 | DEBOUNCE_MESSAGE_REACTIONS            | Debounces message reaction events, preventing the client from receiving multiple [Message Reaction Add](/gateway/gateway-events#message-reaction-add) events for the same message within a short period of time; clients will receive a single [Message Reaction Add Many](/gateway/gateway-events#message-reaction-add-many) event instead      |
-| 1 << 14 | PASSIVE_GUILD_UPDATE_V2 ^2^           | Enables passive guild updates v2, allowing the client to receive [Passive Update V2](/gateway/gateway-events#passive-update-v2) events instead of [Channel Unread Update](/gateway/gateway-events#channel-unread-update) and [Voice State Update](/gateway/gateway-events#voice-state-update) events for guilds it is not subscribed to          |
-| 1 << 16 | AUTO_LOBBY_CONNECT                    | Adds a `lobbies` field to the [Ready](/gateway/gateway-events#ready) event containing pre-existing lobbies and stops streaming [Lobby Create](/gateway/gateway-events#lobby-create) events upon connecting to the Gateway                                                                                                                        |
+| Value     | Name                                  | Description                                                                                                                                                                                                                                                                                                                                      |
+| --------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1 \<\< 0  | LAZY_USER_NOTES                       | Removes the `notes` field from the [Ready](/gateway/gateway-events#ready) event                                                                                                                                                                                                                                                                  |
+| 1 \<\< 1  | NO_AFFINE_USER_IDS                    | Prevents member/presence syncing and [Presence Update](/gateway/gateway-events#presence-update) events for [implicit relationships](/resources/relationships#relationship-object)                                                                                                                                                                |
+| 1 \<\< 2  | VERSIONED_READ_STATES                 | Enables versioned read states, changing the `read_state` field in the [Ready](/gateway/gateway-events#ready) event to an object and allowing it to be cached when re-identifying                                                                                                                                                                 |
+| 1 \<\< 3  | VERSIONED_USER_GUILD_SETTINGS         | Enables versioned user guild settings, changing the `user_guild_settings` field in the [Ready](/gateway/gateway-events#ready) event to an object and allowing it to be cached when re-identifying                                                                                                                                                |
+| 1 \<\< 4  | DEDUPE_USER_OBJECTS                   | Dehydrates the [Ready](/gateway/gateway-events#ready) payload, moving all user objects to the `users` field and replacing them in various places in the payload with `user_id` or `recipient_id`, and merging the `members` fields of all guilds into a single `merged_members` field                                                            |
+| 1 \<\< 5  | PRIORITIZED_READY_PAYLOAD ^1^         | Separates the [Ready](/gateway/gateway-events#ready) payload into two parts ([Ready](/gateway/gateway-events#ready) and [Ready Supplemental](/gateway/gateway-events#ready-supplemental)) allowing the client to receive the [Ready](/gateway/gateway-events#ready) payload faster and then receive the rest of the payload later                |
+| 1 \<\< 6  | MULTIPLE_GUILD_EXPERIMENT_POPULATIONS | Changes the `populations` entry of [`guild_experiments`](/topics/experiments#guild-experiments) in the [Ready](/gateway/gateway-events#ready) event to be an array of populations rather than a single population                                                                                                                                |
+| 1 \<\< 7  | NON_CHANNEL_READ_STATES               | Includes read states tied to non-channel resources (e.g. guild scheduled events and notification center) in the `read_states` field of the [Ready](/gateway/gateway-events#ready) event                                                                                                                                                          |
+| 1 \<\< 8  | AUTH_TOKEN_REFRESH                    | Enables auth token refresh, allowing the client to optionally receive a new auth token in the `auth_token` field of the [Ready](/gateway/gateway-events#ready) event                                                                                                                                                                             |
+| 1 \<\< 9  | USER_SETTINGS_PROTO                   | Removes the `user_settings` field from the [Ready](/gateway/gateway-events#ready) event and prevents [User Settings Update](/gateway/gateway-events#user-settings-update) events; the `user_settings_proto` field and [User Settings Proto Update](/gateway/gateway-events#user-settings-proto-update) event is used instead                     |
+| 1 \<\< 10 | CLIENT_STATE_V2                       | Enables client state caching v2                                                                                                                                                                                                                                                                                                                  |
+| 1 \<\< 11 | PASSIVE_GUILD_UPDATE                  | Enables passive guild updates, allowing the client to receive [Passive Update V1](/gateway/gateway-events#passive-update-v1) events instead of [Channel Unread Update](/gateway/gateway-events#channel-unread-update) and [Voice State Update](/gateway/gateway-events#voice-state-update) events for guilds it is not subscribed to             |
+| 1 \<\< 12 | AUTO_CALL_CONNECT                     | Connects the client to all pre-existing calls upon connecting to the Gateway; this means clients will receive [Call Create](/gateway/gateway-events#call-create) events for all calls created before the Gateway connection was established without needing to send a [Request Call Connect](/gateway/gateway-events#request-call-connect) first |
+| 1 \<\< 13 | DEBOUNCE_MESSAGE_REACTIONS            | Debounces message reaction events, preventing the client from receiving multiple [Message Reaction Add](/gateway/gateway-events#message-reaction-add) events for the same message within a short period of time; clients will receive a single [Message Reaction Add Many](/gateway/gateway-events#message-reaction-add-many) event instead      |
+| 1 \<\< 14 | PASSIVE_GUILD_UPDATE_V2 ^2^           | Enables passive guild updates v2, allowing the client to receive [Passive Update V2](/gateway/gateway-events#passive-update-v2) events instead of [Channel Unread Update](/gateway/gateway-events#channel-unread-update) and [Voice State Update](/gateway/gateway-events#voice-state-update) events for guilds it is not subscribed to          |
+| 1 \<\< 16 | AUTO_LOBBY_CONNECT                    | Adds a `lobbies` field to the [Ready](/gateway/gateway-events#ready) event containing pre-existing lobbies and stops streaming [Lobby Create](/gateway/gateway-events#lobby-create) events upon connecting to the Gateway                                                                                                                        |
 
 ^1^ Requires `DEDUPE_USER_OBJECTS`. Without it, the capability will be ignored.
 
@@ -7884,48 +7884,48 @@ Further complicating things, some optional fields may be omitted if their value 
 
 ###### Application Flags
 
-| Value       | Name                                   | Description                                                                                                                                                 | Public  |
-| ----------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| 1 << 1      | EMBEDDED_RELEASED                      | Embedded application is released to the public (see also [release phases](#embedded-activity-release-phase))                                                | Yes     |
-| 1 << 2      | MANAGED_EMOJI                          | Application can create managed emoji                                                                                                                        | No      |
-| 1 << 3      | EMBEDDED_IAP                           | Embedded application can use in-app purchases                                                                                                               | Yes     |
-| 1 << 4      | GROUP_DM_CREATE                        | Application can create group DMs without limit                                                                                                              | No      |
-| 1 << 5      | RPC_PRIVATE_BETA                       | Application can use the `rpc` scope without limitation                                                                                                      | No      |
-| 1 << 6      | AUTO_MODERATION_RULE_CREATE_BADGE      | Application has created 100+ AutoMod rules                                                                                                                  | Yes     |
-| 1 << 7      | GAME_PROFILE_DISABLED                  | Application has its game profile page disabled                                                                                                              | Yes     |
-| 1 << 8      | PUBLIC_OAUTH2_CLIENT                   | Application's OAuth2 credentials are considered public and a client secret is not required                                                                  | No      |
-| 1 << 9      | CONTEXTLESS_ACTIVITY                   | Embedded application's activity can be launched without a context                                                                                           | Yes     |
-| 1 << 10     | SOCIAL_LAYER_INTEGRATION_LIMITED       | Application has limited access to the social layer SDK                                                                                                      | Yes     |
-| 1 << 11     | CLOUD_GAMING_DEMO                      | Application is trialing cloud gaming features                                                                                                               | No      |
-| 1 << 12     | GATEWAY_PRESENCE                       | Intent required for bots in **100 or more guilds** to receive [Presence Update](/gateway/gateway-events#presence-update) Gateway events                     | Yes     |
-| 1 << 13     | GATEWAY_PRESENCE_LIMITED               | Intent required for bots in **under 100 guilds** to receive [Presence Update](/gateway/gateway-events#presence-update) Gateway events                       | Yes     |
-| 1 << 14     | GATEWAY_GUILD_MEMBERS                  | Intent required for bots in **100 or more guilds** to receive guild member-related events like [Guild Member Add](/gateway/gateway-events#guild-member-add) | Yes     |
-| 1 << 15     | GATEWAY_GUILD_MEMBERS_LIMITED          | Intent required for bots in **under 100 guilds** to receive guild member-related events like [Guild Member Add](/gateway/gateway-events#guild-member-add)   | Yes     |
-| 1 << 16     | VERIFICATION_PENDING_GUILD_LIMIT       | Indicates unusual growth of an application that prevents verification                                                                                       | Yes     |
-| 1 << 17     | EMBEDDED                               | Application can be embedded within the Discord client                                                                                                       | Yes     |
-| 1 << 18     | GATEWAY_MESSAGE_CONTENT                | Intent required for bots in **100 or more guilds** to receive [message content](https://support-dev.discord.com/hc/en-us/articles/4404772028055)            | Yes     |
-| 1 << 19     | GATEWAY_MESSAGE_CONTENT_LIMITED        | Intent required for bots in **under 100 guilds** to receive [message content](https://support-dev.discord.com/hc/en-us/articles/4404772028055)              | Yes     |
-| 1 << 20     | EMBEDDED_FIRST_PARTY                   | Embedded application is created by Discord                                                                                                                  | Yes     |
-| 1 << 21     | APPLICATION_COMMAND_MIGRATED           | Unknown                                                                                                                                                     | Yes     |
-| 1 << 23     | APPLICATION_COMMAND_BADGE              | Application has registered global application commands                                                                                                      | Yes     |
-| 1 << 24     | ACTIVE                                 | Application has had at least one global application command used in the last 30 days                                                                        | No      |
-| 1 << 25     | ACTIVE_GRACE_PERIOD                    | Application has not had any global application commands used in the last 30 days and has lost the `ACTIVE` flag                                             | No      |
-| 1 << 26     | IFRAME_MODAL                           | Application can use IFrames within modals                                                                                                                   | Yes     |
-| 1 << 27     | SOCIAL_LAYER_INTEGRATION               | Application can use the social layer SDK                                                                                                                    | Yes     |
-| 1 << 29     | PROMOTED                               | Application is promoted by Discord in the application directory                                                                                             | Yes     |
-| 1 << 30     | PARTNER                                | Application is a Discord partner                                                                                                                            | Yes     |
-| 1 << 33     | PARENT                                 | Application is a parent of a child application                                                                                                              | Yes     |
-| 1 << 34     | DISABLE_RELATIONSHIP_ACCESS            | Application cannot access relationship information                                                                                                          | Yes     |
-| ~~1 << 8~~  | ~~ALLOW_ASSETS~~                       | ~~Application can use activity assets~~                                                                                                                     | ~~No~~  |
-| ~~1 << 9~~  | ~~ALLOW_ACTIVITY_ACTION_SPECTATE~~     | ~~Application can enable spectating activities~~                                                                                                            | ~~No~~  |
-| ~~1 << 10~~ | ~~ALLOW_ACTIVITY_ACTION_JOIN_REQUEST~~ | ~~Application can enable activity join requests~~                                                                                                           | ~~No~~  |
-| ~~1 << 11~~ | ~~RPC_HAS_CONNECTED~~                  | ~~Application has accessed the client RPC server before~~                                                                                                   | ~~Yes~~ |
+| Value         | Name                                   | Description                                                                                                                                                 | Public  |
+| ------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| 1 \<\< 1      | EMBEDDED_RELEASED                      | Embedded application is released to the public (see also [release phases](#embedded-activity-release-phase))                                                | Yes     |
+| 1 \<\< 2      | MANAGED_EMOJI                          | Application can create managed emoji                                                                                                                        | No      |
+| 1 \<\< 3      | EMBEDDED_IAP                           | Embedded application can use in-app purchases                                                                                                               | Yes     |
+| 1 \<\< 4      | GROUP_DM_CREATE                        | Application can create group DMs without limit                                                                                                              | No      |
+| 1 \<\< 5      | RPC_PRIVATE_BETA                       | Application can use the `rpc` scope without limitation                                                                                                      | No      |
+| 1 \<\< 6      | AUTO_MODERATION_RULE_CREATE_BADGE      | Application has created 100+ AutoMod rules                                                                                                                  | Yes     |
+| 1 \<\< 7      | GAME_PROFILE_DISABLED                  | Application has its game profile page disabled                                                                                                              | Yes     |
+| 1 \<\< 8      | PUBLIC_OAUTH2_CLIENT                   | Application's OAuth2 credentials are considered public and a client secret is not required                                                                  | No      |
+| 1 \<\< 9      | CONTEXTLESS_ACTIVITY                   | Embedded application's activity can be launched without a context                                                                                           | Yes     |
+| 1 \<\< 10     | SOCIAL_LAYER_INTEGRATION_LIMITED       | Application has limited access to the social layer SDK                                                                                                      | Yes     |
+| 1 \<\< 11     | CLOUD_GAMING_DEMO                      | Application is trialing cloud gaming features                                                                                                               | No      |
+| 1 \<\< 12     | GATEWAY_PRESENCE                       | Intent required for bots in **100 or more guilds** to receive [Presence Update](/gateway/gateway-events#presence-update) Gateway events                     | Yes     |
+| 1 \<\< 13     | GATEWAY_PRESENCE_LIMITED               | Intent required for bots in **under 100 guilds** to receive [Presence Update](/gateway/gateway-events#presence-update) Gateway events                       | Yes     |
+| 1 \<\< 14     | GATEWAY_GUILD_MEMBERS                  | Intent required for bots in **100 or more guilds** to receive guild member-related events like [Guild Member Add](/gateway/gateway-events#guild-member-add) | Yes     |
+| 1 \<\< 15     | GATEWAY_GUILD_MEMBERS_LIMITED          | Intent required for bots in **under 100 guilds** to receive guild member-related events like [Guild Member Add](/gateway/gateway-events#guild-member-add)   | Yes     |
+| 1 \<\< 16     | VERIFICATION_PENDING_GUILD_LIMIT       | Indicates unusual growth of an application that prevents verification                                                                                       | Yes     |
+| 1 \<\< 17     | EMBEDDED                               | Application can be embedded within the Discord client                                                                                                       | Yes     |
+| 1 \<\< 18     | GATEWAY_MESSAGE_CONTENT                | Intent required for bots in **100 or more guilds** to receive [message content](https://support-dev.discord.com/hc/en-us/articles/4404772028055)            | Yes     |
+| 1 \<\< 19     | GATEWAY_MESSAGE_CONTENT_LIMITED        | Intent required for bots in **under 100 guilds** to receive [message content](https://support-dev.discord.com/hc/en-us/articles/4404772028055)              | Yes     |
+| 1 \<\< 20     | EMBEDDED_FIRST_PARTY                   | Embedded application is created by Discord                                                                                                                  | Yes     |
+| 1 \<\< 21     | APPLICATION_COMMAND_MIGRATED           | Unknown                                                                                                                                                     | Yes     |
+| 1 \<\< 23     | APPLICATION_COMMAND_BADGE              | Application has registered global application commands                                                                                                      | Yes     |
+| 1 \<\< 24     | ACTIVE                                 | Application has had at least one global application command used in the last 30 days                                                                        | No      |
+| 1 \<\< 25     | ACTIVE_GRACE_PERIOD                    | Application has not had any global application commands used in the last 30 days and has lost the `ACTIVE` flag                                             | No      |
+| 1 \<\< 26     | IFRAME_MODAL                           | Application can use IFrames within modals                                                                                                                   | Yes     |
+| 1 \<\< 27     | SOCIAL_LAYER_INTEGRATION               | Application can use the social layer SDK                                                                                                                    | Yes     |
+| 1 \<\< 29     | PROMOTED                               | Application is promoted by Discord in the application directory                                                                                             | Yes     |
+| 1 \<\< 30     | PARTNER                                | Application is a Discord partner                                                                                                                            | Yes     |
+| 1 \<\< 33     | PARENT                                 | Application is a parent of a child application                                                                                                              | Yes     |
+| 1 \<\< 34     | DISABLE_RELATIONSHIP_ACCESS            | Application cannot access relationship information                                                                                                          | Yes     |
+| ~~1 \<\< 8~~  | ~~ALLOW_ASSETS~~                       | ~~Application can use activity assets~~                                                                                                                     | ~~No~~  |
+| ~~1 \<\< 9~~  | ~~ALLOW_ACTIVITY_ACTION_SPECTATE~~     | ~~Application can enable spectating activities~~                                                                                                            | ~~No~~  |
+| ~~1 \<\< 10~~ | ~~ALLOW_ACTIVITY_ACTION_JOIN_REQUEST~~ | ~~Application can enable activity join requests~~                                                                                                           | ~~No~~  |
+| ~~1 \<\< 11~~ | ~~RPC_HAS_CONNECTED~~                  | ~~Application has accessed the client RPC server before~~                                                                                                   | ~~Yes~~ |
 
 ###### Overlay Method Flags
 
-| Value  | Name           | Description                            |
-| ------ | -------------- | -------------------------------------- |
-| 1 << 0 | OUT_OF_PROCESS | Overlay can be rendered out of process |
+| Value    | Name           | Description                            |
+| -------- | -------------- | -------------------------------------- |
+| 1 \<\< 0 | OUT_OF_PROCESS | Overlay can be rendered out of process |
 
 ###### Internal Guild Restriction
 
@@ -8016,24 +8016,24 @@ Further complicating things, some optional fields may be omitted if their value 
 
 ###### Application Discovery Eligibility Flags
 
-| Value   | Name                    | Description                                                                                                                                                                 |
-| ------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1 << 0  | VERIFIED                | Application is verified                                                                                                                                                     |
-| 1 << 1  | TAG                     | Application has at least one tag set                                                                                                                                        |
-| 1 << 2  | DESCRIPTION             | Application has a description                                                                                                                                               |
-| 1 << 3  | TERMS_OF_SERVICE        | Application has terms of service set                                                                                                                                        |
-| 1 << 4  | PRIVACY_POLICY          | Application has a privacy policy set                                                                                                                                        |
-| 1 << 5  | INSTALL_PARAMS          | Application has a custom install URL or install parameters                                                                                                                  |
-| 1 << 6  | SAFE_NAME               | Application's name is safe for work                                                                                                                                         |
-| 1 << 7  | SAFE_DESCRIPTION        | Application's description is safe for work                                                                                                                                  |
-| 1 << 8  | APPROVED_COMMANDS       | Application has the [message content intent](/gateway/using-gateway#message-content-intent) approved or utilizes [application commands](/interactions/application-commands) |
-| 1 << 9  | SUPPORT_GUILD           | Application has a support guild set                                                                                                                                         |
-| 1 << 10 | SAFE_COMMANDS           | Application's commands are safe for work                                                                                                                                    |
-| 1 << 11 | MFA                     | Application's owner has MFA enabled                                                                                                                                         |
-| 1 << 12 | SAFE_DIRECTORY_OVERVIEW | Application's directory long description is safe for work                                                                                                                   |
-| 1 << 13 | SUPPORTED_LOCALES       | Application has at least one supported locale set                                                                                                                           |
-| 1 << 14 | SAFE_SHORT_DESCRIPTION  | Application's directory short description is safe for work                                                                                                                  |
-| 1 << 15 | SAFE_ROLE_CONNECTIONS   | Application's role connections metadata is safe for work                                                                                                                    |
+| Value     | Name                    | Description                                                                                                                                                                 |
+| --------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 \<\< 0  | VERIFIED                | Application is verified                                                                                                                                                     |
+| 1 \<\< 1  | TAG                     | Application has at least one tag set                                                                                                                                        |
+| 1 \<\< 2  | DESCRIPTION             | Application has a description                                                                                                                                               |
+| 1 \<\< 3  | TERMS_OF_SERVICE        | Application has terms of service set                                                                                                                                        |
+| 1 \<\< 4  | PRIVACY_POLICY          | Application has a privacy policy set                                                                                                                                        |
+| 1 \<\< 5  | INSTALL_PARAMS          | Application has a custom install URL or install parameters                                                                                                                  |
+| 1 \<\< 6  | SAFE_NAME               | Application's name is safe for work                                                                                                                                         |
+| 1 \<\< 7  | SAFE_DESCRIPTION        | Application's description is safe for work                                                                                                                                  |
+| 1 \<\< 8  | APPROVED_COMMANDS       | Application has the [message content intent](/gateway/using-gateway#message-content-intent) approved or utilizes [application commands](/interactions/application-commands) |
+| 1 \<\< 9  | SUPPORT_GUILD           | Application has a support guild set                                                                                                                                         |
+| 1 \<\< 10 | SAFE_COMMANDS           | Application's commands are safe for work                                                                                                                                    |
+| 1 \<\< 11 | MFA                     | Application's owner has MFA enabled                                                                                                                                         |
+| 1 \<\< 12 | SAFE_DIRECTORY_OVERVIEW | Application's directory long description is safe for work                                                                                                                   |
+| 1 \<\< 13 | SUPPORTED_LOCALES       | Application has at least one supported locale set                                                                                                                           |
+| 1 \<\< 14 | SAFE_SHORT_DESCRIPTION  | Application's directory short description is safe for work                                                                                                                  |
+| 1 \<\< 15 | SAFE_ROLE_CONNECTIONS   | Application's role connections metadata is safe for work                                                                                                                    |
 
 ###### Application Monetization State
 
@@ -8049,27 +8049,27 @@ The values of this enum are currently unknown. Help us by figuring them out and 
 
 ###### Application Monetization Eligibility Flags
 
-| Value   | Name                        | Description                                                                                                                                                                 |
-| ------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1 << 0  | VERIFIED                    | Application is verified                                                                                                                                                     |
-| 1 << 1  | HAS_TEAM                    | Application is owned by a team                                                                                                                                              |
-| 1 << 2  | APPROVED_COMMANDS           | Application has the [message content intent](/gateway/using-gateway#message-content-intent) approved or utilizes [application commands](/interactions/application-commands) |
-| 1 << 3  | TERMS_OF_SERVICE            | Application has terms of service set                                                                                                                                        |
-| 1 << 4  | PRIVACY_POLICY              | Application has a privacy policy set                                                                                                                                        |
-| 1 << 5  | SAFE_NAME                   | Application's name is safe for work                                                                                                                                         |
-| 1 << 6  | SAFE_DESCRIPTION            | Application's description is safe for work                                                                                                                                  |
-| 1 << 7  | SAFE_ROLE_CONNECTIONS       | Application's role connections metadata is safe for work                                                                                                                    |
-| 1 << 8  | USER_IS_TEAM_OWNER          | User is the owner of the team that owns the application                                                                                                                     |
-| 1 << 9  | NOT_QUARANTINED             | Application is not quarantined                                                                                                                                              |
-| 1 << 10 | USER_LOCALE_SUPPORTED       | User's locale is supported by monetization                                                                                                                                  |
-| 1 << 11 | USER_AGE_SUPPORTED          | User is old enough to use monetization                                                                                                                                      |
-| 1 << 12 | USER_DATE_OF_BIRTH_DEFINED  | User has a date of birth defined on their account                                                                                                                           |
-| 1 << 13 | USER_MFA_ENABLED            | User has MFA enabled                                                                                                                                                        |
-| 1 << 14 | USER_EMAIL_VERIFIED         | User's email is verified                                                                                                                                                    |
-| 1 << 15 | TEAM_MEMBERS_EMAIL_VERIFIED | All members of the team that owns the application have verified emails                                                                                                      |
-| 1 << 16 | TEAM_MEMBERS_MFA_ENABLED    | All members of the team that owns the application have MFA enabled                                                                                                          |
-| 1 << 17 | NO_BLOCKING_ISSUES          | This application has no issues blocking monetization                                                                                                                        |
-| 1 << 18 | VALID_PAYOUT_STATUS         | Owning team has a valid payout status                                                                                                                                       |
+| Value     | Name                        | Description                                                                                                                                                                 |
+| --------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 \<\< 0  | VERIFIED                    | Application is verified                                                                                                                                                     |
+| 1 \<\< 1  | HAS_TEAM                    | Application is owned by a team                                                                                                                                              |
+| 1 \<\< 2  | APPROVED_COMMANDS           | Application has the [message content intent](/gateway/using-gateway#message-content-intent) approved or utilizes [application commands](/interactions/application-commands) |
+| 1 \<\< 3  | TERMS_OF_SERVICE            | Application has terms of service set                                                                                                                                        |
+| 1 \<\< 4  | PRIVACY_POLICY              | Application has a privacy policy set                                                                                                                                        |
+| 1 \<\< 5  | SAFE_NAME                   | Application's name is safe for work                                                                                                                                         |
+| 1 \<\< 6  | SAFE_DESCRIPTION            | Application's description is safe for work                                                                                                                                  |
+| 1 \<\< 7  | SAFE_ROLE_CONNECTIONS       | Application's role connections metadata is safe for work                                                                                                                    |
+| 1 \<\< 8  | USER_IS_TEAM_OWNER          | User is the owner of the team that owns the application                                                                                                                     |
+| 1 \<\< 9  | NOT_QUARANTINED             | Application is not quarantined                                                                                                                                              |
+| 1 \<\< 10 | USER_LOCALE_SUPPORTED       | User's locale is supported by monetization                                                                                                                                  |
+| 1 \<\< 11 | USER_AGE_SUPPORTED          | User is old enough to use monetization                                                                                                                                      |
+| 1 \<\< 12 | USER_DATE_OF_BIRTH_DEFINED  | User has a date of birth defined on their account                                                                                                                           |
+| 1 \<\< 13 | USER_MFA_ENABLED            | User has MFA enabled                                                                                                                                                        |
+| 1 \<\< 14 | USER_EMAIL_VERIFIED         | User's email is verified                                                                                                                                                    |
+| 1 \<\< 15 | TEAM_MEMBERS_EMAIL_VERIFIED | All members of the team that owns the application have verified emails                                                                                                      |
+| 1 \<\< 16 | TEAM_MEMBERS_MFA_ENABLED    | All members of the team that owns the application have MFA enabled                                                                                                          |
+| 1 \<\< 17 | NO_BLOCKING_ISSUES          | This application has no issues blocking monetization                                                                                                                        |
+| 1 \<\< 18 | VALID_PAYOUT_STATUS         | Owning team has a valid payout status                                                                                                                                       |
 
 ###### Pricing Localization Strategy
 
@@ -11083,10 +11083,10 @@ Discord supports a variety of payment providers to enable billing for first-part
 
 ###### Payment Source Flags
 
-| Value  | Name               | Description                                             |
-| ------ | ------------------ | ------------------------------------------------------- |
-| 1 << 0 | NEW                | Payment source is new                                   |
-| 1 << 1 | SUCCESSFUL_PAYMENT | Payment source has been successfully used at least once |
+| Value    | Name               | Description                                             |
+| -------- | ------------------ | ------------------------------------------------------- |
+| 1 \<\< 0 | NEW                | Payment source is new                                   |
+| 1 \<\< 1 | SUCCESSFUL_PAYMENT | Payment source has been successfully used at least once |
 
 ### Gateway Checkout Context Object
 
@@ -11675,25 +11675,25 @@ Type `10`, `11` and `12` are only available in API v9 and above.
 
 ###### Channel Flags
 
-| Value       | Name                                          | Description                                                                                                                                                |
-| ----------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1 << 0      | GUILD_FEED_REMOVED                            | Guild channel is hidden from the guild's feed                                                                                                              |
-| 1 << 1      | PINNED                                        | Thread is pinned to the top of its parent thread-only channel                                                                                              |
-| 1 << 2      | ACTIVE_CHANNELS_REMOVED                       | Guild channel has been removed from the guild's active channels                                                                                            |
-| 1 << 4      | REQUIRE_TAG                                   | Thread-only channel requires a tag to create threads in                                                                                                    |
-| 1 << 5      | IS_SPAM                                       | Channel is marked as spam                                                                                                                                  |
-| 1 << 7      | IS_GUILD_RESOURCE_CHANNEL                     | Guild channel is used as a read-only resource for onboarding and is not shown in the channel list                                                          |
-| 1 << 8      | CLYDE_AI                                      | Channel is created by Clyde AI, which has full access to all message content                                                                               |
-| 1 << 9      | IS_SCHEDULED_FOR_DELETION                     | Guild channel is scheduled for deletion and is not shown in the UI                                                                                         |
-| ~~1 << 10~~ | ~~IS_MEDIA_CHANNEL~~ ^1^                      | ~~Forum channel is a media channel~~                                                                                                                       |
-| 1 << 11     | SUMMARIES_DISABLED                            | Guild channel has summaries disabled                                                                                                                       |
-| ~~1 << 12~~ | ~~APPLICATION_SHELF_CONSENT~~                 | ~~Private channel's recipients consented to the application shelf~~                                                                                        |
-| 1 << 13     | IS_ROLE_SUBSCRIPTION_TEMPLATE_PREVIEW_CHANNEL | Role subscription tier for this guild channel has not been published yet                                                                                   |
-| 1 << 14     | IS_BROADCASTING                               | Group DM is used for broadcasting a live stream                                                                                                            |
-| 1 << 15     | HIDE_MEDIA_DOWNLOAD_OPTIONS                   | Media channel has the embedded download options hidden for media attachments                                                                               |
-| 1 << 16     | IS_JOIN_REQUEST_INTERVIEW_CHANNEL             | Group DM is used for [guild join request interviews](https://support.discord.com/hc/en-us/articles/23187611406999-Guilds-FAQ#h_01HXW2MCD0BT70FB9SRV1YRPBV) |
-| 1 << 17     | OBFUSCATED ^2^                                | User does not have permission to view the channel                                                                                                          |
-| 1 << 19     | IS_MODERATOR_REPORT_CHANNEL                   | Forum channel is the guild's moderator queue                                                                                                               |
+| Value         | Name                                          | Description                                                                                                                                                |
+| ------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 \<\< 0      | GUILD_FEED_REMOVED                            | Guild channel is hidden from the guild's feed                                                                                                              |
+| 1 \<\< 1      | PINNED                                        | Thread is pinned to the top of its parent thread-only channel                                                                                              |
+| 1 \<\< 2      | ACTIVE_CHANNELS_REMOVED                       | Guild channel has been removed from the guild's active channels                                                                                            |
+| 1 \<\< 4      | REQUIRE_TAG                                   | Thread-only channel requires a tag to create threads in                                                                                                    |
+| 1 \<\< 5      | IS_SPAM                                       | Channel is marked as spam                                                                                                                                  |
+| 1 \<\< 7      | IS_GUILD_RESOURCE_CHANNEL                     | Guild channel is used as a read-only resource for onboarding and is not shown in the channel list                                                          |
+| 1 \<\< 8      | CLYDE_AI                                      | Channel is created by Clyde AI, which has full access to all message content                                                                               |
+| 1 \<\< 9      | IS_SCHEDULED_FOR_DELETION                     | Guild channel is scheduled for deletion and is not shown in the UI                                                                                         |
+| ~~1 \<\< 10~~ | ~~IS_MEDIA_CHANNEL~~ ^1^                      | ~~Forum channel is a media channel~~                                                                                                                       |
+| 1 \<\< 11     | SUMMARIES_DISABLED                            | Guild channel has summaries disabled                                                                                                                       |
+| ~~1 \<\< 12~~ | ~~APPLICATION_SHELF_CONSENT~~                 | ~~Private channel's recipients consented to the application shelf~~                                                                                        |
+| 1 \<\< 13     | IS_ROLE_SUBSCRIPTION_TEMPLATE_PREVIEW_CHANNEL | Role subscription tier for this guild channel has not been published yet                                                                                   |
+| 1 \<\< 14     | IS_BROADCASTING                               | Group DM is used for broadcasting a live stream                                                                                                            |
+| 1 \<\< 15     | HIDE_MEDIA_DOWNLOAD_OPTIONS                   | Media channel has the embedded download options hidden for media attachments                                                                               |
+| 1 \<\< 16     | IS_JOIN_REQUEST_INTERVIEW_CHANNEL             | Group DM is used for [guild join request interviews](https://support.discord.com/hc/en-us/articles/23187611406999-Guilds-FAQ#h_01HXW2MCD0BT70FB9SRV1YRPBV) |
+| 1 \<\< 17     | OBFUSCATED ^2^                                | User does not have permission to view the channel                                                                                                          |
+| 1 \<\< 19     | IS_MODERATOR_REPORT_CHANNEL                   | Forum channel is the guild's moderator queue                                                                                                               |
 
 ^1^ Media channels are now represented by the [`GUILD_MEDIA` channel type](#channel-type).
 
@@ -11701,9 +11701,9 @@ Type `10`, `11` and `12` are only available in API v9 and above.
 
 ###### Recipient Flags
 
-| Value  | Name                          | Description                                                                                                 |
-| ------ | ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| 1 << 0 | DISMISSED_IN_GAME_MESSAGE_NUX | User has dismissed the [`IN_GAME_MESSAGE_NUX` message](/resources/message#message-type) for this DM channel |
+| Value    | Name                          | Description                                                                                                 |
+| -------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| 1 \<\< 0 | DISMISSED_IN_GAME_MESSAGE_NUX | User has dismissed the [`IN_GAME_MESSAGE_NUX` message](/resources/message#message-type) for this DM channel |
 
 ###### Video Quality Mode
 
@@ -12108,12 +12108,12 @@ A thread member object contains information about a user that has joined a threa
 
 ###### Thread Member Flags
 
-| Value  | Name           | Description                                                      |
-| ------ | -------------- | ---------------------------------------------------------------- |
-| 1 << 0 | HAS_INTERACTED | User has interacted with the thread                              |
-| 1 << 1 | ALL_MESSAGES   | User receives notifications for all messages                     |
-| 1 << 2 | ONLY_MENTIONS  | User receives notifications only for messages that @mention them |
-| 1 << 3 | NO_MESSAGES    | User does not receive any notifications                          |
+| Value    | Name           | Description                                                      |
+| -------- | -------------- | ---------------------------------------------------------------- |
+| 1 \<\< 0 | HAS_INTERACTED | User has interacted with the thread                              |
+| 1 \<\< 1 | ALL_MESSAGES   | User receives notifications for all messages                     |
+| 1 \<\< 2 | ONLY_MENTIONS  | User receives notifications only for messages that @mention them |
+| 1 \<\< 3 | NO_MESSAGES    | User does not receive any notifications                          |
 
 ### Default Reaction Object
 
@@ -17378,12 +17378,12 @@ A gift from one user to another, which can be redeemed for an entitlement.
 
 ###### Gift Code Flags
 
-| Value  | Name                             | Description                                                          |
-| ------ | -------------------------------- | -------------------------------------------------------------------- |
-| 1 << 0 | PAYMENT_SOURCE_REQUIRED          | Gift requires a payment source to redeem                             |
-| 1 << 1 | EXISTING_SUBSCRIPTION_DISALLOWED | Gift cannot be redeemed by users with existing premium subscriptions |
-| 1 << 2 | NOT_SELF_REDEEMABLE              | Gift cannot be redeemed by the gifter                                |
-| 1 << 3 | PROMOTION                        | Gift is from a promotion                                             |
+| Value    | Name                             | Description                                                          |
+| -------- | -------------------------------- | -------------------------------------------------------------------- |
+| 1 \<\< 0 | PAYMENT_SOURCE_REQUIRED          | Gift requires a payment source to redeem                             |
+| 1 \<\< 1 | EXISTING_SUBSCRIPTION_DISALLOWED | Gift cannot be redeemed by users with existing premium subscriptions |
+| 1 \<\< 2 | NOT_SELF_REDEEMABLE              | Gift cannot be redeemed by the gifter                                |
+| 1 \<\< 3 | PROMOTION                        | Gift is from a promotion                                             |
 
 ###### Gift Style
 
@@ -19683,16 +19683,16 @@ Guilds in Discord represent an isolated collection of users and channels, and ar
 
 ###### System Channel Flags
 
-| Value  | Name                                                     | Description                                                   |
-| ------ | -------------------------------------------------------- | ------------------------------------------------------------- |
-| 1 << 0 | SUPPRESS_JOIN_NOTIFICATIONS                              | Suppress member join notifications                            |
-| 1 << 1 | SUPPRESS_PREMIUM_SUBSCRIPTIONS                           | Suppress premium subscription (boost) notifications           |
-| 1 << 2 | SUPPRESS_GUILD_REMINDER_NOTIFICATIONS                    | Suppress guild setup tips                                     |
-| 1 << 3 | SUPPRESS_JOIN_NOTIFICATION_REPLIES                       | Hide member join sticker reply buttons                        |
-| 1 << 4 | SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATIONS        | Suppress role subscription purchase and renewal notifications |
-| 1 << 5 | SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATION_REPLIES | Hide role subscription sticker reply buttons                  |
-| 1 << 7 | SUPPRESS_CHANNEL_PROMPT_DEADCHAT                         | Suppress dead chat channel prompts                            |
-| 1 << 8 | SUPPRESS_UGC_ADDED_NOTIFICATIONS                         | Suppress emoji created notifications                          |
+| Value    | Name                                                     | Description                                                   |
+| -------- | -------------------------------------------------------- | ------------------------------------------------------------- |
+| 1 \<\< 0 | SUPPRESS_JOIN_NOTIFICATIONS                              | Suppress member join notifications                            |
+| 1 \<\< 1 | SUPPRESS_PREMIUM_SUBSCRIPTIONS                           | Suppress premium subscription (boost) notifications           |
+| 1 \<\< 2 | SUPPRESS_GUILD_REMINDER_NOTIFICATIONS                    | Suppress guild setup tips                                     |
+| 1 \<\< 3 | SUPPRESS_JOIN_NOTIFICATION_REPLIES                       | Hide member join sticker reply buttons                        |
+| 1 \<\< 4 | SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATIONS        | Suppress role subscription purchase and renewal notifications |
+| 1 \<\< 5 | SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATION_REPLIES | Hide role subscription sticker reply buttons                  |
+| 1 \<\< 7 | SUPPRESS_CHANNEL_PROMPT_DEADCHAT                         | Suppress dead chat channel prompts                            |
+| 1 \<\< 8 | SUPPRESS_UGC_ADDED_NOTIFICATIONS                         | Suppress emoji created notifications                          |
 
 ###### Privacy Level
 
@@ -20244,9 +20244,9 @@ Tags with type `null` represent booleans. They will be present and set to `null`
 
 ###### Role Flags
 
-| Value  | Name      | Description                                                                        |
-| ------ | --------- | ---------------------------------------------------------------------------------- |
-| 1 << 0 | IN_PROMPT | Role is part of an [onboarding prompt option](#onboarding-prompt-option-structure) |
+| Value    | Name      | Description                                                                        |
+| -------- | --------- | ---------------------------------------------------------------------------------- |
+| 1 \<\< 0 | IN_PROMPT | Role is part of an [onboarding prompt option](#onboarding-prompt-option-structure) |
 
 ###### Example Role
 
@@ -20393,19 +20393,19 @@ A participating user in a [guild](#guild-object).
 
 ###### Guild Member Flags
 
-| Value      | Name                              | Description                                                                                                                                                       |
-| ---------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1 << 0     | DID_REJOIN                        | Guild member has left and rejoined the guild                                                                                                                      |
-| 1 << 1     | COMPLETED_ONBOARDING              | Guild member has completed onboarding                                                                                                                             |
-| 1 << 2     | BYPASSES_VERIFICATION ^1^         | Guild member bypasses guild verification requirements and [member verification](#member-verification-object)                                                      |
-| 1 << 3     | STARTED_ONBOARDING                | Guild member has started onboarding                                                                                                                               |
-| 1 << 4     | IS_GUEST                          | Guild member is a [guest](/resources/invite#guest-invites) and not a true member                                                                                  |
-| 1 << 5     | STARTED_HOME_ACTIONS              | Guild member has started the new member actions in the server guide                                                                                               |
-| 1 << 6     | COMPLETED_HOME_ACTIONS            | Guild member has completed all of the new member actions in the server guide                                                                                      |
-| 1 << 7     | AUTOMOD_QUARANTINED_NAME ^2^      | Guild member has been indefinitely quarantined by [an AutoMod Rule](/resources/auto-moderation#automod-rule-object) for their username, display name, or nickname |
-| ~~1 << 8~~ | ~~AUTOMOD_QUARANTINED_BIO ^2^~~   | ~~Guild member has been indefinitely quarantined by [an AutoMod Rule](/resources/auto-moderation#automod-rule-object) for their bio~~                             |
-| 1 << 9     | DM_SETTINGS_UPSELL_ACKNOWLEDGED   | Guild member has acknowledged the DM privacy settings upsell modal                                                                                                |
-| 1 << 10    | AUTOMOD_QUARANTINED_GUILD_TAG ^2^ | Guild member has been indefinitely quarantined by [an AutoMod Rule](/resources/auto-moderation#automod-rule-object) for their primary guild tag                   |
+| Value        | Name                              | Description                                                                                                                                                       |
+| ------------ | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 \<\< 0     | DID_REJOIN                        | Guild member has left and rejoined the guild                                                                                                                      |
+| 1 \<\< 1     | COMPLETED_ONBOARDING              | Guild member has completed onboarding                                                                                                                             |
+| 1 \<\< 2     | BYPASSES_VERIFICATION ^1^         | Guild member bypasses guild verification requirements and [member verification](#member-verification-object)                                                      |
+| 1 \<\< 3     | STARTED_ONBOARDING                | Guild member has started onboarding                                                                                                                               |
+| 1 \<\< 4     | IS_GUEST                          | Guild member is a [guest](/resources/invite#guest-invites) and not a true member                                                                                  |
+| 1 \<\< 5     | STARTED_HOME_ACTIONS              | Guild member has started the new member actions in the server guide                                                                                               |
+| 1 \<\< 6     | COMPLETED_HOME_ACTIONS            | Guild member has completed all of the new member actions in the server guide                                                                                      |
+| 1 \<\< 7     | AUTOMOD_QUARANTINED_NAME ^2^      | Guild member has been indefinitely quarantined by [an AutoMod Rule](/resources/auto-moderation#automod-rule-object) for their username, display name, or nickname |
+| ~~1 \<\< 8~~ | ~~AUTOMOD_QUARANTINED_BIO ^2^~~   | ~~Guild member has been indefinitely quarantined by [an AutoMod Rule](/resources/auto-moderation#automod-rule-object) for their bio~~                             |
+| 1 \<\< 9     | DM_SETTINGS_UPSELL_ACKNOWLEDGED   | Guild member has acknowledged the DM privacy settings upsell modal                                                                                                |
+| 1 \<\< 10    | AUTOMOD_QUARANTINED_GUILD_TAG ^2^ | Guild member has been indefinitely quarantined by [an AutoMod Rule](/resources/auto-moderation#automod-rule-object) for their primary guild tag                   |
 
 ^1^ Allows a member who does not meet verification requirements to participate in the guild, and forces the [member's `pending` status](#guild-member-object) to be `false`. Removing this flag does not make the member pending again, but subjects them to the verification requirements again.
 
@@ -21741,7 +21741,7 @@ Modifies the current user's member in the guild. Returns the updated private [gu
 | ------------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | nick?                     | ?string                                         | The guild-specific nickname of the member (1-32 characters)                                                                                        | `CHANGE_NICKNAME` |
 | avatar?                   | ?[image data](/reference#cdn-data)              | The member's guild avatar; can only be changed for premium users and bots                                                                          |
-| avatar_description?       | ?string                                         | The description of the new guild avatar, usually in the format "{filename}, added {date}" (max 1024 characters)                                    |
+| avatar_description?       | ?string                                         | The description of the new guild avatar, usually in the format "\{filename\}, added \{date\}" (max 1024 characters)                                |
 | avatar_id?                | string                                          | The ID of the recent avatar to use                                                                                                                 |
 | avatar_decoration_id?     | ?snowflake                                      | The ID of the member's guild avatar decoration; can only be changed for premium users                                                              |
 | avatar_decoration_sku_id? | ?snowflake                                      | The SKU ID of the member's guild avatar decoration; can only be changed for premium users                                                          |
@@ -23352,12 +23352,12 @@ They are also not deletable through [Delete Invite](#delete-invite).
 
 ###### Invite Flags
 
-| Value  | Name                  | Description                                                                                                                                             |
-| ------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1 << 0 | IS_GUEST_INVITE       | Invite grants one-time access to a voice channel in the guild                                                                                           |
-| 1 << 1 | IS_VIEWED             | Invite has been viewed by any user (has been retrieved using [Get Invite](#get-invite))                                                                 |
-| 1 << 2 | IS_ENHANCED           | Unknown                                                                                                                                                 |
-| 1 << 3 | IS_APPLICATION_BYPASS | Invite bypasses [guild join requests](/resources/guild#guild-join-request-object) and adds the user directly to the guild with `pending` set to `false` |
+| Value    | Name                  | Description                                                                                                                                             |
+| -------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 \<\< 0 | IS_GUEST_INVITE       | Invite grants one-time access to a voice channel in the guild                                                                                           |
+| 1 \<\< 1 | IS_VIEWED             | Invite has been viewed by any user (has been retrieved using [Get Invite](#get-invite))                                                                 |
+| 1 \<\< 2 | IS_ENHANCED           | Unknown                                                                                                                                                 |
+| 1 \<\< 3 | IS_APPLICATION_BYPASS | Invite bypasses [guild join requests](/resources/guild#guild-join-request-object) and adds the user directly to the guild with `pending` set to `false` |
 
 ###### Example Invite Object
 
@@ -23778,9 +23778,9 @@ A game lobby within Discord.
 
 ###### Lobby Flags
 
-| Value  | Name                              | Description                                                                 |
-| ------ | --------------------------------- | --------------------------------------------------------------------------- |
-| 1 << 0 | REQUIRE_APPLICATION_AUTHORIZATION | Users must authorize the application to send messages in the linked channel |
+| Value    | Name                              | Description                                                                 |
+| -------- | --------------------------------- | --------------------------------------------------------------------------- |
+| 1 \<\< 0 | REQUIRE_APPLICATION_AUTHORIZATION | Users must authorize the application to send messages in the linked channel |
 
 ###### Example Lobby Object
 
@@ -23820,9 +23820,9 @@ Represents a member of a lobby.
 
 ###### Lobby Member Flags
 
-| Value  | Name           | Description                                       |
-| ------ | -------------- | ------------------------------------------------- |
-| 1 << 0 | CAN_LINK_LOBBY | Lobby member can link a text channel to the lobby |
+| Value    | Name           | Description                                       |
+| -------- | -------------- | ------------------------------------------------- |
+| 1 \<\< 0 | CAN_LINK_LOBBY | Lobby member can link a text channel to the lobby |
 
 ## Endpoints
 
@@ -24204,72 +24204,72 @@ Type `19` and `20` are only available in API v8 and above. In v7 and below, they
 
 </Alert>
 
-| Value  | Name                                          | Description                                                                                                           | Rendered Content                                                                                                                                                                            | Deletable |
-| ------ | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| 0      | DEFAULT                                       | A default message (see below)                                                                                         | "{content}"                                                                                                                                                                                 | true      |
-| 1      | RECIPIENT_ADD                                 | A message sent when a user is added to a group DM or thread                                                           | "{author} added {mentions[0]} to the {group/thread}."                                                                                                                                       | false     |
-| 2      | RECIPIENT_REMOVE                              | A message sent when a user is removed from a group DM or thread                                                       | "{author} removed {mentions[0]} from the {group/thread}."                                                                                                                                   | false     |
-| 3      | CALL                                          | A message sent when a user creates a call in a private channel                                                        | participated ? "{author} started a call{ended ? " that lasted {duration}" : " — Join the call"}." : "You missed a call from {author} that lasted {duration}."                               | false     |
-| 4      | CHANNEL_NAME_CHANGE                           | A message sent when a group DM or thread's name is changed                                                            | "{author} {content ? "changed the {is_forum ? "post title" : "channel name"}: **{content}**." : "removed the custom group name." }                                                          | false     |
-| 5      | CHANNEL_ICON_CHANGE                           | A message sent when a group DM's icon is changed                                                                      | "{author} changed the channel icon."                                                                                                                                                        | false     |
-| 6      | CHANNEL_PINNED_MESSAGE                        | A message sent when a message is pinned in a channel                                                                  | "{author} pinned a message to this channel."                                                                                                                                                | true      |
-| 7      | USER_JOIN                                     | A message sent when a user joins a guild                                                                              | See [user join message type](#user-join-message-type), obtained via the formula `timestamp_ms % 13`                                                                                         | true      |
-| 8      | PREMIUM_GUILD_SUBSCRIPTION                    | A message sent when a user subscribes to (boosts) a guild                                                             | "{author} just boosted the server{content ? " **{content}** times"}!"                                                                                                                       | true      |
-| 9      | PREMIUM_GUILD_SUBSCRIPTION_TIER_1             | A message sent when a user subscribes to (boosts) a guild to tier 1                                                   | "{author} just boosted the server{content ? " **{content}** times"}! {guild} has achieved **Level 1!**"                                                                                     | true      |
-| 10     | PREMIUM_GUILD_SUBSCRIPTION_TIER_2             | A message sent when a user subscribes to (boosts) a guild to tier 2                                                   | "{author} just boosted the server{content ? " **{content}** times"}! {guild} has achieved **Level 2!**"                                                                                     | true      |
-| 11     | PREMIUM_GUILD_SUBSCRIPTION_TIER_3             | A message sent when a user subscribes to (boosts) a guild to tier 3                                                   | "{author} just boosted the server{content ? " **{content}** times"}! {guild} has achieved **Level 3!**"                                                                                     | true      |
-| 12     | CHANNEL_FOLLOW_ADD                            | A message sent when a news channel is followed                                                                        | "{author} has added {content} to this channel. Its most important updates will show up here."                                                                                               | true      |
-| ~~13~~ | ~~GUILD_STREAM~~                              | ~~A message sent when a user starts streaming in a guild~~                                                            |                                                                                                                                                                                             | ~~true~~  |
-| 14     | GUILD_DISCOVERY_DISQUALIFIED                  | A message sent when a guild is disqualified from discovery                                                            | "This server has been removed from Server Discovery because it no longer passes all the requirements. Check Server Settings for more details."                                              | true      |
-| 15     | GUILD_DISCOVERY_REQUALIFIED                   | A message sent when a guild requalifies for discovery                                                                 | "This server is eligible for Server Discovery again and has been automatically relisted!"                                                                                                   | true      |
-| 16     | GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING  | A message sent when a guild has failed discovery requirements for a week                                              | "This server has failed Discovery activity requirements for 1 week. If this server fails for 4 weeks in a row, it will be automatically removed from Discovery."                            | true      |
-| 17     | GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING    | A message sent when a guild has failed discovery requirements for 3 weeks                                             | "This server has failed Discovery activity requirements for 3 weeks in a row. If this server fails for 1 more week, it will be removed from Discovery."                                     | true      |
-| 18     | THREAD_CREATED                                | A message sent when a thread is created                                                                               | "{author} started a thread: **{content}**. See all threads."                                                                                                                                | true      |
-| 19     | REPLY                                         | A message sent when a user replies to a message                                                                       | "{content}"                                                                                                                                                                                 | true      |
-| 20     | CHAT_INPUT_COMMAND                            | A message sent when a user uses a slash command                                                                       | "{content}"                                                                                                                                                                                 | true      |
-| 21     | THREAD_STARTER_MESSAGE                        | A message sent when a thread starter message is added to a thread                                                     | "{referenced_message?.content}" ?? "Sorry, we couldn't load the first message in this thread"                                                                                               | false     |
-| 22     | GUILD_INVITE_REMINDER                         | A message sent to remind users to invite friends to a guild                                                           | "Wondering who to invite?\nStart by inviting anyone who can help you build the server!"                                                                                                     | true      |
-| 23     | CONTEXT_MENU_COMMAND                          | A message sent when a user uses a context menu command                                                                | "{content}"                                                                                                                                                                                 | true      |
-| 24     | AUTO_MODERATION_ACTION                        | A message sent when auto moderation takes an action                                                                   | [Special embed rendered from `embeds[0]`](/resources/auto-moderation#automod-system-messages)                                                                                               | true ^1^  |
-| 25     | ROLE_SUBSCRIPTION_PURCHASE                    | A message sent when a user purchases or renews a role subscription                                                    | "{author} {is_renewal ? "renewed" : "joined"} **{role_subscription.tier_name}** and has been a subscriber of {guild} for {role_subscription.total_months_subscribed} month(?s)!"            | true      |
-| 26     | INTERACTION_PREMIUM_UPSELL                    | A message sent when a user is upsold to a premium interaction                                                         | "{content}"                                                                                                                                                                                 | true      |
-| 27     | STAGE_START                                   | A message sent when a stage channel starts                                                                            | "{author} started **{content}**"                                                                                                                                                            | true      |
-| 28     | STAGE_END                                     | A message sent when a stage channel ends                                                                              | "{author} ended **{content}**"                                                                                                                                                              | true      |
-| 29     | STAGE_SPEAKER                                 | A message sent when a user starts speaking in a stage channel                                                         | "{author} is now a speaker."                                                                                                                                                                | true      |
-| 30     | STAGE_RAISE_HAND                              | A message sent when a user raises their hand in a stage channel                                                       | "{author} requested to speak."                                                                                                                                                              | true      |
-| 31     | STAGE_TOPIC                                   | A message sent when a stage channel's topic is changed                                                                | "{author} changed the Stage topic: **{content}**"                                                                                                                                           | true      |
-| 32     | GUILD_APPLICATION_PREMIUM_SUBSCRIPTION        | A message sent when a user purchases an application premium subscription                                              | "{author} upgraded {application ?? "a deleted application"} to premium for this server!"                                                                                                    | true      |
-| ~~33~~ | ~~PRIVATE_CHANNEL_INTEGRATION_ADDED~~         | ~~A message sent when a user adds an application to group DM~~                                                        | ~~"{author} added {"the {application} app" ?? "a deleted application"}. See our [Help Centre](https://support.discord.com/hc/en-us/articles/15104189280151-Apps-in-DMs) for more info."~~   | ~~false~~ |
-| ~~34~~ | ~~PRIVATE_CHANNEL_INTEGRATION_REMOVED~~       | ~~A message sent when a user removed an application from a group DM~~                                                 | ~~"{author} removed {"the {application} app" ?? "a deleted application"}. See our [Help Centre](https://support.discord.com/hc/en-us/articles/15104189280151-Apps-in-DMs) for more info."~~ | ~~false~~ |
-| 35     | PREMIUM_REFERRAL                              | A message sent when a user gifts a premium (Nitro) referral                                                           | "{content}"                                                                                                                                                                                 | true      |
-| 36     | GUILD_INCIDENT_ALERT_MODE_ENABLED             | A message sent when a user enabled lockdown for the guild                                                             | "{author} enabled security actions until {content}."                                                                                                                                        | true      |
-| 37     | GUILD_INCIDENT_ALERT_MODE_DISABLED            | A message sent when a user disables lockdown for the guild                                                            | "{author} disabled security actions."                                                                                                                                                       | true      |
-| 38     | GUILD_INCIDENT_REPORT_RAID                    | A message sent when a user reports a raid for the guild                                                               | "{author} reported a raid in {guild}."                                                                                                                                                      | true      |
-| 39     | GUILD_INCIDENT_REPORT_FALSE_ALARM             | A message sent when a user reports a false alarm for the guild                                                        | "{author} reported a false alarm in {guild}."                                                                                                                                               | true      |
-| 40     | GUILD_DEADCHAT_REVIVE_PROMPT                  | A message sent when no one sends a message in the current channel for 1 hour                                          | "{content}"                                                                                                                                                                                 | true      |
-| 41     | CUSTOM_GIFT                                   | A message sent when a user buys another user a gift                                                                   | Special embed rendered from `embeds[0].url` and [`gift_info`](#message-gift-info-object)                                                                                                    | true      |
-| 42     | GUILD_GAMING_STATS_PROMPT                     |                                                                                                                       | "{content}"                                                                                                                                                                                 | true      |
-| ~~43~~ | ~~POLL~~                                      | ~~A message sent when a user posts a poll~~                                                                           |                                                                                                                                                                                             | ~~true~~  |
-| 44     | PURCHASE_NOTIFICATION                         | A message sent when a user purchases a guild product                                                                  | "{author} has purchased {purchase_notification.guild_product_purchase.product_name}!"                                                                                                       | true      |
-| ~~45~~ | ~~VOICE_HANGOUT_INVITE~~                      | ~~A message sent when a user invites another user to hangout in a voice channel~~                                     | ~~Special embed rendered from `embeds[0]`~~                                                                                                                                                 | ~~true~~  |
-| 46     | POLL_RESULT                                   | A message sent when a poll is finalized                                                                               | [Special embed rendered from `embeds[0]`](#poll-result-notifications)                                                                                                                       | true      |
-| 47     | CHANGELOG                                     | A message sent by the Discord Updates account when a new changelog is posted                                          | "{content}"                                                                                                                                                                                 | true      |
-| 48     | NITRO_NOTIFICATION                            | A message sent when a Nitro promotion is triggered                                                                    | Special embed rendered from `content`                                                                                                                                                       | true      |
-| 49     | CHANNEL_LINKED_TO_LOBBY                       | A message sent when a voice channel is linked to a lobby                                                              | "{content}"                                                                                                                                                                                 | true      |
-| 50     | GIFTING_PROMPT                                | A local-only ephemeral message sent when a user is prompted to gift Nitro to a friend on their friendship anniversary | Special embed                                                                                                                                                                               | true      |
-| 51     | IN_GAME_MESSAGE_NUX                           | A local-only message sent when a user receives an in-game message NUX                                                 | "{author} messaged you from {application.name}. In-game chat may not include rich messaging features such as images, polls, or apps. [Learn More](https://support.discord.com/hc)"          | true      |
-| 52     | GUILD_JOIN_REQUEST_ACCEPT_NOTIFICATION ^2^    | A message sent when a user accepts a guild join request                                                               | "{join_request.user}'s application to **{content}** was approved! Welcome!"                                                                                                                 | true      |
-| 53     | GUILD_JOIN_REQUEST_REJECT_NOTIFICATION ^2^    | A message sent when a user rejects a guild join request                                                               | "{join_request.user}'s application to **{content}** was rejected."                                                                                                                          | true      |
-| 54     | GUILD_JOIN_REQUEST_WITHDRAWN_NOTIFICATION ^2^ | A message sent when a user withdraws a guild join request                                                             | "{join_request.user}'s application to **{content}** has been withdrawn."                                                                                                                    | true      |
-| 55     | HD_STREAMING_UPGRADED                         | A message sent when a user upgrades to HD streaming                                                                   | "{author} activated **HD Splash Potion**"                                                                                                                                                   | true      |
-| ~~56~~ | ~~CHAT_WALLPAPER_SET~~                        | ~~A message sent when a user sets a DM wallpaper~~                                                                    | ~~"{author} changed the DM wallpaper to **{chatWallpaperInfo.name}**."~~                                                                                                                    | ~~false~~ |
-| ~~57~~ | ~~CHAT_WALLPAPER_REMOVE~~                     | ~~A message sent when a user removes a DM wallpaper~~                                                                 | ~~"{author} removed the DM wallpaper."~~                                                                                                                                                    | ~~false~~ |
-| 58     | REPORT_TO_MOD_DELETED_MESSAGE                 | A message sent when a user resolves a moderation report by deleting the offending message                             | "{author} deleted the message"                                                                                                                                                              | true      |
-| 59     | REPORT_TO_MOD_TIMEOUT_USER                    | A message sent when a user resolves a moderation report by timing out the offending user                              | "{author} timed out {mentions[0]}"                                                                                                                                                          | true      |
-| 60     | REPORT_TO_MOD_KICK_USER                       | A message sent when a user resolves a moderation report by kicking the offending user                                 | "{author} kicked {mentions[0]}"                                                                                                                                                             | true      |
-| 61     | REPORT_TO_MOD_BAN_USER                        | A message sent when a user resolves a moderation report by banning the offending user                                 | "{author} banned {mentions[0]}"                                                                                                                                                             | true      |
-| 62     | REPORT_TO_MOD_CLOSED_REPORT                   | A message sent when a user resolves a moderation report                                                               | "{author} resolved this flag"                                                                                                                                                               | true      |
-| 63     | EMOJI_ADDED                                   | A message sent when a user adds a new emoji to a guild                                                                | "{author} added a new emoji, {content} **:{emoji.name}:**"                                                                                                                                  | true      |
+| Value  | Name                                          | Description                                                                                                           | Rendered Content                                                                                                                                                                                  | Deletable |
+| ------ | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| 0      | DEFAULT                                       | A default message (see below)                                                                                         | "\{content\}"                                                                                                                                                                                     | true      |
+| 1      | RECIPIENT_ADD                                 | A message sent when a user is added to a group DM or thread                                                           | "\{author\} added \{mentions[0]\} to the \{group/thread\}."                                                                                                                                       | false     |
+| 2      | RECIPIENT_REMOVE                              | A message sent when a user is removed from a group DM or thread                                                       | "\{author\} removed \{mentions[0]\} from the \{group/thread\}."                                                                                                                                   | false     |
+| 3      | CALL                                          | A message sent when a user creates a call in a private channel                                                        | participated ? "\{author\} started a call\{ended ? " that lasted \{duration\}" : " — Join the call"\}." : "You missed a call from \{author\} that lasted \{duration\}."                           | false     |
+| 4      | CHANNEL_NAME_CHANGE                           | A message sent when a group DM or thread's name is changed                                                            | "\{author\} \{content ? "changed the \{is_forum ? "post title" : "channel name"\}: **\{content\}**." : "removed the custom group name." \}                                                        | false     |
+| 5      | CHANNEL_ICON_CHANGE                           | A message sent when a group DM's icon is changed                                                                      | "\{author\} changed the channel icon."                                                                                                                                                            | false     |
+| 6      | CHANNEL_PINNED_MESSAGE                        | A message sent when a message is pinned in a channel                                                                  | "\{author\} pinned a message to this channel."                                                                                                                                                    | true      |
+| 7      | USER_JOIN                                     | A message sent when a user joins a guild                                                                              | See [user join message type](#user-join-message-type), obtained via the formula `timestamp_ms % 13`                                                                                               | true      |
+| 8      | PREMIUM_GUILD_SUBSCRIPTION                    | A message sent when a user subscribes to (boosts) a guild                                                             | "\{author\} just boosted the server\{content ? " **\{content\}** times"\}!"                                                                                                                       | true      |
+| 9      | PREMIUM_GUILD_SUBSCRIPTION_TIER_1             | A message sent when a user subscribes to (boosts) a guild to tier 1                                                   | "\{author\} just boosted the server\{content ? " **\{content\}** times"\}! \{guild\} has achieved **Level 1!**"                                                                                   | true      |
+| 10     | PREMIUM_GUILD_SUBSCRIPTION_TIER_2             | A message sent when a user subscribes to (boosts) a guild to tier 2                                                   | "\{author\} just boosted the server\{content ? " **\{content\}** times"\}! \{guild\} has achieved **Level 2!**"                                                                                   | true      |
+| 11     | PREMIUM_GUILD_SUBSCRIPTION_TIER_3             | A message sent when a user subscribes to (boosts) a guild to tier 3                                                   | "\{author\} just boosted the server\{content ? " **\{content\}** times"\}! \{guild\} has achieved **Level 3!**"                                                                                   | true      |
+| 12     | CHANNEL_FOLLOW_ADD                            | A message sent when a news channel is followed                                                                        | "\{author\} has added \{content\} to this channel. Its most important updates will show up here."                                                                                                 | true      |
+| ~~13~~ | ~~GUILD_STREAM~~                              | ~~A message sent when a user starts streaming in a guild~~                                                            |                                                                                                                                                                                                   | ~~true~~  |
+| 14     | GUILD_DISCOVERY_DISQUALIFIED                  | A message sent when a guild is disqualified from discovery                                                            | "This server has been removed from Server Discovery because it no longer passes all the requirements. Check Server Settings for more details."                                                    | true      |
+| 15     | GUILD_DISCOVERY_REQUALIFIED                   | A message sent when a guild requalifies for discovery                                                                 | "This server is eligible for Server Discovery again and has been automatically relisted!"                                                                                                         | true      |
+| 16     | GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING  | A message sent when a guild has failed discovery requirements for a week                                              | "This server has failed Discovery activity requirements for 1 week. If this server fails for 4 weeks in a row, it will be automatically removed from Discovery."                                  | true      |
+| 17     | GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING    | A message sent when a guild has failed discovery requirements for 3 weeks                                             | "This server has failed Discovery activity requirements for 3 weeks in a row. If this server fails for 1 more week, it will be removed from Discovery."                                           | true      |
+| 18     | THREAD_CREATED                                | A message sent when a thread is created                                                                               | "\{author\} started a thread: **\{content\}**. See all threads."                                                                                                                                  | true      |
+| 19     | REPLY                                         | A message sent when a user replies to a message                                                                       | "\{content\}"                                                                                                                                                                                     | true      |
+| 20     | CHAT_INPUT_COMMAND                            | A message sent when a user uses a slash command                                                                       | "\{content\}"                                                                                                                                                                                     | true      |
+| 21     | THREAD_STARTER_MESSAGE                        | A message sent when a thread starter message is added to a thread                                                     | "\{referenced_message?.content\}" ?? "Sorry, we couldn't load the first message in this thread"                                                                                                   | false     |
+| 22     | GUILD_INVITE_REMINDER                         | A message sent to remind users to invite friends to a guild                                                           | "Wondering who to invite?\nStart by inviting anyone who can help you build the server!"                                                                                                           | true      |
+| 23     | CONTEXT_MENU_COMMAND                          | A message sent when a user uses a context menu command                                                                | "\{content\}"                                                                                                                                                                                     | true      |
+| 24     | AUTO_MODERATION_ACTION                        | A message sent when auto moderation takes an action                                                                   | [Special embed rendered from `embeds[0]`](/resources/auto-moderation#automod-system-messages)                                                                                                     | true ^1^  |
+| 25     | ROLE_SUBSCRIPTION_PURCHASE                    | A message sent when a user purchases or renews a role subscription                                                    | "\{author\} \{is_renewal ? "renewed" : "joined"\} **\{role_subscription.tier_name\}** and has been a subscriber of \{guild\} for \{role_subscription.total_months_subscribed\} month(?s)!"        | true      |
+| 26     | INTERACTION_PREMIUM_UPSELL                    | A message sent when a user is upsold to a premium interaction                                                         | "\{content\}"                                                                                                                                                                                     | true      |
+| 27     | STAGE_START                                   | A message sent when a stage channel starts                                                                            | "\{author\} started **\{content\}**"                                                                                                                                                              | true      |
+| 28     | STAGE_END                                     | A message sent when a stage channel ends                                                                              | "\{author\} ended **\{content\}**"                                                                                                                                                                | true      |
+| 29     | STAGE_SPEAKER                                 | A message sent when a user starts speaking in a stage channel                                                         | "\{author\} is now a speaker."                                                                                                                                                                    | true      |
+| 30     | STAGE_RAISE_HAND                              | A message sent when a user raises their hand in a stage channel                                                       | "\{author\} requested to speak."                                                                                                                                                                  | true      |
+| 31     | STAGE_TOPIC                                   | A message sent when a stage channel's topic is changed                                                                | "\{author\} changed the Stage topic: **\{content\}**"                                                                                                                                             | true      |
+| 32     | GUILD_APPLICATION_PREMIUM_SUBSCRIPTION        | A message sent when a user purchases an application premium subscription                                              | "\{author\} upgraded \{application ?? "a deleted application"\} to premium for this server!"                                                                                                      | true      |
+| ~~33~~ | ~~PRIVATE_CHANNEL_INTEGRATION_ADDED~~         | ~~A message sent when a user adds an application to group DM~~                                                        | ~~"\{author\} added \{"the \{application\} app" ?? "a deleted application"\}. See our [Help Centre](https://support.discord.com/hc/en-us/articles/15104189280151-Apps-in-DMs) for more info."~~   | ~~false~~ |
+| ~~34~~ | ~~PRIVATE_CHANNEL_INTEGRATION_REMOVED~~       | ~~A message sent when a user removed an application from a group DM~~                                                 | ~~"\{author\} removed \{"the \{application\} app" ?? "a deleted application"\}. See our [Help Centre](https://support.discord.com/hc/en-us/articles/15104189280151-Apps-in-DMs) for more info."~~ | ~~false~~ |
+| 35     | PREMIUM_REFERRAL                              | A message sent when a user gifts a premium (Nitro) referral                                                           | "\{content\}"                                                                                                                                                                                     | true      |
+| 36     | GUILD_INCIDENT_ALERT_MODE_ENABLED             | A message sent when a user enabled lockdown for the guild                                                             | "\{author\} enabled security actions until \{content\}."                                                                                                                                          | true      |
+| 37     | GUILD_INCIDENT_ALERT_MODE_DISABLED            | A message sent when a user disables lockdown for the guild                                                            | "\{author\} disabled security actions."                                                                                                                                                           | true      |
+| 38     | GUILD_INCIDENT_REPORT_RAID                    | A message sent when a user reports a raid for the guild                                                               | "\{author\} reported a raid in \{guild\}."                                                                                                                                                        | true      |
+| 39     | GUILD_INCIDENT_REPORT_FALSE_ALARM             | A message sent when a user reports a false alarm for the guild                                                        | "\{author\} reported a false alarm in \{guild\}."                                                                                                                                                 | true      |
+| 40     | GUILD_DEADCHAT_REVIVE_PROMPT                  | A message sent when no one sends a message in the current channel for 1 hour                                          | "\{content\}"                                                                                                                                                                                     | true      |
+| 41     | CUSTOM_GIFT                                   | A message sent when a user buys another user a gift                                                                   | Special embed rendered from `embeds[0].url` and [`gift_info`](#message-gift-info-object)                                                                                                          | true      |
+| 42     | GUILD_GAMING_STATS_PROMPT                     |                                                                                                                       | "\{content\}"                                                                                                                                                                                     | true      |
+| ~~43~~ | ~~POLL~~                                      | ~~A message sent when a user posts a poll~~                                                                           |                                                                                                                                                                                                   | ~~true~~  |
+| 44     | PURCHASE_NOTIFICATION                         | A message sent when a user purchases a guild product                                                                  | "\{author\} has purchased \{purchase_notification.guild_product_purchase.product_name\}!"                                                                                                         | true      |
+| ~~45~~ | ~~VOICE_HANGOUT_INVITE~~                      | ~~A message sent when a user invites another user to hangout in a voice channel~~                                     | ~~Special embed rendered from `embeds[0]`~~                                                                                                                                                       | ~~true~~  |
+| 46     | POLL_RESULT                                   | A message sent when a poll is finalized                                                                               | [Special embed rendered from `embeds[0]`](#poll-result-notifications)                                                                                                                             | true      |
+| 47     | CHANGELOG                                     | A message sent by the Discord Updates account when a new changelog is posted                                          | "\{content\}"                                                                                                                                                                                     | true      |
+| 48     | NITRO_NOTIFICATION                            | A message sent when a Nitro promotion is triggered                                                                    | Special embed rendered from `content`                                                                                                                                                             | true      |
+| 49     | CHANNEL_LINKED_TO_LOBBY                       | A message sent when a voice channel is linked to a lobby                                                              | "\{content\}"                                                                                                                                                                                     | true      |
+| 50     | GIFTING_PROMPT                                | A local-only ephemeral message sent when a user is prompted to gift Nitro to a friend on their friendship anniversary | Special embed                                                                                                                                                                                     | true      |
+| 51     | IN_GAME_MESSAGE_NUX                           | A local-only message sent when a user receives an in-game message NUX                                                 | "\{author\} messaged you from \{application.name\}. In-game chat may not include rich messaging features such as images, polls, or apps. [Learn More](https://support.discord.com/hc)"            | true      |
+| 52     | GUILD_JOIN_REQUEST_ACCEPT_NOTIFICATION ^2^    | A message sent when a user accepts a guild join request                                                               | "\{join_request.user\}'s application to **\{content\}** was approved! Welcome!"                                                                                                                   | true      |
+| 53     | GUILD_JOIN_REQUEST_REJECT_NOTIFICATION ^2^    | A message sent when a user rejects a guild join request                                                               | "\{join_request.user\}'s application to **\{content\}** was rejected."                                                                                                                            | true      |
+| 54     | GUILD_JOIN_REQUEST_WITHDRAWN_NOTIFICATION ^2^ | A message sent when a user withdraws a guild join request                                                             | "\{join_request.user\}'s application to **\{content\}** has been withdrawn."                                                                                                                      | true      |
+| 55     | HD_STREAMING_UPGRADED                         | A message sent when a user upgrades to HD streaming                                                                   | "\{author\} activated **HD Splash Potion**"                                                                                                                                                       | true      |
+| ~~56~~ | ~~CHAT_WALLPAPER_SET~~                        | ~~A message sent when a user sets a DM wallpaper~~                                                                    | ~~"\{author\} changed the DM wallpaper to **\{chatWallpaperInfo.name\}**."~~                                                                                                                      | ~~false~~ |
+| ~~57~~ | ~~CHAT_WALLPAPER_REMOVE~~                     | ~~A message sent when a user removes a DM wallpaper~~                                                                 | ~~"\{author\} removed the DM wallpaper."~~                                                                                                                                                        | ~~false~~ |
+| 58     | REPORT_TO_MOD_DELETED_MESSAGE                 | A message sent when a user resolves a moderation report by deleting the offending message                             | "\{author\} deleted the message"                                                                                                                                                                  | true      |
+| 59     | REPORT_TO_MOD_TIMEOUT_USER                    | A message sent when a user resolves a moderation report by timing out the offending user                              | "\{author\} timed out \{mentions[0]\}"                                                                                                                                                            | true      |
+| 60     | REPORT_TO_MOD_KICK_USER                       | A message sent when a user resolves a moderation report by kicking the offending user                                 | "\{author\} kicked \{mentions[0]\}"                                                                                                                                                               | true      |
+| 61     | REPORT_TO_MOD_BAN_USER                        | A message sent when a user resolves a moderation report by banning the offending user                                 | "\{author\} banned \{mentions[0]\}"                                                                                                                                                               | true      |
+| 62     | REPORT_TO_MOD_CLOSED_REPORT                   | A message sent when a user resolves a moderation report                                                               | "\{author\} resolved this flag"                                                                                                                                                                   | true      |
+| 63     | EMOJI_ADDED                                   | A message sent when a user adds a new emoji to a guild                                                                | "\{author\} added a new emoji, \{content\} **:\{emoji.name\}:**"                                                                                                                                  | true      |
 
 ^1^ Can only be deleted by members with the `MANAGE_MESSAGES` permission.
 
@@ -24279,42 +24279,42 @@ Type `19` and `20` are only available in API v8 and above. In v7 and below, they
 
 The type of rendered message is determined via converting the message's `timestamp` to a unix timestamp with millisecond precision, modulo 13.
 
-| Value | Rendered Content                                |
-| ----- | ----------------------------------------------- |
-| 0     | "{author} joined the party."                    |
-| 1     | "{author} is here."                             |
-| 2     | "Welcome, {author}. We hope you brought pizza." |
-| 3     | "A wild {author} appeared."                     |
-| 4     | "{author} just landed."                         |
-| 5     | "{author} just slid into the server."           |
-| 6     | "{author} just showed up!"                      |
-| 7     | "Welcome {author}. Say hi!"                     |
-| 8     | "{author} hopped into the server."              |
-| 9     | "Everyone welcome {author}!"                    |
-| 10    | "Glad you're here, {author}."                   |
-| 11    | "Good to see you, {author}."                    |
-| 12    | "Yay you made it, {author}!"                    |
+| Value | Rendered Content                                  |
+| ----- | ------------------------------------------------- |
+| 0     | "\{author\} joined the party."                    |
+| 1     | "\{author\} is here."                             |
+| 2     | "Welcome, \{author\}. We hope you brought pizza." |
+| 3     | "A wild \{author\} appeared."                     |
+| 4     | "\{author\} just landed."                         |
+| 5     | "\{author\} just slid into the server."           |
+| 6     | "\{author\} just showed up!"                      |
+| 7     | "Welcome \{author\}. Say hi!"                     |
+| 8     | "\{author\} hopped into the server."              |
+| 9     | "Everyone welcome \{author\}!"                    |
+| 10    | "Glad you're here, \{author\}."                   |
+| 11    | "Good to see you, \{author\}."                    |
+| 12    | "Yay you made it, \{author\}!"                    |
 
 ###### Message Flags
 
-| Value   | Name                                   | Description                                                                  |
-| ------- | -------------------------------------- | ---------------------------------------------------------------------------- |
-| 1 << 0  | CROSSPOSTED                            | Message has been published to subscribed channels (via Channel Following)    |
-| 1 << 1  | IS_CROSSPOST                           | Message originated from a message in another channel (via Channel Following) |
-| 1 << 2  | SUPPRESS_EMBEDS                        | Embeds will not be included when serializing this message                    |
-| 1 << 3  | SOURCE_MESSAGE_DELETED                 | Source message for this crosspost has been deleted (via Channel Following)   |
-| 1 << 4  | URGENT                                 | Message came from the urgent message system                                  |
-| 1 << 5  | HAS_THREAD                             | Message has an associated thread, with the same ID as the message            |
-| 1 << 6  | EPHEMERAL                              | Message is only visible to the user who invoked the interaction              |
-| 1 << 7  | LOADING                                | Message is an interaction response and the bot is "thinking"                 |
-| 1 << 8  | FAILED_TO_MENTION_SOME_ROLES_IN_THREAD | Some roles were not mentioned and added to the thread                        |
-| 1 << 9  | GUILD_FEED_HIDDEN                      | Message is hidden from the guild's feed                                      |
-| 1 << 10 | SHOULD_SHOW_LINK_NOT_DISCORD_WARNING   | Message contains a link that impersonates Discord                            |
-| 1 << 12 | SUPPRESS_NOTIFICATIONS                 | Message will not trigger push and desktop notifications                      |
-| 1 << 13 | IS_VOICE_MESSAGE                       | Message's audio attachment is rendered as a voice message                    |
-| 1 << 14 | HAS_SNAPSHOT                           | Message has a forwarded message snapshot attached                            |
-| 1 << 15 | IS_COMPONENTS_V2                       | Message contains components from version 2 of the UI kit                     |
-| 1 << 16 | SENT_BY_SOCIAL_LAYER_INTEGRATION       | Message was triggered by the social layer integration                        |
+| Value     | Name                                   | Description                                                                  |
+| --------- | -------------------------------------- | ---------------------------------------------------------------------------- |
+| 1 \<\< 0  | CROSSPOSTED                            | Message has been published to subscribed channels (via Channel Following)    |
+| 1 \<\< 1  | IS_CROSSPOST                           | Message originated from a message in another channel (via Channel Following) |
+| 1 \<\< 2  | SUPPRESS_EMBEDS                        | Embeds will not be included when serializing this message                    |
+| 1 \<\< 3  | SOURCE_MESSAGE_DELETED                 | Source message for this crosspost has been deleted (via Channel Following)   |
+| 1 \<\< 4  | URGENT                                 | Message came from the urgent message system                                  |
+| 1 \<\< 5  | HAS_THREAD                             | Message has an associated thread, with the same ID as the message            |
+| 1 \<\< 6  | EPHEMERAL                              | Message is only visible to the user who invoked the interaction              |
+| 1 \<\< 7  | LOADING                                | Message is an interaction response and the bot is "thinking"                 |
+| 1 \<\< 8  | FAILED_TO_MENTION_SOME_ROLES_IN_THREAD | Some roles were not mentioned and added to the thread                        |
+| 1 \<\< 9  | GUILD_FEED_HIDDEN                      | Message is hidden from the guild's feed                                      |
+| 1 \<\< 10 | SHOULD_SHOW_LINK_NOT_DISCORD_WARNING   | Message contains a link that impersonates Discord                            |
+| 1 \<\< 12 | SUPPRESS_NOTIFICATIONS                 | Message will not trigger push and desktop notifications                      |
+| 1 \<\< 13 | IS_VOICE_MESSAGE                       | Message's audio attachment is rendered as a voice message                    |
+| 1 \<\< 14 | HAS_SNAPSHOT                           | Message has a forwarded message snapshot attached                            |
+| 1 \<\< 15 | IS_COMPONENTS_V2                       | Message contains components from version 2 of the UI kit                     |
+| 1 \<\< 16 | SENT_BY_SOCIAL_LAYER_INTEGRATION       | Message was triggered by the social layer integration                        |
 
 ###### Example Message
 
@@ -24828,12 +24828,12 @@ Most embed types are "loosely defined" and, for the most part, are not used by c
 
 ###### Embed Flags
 
-| Value  | Name                       | Description                                                                                            |
-| ------ | -------------------------- | ------------------------------------------------------------------------------------------------------ |
-| 1 << 4 | CONTAINS_EXPLICIT_MEDIA    | Embed was flagged as [sensitive content](https://support.discord.com/hc/en-us/articles/18210995019671) |
-| 1 << 5 | CONTENT_INVENTORY_ENTRY    | Embed is a legacy content inventory reply                                                              |
-| 1 << 6 | CONTAINS_GORE_CONTENT      | Embed was flagged as [gore](https://support.discord.com/hc/en-us/articles/18210995019671)              |
-| 1 << 7 | CONTAINS_SELF_HARM_CONTENT | Embed was flagged as [self-harm content](https://support.discord.com/hc/en-us/articles/18210995019671) |
+| Value    | Name                       | Description                                                                                            |
+| -------- | -------------------------- | ------------------------------------------------------------------------------------------------------ |
+| 1 \<\< 4 | CONTAINS_EXPLICIT_MEDIA    | Embed was flagged as [sensitive content](https://support.discord.com/hc/en-us/articles/18210995019671) |
+| 1 \<\< 5 | CONTENT_INVENTORY_ENTRY    | Embed is a legacy content inventory reply                                                              |
+| 1 \<\< 6 | CONTAINS_GORE_CONTENT      | Embed was flagged as [gore](https://support.discord.com/hc/en-us/articles/18210995019671)              |
+| 1 \<\< 7 | CONTAINS_SELF_HARM_CONTENT | Embed was flagged as [self-harm content](https://support.discord.com/hc/en-us/articles/18210995019671) |
 
 ###### Embed Media Structure
 
@@ -24897,10 +24897,10 @@ Most embed types are "loosely defined" and, for the most part, are not used by c
 
 ###### Content Scan Flags
 
-| Value  | Name     | Description                               |
-| ------ | -------- | ----------------------------------------- |
-| 1 << 0 | EXPLICIT | The media was flagged as explicit content |
-| 1 << 1 | GORE     | The media was flagged as gore             |
+| Value    | Name     | Description                               |
+| -------- | -------- | ----------------------------------------- |
+| 1 \<\< 0 | EXPLICIT | The media was flagged as explicit content |
+| 1 \<\< 1 | GORE     | The media was flagged as gore             |
 
 ### Attachment Object
 
@@ -24960,16 +24960,16 @@ When sending/editing messages, only `id` is required. `filename` is also require
 
 ###### Attachment Flags
 
-| Value  | Name                       | Description                                                                                                         |
-| ------ | -------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| 1 << 0 | IS_CLIP                    | Attachment is a [clipped recording of a stream](https://support.discord.com/hc/en-us/articles/16861982215703-Clips) |
-| 1 << 1 | IS_THUMBNAIL               | Attachment is a thumbnail                                                                                           |
-| 1 << 2 | IS_REMIX                   | Attachment has been [remixed](https://support.discord.com/hc/en-us/articles/15145601963031-Remix-FAQ)               |
-| 1 << 3 | IS_SPOILER                 | Attachment is a spoiler                                                                                             |
-| 1 << 4 | CONTAINS_EXPLICIT_MEDIA    | Attachment was flagged as [sensitive content](https://support.discord.com/hc/en-us/articles/18210995019671)         |
-| 1 << 5 | IS_ANIMATED                | Attachment is an animated image                                                                                     |
-| 1 << 6 | CONTAINS_GORE_CONTENT      | Attachment was flagged as [gore](https://support.discord.com/hc/en-us/articles/18210995019671)                      |
-| 1 << 7 | CONTAINS_SELF_HARM_CONTENT | Attachment was flagged as [self-harm content](https://support.discord.com/hc/en-us/articles/18210995019671)         |
+| Value    | Name                       | Description                                                                                                         |
+| -------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| 1 \<\< 0 | IS_CLIP                    | Attachment is a [clipped recording of a stream](https://support.discord.com/hc/en-us/articles/16861982215703-Clips) |
+| 1 \<\< 1 | IS_THUMBNAIL               | Attachment is a thumbnail                                                                                           |
+| 1 \<\< 2 | IS_REMIX                   | Attachment has been [remixed](https://support.discord.com/hc/en-us/articles/15145601963031-Remix-FAQ)               |
+| 1 \<\< 3 | IS_SPOILER                 | Attachment is a spoiler                                                                                             |
+| 1 \<\< 4 | CONTAINS_EXPLICIT_MEDIA    | Attachment was flagged as [sensitive content](https://support.discord.com/hc/en-us/articles/18210995019671)         |
+| 1 \<\< 5 | IS_ANIMATED                | Attachment is an animated image                                                                                     |
+| 1 \<\< 6 | CONTAINS_GORE_CONTENT      | Attachment was flagged as [gore](https://support.discord.com/hc/en-us/articles/18210995019671)                      |
+| 1 \<\< 7 | CONTAINS_SELF_HARM_CONTENT | Attachment was flagged as [self-harm content](https://support.discord.com/hc/en-us/articles/18210995019671)         |
 
 ### Allowed Mentions Object
 
@@ -26881,13 +26881,13 @@ Upon successful authentication, the purchase will be automatically confirmed. Th
 
 ###### Payment Flags
 
-| Value  | Name                    | Description                                                   |
-| ------ | ----------------------- | ------------------------------------------------------------- |
-| 1 << 0 | GIFT                    | Payment is for a gift                                         |
-| 1 << 2 | USER_REFUNDED           | Payment has been self-refunded                                |
-| 1 << 3 | PREORDER                | Payment is a preorder                                         |
-| 1 << 4 | PENDING                 | Automatic payment is pending manual authorization by the user |
-| 1 << 5 | TEMPORARY_AUTHORIZATION | Payment is a temporary authorization                          |
+| Value    | Name                    | Description                                                   |
+| -------- | ----------------------- | ------------------------------------------------------------- |
+| 1 \<\< 0 | GIFT                    | Payment is for a gift                                         |
+| 1 \<\< 2 | USER_REFUNDED           | Payment has been self-refunded                                |
+| 1 \<\< 3 | PREORDER                | Payment is a preorder                                         |
+| 1 \<\< 4 | PENDING                 | Automatic payment is pending manual authorization by the user |
+| 1 \<\< 5 | TEMPORARY_AUTHORIZATION | Payment is a temporary authorization                          |
 
 ### Invoice Object
 
@@ -27383,15 +27383,15 @@ Formatting can be further controlled by `status_display_type`. The formats liste
 
 </Alert>
 
-| Value | Name      | Format                           | Example                              |
-| ----- | --------- | -------------------------------- | ------------------------------------ |
-| 0     | PLAYING   | Playing {name}                   | "Playing Rocket League"              |
-| 1     | STREAMING | Streaming {details}              | "Streaming Rocket League"            |
-| 2     | LISTENING | Listening to {name}              | "Listening to Spotify"               |
-| 3     | WATCHING  | Watching {name}                  | "Watching YouTube Together"          |
-| 4     | CUSTOM    | {emoji} {state}                  | "😃 I am cool"                       |
-| 5     | COMPETING | Competing in {name}              | "Competing in Arena World Champions" |
-| 6     | HANG ^1^  | {state} or {emoji} {details} ^2^ | "Chilling"                           |
+| Value | Name      | Format                                 | Example                              |
+| ----- | --------- | -------------------------------------- | ------------------------------------ |
+| 0     | PLAYING   | Playing \{name\}                       | "Playing Rocket League"              |
+| 1     | STREAMING | Streaming \{details\}                  | "Streaming Rocket League"            |
+| 2     | LISTENING | Listening to \{name\}                  | "Listening to Spotify"               |
+| 3     | WATCHING  | Watching \{name\}                      | "Watching YouTube Together"          |
+| 4     | CUSTOM    | \{emoji\} \{state\}                    | "😃 I am cool"                       |
+| 5     | COMPETING | Competing in \{name\}                  | "Competing in Arena World Champions" |
+| 6     | HANG ^1^  | \{state\} or \{emoji\} \{details\} ^2^ | "Chilling"                           |
 
 ^1^ This type is only displayed if the user has an active voice state.
 
@@ -27425,22 +27425,22 @@ For example, `chilling:illocons` is a valid `state` value. The default variant i
 | focusing | studying       |
 | brb      | brb            |
 | watching | watching stuff |
-| custom   | {details}      |
+| custom   | \{details\}    |
 
 ###### Activity Flags
 
-| Value      | Name                          | Description                                                       |
-| ---------- | ----------------------------- | ----------------------------------------------------------------- |
-| 1 << 0     | INSTANCE                      | Activity is an instanced game session (a match that will end)     |
-| 1 << 1     | JOIN                          | Activity can be joined by other users                             |
-| 1 << 2     | SPECTATE **(deprecated)** ^1^ | Activity can be spectated by other users                          |
-| ~~1 << 3~~ | ~~JOIN_REQUEST~~ ^2^          | ~~Activity requires a request to join~~                           |
-| 1 << 4     | SYNC                          | Activity can be synced                                            |
-| 1 << 5     | PLAY                          | Activity can be played                                            |
-| 1 << 6     | PARTY_PRIVACY_FRIENDS         | Activity's party can be joined by friends                         |
-| 1 << 7     | PARTY_PRIVACY_VOICE_CHANNEL   | Activity's party can be joined by users in the same voice channel |
-| 1 << 8     | EMBEDDED                      | Activity is embedded within the Discord client                    |
-| 1 << 9     | CONTEXTLESS                   | Embedded activity is launched without a context                   |
+| Value        | Name                          | Description                                                       |
+| ------------ | ----------------------------- | ----------------------------------------------------------------- |
+| 1 \<\< 0     | INSTANCE                      | Activity is an instanced game session (a match that will end)     |
+| 1 \<\< 1     | JOIN                          | Activity can be joined by other users                             |
+| 1 \<\< 2     | SPECTATE **(deprecated)** ^1^ | Activity can be spectated by other users                          |
+| ~~1 \<\< 3~~ | ~~JOIN_REQUEST~~ ^2^          | ~~Activity requires a request to join~~                           |
+| 1 \<\< 4     | SYNC                          | Activity can be synced                                            |
+| 1 \<\< 5     | PLAY                          | Activity can be played                                            |
+| 1 \<\< 6     | PARTY_PRIVACY_FRIENDS         | Activity's party can be joined by friends                         |
+| 1 \<\< 7     | PARTY_PRIVACY_VOICE_CHANNEL   | Activity's party can be joined by users in the same voice channel |
+| 1 \<\< 8     | EMBEDDED                      | Activity is embedded within the Discord client                    |
+| 1 \<\< 9     | CONTEXTLESS                   | Embedded activity is launched without a context                   |
 
 ^1^ Spectating has been removed from official clients and is no longer supported.
 
@@ -28058,11 +28058,11 @@ Promotions are special offers that users can redeem for various benefits, such a
 
 ###### Promotion Flags
 
-| Value  | Name                                  | Description                                      |
-| ------ | ------------------------------------- | ------------------------------------------------ |
-| 1 << 5 | IS_BLOCKED_IOS                        | Promotion is not shown on iOS                    |
-| 1 << 6 | IS_OUTBOUND_REDEEMABLE_BY_TRIAL_USERS | Promotion is redeemable by trial user            |
-| 1 << 7 | SUPPRESS_NOTIFICATION                 | Notifications about the promotion are suppressed |
+| Value    | Name                                  | Description                                      |
+| -------- | ------------------------------------- | ------------------------------------------------ |
+| 1 \<\< 5 | IS_BLOCKED_IOS                        | Promotion is not shown on iOS                    |
+| 1 \<\< 6 | IS_OUTBOUND_REDEEMABLE_BY_TRIAL_USERS | Promotion is redeemable by trial user            |
+| 1 \<\< 7 | SUPPRESS_NOTIFICATION                 | Notifications about the promotion are suppressed |
 
 ###### Promotion Type
 
@@ -28719,12 +28719,12 @@ The user's quest progression.
 
 Dismissed [quest content areas](#quest-content-type).
 
-| Value  | Name                          | Description                                           |
-| ------ | ----------------------------- | ----------------------------------------------------- |
-| 1 << 0 | GIFT_INVENTORY_SETTINGS_BADGE | User has dismissed the quest from User Settings       |
-| 1 << 1 | QUEST_BAR ^1^                 | User has dismissed the quest from the Quest Bar       |
-| 1 << 2 | ACTIVITY_PANEL                | User has dismissed the quest from the Active Now page |
-| 1 << 3 | QUEST_LIVE_STREAM             | User has dismissed the quest from the stream overlay  |
+| Value    | Name                          | Description                                           |
+| -------- | ----------------------------- | ----------------------------------------------------- |
+| 1 \<\< 0 | GIFT_INVENTORY_SETTINGS_BADGE | User has dismissed the quest from User Settings       |
+| 1 \<\< 1 | QUEST_BAR ^1^                 | User has dismissed the quest from the Quest Bar       |
+| 1 \<\< 2 | ACTIVITY_PANEL                | User has dismissed the quest from the Active Now page |
+| 1 \<\< 3 | QUEST_LIVE_STREAM             | User has dismissed the quest from the stream overlay  |
 
 ^1^ This flag dismisses any `QUEST_BAR` content area, including `QUEST_BAR`, `QUEST_BAR_V2`, and `QUEST_BAR_MOBILE`.
 
@@ -30470,20 +30470,20 @@ All objects serialized in the SKU inherit this behavior.
 
 ###### SKU Flags
 
-| Value   | Name                               | Description                                                         |
-| ------- | ---------------------------------- | ------------------------------------------------------------------- |
-| 1 << 0  | PREMIUM_PURCHASE                   | SKU is available for free to premium users                          |
-| 1 << 1  | HAS_FREE_PREMIUM_CONTENT           | SKU has free content for premium users                              |
-| 1 << 2  | AVAILABLE                          | SKU is available for purchase                                       |
-| 1 << 3  | PREMIUM_AND_DISTRIBUTION           | SKU is available for free to premium users and purchasable normally |
-| 1 << 4  | STICKER                            | SKU is a paid sticker pack                                          |
-| 1 << 5  | GUILD_ROLE                         | SKU is a guild role subscription or ticketed event                  |
-| 1 << 6  | AVAILABLE_FOR_SUBSCRIPTION_GIFTING | SKU is a giftable Discord premium subscription                      |
-| 1 << 7  | APPLICATION_GUILD_SUBSCRIPTION     | SKU is an application subscription for guilds                       |
-| 1 << 8  | APPLICATION_USER_SUBSCRIPTION      | SKU is an application subscription for users                        |
-| 1 << 9  | CREATOR_MONETIZATION               | SKU is a guild creator monetization product                         |
-| 1 << 10 | GUILD_PRODUCT                      | SKU is a guild product                                              |
-| 1 << 11 | AVAILABLE_FOR_APPLICATION_GIFTING  | SKU is a giftable application product                               |
+| Value     | Name                               | Description                                                         |
+| --------- | ---------------------------------- | ------------------------------------------------------------------- |
+| 1 \<\< 0  | PREMIUM_PURCHASE                   | SKU is available for free to premium users                          |
+| 1 \<\< 1  | HAS_FREE_PREMIUM_CONTENT           | SKU has free content for premium users                              |
+| 1 \<\< 2  | AVAILABLE                          | SKU is available for purchase                                       |
+| 1 \<\< 3  | PREMIUM_AND_DISTRIBUTION           | SKU is available for free to premium users and purchasable normally |
+| 1 \<\< 4  | STICKER                            | SKU is a paid sticker pack                                          |
+| 1 \<\< 5  | GUILD_ROLE                         | SKU is a guild role subscription or ticketed event                  |
+| 1 \<\< 6  | AVAILABLE_FOR_SUBSCRIPTION_GIFTING | SKU is a giftable Discord premium subscription                      |
+| 1 \<\< 7  | APPLICATION_GUILD_SUBSCRIPTION     | SKU is an application subscription for guilds                       |
+| 1 \<\< 8  | APPLICATION_USER_SUBSCRIPTION      | SKU is an application subscription for users                        |
+| 1 \<\< 9  | CREATOR_MONETIZATION               | SKU is a guild creator monetization product                         |
+| 1 \<\< 10 | GUILD_PRODUCT                      | SKU is a guild product                                              |
+| 1 \<\< 11 | AVAILABLE_FOR_APPLICATION_GIFTING  | SKU is a giftable application product                               |
 
 ###### SKU Access Type
 
@@ -33207,18 +33207,18 @@ Serialized as `discord_protos.discord_users.v1.PreloadedUserSettings`.
 
 ###### Hub Progress Flags
 
-| Value  | Name         | Description                              |
-| ------ | ------------ | ---------------------------------------- |
-| 1 << 0 | JOIN_GUILD   | User has joined a guild in the hub       |
-| 1 << 1 | INVITE_USER  | User has sent an invite for the hub      |
-| 1 << 2 | CONTACT_SYNC | User has accepted the contact sync modal |
+| Value    | Name         | Description                              |
+| -------- | ------------ | ---------------------------------------- |
+| 1 \<\< 0 | JOIN_GUILD   | User has joined a guild in the hub       |
+| 1 \<\< 1 | INVITE_USER  | User has sent an invite for the hub      |
+| 1 \<\< 2 | CONTACT_SYNC | User has accepted the contact sync modal |
 
 ###### Guild Onboarding Progress Flags
 
-| Value  | Name           | Description                               |
-| ------ | -------------- | ----------------------------------------- |
-| 1 << 0 | NOTICE_SHOWN   | User has been shown the onboarding notice |
-| 1 << 1 | NOTICE_CLEARED | User has cleared the onboarding notice    |
+| Value    | Name           | Description                               |
+| -------- | -------------- | ----------------------------------------- |
+| 1 \<\< 0 | NOTICE_SHOWN   | User has been shown the onboarding notice |
+| 1 \<\< 1 | NOTICE_CLEARED | User has cleared the onboarding notice    |
 
 ###### Custom Call Sound Structure
 
@@ -33558,11 +33558,11 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 
 ###### Friend Source Flags
 
-| Value  | Name            | Description                                                     |
-| ------ | --------------- | --------------------------------------------------------------- |
-| 1 << 1 | MUTUAL_FRIENDS  | Whether mutual friends can add the user as friend               |
-| 1 << 2 | MUTUAL_GUILDS   | Whether members in the user's guilds can add the user as friend |
-| 1 << 3 | NO_RELATION ^3^ | Whether users with no relation can add the user as friend       |
+| Value    | Name            | Description                                                     |
+| -------- | --------------- | --------------------------------------------------------------- |
+| 1 \<\< 1 | MUTUAL_FRIENDS  | Whether mutual friends can add the user as friend               |
+| 1 \<\< 2 | MUTUAL_GUILDS   | Whether members in the user's guilds can add the user as friend |
+| 1 \<\< 3 | NO_RELATION ^3^ | Whether users with no relation can add the user as friend       |
 
 ^3^ Requires `MUTUAL_FRIENDS` and `MUTUAL_GUILDS`.
 
@@ -34186,10 +34186,10 @@ Whose messages will be scanned for explicit content.
 
 Determines how you get recommended friends.
 
-| Value  | Name          | Description                                           |
-| ------ | ------------- | ----------------------------------------------------- |
-| 1 << 1 | FIND_BY_PHONE | Whether the current user can be found by phone number |
-| 1 << 2 | FIND_BY_EMAIL | Whether the current user can be found by email        |
+| Value    | Name          | Description                                           |
+| -------- | ------------- | ----------------------------------------------------- |
+| 1 \<\< 1 | FIND_BY_PHONE | Whether the current user can be found by phone number |
+| 1 \<\< 2 | FIND_BY_EMAIL | Whether the current user can be found by email        |
 
 ###### Friend Source Flags Structure
 
@@ -34281,10 +34281,10 @@ User-wide notification settings.
 
 ###### Notification Settings Flags
 
-| Value  | Name                    | Description                                                                                                            |
-| ------ | ----------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| 1 << 4 | USE_NEW_NOTIFICATIONS   | Whether to separate unreads from the overall message notification level                                                |
-| 1 << 5 | MENTION_ON_ALL_MESSAGES | Whether to increment the mention count on all messages in channels with a message notification level of `ALL_MESSAGES` |
+| Value    | Name                    | Description                                                                                                            |
+| -------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| 1 \<\< 4 | USE_NEW_NOTIFICATIONS   | Whether to separate unreads from the overall message notification level                                                |
+| 1 \<\< 5 | MENTION_ON_ALL_MESSAGES | Whether to increment the mention count on all messages in channels with a message notification level of `ALL_MESSAGES` |
 
 ###### Example Notification Settings
 
@@ -34371,25 +34371,25 @@ Used when modifying user guild settings.
 
 ###### Channel Override Flags
 
-| Value   | Name                      | Description                                                       |
-| ------- | ------------------------- | ----------------------------------------------------------------- |
-| 1 << 9  | UNREADS_ONLY_MENTIONS ^1^ | Channel is marked unread on mentions                              |
-| 1 << 10 | UNREADS_ALL_MESSAGES ^1^  | Channel is marked unread on new messages                          |
-| 1 << 11 | FAVORITED                 | Channel is favorited                                              |
-| 1 << 12 | OPT_IN_ENABLED            | Channel is shown in the UI                                        |
-| 1 << 13 | NEW_FORUM_THREADS_OFF     | Thread-only channel is not marked unread when a thread is created |
-| 1 << 14 | NEW_FORUM_THREADS_ON      | Thread-only channel is marked unread when a thread is created     |
+| Value     | Name                      | Description                                                       |
+| --------- | ------------------------- | ----------------------------------------------------------------- |
+| 1 \<\< 9  | UNREADS_ONLY_MENTIONS ^1^ | Channel is marked unread on mentions                              |
+| 1 \<\< 10 | UNREADS_ALL_MESSAGES ^1^  | Channel is marked unread on new messages                          |
+| 1 \<\< 11 | FAVORITED                 | Channel is favorited                                              |
+| 1 \<\< 12 | OPT_IN_ENABLED            | Channel is shown in the UI                                        |
+| 1 \<\< 13 | NEW_FORUM_THREADS_OFF     | Thread-only channel is not marked unread when a thread is created |
+| 1 \<\< 14 | NEW_FORUM_THREADS_ON      | Thread-only channel is marked unread when a thread is created     |
 
 ^1^ When these flags are unset, unreads follow the [`message_notifications` field](#channel-override-structure).
 
 ###### User Guild Settings Flags
 
-| Value   | Name                      | Description                                     |
-| ------- | ------------------------- | ----------------------------------------------- |
-| 1 << 11 | UNREADS_ALL_MESSAGES ^1^  | Guild is marked unread on new messages          |
-| 1 << 12 | UNREADS_ONLY_MENTIONS ^1^ | Guild is marked unread on mentions              |
-| 1 << 13 | OPT_IN_CHANNELS_OFF       | Whether to show all guild channels in the UI    |
-| 1 << 14 | OPT_IN_CHANNELS_ON        | Whether to hide non-opted in channels in the UI |
+| Value     | Name                      | Description                                     |
+| --------- | ------------------------- | ----------------------------------------------- |
+| 1 \<\< 11 | UNREADS_ALL_MESSAGES ^1^  | Guild is marked unread on new messages          |
+| 1 \<\< 12 | UNREADS_ONLY_MENTIONS ^1^ | Guild is marked unread on mentions              |
+| 1 \<\< 13 | OPT_IN_CHANNELS_OFF       | Whether to show all guild channels in the UI    |
+| 1 \<\< 14 | OPT_IN_CHANNELS_ON        | Whether to hide non-opted in channels in the UI |
 
 ^1^ When these flags are unset, unreads follow the [`message_notifications` field](#user-guild-settings-object).
 
@@ -34847,46 +34847,46 @@ For users with migrated accounts, default avatar URLs will be based on the user 
 
 ###### User Flags
 
-| Value       | Name                                 | Description                                                                                                                              | Public  |
-| ----------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| 1 << 0      | STAFF                                | Discord Staff                                                                                                                            | Yes     |
-| 1 << 1      | PARTNER                              | Partnered Server Owner                                                                                                                   | Yes     |
-| 1 << 2      | HYPESQUAD                            | HypeSquad Events                                                                                                                         | Yes     |
-| 1 << 3      | BUG_HUNTER_LEVEL_1                   | Level 1 Discord Bug Hunter                                                                                                               | Yes     |
-| 1 << 4      | MFA_SMS                              | SMS enabled as a multi-factor authentication backup                                                                                      | No      |
-| 1 << 5      | PREMIUM_PROMO_DISMISSED              | User has dismissed the current premium (Nitro) promotion                                                                                 | No      |
-| 1 << 6      | HYPESQUAD_ONLINE_HOUSE_1             | HypeSquad Bravery                                                                                                                        | Yes     |
-| 1 << 7      | HYPESQUAD_ONLINE_HOUSE_2             | HypeSquad Brilliance                                                                                                                     | Yes     |
-| 1 << 8      | HYPESQUAD_ONLINE_HOUSE_3             | HypeSquad Balance                                                                                                                        | Yes     |
-| 1 << 9      | PREMIUM_EARLY_SUPPORTER              | Early Premium (Nitro) Supporter                                                                                                          | Yes     |
-| 1 << 10     | TEAM_PSEUDO_USER                     | User is a [Team](/resources/team)                                                                                                        | Yes     |
-| 1 << 11     | IS_HUBSPOT_CONTACT                   | User is registered on Discord's [HubSpot](https://www.hubspot.com/) customer platform, used for official Discord programs (e.g. partner) | No ^1^  |
-| ~~1 << 12~~ | ~~SYSTEM~~                           | ~~User is a system user (i.e. official Discord account)~~                                                                                | ~~Yes~~ |
-| 1 << 13     | HAS_UNREAD_URGENT_MESSAGES           | User has unread urgent system messages; an urgent message is one sent from Trust and Safety                                              | No      |
-| 1 << 14     | BUG_HUNTER_LEVEL_2                   | Level 2 Discord Bug Hunter                                                                                                               | Yes     |
-| 1 << 15     | UNDERAGE_DELETED                     | User is scheduled for deletion for being under the minimum required age                                                                  | No ^1^  |
-| 1 << 16     | VERIFIED_BOT                         | Verified Bot                                                                                                                             | Yes     |
-| 1 << 17     | VERIFIED_DEVELOPER                   | Early Verified Bot Developer                                                                                                             | Yes     |
-| 1 << 18     | CERTIFIED_MODERATOR                  | Moderator Programs Alumni                                                                                                                | Yes     |
-| 1 << 19     | BOT_HTTP_INTERACTIONS                | Bot uses only HTTP interactions and is shown in the online member list                                                                   | Yes     |
-| 1 << 20     | SPAMMER                              | User is marked as a spammer and has their messages collapsed in the UI                                                                   | Yes     |
-| ~~1 << 21~~ | ~~DISABLE_PREMIUM~~                  | ~~User has manually disabled premium (Nitro) features~~                                                                                  | ~~No~~  |
-| ~~1 << 22~~ | ~~ACTIVE_DEVELOPER~~                 | ~~[Active Developer](https://support-dev.discord.com/hc/articles/10113997751447)~~                                                       | ~~Yes~~ |
-| 1 << 23     | PROVISIONAL_ACCOUNT                  | User is a provisional account used with the social layer integration                                                                     | Yes     |
-| 1 << 33     | HIGH_GLOBAL_RATE_LIMIT               | User has their global ratelimit raised to 1,200 requests per second                                                                      | No ^1^  |
-| 1 << 34     | DELETED                              | User's account is deleted                                                                                                                | No ^1^  |
-| 1 << 35     | DISABLED_SUSPICIOUS_ACTIVITY         | User's account is disabled for suspicious activity and must reset their password to regain access                                        | No ^1^  |
-| 1 << 36     | SELF_DELETED                         | User deleted their own account                                                                                                           | No ^1^  |
-| 1 << 37     | PREMIUM_DISCRIMINATOR                | User has a premium (Nitro) custom discriminator                                                                                          | No ^1^  |
-| 1 << 38     | USED_DESKTOP_CLIENT                  | User has used the desktop client                                                                                                         | No ^1^  |
-| 1 << 39     | USED_WEB_CLIENT                      | User has used the web client                                                                                                             | No ^1^  |
-| 1 << 40     | USED_MOBILE_CLIENT                   | User has used the mobile client                                                                                                          | No ^1^  |
-| 1 << 41     | DISABLED                             | User's account is disabled                                                                                                               | No ^1^  |
-| 1 << 43     | HAS_SESSION_STARTED                  | User has started at least one Gateway session and is now eligible to send messages                                                       | No ^1^  |
-| 1 << 44     | QUARANTINED                          | User is quarantined and cannot create DMs or accept invites                                                                              | No      |
-| 1 << 47     | PREMIUM_ELIGIBLE_FOR_UNIQUE_USERNAME | User is eligible for early access to [unique usernames](#create-unique-username)                                                         | No ^1^  |
-| 1 << 50     | COLLABORATOR                         | User is a collaborator and is considered staff                                                                                           | No      |
-| 1 << 51     | RESTRICTED_COLLABORATOR              | User is a restricted collaborator and is considered staff                                                                                | No      |
+| Value         | Name                                 | Description                                                                                                                              | Public  |
+| ------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| 1 \<\< 0      | STAFF                                | Discord Staff                                                                                                                            | Yes     |
+| 1 \<\< 1      | PARTNER                              | Partnered Server Owner                                                                                                                   | Yes     |
+| 1 \<\< 2      | HYPESQUAD                            | HypeSquad Events                                                                                                                         | Yes     |
+| 1 \<\< 3      | BUG_HUNTER_LEVEL_1                   | Level 1 Discord Bug Hunter                                                                                                               | Yes     |
+| 1 \<\< 4      | MFA_SMS                              | SMS enabled as a multi-factor authentication backup                                                                                      | No      |
+| 1 \<\< 5      | PREMIUM_PROMO_DISMISSED              | User has dismissed the current premium (Nitro) promotion                                                                                 | No      |
+| 1 \<\< 6      | HYPESQUAD_ONLINE_HOUSE_1             | HypeSquad Bravery                                                                                                                        | Yes     |
+| 1 \<\< 7      | HYPESQUAD_ONLINE_HOUSE_2             | HypeSquad Brilliance                                                                                                                     | Yes     |
+| 1 \<\< 8      | HYPESQUAD_ONLINE_HOUSE_3             | HypeSquad Balance                                                                                                                        | Yes     |
+| 1 \<\< 9      | PREMIUM_EARLY_SUPPORTER              | Early Premium (Nitro) Supporter                                                                                                          | Yes     |
+| 1 \<\< 10     | TEAM_PSEUDO_USER                     | User is a [Team](/resources/team)                                                                                                        | Yes     |
+| 1 \<\< 11     | IS_HUBSPOT_CONTACT                   | User is registered on Discord's [HubSpot](https://www.hubspot.com/) customer platform, used for official Discord programs (e.g. partner) | No ^1^  |
+| ~~1 \<\< 12~~ | ~~SYSTEM~~                           | ~~User is a system user (i.e. official Discord account)~~                                                                                | ~~Yes~~ |
+| 1 \<\< 13     | HAS_UNREAD_URGENT_MESSAGES           | User has unread urgent system messages; an urgent message is one sent from Trust and Safety                                              | No      |
+| 1 \<\< 14     | BUG_HUNTER_LEVEL_2                   | Level 2 Discord Bug Hunter                                                                                                               | Yes     |
+| 1 \<\< 15     | UNDERAGE_DELETED                     | User is scheduled for deletion for being under the minimum required age                                                                  | No ^1^  |
+| 1 \<\< 16     | VERIFIED_BOT                         | Verified Bot                                                                                                                             | Yes     |
+| 1 \<\< 17     | VERIFIED_DEVELOPER                   | Early Verified Bot Developer                                                                                                             | Yes     |
+| 1 \<\< 18     | CERTIFIED_MODERATOR                  | Moderator Programs Alumni                                                                                                                | Yes     |
+| 1 \<\< 19     | BOT_HTTP_INTERACTIONS                | Bot uses only HTTP interactions and is shown in the online member list                                                                   | Yes     |
+| 1 \<\< 20     | SPAMMER                              | User is marked as a spammer and has their messages collapsed in the UI                                                                   | Yes     |
+| ~~1 \<\< 21~~ | ~~DISABLE_PREMIUM~~                  | ~~User has manually disabled premium (Nitro) features~~                                                                                  | ~~No~~  |
+| ~~1 \<\< 22~~ | ~~ACTIVE_DEVELOPER~~                 | ~~[Active Developer](https://support-dev.discord.com/hc/articles/10113997751447)~~                                                       | ~~Yes~~ |
+| 1 \<\< 23     | PROVISIONAL_ACCOUNT                  | User is a provisional account used with the social layer integration                                                                     | Yes     |
+| 1 \<\< 33     | HIGH_GLOBAL_RATE_LIMIT               | User has their global ratelimit raised to 1,200 requests per second                                                                      | No ^1^  |
+| 1 \<\< 34     | DELETED                              | User's account is deleted                                                                                                                | No ^1^  |
+| 1 \<\< 35     | DISABLED_SUSPICIOUS_ACTIVITY         | User's account is disabled for suspicious activity and must reset their password to regain access                                        | No ^1^  |
+| 1 \<\< 36     | SELF_DELETED                         | User deleted their own account                                                                                                           | No ^1^  |
+| 1 \<\< 37     | PREMIUM_DISCRIMINATOR                | User has a premium (Nitro) custom discriminator                                                                                          | No ^1^  |
+| 1 \<\< 38     | USED_DESKTOP_CLIENT                  | User has used the desktop client                                                                                                         | No ^1^  |
+| 1 \<\< 39     | USED_WEB_CLIENT                      | User has used the web client                                                                                                             | No ^1^  |
+| 1 \<\< 40     | USED_MOBILE_CLIENT                   | User has used the mobile client                                                                                                          | No ^1^  |
+| 1 \<\< 41     | DISABLED                             | User's account is disabled                                                                                                               | No ^1^  |
+| 1 \<\< 43     | HAS_SESSION_STARTED                  | User has started at least one Gateway session and is now eligible to send messages                                                       | No ^1^  |
+| 1 \<\< 44     | QUARANTINED                          | User is quarantined and cannot create DMs or accept invites                                                                              | No      |
+| 1 \<\< 47     | PREMIUM_ELIGIBLE_FOR_UNIQUE_USERNAME | User is eligible for early access to [unique usernames](#create-unique-username)                                                         | No ^1^  |
+| 1 \<\< 50     | COLLABORATOR                         | User is a collaborator and is considered staff                                                                                           | No      |
+| 1 \<\< 51     | RESTRICTED_COLLABORATOR              | User is a restricted collaborator and is considered staff                                                                                | No      |
 
 ^1^ Not exposed to the API, can only be found in [user data harvests](#harvest-object).
 
@@ -34894,23 +34894,23 @@ For users with migrated accounts, default avatar URLs will be based on the user 
 
 Purchased flags denote what premium items a user has ever purchased. Visit the [Nitro](https://discord.com/nitro) page to learn more about the premium plans currently offered.
 
-| Value  | Name             | Description                      |
-| ------ | ---------------- | -------------------------------- |
-| 1 << 0 | NITRO_CLASSIC    | User has purchased Nitro classic |
-| 1 << 1 | NITRO            | User has purchased regular Nitro |
-| 1 << 2 | GUILD_BOOST      | User has purchased a guild boost |
-| 1 << 3 | NITRO_BASIC      | User has purchased Nitro basic   |
-| 1 << 4 | ON_REVERSE_TRIAL | User has a reverse trial active  |
+| Value    | Name             | Description                      |
+| -------- | ---------------- | -------------------------------- |
+| 1 \<\< 0 | NITRO_CLASSIC    | User has purchased Nitro classic |
+| 1 \<\< 1 | NITRO            | User has purchased regular Nitro |
+| 1 \<\< 2 | GUILD_BOOST      | User has purchased a guild boost |
+| 1 \<\< 3 | NITRO_BASIC      | User has purchased Nitro basic   |
+| 1 \<\< 4 | ON_REVERSE_TRIAL | User has a reverse trial active  |
 
 ###### Premium Usage Flags
 
 Premium usage flags denote what premium (Nitro) features a user has utilized.
 
-| Value  | Name                  | Description                              |
-| ------ | --------------------- | ---------------------------------------- |
-| 1 << 0 | PREMIUM_DISCRIMINATOR | User has utilized premium discriminators |
-| 1 << 1 | ANIMATED_AVATAR       | User has utilized animated avatars       |
-| 1 << 2 | PROFILE_BANNER        | User has utilized profile banners        |
+| Value    | Name                  | Description                              |
+| -------- | --------------------- | ---------------------------------------- |
+| 1 \<\< 0 | PREMIUM_DISCRIMINATOR | User has utilized premium discriminators |
+| 1 \<\< 1 | ANIMATED_AVATAR       | User has utilized animated avatars       |
+| 1 \<\< 2 | PROFILE_BANNER        | User has utilized profile banners        |
 
 ###### Premium Type
 
@@ -35536,7 +35536,7 @@ At least one active Gateway session is required to modify a user account's usern
 | discriminator? ^5^        | string                             | The user's stringified 4-digit Discord tag; can only be changed for users with an applicable premium plan, which triggers a reroll after the subscription expires |
 | global_name? ^5^          | ?string                            | The user's display name (1-32 characters)                                                                                                                         |
 | avatar?                   | ?[image data](/reference#cdn-data) | The user's avatar; can be animated when the user has an applicable premium plan                                                                                   |
-| avatar_description?       | ?string                            | The description of the new user avatar, usually in the format "{filename}, added {date}" (max 1024 characters)                                                    |
+| avatar_description?       | ?string                            | The description of the new user avatar, usually in the format "\{filename\}, added \{date\}" (max 1024 characters)                                                |
 | avatar_id?                | string                             | The ID of the recent avatar to use                                                                                                                                |
 | avatar_decoration_id?     | ?snowflake                         | The ID of the user's avatar decoration                                                                                                                            |
 | avatar_decoration_sku_id? | ?snowflake                         | The SKU ID of the user's avatar decoration                                                                                                                        |
@@ -37885,7 +37885,7 @@ This minimum version data is available at `https://dl.discordapp.net/apps/androi
 | --------- | -------------------------------------------------------------------- | --------------------------- |
 | stable    | https://apps.apple.com/us/app/discord-talk-chat-hang-out/id985746746 | Stable application build    |
 | beta ^1^  | https://testflight.apple.com/join/gdE4pRzI                           | Beta application build      |
-| alpha ^1^ | <private\>                                                           | Internal application builds |
+| alpha ^1^ | \<private\\>                                                         | Internal application builds |
 
 ^1^ See the [Help Center article](https://support.discord.com/hc/en-us/articles/360035675191-Discord-Testing-Clients) for more information on Discord testing clients.
 
@@ -38073,6 +38073,7 @@ Native modules are versioned uniquely per host version. Due to caching, new host
 | platform          | string | The [platform](#desktop-platform-type) to get the manifest for              |
 | arch              | string | The [architecture](#desktop-architecture-type) to get the manifest for      |
 | platform_version? | string | The version of the client's operating system (e.g. `10.0.19045` on Windows) |
+| client_version?   | string | The `metadata_version` of the client currently installed                    |
 
 ###### Response Body
 
@@ -38847,12 +38848,12 @@ This object is represented as an array of the following fields:
 
 ###### Apex Experiment Flags
 
-| Value  | Name                      | Description                                                             |
-| ------ | ------------------------- | ----------------------------------------------------------------------- |
-| 1 << 0 | IS_OVERRIDE               | Experiment assignment is an override                                    |
-| 1 << 1 | EXPOSURE_TRACKING_ENABLED | Experiment has exposure tracking enabled                                |
-| 1 << 2 | DEPENDENT_EXPERIMENT      | Experiment is dependent on another experiment                           |
-| 1 << 3 | USE_AS_ELIGIBILITY        | Experiment assignment acts as an eligibility gate for guild experiments |
+| Value    | Name                      | Description                                                             |
+| -------- | ------------------------- | ----------------------------------------------------------------------- |
+| 1 \<\< 0 | IS_OVERRIDE               | Experiment assignment is an override                                    |
+| 1 \<\< 1 | EXPOSURE_TRACKING_ENABLED | Experiment has exposure tracking enabled                                |
+| 1 \<\< 2 | DEPENDENT_EXPERIMENT      | Experiment is dependent on another experiment                           |
+| 1 \<\< 3 | USE_AS_ELIGIBILITY        | Experiment assignment acts as an eligibility gate for guild experiments |
 
 ###### Example Apex Experiments
 
@@ -40945,11 +40946,11 @@ The client should reset the ack token to `null` whenever it switches accounts or
 
 ###### Read State Flags
 
-| Value  | Name                      | Description                                    |
-| ------ | ------------------------- | ---------------------------------------------- |
-| 1 << 0 | IS_GUILD_CHANNEL          | Whether the channel is part of a guild         |
-| 1 << 1 | IS_THREAD                 | Whether the channel is a thread                |
-| 1 << 2 | IS_MENTION_LOW_IMPORTANCE | Whether channel mentions are of low importance |
+| Value    | Name                      | Description                                    |
+| -------- | ------------------------- | ---------------------------------------------- |
+| 1 \<\< 0 | IS_GUILD_CHANNEL          | Whether the channel is part of a guild         |
+| 1 \<\< 1 | IS_THREAD                 | Whether the channel is a thread                |
+| 1 \<\< 2 | IS_MENTION_LOW_IMPORTANCE | Whether channel mentions are of low importance |
 
 ## Endpoints
 
@@ -42693,11 +42694,11 @@ You must send at least one [Speaking](#speaking) payload before sending or recei
 
 ###### Speaking Flags
 
-| Value  | Name       | Description                                                    |
-| ------ | ---------- | -------------------------------------------------------------- |
-| 1 << 0 | VOICE      | Normal transmission of voice audio                             |
-| 1 << 1 | SOUNDSHARE | Transmission of context audio for video, no speaking indicator |
-| 1 << 2 | PRIORITY   | Priority speaker, lowering audio of other speakers             |
+| Value    | Name       | Description                                                    |
+| -------- | ---------- | -------------------------------------------------------------- |
+| 1 \<\< 0 | VOICE      | Normal transmission of voice audio                             |
+| 1 \<\< 1 | SOUNDSHARE | Transmission of context audio for video, no speaking indicator |
+| 1 \<\< 2 | PRIORITY   | Priority speaker, lowering audio of other speakers             |
 
 ###### Example Speaking (Send)
 
@@ -42929,11 +42930,11 @@ These events are meant to inform a new client of all existing clients and their 
 
 ###### Voice Flags
 
-| Value  | Name                   | Description                                                                                  |
-| ------ | ---------------------- | -------------------------------------------------------------------------------------------- |
-| 1 << 0 | CLIPS_ENABLED          | User has [clips](https://support.discord.com/hc/en-us/articles/16861982215703-Clips) enabled |
-| 1 << 1 | ALLOW_VOICE_RECORDING  | User has allowed their voice to be recorded in another user's clips                          |
-| 1 << 2 | ALLOW_ANY_VIEWER_CLIPS | User has allowed stream viewers to clip them                                                 |
+| Value    | Name                   | Description                                                                                  |
+| -------- | ---------------------- | -------------------------------------------------------------------------------------------- |
+| 1 \<\< 0 | CLIPS_ENABLED          | User has [clips](https://support.discord.com/hc/en-us/articles/16861982215703-Clips) enabled |
+| 1 \<\< 1 | ALLOW_VOICE_RECORDING  | User has allowed their voice to be recorded in another user's clips                          |
+| 1 \<\< 2 | ALLOW_ANY_VIEWER_CLIPS | User has allowed stream viewers to clip them                                                 |
 
 ###### Example Client Flags
 
