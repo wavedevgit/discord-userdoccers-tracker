@@ -821,30 +821,6 @@
             "/guilds/:param/application-commands/:param"
         ],
         [
-            "APPLICATION_DIRECTORY_APPLICATION",
-            "/application-directory-static/applications/:param"
-        ],
-        [
-            "APPLICATION_DIRECTORY_EMBED_APPLICATION",
-            "/application-directory/applications/:param/embed"
-        ],
-        [
-            "APPLICATION_DIRECTORY_CATEGORIES",
-            "/application-directory-static/categories"
-        ],
-        [
-            "APPLICATION_DIRECTORY_SIMILAR",
-            "/application-directory-static/applications/:param/similar"
-        ],
-        [
-            "APPLICATION_DIRECTORY_SEARCH",
-            "/application-directory-static/search"
-        ],
-        [
-            "APPLICATION_DIRECTORY_COLLECTIONS",
-            "/application-directory-static/collections"
-        ],
-        [
             "APPLICATION_DIRECTORY_COLLECTION_ITEM_IMAGE",
             "/application-directory/collection-items/:param/:param.:param"
         ],
@@ -2529,6 +2505,30 @@
         [
             "APPLICATION_COMMAND_INDEX_APPLICATION",
             "/applications/:param/application-command-index"
+        ],
+        [
+            "APPLICATION_DIRECTORY_APPLICATION",
+            "/application-directory-static/applications/:param"
+        ],
+        [
+            "APPLICATION_DIRECTORY_EMBED_APPLICATION",
+            "/application-directory/applications/:param/embed"
+        ],
+        [
+            "APPLICATION_DIRECTORY_CATEGORIES",
+            "/application-directory-static/categories"
+        ],
+        [
+            "APPLICATION_DIRECTORY_SIMILAR",
+            "/application-directory-static/applications/:param/similar"
+        ],
+        [
+            "APPLICATION_DIRECTORY_SEARCH",
+            "/application-directory-static/search"
+        ],
+        [
+            "APPLICATION_DIRECTORY_COLLECTIONS",
+            "/application-directory-static/collections"
         ],
         [
             "USER_EMAIL",

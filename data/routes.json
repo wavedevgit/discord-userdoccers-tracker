@@ -471,6 +471,77 @@
         ]
     },
     {
+        "title": "Get Application Directory Categories",
+        "method": "GET",
+        "url": "/application-directory-static/categories",
+        "unauthenticated": true,
+        "urls": [
+            "/application-directory-static/categories"
+        ],
+        "urlEmpty": [
+            "/application-directory-static/categories"
+        ]
+    },
+    {
+        "title": "Get Application Directory Collections",
+        "method": "GET",
+        "url": "/application-directory-static/collections",
+        "unauthenticated": true,
+        "urls": [
+            "/application-directory-static/collections"
+        ],
+        "urlEmpty": [
+            "/application-directory-static/collections"
+        ]
+    },
+    {
+        "title": "Get Application Directory Application",
+        "method": "GET",
+        "url": "/application-directory-static/applications/{application.id}",
+        "unauthenticated": true,
+        "urls": [
+            "/application-directory-static/applications/{application.id}"
+        ],
+        "urlEmpty": [
+            "/application-directory-static/applications/:param"
+        ]
+    },
+    {
+        "title": "Get Application Directory Application Embed",
+        "method": "GET",
+        "url": "/application-directory/applications/{application.id}/embed",
+        "urls": [
+            "/application-directory/applications/{application.id}/embed"
+        ],
+        "urlEmpty": [
+            "/application-directory/applications/:param/embed"
+        ]
+    },
+    {
+        "title": "Get Application Directory Similar Applications",
+        "method": "GET",
+        "url": "/application-directory-static/applications/{application.id}/similar",
+        "unauthenticated": true,
+        "urls": [
+            "/application-directory-static/applications/{application.id}/similar"
+        ],
+        "urlEmpty": [
+            "/application-directory-static/applications/:param/similar"
+        ]
+    },
+    {
+        "title": "Search Applications Directory",
+        "method": "GET",
+        "url": "/application-directory-static/search",
+        "unauthenticated": true,
+        "urls": [
+            "/application-directory-static/search"
+        ],
+        "urlEmpty": [
+            "/application-directory-static/search"
+        ]
+    },
+    {
         "title": "Get Applications",
         "method": "GET",
         "url": "/applications",
@@ -906,7 +977,7 @@
         ]
     },
     {
-        "title": "Get Rich Presence Application",
+        "title": "Get RPC Application",
         "method": "GET",
         "url": "/applications/{application.id}/rpc",
         "unauthenticated": true,

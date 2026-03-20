@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 448 |
+| Covered | 454 |
 |---------|------------|
-| Missing | 257 |
+| Missing | 251 |
 ## Missing routes
-total: 257
+total: 251
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -211,12 +211,6 @@ total: 257
 - [ ] **SOUNDBOARD_SOUND**: `/soundboard-sounds/:param`
 - [ ] **APPLICATION_COMMANDS_SEARCH**: `/channels/:param/application-commands/search`
 - [ ] **GUILD_COMMANDS_FOR_APPLICATION**: `/guilds/:param/application-commands/:param`
-- [ ] **APPLICATION_DIRECTORY_APPLICATION**: `/application-directory-static/applications/:param`
-- [ ] **APPLICATION_DIRECTORY_EMBED_APPLICATION**: `/application-directory/applications/:param/embed`
-- [ ] **APPLICATION_DIRECTORY_CATEGORIES**: `/application-directory-static/categories`
-- [ ] **APPLICATION_DIRECTORY_SIMILAR**: `/application-directory-static/applications/:param/similar`
-- [ ] **APPLICATION_DIRECTORY_SEARCH**: `/application-directory-static/search`
-- [ ] **APPLICATION_DIRECTORY_COLLECTIONS**: `/application-directory-static/collections`
 - [ ] **APPLICATION_DIRECTORY_COLLECTION_ITEM_IMAGE**: `/application-directory/collection-items/:param/:param.:param`
 - [ ] **APP_RECOMMENDATIONS**: `/app-recommendations`
 - [ ] **GUILD_FEED**: `/guilds/:param/guild-feed`
@@ -265,7 +259,7 @@ total: 257
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 448
+total: 454
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -642,6 +636,12 @@ total: 448
 - [x] **APPLICATION_COMMAND_INDEX_GUILD**: `/guilds/:param/application-command-index`
 - [x] **APPLICATION_COMMAND_INDEX_USER**: `/users/@me/application-command-index`
 - [x] **APPLICATION_COMMAND_INDEX_APPLICATION**: `/applications/:param/application-command-index`
+- [x] **APPLICATION_DIRECTORY_APPLICATION**: `/application-directory-static/applications/:param`
+- [x] **APPLICATION_DIRECTORY_EMBED_APPLICATION**: `/application-directory/applications/:param/embed`
+- [x] **APPLICATION_DIRECTORY_CATEGORIES**: `/application-directory-static/categories`
+- [x] **APPLICATION_DIRECTORY_SIMILAR**: `/application-directory-static/applications/:param/similar`
+- [x] **APPLICATION_DIRECTORY_SEARCH**: `/application-directory-static/search`
+- [x] **APPLICATION_DIRECTORY_COLLECTIONS**: `/application-directory-static/collections`
 - [x] **USER_EMAIL**: `/users/@me/email`
 - [x] **USER_EMAIL_VERIFY_CODE**: `/users/@me/email/verify-code`
 - [x] **PREMIUM_USAGE**: `/users/@me/premium-usage`
