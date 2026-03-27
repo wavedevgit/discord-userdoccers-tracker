@@ -11754,7 +11754,7 @@ Returns a list of up to 3 partial [user](/resources/user#partial-user-structure)
 ----- discord-userdoccers/pages/resources/channel.mdx -----
 # Channels
 
-Channels are the primary way users interact with Discord. All conversations, whether over text or voice, in guilds or a group, happen in channels.
+Channels are the primary way users interact with Discord. All conversations, whether over text or voice, in guilds, or a group, happen in channels.
 
 ### Channel Object
 
@@ -12483,7 +12483,14 @@ Returns a list of snowflakes representing up to 10 of the top read channels in t
   Create Guild Channel
 </RouteHeader>
 
-Creates a new channel in the guild. Requires the `MANAGE_CHANNELS` permission. If setting permission overwrites, only permissions you have in the guild can be allowed/denied. Setting `MANAGE_ROLES` permission in channels is only possible for guild administrators. Returns the new [channel](#channel-object) object on success. Fires a [Channel Create](/gateway/gateway-events#channel-create) Gateway event.
+Creates a new channel in the guild. Requires the `MANAGE_CHANNELS` permission. If setting permission overwrites, only permissions you have in the guild can be allowed/denied.
+Setting `MANAGE_ROLES` permission in channels is only possible for guild administrators. Returns the new [channel](#channel-object) object on success. Fires a [Channel Create](/gateway/gateway-events#channel-create) Gateway event.
+
+<Alert type="info">
+
+Guilds may have a maximum of 500 channels. Of those 500, a maximum of 50 can be categories.
+
+</Alert>
 
 <Collapsible title="Bitrate Limits" description="How is the maximum bitrate calculated?" icon="list">
 
@@ -17293,34 +17300,7 @@ Returns an object containing information on the guild or application that owns t
     "approximate_member_count": 1068003,
     "approximate_presence_count": 163598,
     "description": "The Official Fortnite Discord Server! Join to follow news & updates, LFG, and chat about Fortnite Battle Royale.",
-    "features": [
-      "ANIMATED_BANNER",
-      "ANIMATED_ICON",
-      "AUTO_MODERATION",
-      "BANNER",
-      "CHANNEL_ICON_EMOJIS_GENERATED",
-      "COMMUNITY",
-      "COMMUNITY_EXP_LARGE_UNGATED",
-      "DISCOVERABLE",
-      "FEATURABLE",
-      "GUILD_MEMBER_VERIFICATION_EXPERIMENT",
-      "GUILD_WEB_PAGE_VANITY_URL",
-      "INVITE_SPLASH",
-      "MEMBER_PROFILES",
-      "MEMBER_VERIFICATION_GATE_ENABLED",
-      "NEWS",
-      "NEW_THREAD_PERMISSIONS",
-      "PREVIEW_ENABLED",
-      "PRIVATE_THREADS",
-      "ROLE_ICONS",
-      "SEVEN_DAY_THREAD_ARCHIVE",
-      "SOUNDBOARD",
-      "THREADS_ENABLED",
-      "THREE_DAY_THREAD_ARCHIVE",
-      "VANITY_URL",
-      "VERIFIED",
-      "VIP_REGIONS"
-    ],
+    "features": [],
     "premium_subscription_count": 378,
     "premium_tier": 3
   },
@@ -19866,12 +19846,14 @@ Guilds in Discord represent an isolated collection of users and channels, and ar
 
 | Value | Name          | Description                                                                                                                 |
 | ----- | ------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| 0     | ALL_MESSAGES  | Receive notifications for all messages                                                                                      |
+| 0 ^1^ | ALL_MESSAGES  | Receive notifications for all messages                                                                                      |
 | 1     | ONLY_MENTIONS | Receive notifications only for messages that @mention you                                                                   |
-| 2 ^1^ | NO_MESSAGES   | Don't receive notifications                                                                                                 |
-| 3 ^1^ | INHERIT       | Inherit value from guild settings when in a [channel override](/resources/user-settings#channel-override-structure) context |
+| 2 ^2^ | NO_MESSAGES   | Don't receive notifications                                                                                                 |
+| 3 ^2^ | INHERIT       | Inherit value from guild settings when in a [channel override](/resources/user-settings#channel-override-structure) context |
 
-^1^ Only available inside a [user guild settings](/resources/user-settings#user-guild-settings-object) context.
+^1^ Push notifications will not be received for `ALL_MESSAGES` for guilds with more than 2,500 members.
+
+^2^ Only available inside a [user guild settings](/resources/user-settings#user-guild-settings-object) context.
 
 ###### Explicit Content Filter Level
 
@@ -22273,6 +22255,12 @@ Unassigns a role connection from the current user. Returns a 204 empty response 
 
 Creates a new role for the guild. Requires the `MANAGE_ROLES` permission. Returns the new [role](#role-object) object on success. Fires a [Guild Role Create](/gateway/gateway-events#guild-role-create) Gateway event.
 
+<Alert type="info">
+
+Guilds may have a maximum of 250 roles.
+
+</Alert>
+
 ###### JSON Params
 
 | Field                       | Type                                          | Description                                                                            |
@@ -24542,7 +24530,7 @@ The type of rendered message is determined via converting the message's `timesta
 | 1 \<\< 5  | HAS_THREAD                             | Message has an associated thread, with the same ID as the message            |
 | 1 \<\< 6  | EPHEMERAL                              | Message is only visible to the user who invoked the interaction              |
 | 1 \<\< 7  | LOADING                                | Message is an interaction response and the bot is "thinking"                 |
-| 1 \<\< 8  | FAILED_TO_MENTION_SOME_ROLES_IN_THREAD | Some roles were not mentioned and added to the thread                        |
+| 1 \<\< 8  | FAILED_TO_MENTION_SOME_ROLES_IN_THREAD | Some roles were not mentioned and added to the thread (caps at 250)          |
 | 1 \<\< 9  | GUILD_FEED_HIDDEN                      | Message is hidden from the guild's feed                                      |
 | 1 \<\< 10 | SHOULD_SHOW_LINK_NOT_DISCORD_WARNING   | Message contains a link that impersonates Discord                            |
 | 1 \<\< 12 | SUPPRESS_NOTIFICATIONS                 | Message will not trigger push and desktop notifications                      |
@@ -24946,9 +24934,11 @@ Clips are a special type of attachment that can be sent with a message. They are
 
 Clip [attachments](#attachment-object) have the [`CLIP` flag](#attachment-flags) set, and have the additional fields `clip_created_at`, `clip_participants`, and optionally `title` and `application`.
 
+When uploading a clip, an increased default file size limit of **100 MiB** applies.
+
 An attachment can be sent as a clip by specifying the `is_clip`, `clip_created_at`, and `clip_participant_ids` fields, and optionally the `title` and `application_id` fields.
-For an attachment to be a valid clip, it must be an MP4 file and have the text `uuid` and the hardcoded UUID of `a1c85299-3346-4db8-88f0-83f57a75a5ef` appended to the end of the file in binary format.
-(represented in hexadecimal bytes as `75 75 69 64 A1 C8 52 99 33 46 4D B8 88 F0 83 F5 7A 75 A5 EF`)
+For an attachment to be a valid clip, it must be an MP4 file and have the text `uuid` and the hardcoded UUID of `a1c85299-3346-4db8-88f0-83f57a75a5ef` appended to the end of the file in binary format
+(represented in hexadecimal bytes as `75 75 69 64 A1 C8 52 99 33 46 4D B8 88 F0 83 F5 7A 75 A5 EF`).
 
 This can be done with the following pseudocode:
 
@@ -26283,7 +26273,7 @@ Creates attachment URLs to upload the intended attachments directly to Discord's
 | file_size    | integer    | The size of the file being uploaded in bytes                                                                                             |
 | is_clip? ^1^ | boolean    | Whether the file being uploaded is a [clipped recording of a stream](https://support.discord.com/hc/en-us/articles/16861982215703-Clips) |
 
-^1^ When uploading a clip, `is_clip` must be `true`. [See message types](#clips) for more information.
+^1^ When uploading a clip, an increased default file size limit of **100 MiB** applies.
 
 ###### Cloud Attachment Structure
 
@@ -29320,6 +29310,12 @@ This endpoint is only available to Discord employees for quests in preview.
 # Relationships
 
 Relationships in Discord are used to represent friendships, pending friend requests, and blocked users. Game relationships are used to distinguish special bonds created while in-game.
+
+<Alert type="info">
+
+Users may have a maximum of 1,000 friends and 5,000 blocked users.
+
+</Alert>
 
 ### Relationship Object
 
@@ -36670,6 +36666,12 @@ Returns the note for the given user.
 </RouteHeader>
 
 Sets the note for the given user. Returns a 204 empty response on success. Fires a [User Note Update](/gateway/gateway-events#user-note-update) Gateway event.
+
+<Alert type="info">
+
+Users may have a maximum of 1,500 note entries on their account.
+
+</Alert>
 
 ###### JSON Params
 
