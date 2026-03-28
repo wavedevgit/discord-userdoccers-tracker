@@ -9598,7 +9598,10 @@ This endpoint is deprecated. It is replaced by [Get Embedded Activity Instance](
 | guild_id?      | snowflake        | The ID of the guild the activity is running in                              |
 | users          | array[snowflake] | The IDs of the users participating in the activity                          |
 
-<RouteHeader method="GET" url="/applications/{application.id}/activity-instances/{instance.composite_instance_id}">
+<RouteHeader
+  method="GET"
+  url="/applications/{application.id}/activity-instances/{activity_instance.composite_instance_id}"
+>
   Get Embedded Activity Instance
 </RouteHeader>
 
@@ -9712,7 +9715,7 @@ Due to caching, it may take a while for the asset to be retrievable after creati
 | type  | integer                           | The [type of the asset](#application-asset-type) |
 | image | [image data](/reference#cdn-data) | The asset's image                                |
 
-<RouteHeader method="DELETE" url="/oauth2/applications/{application.id}/assets/{asset.id}">
+<RouteHeader method="DELETE" url="/oauth2/applications/{application.id}/assets/{application_asset.id}">
   Delete Application Asset
 </RouteHeader>
 
@@ -10077,19 +10080,19 @@ Creates a new activity managed link. User must be the owner of the application o
 | image       | [image data](/reference#cdn-data) | The activity link asset                                |
 | title       | string                            | The title of the activity link (1-32 characters)       |
 
-<RouteHeader method="GET" url="/applications/{application.id}/managed-links/{link_id}">
+<RouteHeader method="GET" url="/applications/{application.id}/managed-links/{activity_link.id}">
   Get Application Managed Link
 </RouteHeader>
 
 Returns an [activity link](#activity-link-object) object for the given ID.
 
-<RouteHeader method="PATCH" url="/applications/{application.id}/managed-links/{link_id}">
+<RouteHeader method="PATCH" url="/applications/{application.id}/managed-links/{activity_link.id}">
   Update Application Managed Link
 </RouteHeader>
 
 Updates the specified activity link for the given application ID. User must be the owner of the application or developer of the owning team. Returns an [activity link](#activity-link-object) object on success.
 
-<RouteHeader method="DELETE" url="/applications/{application.id}/managed-links/{link_id}">
+<RouteHeader method="DELETE" url="/applications/{application.id}/managed-links/{activity_link.id}">
   Delete Application Managed Link
 </RouteHeader>
 
@@ -10116,7 +10119,7 @@ When using OAuth2, quick links can be only created for the application that the 
 | image       | [image data](/reference#cdn-data) | The activity link asset                                |
 | title       | string                            | The title of the activity link (1-32 characters)       |
 
-<RouteHeader method="GET" url="/applications/{application.id}/quick-links/{link_id}" unauthenticated>
+<RouteHeader method="GET" url="/applications/{application.id}/quick-links/{activity_link.id}" unauthenticated>
   Get Application Quick Link
 </RouteHeader>
 
@@ -10160,8 +10163,8 @@ Returns the currently available social SDK releases.
 | releases       | array[[social SDK release](#social-sdk-release-object) object] | The SDK releases              |
 | latest_version | string                                                         | The latest version of the SDK |
 
-<RouteHeader method="GET" url="/social-sdk/releases/{release.version}">
-  Get Social SDK release
+<RouteHeader method="GET" url="/social-sdk/releases/{sdk_release.version}">
+  Get Social SDK Release
 </RouteHeader>
 
 Returns a [social SDK release](#social-sdk-release-object) object for the given version.
@@ -13315,7 +13318,7 @@ Creates a new tag in the thread-only channel. Requires the `MANAGE_CHANNELS` per
 
 ^1^ At most one of `emoji_id` and `emoji_name` may be set to a non-null value.
 
-<RouteHeader method="PUT" url="/channels/{channel.id}/tags/{tag.id}" supportsAuditReason supportsBot>
+<RouteHeader method="PUT" url="/channels/{channel.id}/tags/{forum_tag.id}" supportsAuditReason supportsBot>
   Modify Channel Tag
 </RouteHeader>
 
@@ -13332,7 +13335,7 @@ Replaces a tag in the thread-only channel. Requires the `MANAGE_CHANNELS` permis
 
 ^1^ At most one of `emoji_id` and `emoji_name` may be set to a non-null value.
 
-<RouteHeader method="DELETE" url="/channels/{channel.id}/tags/{tag.id}" supportsAuditReason supportsBot>
+<RouteHeader method="DELETE" url="/channels/{channel.id}/tags/{forum_tag.id}" supportsAuditReason supportsBot>
   Delete Channel Tag
 </RouteHeader>
 
@@ -16213,7 +16216,7 @@ Sends a command to connect to a voice call on a console device.
 | ----- | --------- | -------------------------- |
 | id    | snowflake | The ID of the sent command |
 
-<RouteHeader method="DELETE" url="/consoles/{connection.type}/devices/{device.id}/commands/{command.id}">
+<RouteHeader method="DELETE" url="/consoles/{connection.type}/devices/{device.id}/commands/{command_id}">
   Cancel Console Command
 </RouteHeader>
 
@@ -16327,13 +16330,13 @@ Returns a list of [directory entry](#directory-entry-object) objects in the give
 | type?        | integer | The [type of directory entry](#directory-entry-type) to filter by |
 | category_id? | integer | The [primary category](#directory-category) to filter by          |
 
-<RouteHeader method="GET" url="/channels/{channel.id}/directory-entry/{entity_id}">
+<RouteHeader method="GET" url="/channels/{channel.id}/directory-entry/{entity.id}">
   Get Directory Entry
 </RouteHeader>
 
 Returns a [directory entry](#directory-entry-object) object for the given entity ID in the directory channel. Requires the `VIEW_CHANNEL` permission.
 
-<RouteHeader method="POST" url="/channels/{channel.id}/directory-entry/{entity_id}">
+<RouteHeader method="POST" url="/channels/{channel.id}/directory-entry/{entity.id}">
   Create Directory Entry
 </RouteHeader>
 
@@ -16348,7 +16351,7 @@ Returns the new [directory entry](#directory-entry-object) object on success. Fi
 | primary_category_id? | integer | The [primary category](#directory-category) of the entry (default `UNCATEGORIZED`) |
 | description?         | ?string | The description of the entry (max 200 characters)                                  |
 
-<RouteHeader method="PATCH" url="/channels/{channel.id}/directory-entry/{entity_id}">
+<RouteHeader method="PATCH" url="/channels/{channel.id}/directory-entry/{entity.id}">
   Modify Directory Entry
 </RouteHeader>
 
@@ -16362,7 +16365,7 @@ Returns the updated [directory entry](#directory-entry-object) object on success
 | primary_category_id? | integer | The [primary category](#directory-category) of the entry |
 | description?         | string  | The description of the entry (max 200 characters)        |
 
-<RouteHeader method="DELETE" url="/channels/{channel.id}/directory-entry/{entity_id}">
+<RouteHeader method="DELETE" url="/channels/{channel.id}/directory-entry/{entity.id}">
   Delete Directory Entry
 </RouteHeader>
 
@@ -17032,13 +17035,13 @@ All parameters to this endpoint are optional and nullable. Omitting or setting a
 | social_links?                  | ?array[string]                                                                     | The guild's social media links shown in the discovery web page (max 256 characters, max 9)           |
 | about?                         | ?string                                                                            | The guild's long description shown in the discovery web page (max 2400 characters)                   |
 
-<RouteHeader method="PUT" url="/guilds/{guild.id}/discovery-categories/{category.id}" supportsBot>
+<RouteHeader method="PUT" url="/guilds/{guild.id}/discovery-categories/{discovery_category.id}" supportsBot>
   Add Guild Discovery Subcategory
 </RouteHeader>
 
 Adds a [discovery subcategory](#discovery-category-object) to the guild. Requires the `MANAGE_GUILD` permission. Returns a 204 empty response on success.
 
-<RouteHeader method="DELETE" url="/guilds/{guild.id}/discovery-categories/{category.id}" supportsBot>
+<RouteHeader method="DELETE" url="/guilds/{guild.id}/discovery-categories/{discovery_category.id}" supportsBot>
   Remove Guild Discovery Subcategory
 </RouteHeader>
 
@@ -26769,7 +26772,7 @@ Returns embed data from a list of URLs.
 | ------ | ------------------------------------ | ----------------------------- |
 | embeds | array[[embed](#embed-object) object] | The found embeds for the URLs |
 
-<RouteHeader method="GET" url="/channels/{channel.id}/polls/{message.id}/answers/{answer.id}" supportsBot>
+<RouteHeader method="GET" url="/channels/{channel.id}/polls/{message.id}/answers/{poll_answer.id}" supportsBot>
   Get Answer Voters
 </RouteHeader>
 
@@ -30484,7 +30487,7 @@ Returns the list of [sticker packs](#sticker-pack-object) available to use.
 | ------------- | -------------------------------------------------- | --------------------------- |
 | sticker_packs | array[[sticker pack](#sticker-pack-object) object] | The sticker packs available |
 
-<RouteHeader method="GET" url="/sticker-packs/{pack.id}" supportsBot>
+<RouteHeader method="GET" url="/sticker-packs/{sticker_pack.id}" supportsBot>
   Get Sticker Pack
 </RouteHeader>
 
@@ -31708,7 +31711,12 @@ Creates a new store listing. Returns the created [store listing](#store-listing-
 
 ^1^ Only `youtube_video_id` or `asset_id` can be set.
 
-<RouteHeader method="GET" url="/store/listings/{listing.id}" supportsOAuth2="applications.store.update" supportsBot>
+<RouteHeader
+  method="GET"
+  url="/store/listings/{store_listing.id}"
+  supportsOAuth2="applications.store.update"
+  supportsBot
+>
   Get Store Listing
 </RouteHeader>
 
@@ -31721,7 +31729,12 @@ Returns a [store listing](#store-listing-object) object for the given listing ID
 | country_code? | string  | The [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code |
 | localize?     | boolean | Whether to localize the SKUs for the user's location (default true)                     |
 
-<RouteHeader method="PATCH" url="/store/listings/{listing.id}" supportsOAuth2="applications.store.update" supportsBot>
+<RouteHeader
+  method="PATCH"
+  url="/store/listings/{store_listing.id}"
+  supportsOAuth2="applications.store.update"
+  supportsBot
+>
   Modify Store Listing
 </RouteHeader>
 
@@ -31749,7 +31762,12 @@ Modifies an existing store listing. Returns the modified [store listing](#store-
 
 ^1^ Only `youtube_video_id` or `asset_id` can be set.
 
-<RouteHeader method="DELETE" url="/store/listings/{listing.id}" supportsOAuth2="applications.store.update" supportsBot>
+<RouteHeader
+  method="DELETE"
+  url="/store/listings/{store_listing.id}"
+  supportsOAuth2="applications.store.update"
+  supportsBot
+>
   Delete Store Listing
 </RouteHeader>
 
@@ -34244,7 +34262,7 @@ Serialized as `discord_protos.discord_users.v1.FrecencyUserSettings`.
 
 ## Endpoints
 
-<RouteHeader method="GET" url="/users/@me/settings-proto/{type}">
+<RouteHeader method="GET" url="/users/@me/settings-proto/{user_settings_proto_type}">
   Get User Settings Proto
 </RouteHeader>
 
@@ -34256,7 +34274,7 @@ Returns the requester's [user settings protobuf](#user-settings-proto-type) for 
 | -------- | ------ | ---------------------------------------------------- |
 | settings | string | The base64-encoded serialized user settings protobuf |
 
-<RouteHeader method="PATCH" url="/users/@me/settings-proto/{type}">
+<RouteHeader method="PATCH" url="/users/@me/settings-proto/{user_settings_proto_type}">
   Modify User Settings Proto
 </RouteHeader>
 
@@ -34821,13 +34839,16 @@ A maximum of 5 snapshots or **1 MiB** of data can be stored per user.
 | ------ | ------- | ---------------------------------------------- |
 | label? | ?string | The label of the snapshot (max 100 characters) |
 
-<RouteHeader method="POST" url="/users/@me/notification-settings/snapshots/{snapshot.id}/restore-guilds">
+<RouteHeader
+  method="POST"
+  url="/users/@me/notification-settings/snapshots/{notification_settings_snapshot.id}/restore-guilds"
+>
   Restore Notification Settings Snapshot
 </RouteHeader>
 
 Restores a notification settings snapshot. Returns a mapping of guild IDs to [user guild settings](#user-guild-settings-object) objects on success. Fires multiple [User Guild Settings Update](/gateway/gateway-events#user-guild-settings-update) Gateway events.
 
-<RouteHeader method="GET" url="/users/@me/notification-settings/snapshots/{snapshot.id}">
+<RouteHeader method="GET" url="/users/@me/notification-settings/snapshots/{notification_settings_snapshot.id}">
   Delete Notification Settings Snapshot
 </RouteHeader>
 
@@ -40405,7 +40426,7 @@ Authorizes the user for the given OAuth2 application. May fire a [Guild Integrat
   Get OAuth2 Authorization
 </RouteHeader>
 
-Returns an [OAuth2 authorization](#oauth2-authorization-object) for the given ID.
+Returns an [OAuth2 authorization](#oauth2-authorization-object) object for the given ID.
 
 <RouteHeader method="DELETE" url="/oauth2/tokens/{token.id}">
   Delete OAuth2 Authorization

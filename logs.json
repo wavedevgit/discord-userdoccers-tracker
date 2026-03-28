@@ -557,6 +557,10 @@
             "/store/published-listings/skus/:param/guild/join"
         ],
         [
+            "STORE_LISTING",
+            "/store/listings/:param"
+        ],
+        [
             "APPLICATION_SKUS",
             "/applications/:param/skus"
         ],
@@ -2037,10 +2041,6 @@
         [
             "STORE_SKU_PURCHASE",
             "/store/skus/:param/purchase"
-        ],
-        [
-            "STORE_LISTING",
-            "/store/listings/:param"
         ],
         [
             "STORE_LISTINGS_SKU",

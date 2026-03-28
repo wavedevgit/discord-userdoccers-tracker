@@ -829,10 +829,11 @@
     },
     {
         "title": "Get Embedded Activity Instance",
-        "method": "GET",
-        "url": "/applications/{application.id}/activity-instances/{instance.composite_instance_id}",
+        "method": "GET\n",
+        "": true,
+        "url": "/applications/{application.id}/activity-instances/{activity_instance.composite_instance_id}",
         "urls": [
-            "/applications/{application.id}/activity-instances/{instance.composite_instance_id}"
+            "/applications/{application.id}/activity-instances/{activity_instance.composite_instance_id}"
         ],
         "urlEmpty": [
             "/applications/:param/activity-instances/:param"
@@ -909,9 +910,9 @@
     {
         "title": "Delete Application Asset",
         "method": "DELETE",
-        "url": "/oauth2/applications/{application.id}/assets/{asset.id}",
+        "url": "/oauth2/applications/{application.id}/assets/{application_asset.id}",
         "urls": [
-            "/oauth2/applications/{application.id}/assets/{asset.id}"
+            "/oauth2/applications/{application.id}/assets/{application_asset.id}"
         ],
         "urlEmpty": [
             "/oauth2/applications/:param/assets/:param"
@@ -1105,9 +1106,9 @@
     {
         "title": "Get Application Managed Link",
         "method": "GET",
-        "url": "/applications/{application.id}/managed-links/{link_id}",
+        "url": "/applications/{application.id}/managed-links/{activity_link.id}",
         "urls": [
-            "/applications/{application.id}/managed-links/{link_id}"
+            "/applications/{application.id}/managed-links/{activity_link.id}"
         ],
         "urlEmpty": [
             "/applications/:param/managed-links/:param"
@@ -1116,9 +1117,9 @@
     {
         "title": "Update Application Managed Link",
         "method": "PATCH",
-        "url": "/applications/{application.id}/managed-links/{link_id}",
+        "url": "/applications/{application.id}/managed-links/{activity_link.id}",
         "urls": [
-            "/applications/{application.id}/managed-links/{link_id}"
+            "/applications/{application.id}/managed-links/{activity_link.id}"
         ],
         "urlEmpty": [
             "/applications/:param/managed-links/:param"
@@ -1127,9 +1128,9 @@
     {
         "title": "Delete Application Managed Link",
         "method": "DELETE",
-        "url": "/applications/{application.id}/managed-links/{link_id}",
+        "url": "/applications/{application.id}/managed-links/{activity_link.id}",
         "urls": [
-            "/applications/{application.id}/managed-links/{link_id}"
+            "/applications/{application.id}/managed-links/{activity_link.id}"
         ],
         "urlEmpty": [
             "/applications/:param/managed-links/:param"
@@ -1151,10 +1152,10 @@
     {
         "title": "Get Application Quick Link",
         "method": "GET",
-        "url": "/applications/{application.id}/quick-links/{link_id}",
+        "url": "/applications/{application.id}/quick-links/{activity_link.id}",
         "unauthenticated": true,
         "urls": [
-            "/applications/{application.id}/quick-links/{link_id}"
+            "/applications/{application.id}/quick-links/{activity_link.id}"
         ],
         "urlEmpty": [
             "/applications/:param/quick-links/:param"
@@ -1195,11 +1196,11 @@
         ]
     },
     {
-        "title": "Get Social SDK release",
+        "title": "Get Social SDK Release",
         "method": "GET",
-        "url": "/social-sdk/releases/{release.version}",
+        "url": "/social-sdk/releases/{sdk_release.version}",
         "urls": [
-            "/social-sdk/releases/{release.version}"
+            "/social-sdk/releases/{sdk_release.version}"
         ],
         "urlEmpty": [
             "/social-sdk/releases/:param"
@@ -2280,11 +2281,11 @@
     {
         "title": "Modify Channel Tag",
         "method": "PUT",
-        "url": "/channels/{channel.id}/tags/{tag.id}",
+        "url": "/channels/{channel.id}/tags/{forum_tag.id}",
         "supportsAuditReason": true,
         "supportsBot": true,
         "urls": [
-            "/channels/{channel.id}/tags/{tag.id}"
+            "/channels/{channel.id}/tags/{forum_tag.id}"
         ],
         "urlEmpty": [
             "/channels/:param/tags/:param"
@@ -2293,11 +2294,11 @@
     {
         "title": "Delete Channel Tag",
         "method": "DELETE",
-        "url": "/channels/{channel.id}/tags/{tag.id}",
+        "url": "/channels/{channel.id}/tags/{forum_tag.id}",
         "supportsAuditReason": true,
         "supportsBot": true,
         "urls": [
-            "/channels/{channel.id}/tags/{tag.id}"
+            "/channels/{channel.id}/tags/{forum_tag.id}"
         ],
         "urlEmpty": [
             "/channels/:param/tags/:param"
@@ -2667,9 +2668,9 @@
     {
         "title": "Cancel Console Command",
         "method": "DELETE",
-        "url": "/consoles/{connection.type}/devices/{device.id}/commands/{command.id}",
+        "url": "/consoles/{connection.type}/devices/{device.id}/commands/{command_id}",
         "urls": [
-            "/consoles/{connection.type}/devices/{device.id}/commands/{command.id}"
+            "/consoles/{connection.type}/devices/{device.id}/commands/{command_id}"
         ],
         "urlEmpty": [
             "/consoles/:param/devices/:param/commands/:param"
@@ -2722,9 +2723,9 @@
     {
         "title": "Get Directory Entry",
         "method": "GET",
-        "url": "/channels/{channel.id}/directory-entry/{entity_id}",
+        "url": "/channels/{channel.id}/directory-entry/{entity.id}",
         "urls": [
-            "/channels/{channel.id}/directory-entry/{entity_id}"
+            "/channels/{channel.id}/directory-entry/{entity.id}"
         ],
         "urlEmpty": [
             "/channels/:param/directory-entry/:param"
@@ -2733,9 +2734,9 @@
     {
         "title": "Create Directory Entry",
         "method": "POST",
-        "url": "/channels/{channel.id}/directory-entry/{entity_id}",
+        "url": "/channels/{channel.id}/directory-entry/{entity.id}",
         "urls": [
-            "/channels/{channel.id}/directory-entry/{entity_id}"
+            "/channels/{channel.id}/directory-entry/{entity.id}"
         ],
         "urlEmpty": [
             "/channels/:param/directory-entry/:param"
@@ -2744,9 +2745,9 @@
     {
         "title": "Modify Directory Entry",
         "method": "PATCH",
-        "url": "/channels/{channel.id}/directory-entry/{entity_id}",
+        "url": "/channels/{channel.id}/directory-entry/{entity.id}",
         "urls": [
-            "/channels/{channel.id}/directory-entry/{entity_id}"
+            "/channels/{channel.id}/directory-entry/{entity.id}"
         ],
         "urlEmpty": [
             "/channels/:param/directory-entry/:param"
@@ -2755,9 +2756,9 @@
     {
         "title": "Delete Directory Entry",
         "method": "DELETE",
-        "url": "/channels/{channel.id}/directory-entry/{entity_id}",
+        "url": "/channels/{channel.id}/directory-entry/{entity.id}",
         "urls": [
-            "/channels/{channel.id}/directory-entry/{entity_id}"
+            "/channels/{channel.id}/directory-entry/{entity.id}"
         ],
         "urlEmpty": [
             "/channels/:param/directory-entry/:param"
@@ -2884,10 +2885,10 @@
     {
         "title": "Add Guild Discovery Subcategory",
         "method": "PUT",
-        "url": "/guilds/{guild.id}/discovery-categories/{category.id}",
+        "url": "/guilds/{guild.id}/discovery-categories/{discovery_category.id}",
         "supportsBot": true,
         "urls": [
-            "/guilds/{guild.id}/discovery-categories/{category.id}"
+            "/guilds/{guild.id}/discovery-categories/{discovery_category.id}"
         ],
         "urlEmpty": [
             "/guilds/:param/discovery-categories/:param"
@@ -2896,10 +2897,10 @@
     {
         "title": "Remove Guild Discovery Subcategory",
         "method": "DELETE",
-        "url": "/guilds/{guild.id}/discovery-categories/{category.id}",
+        "url": "/guilds/{guild.id}/discovery-categories/{discovery_category.id}",
         "supportsBot": true,
         "urls": [
-            "/guilds/{guild.id}/discovery-categories/{category.id}"
+            "/guilds/{guild.id}/discovery-categories/{discovery_category.id}"
         ],
         "urlEmpty": [
             "/guilds/:param/discovery-categories/:param"
@@ -6171,10 +6172,10 @@
     {
         "title": "Get Answer Voters",
         "method": "GET",
-        "url": "/channels/{channel.id}/polls/{message.id}/answers/{answer.id}",
+        "url": "/channels/{channel.id}/polls/{message.id}/answers/{poll_answer.id}",
         "supportsBot": true,
         "urls": [
-            "/channels/{channel.id}/polls/{message.id}/answers/{answer.id}"
+            "/channels/{channel.id}/polls/{message.id}/answers/{poll_answer.id}"
         ],
         "urlEmpty": [
             "/channels/:param/polls/:param/answers/:param"
@@ -7212,10 +7213,10 @@
     {
         "title": "Get Sticker Pack",
         "method": "GET",
-        "url": "/sticker-packs/{pack.id}",
+        "url": "/sticker-packs/{sticker_pack.id}",
         "supportsBot": true,
         "urls": [
-            "/sticker-packs/{pack.id}"
+            "/sticker-packs/{sticker_pack.id}"
         ],
         "urlEmpty": [
             "/sticker-packs/:param"
@@ -7388,41 +7389,44 @@
     },
     {
         "title": "Get Store Listing",
-        "method": "GET",
-        "url": "/store/listings/{listing.id}",
-        "supportsOAuth2": "applications.store.update",
+        "method": "GET\n",
+        "": true,
+        "url": "/store/listings/{store_listing.id}\n",
+        "supportsOAuth2": "applications.store.update\n",
         "supportsBot": true,
         "urls": [
-            "/store/listings/{listing.id}"
+            "/store/listings/{store_listing.id}\n"
         ],
         "urlEmpty": [
-            "/store/listings/:param"
+            "/store/listings/:param\n"
         ]
     },
     {
         "title": "Modify Store Listing",
-        "method": "PATCH",
-        "url": "/store/listings/{listing.id}",
-        "supportsOAuth2": "applications.store.update",
+        "method": "PATCH\n",
+        "": true,
+        "url": "/store/listings/{store_listing.id}\n",
+        "supportsOAuth2": "applications.store.update\n",
         "supportsBot": true,
         "urls": [
-            "/store/listings/{listing.id}"
+            "/store/listings/{store_listing.id}\n"
         ],
         "urlEmpty": [
-            "/store/listings/:param"
+            "/store/listings/:param\n"
         ]
     },
     {
         "title": "Delete Store Listing",
-        "method": "DELETE",
-        "url": "/store/listings/{listing.id}",
-        "supportsOAuth2": "applications.store.update",
+        "method": "DELETE\n",
+        "": true,
+        "url": "/store/listings/{store_listing.id}\n",
+        "supportsOAuth2": "applications.store.update\n",
         "supportsBot": true,
         "urls": [
-            "/store/listings/{listing.id}"
+            "/store/listings/{store_listing.id}\n"
         ],
         "urlEmpty": [
-            "/store/listings/:param"
+            "/store/listings/:param\n"
         ]
     },
     {
@@ -8297,9 +8301,9 @@
     {
         "title": "Get User Settings Proto",
         "method": "GET",
-        "url": "/users/@me/settings-proto/{type}",
+        "url": "/users/@me/settings-proto/{user_settings_proto_type}",
         "urls": [
-            "/users/@me/settings-proto/{type}"
+            "/users/@me/settings-proto/{user_settings_proto_type}"
         ],
         "urlEmpty": [
             "/users/@me/settings-proto/:param"
@@ -8308,9 +8312,9 @@
     {
         "title": "Modify User Settings Proto",
         "method": "PATCH",
-        "url": "/users/@me/settings-proto/{type}",
+        "url": "/users/@me/settings-proto/{user_settings_proto_type}",
         "urls": [
-            "/users/@me/settings-proto/{type}"
+            "/users/@me/settings-proto/{user_settings_proto_type}"
         ],
         "urlEmpty": [
             "/users/@me/settings-proto/:param"
@@ -8418,10 +8422,11 @@
     },
     {
         "title": "Restore Notification Settings Snapshot",
-        "method": "POST",
-        "url": "/users/@me/notification-settings/snapshots/{snapshot.id}/restore-guilds",
+        "method": "POST\n",
+        "": true,
+        "url": "/users/@me/notification-settings/snapshots/{notification_settings_snapshot.id}/restore-guilds",
         "urls": [
-            "/users/@me/notification-settings/snapshots/{snapshot.id}/restore-guilds"
+            "/users/@me/notification-settings/snapshots/{notification_settings_snapshot.id}/restore-guilds"
         ],
         "urlEmpty": [
             "/users/@me/notification-settings/snapshots/:param/restore-guilds"
@@ -8430,9 +8435,9 @@
     {
         "title": "Delete Notification Settings Snapshot",
         "method": "GET",
-        "url": "/users/@me/notification-settings/snapshots/{snapshot.id}",
+        "url": "/users/@me/notification-settings/snapshots/{notification_settings_snapshot.id}",
         "urls": [
-            "/users/@me/notification-settings/snapshots/{snapshot.id}"
+            "/users/@me/notification-settings/snapshots/{notification_settings_snapshot.id}"
         ],
         "urlEmpty": [
             "/users/@me/notification-settings/snapshots/:param"

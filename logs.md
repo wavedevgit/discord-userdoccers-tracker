@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 454 |
+| Covered | 453 |
 |---------|------------|
-| Missing | 251 |
+| Missing | 252 |
 ## Missing routes
-total: 251
+total: 252
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -145,6 +145,7 @@ total: 251
 - [ ] **STORE_DIRECTORY_LAYOUT**: `/store/directory-layouts/:param`
 - [ ] **STORE_DIRECTORY**: `/store/directory/:param`
 - [ ] **STORE_PUBLISHED_LISTINGS_SKU_JOIN_GUILD**: `/store/published-listings/skus/:param/guild/join`
+- [ ] **STORE_LISTING**: `/store/listings/:param`
 - [ ] **APPLICATION_SKUS**: `/applications/:param/skus`
 - [ ] **ENTITLEMENT_TICKET**: `/users/@me/applications/:param/entitlement-ticket`
 - [ ] **APPLICATION_TICKET**: `/users/@me/applications/:param/ticket`
@@ -259,7 +260,7 @@ total: 251
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 454
+total: 453
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -519,7 +520,6 @@ total: 454
 - [x] **STORE_PUBLISHED_LISTINGS_SUBSCRIPTION_PLANS**: `/store/published-listings/skus/:param/subscription-plans`
 - [x] **STORE_SKU**: `/store/skus/:param`
 - [x] **STORE_SKU_PURCHASE**: `/store/skus/:param/purchase`
-- [x] **STORE_LISTING**: `/store/listings/:param`
 - [x] **STORE_LISTINGS_SKU**: `/store/skus/:param/listings`
 - [x] **APPLICATION_MANAGED_ACTIVITY_LINK**: `/applications/:param/managed-links/:param`
 - [x] **STORE_EULA**: `/store/eulas/:param`
