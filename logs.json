@@ -369,6 +369,10 @@
             "/integrations/:param/search"
         ],
         [
+            "APPLICATIONS_DETECTABLE",
+            "/applications/detectable"
+        ],
+        [
             "APPLICATIONS_GAMES_SUPPLEMENTAL",
             "/applications/games-supplemental"
         ],
@@ -1737,10 +1741,6 @@
         [
             "USER_GUILD_SETTINGS",
             "/users/@me/guilds/:param/settings"
-        ],
-        [
-            "APPLICATIONS_DETECTABLE",
-            "/applications/detectable"
         ],
         [
             "APPLICATION_ASSETS",

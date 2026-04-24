@@ -943,18 +943,6 @@
         ]
     },
     {
-        "title": "Get Detectable Applications",
-        "method": "GET",
-        "url": "/applications/detectable",
-        "unauthenticated": true,
-        "urls": [
-            "/applications/detectable"
-        ],
-        "urlEmpty": [
-            "/applications/detectable"
-        ]
-    },
-    {
         "title": "Get Partial Application",
         "method": "GET",
         "url": "/applications/{application.id}/public",
@@ -3372,6 +3360,130 @@
         ],
         "urlEmpty": [
             "/game-invite/@me"
+        ]
+    },
+    {
+        "title": "Get Application Game Claims",
+        "method": "GET",
+        "url": "/applications/{application.id}/game-claims",
+        "urls": [
+            "/applications/{application.id}/game-claims"
+        ],
+        "urlEmpty": [
+            "/applications/:param/game-claims"
+        ]
+    },
+    {
+        "title": "Get Application Game Claim",
+        "method": "GET",
+        "url": "/applications/{application.id}/game-claims/{game_claim.id}",
+        "urls": [
+            "/applications/{application.id}/game-claims/{game_claim.id}"
+        ],
+        "urlEmpty": [
+            "/applications/:param/game-claims/:param"
+        ]
+    },
+    {
+        "title": "Create Application Game Claim",
+        "method": "PUT",
+        "url": "/applications/{application.id}/game-claims/{game.id}",
+        "urls": [
+            "/applications/{application.id}/game-claims/{game.id}"
+        ],
+        "urlEmpty": [
+            "/applications/:param/game-claims/:param"
+        ]
+    },
+    {
+        "title": "Modify Application Game Claim",
+        "method": "PATCH",
+        "url": "/applications/{application.id}/game-claims/{game_claim.id}",
+        "urls": [
+            "/applications/{application.id}/game-claims/{game_claim.id}"
+        ],
+        "urlEmpty": [
+            "/applications/:param/game-claims/:param"
+        ]
+    },
+    {
+        "title": "Delete Application Game Claim",
+        "method": "DELETE",
+        "url": "/applications/{application.id}/game-claims/{game_claim.id}",
+        "urls": [
+            "/applications/{application.id}/game-claims/{game_claim.id}"
+        ],
+        "urlEmpty": [
+            "/applications/:param/game-claims/:param"
+        ]
+    },
+    {
+        "title": "Get Detectable Non Game Applications",
+        "method": "GET",
+        "url": "/applications/non-games/detectable",
+        "unauthenticated": true,
+        "urls": [
+            "/applications/non-games/detectable"
+        ],
+        "urlEmpty": [
+            "/applications/non-games/detectable"
+        ]
+    },
+    {
+        "title": "Get Detectable Games",
+        "method": "GET",
+        "url": "/games/detectable",
+        "unauthenticated": true,
+        "urls": [
+            "/games/detectable"
+        ],
+        "urlEmpty": [
+            "/games/detectable"
+        ]
+    },
+    {
+        "title": "Get Detectable Game Exclusions",
+        "method": "GET",
+        "url": "/games/detectable/exclusions",
+        "unauthenticated": true,
+        "urls": [
+            "/games/detectable/exclusions"
+        ],
+        "urlEmpty": [
+            "/games/detectable/exclusions"
+        ]
+    },
+    {
+        "title": "Get Games",
+        "method": "GET",
+        "url": "/games",
+        "urls": [
+            "/games"
+        ],
+        "urlEmpty": [
+            "/games"
+        ]
+    },
+    {
+        "title": "Get Game",
+        "method": "GET",
+        "url": "/games/{game.id}",
+        "urls": [
+            "/games/{game.id}"
+        ],
+        "urlEmpty": [
+            "/games/:param"
+        ]
+    },
+    {
+        "title": "Get Game Announcements",
+        "method": "GET",
+        "url": "/games/{game.id}/announcements",
+        "urls": [
+            "/games/{game.id}/announcements"
+        ],
+        "urlEmpty": [
+            "/games/:param/announcements"
         ]
     },
     {

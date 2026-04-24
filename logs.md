@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 453 |
+| Covered | 452 |
 |---------|------------|
-| Missing | 252 |
+| Missing | 253 |
 ## Missing routes
-total: 252
+total: 253
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -98,6 +98,7 @@ total: 252
 - [ ] **DEBUG_LOGS**: `/debug-logs/multi/:param`
 - [ ] **INTEGRATIONS**: `/integrations`
 - [ ] **INTEGRATION_SEARCH**: `/integrations/:param/search`
+- [ ] **APPLICATIONS_DETECTABLE**: `/applications/detectable`
 - [ ] **APPLICATIONS_GAMES_SUPPLEMENTAL**: `/applications/games-supplemental`
 - [ ] **APPLICATION_ICON**: `/applications/:param/app-icons/:param.png`
 - [ ] **APPLICATION_RPC**: `/oauth2/applications/:param/rpc`
@@ -260,7 +261,7 @@ total: 252
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 453
+total: 452
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -444,7 +445,6 @@ total: 453
 - [x] **INTEGRATION_APPLICATION_IDS_FOR_MY_GUILDS**: `/users/@me/guilds/integration-application-ids`
 - [x] **USER_GUILD_SETTINGS_BULK**: `/users/@me/guilds/settings`
 - [x] **USER_GUILD_SETTINGS**: `/users/@me/guilds/:param/settings`
-- [x] **APPLICATIONS_DETECTABLE**: `/applications/detectable`
 - [x] **APPLICATION_ASSETS**: `/oauth2/applications/:param/assets`
 - [x] **APPLICATION_EXTERNAL_ASSETS**: `/applications/:param/external-assets`
 - [x] **OAUTH2_AUTHORIZE**: `/oauth2/authorize`
