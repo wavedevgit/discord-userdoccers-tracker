@@ -8870,7 +8870,7 @@
     },
     {
         "title": "Modify User Agreements",
-        "method": "patch",
+        "method": "PATCH",
         "url": "/users/@me/agreements",
         "urls": [
             "/users/@me/agreements"
