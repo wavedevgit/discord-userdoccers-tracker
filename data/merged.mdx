@@ -1213,15 +1213,17 @@ A generic object used to represent versioned data. Depends on specific capabilit
 
 ###### Gateway Application Structure
 
-| Field          | Type      | Description                                                                                               |
-| -------------- | --------- | --------------------------------------------------------------------------------------------------------- |
-| id             | snowflake | The ID of the application                                                                                 |
-| flags          | integer   | The [application's flags](/resources/application#application-flags), limited to `1 << 53`                 |
-| flags_new      | string    | The [application's flags](/resources/application#application-flags), including those surpassing `1 << 53` |
-| name? ^1^      | string    | The name of the application                                                                               |
-| parent_id? ^1^ | snowflake | The ID of the parent application                                                                          |
+| Field          | Type      | Description                                                                                             |
+| -------------- | --------- | ------------------------------------------------------------------------------------------------------- |
+| id             | snowflake | The ID of the application                                                                               |
+| flags ^2^      | integer   | The [application's flags](/resources/application#application-flags)                                     |
+| flags_new ^2^  | string    | The [application's flags](/resources/application#application-flags) serialized as a stringified integer |
+| name? ^1^      | string    | The name of the application                                                                             |
+| parent_id? ^1^ | snowflake | The ID of the parent application                                                                        |
 
 ^1^ Only available in [OAuth2 contexts](/gateway/using-gateway#oauth2-and-the-gateway).
+^2^ The `flags` field is serialized as a number; however, this number will not grow beyond 31 bits. New flag bits beyond bit 30 will only appear in `flags_new`, a string-serialized integer
+containing the full set of flag bits.
 
 ###### Gateway Auth Structure
 
@@ -8008,7 +8010,8 @@ Any external service that integrates with Discord in some way, including many fi
 | cover_image?                                 | string                                                                                                                    | The application's default rich presence invite [cover image hash](/reference#cdn-formatting)                                                                                                                                     |
 | splash?                                      | string                                                                                                                    | The application's [splash hash](/reference#cdn-formatting)                                                                                                                                                                       |
 | type                                         | ?integer                                                                                                                  | The [type of the application](#application-type), if any                                                                                                                                                                         |
-| flags                                        | integer                                                                                                                   | The [application's flags](#application-flags) (including private)                                                                                                                                                                |
+| flags ^7^                                    | integer                                                                                                                   | The [application's flags](#application-flags) (including private)                                                                                                                                                                |
+| flags_new ^7^                                | string                                                                                                                    | The [application's flags](#application-flags) (including private) serialized as a stringified integer                                                                                                                            |
 | primary_sku_id? ^1^                          | snowflake                                                                                                                 | The ID of the application's primary SKU (game, application subscription, etc.)                                                                                                                                                   |
 | verify_key                                   | string                                                                                                                    | The hex encoded client public key for verification in interactions and the GameSDK's `GetTicket`                                                                                                                                 |
 | guild_id?                                    | snowflake                                                                                                                 | The ID of the guild linked to the application                                                                                                                                                                                    |
@@ -8085,6 +8088,9 @@ Any external service that integrates with Discord in some way, including many fi
 
 ^6^ Only applicable for applications with the [`EMBEDDED` flag](#application-flags).
 
+^7^ The `flags` field is serialized as a number; however, this number will not grow beyond 31 bits. New flag bits beyond bit 30 will only appear in `flags_new`, a string-serialized integer
+containing the full set of flag bits.
+
 ###### Partial Application Structure
 
 <Alert type="warn">
@@ -8104,7 +8110,8 @@ Further complicating things, some optional fields may be omitted if their value 
 | cover_image?                                 | string                                                                                                                    | The application's default rich presence invite [cover image hash](/reference#cdn-formatting)                                                                                    |
 | splash?                                      | string                                                                                                                    | The application's [splash hash](/reference#cdn-formatting)                                                                                                                      |
 | type                                         | ?integer                                                                                                                  | The [type of the application](#application-type), if any                                                                                                                        |
-| flags                                        | integer                                                                                                                   | The [application's flags](#application-flags) (including private)                                                                                                               |
+| flags ^7^                                    | integer                                                                                                                   | The [application's flags](#application-flags) (including private)                                                                                                               |
+| flags_new ^7^                                | string                                                                                                                    | The [application's flags](#application-flags) (including private) serialized as a stringified integer                                                                           |
 | primary_sku? ^6^                             | [SKU](/resources/store#sku-object) object                                                                                 | The primary SKU the application displays                                                                                                                                        |
 | primary_sku_id? ^1^                          | snowflake                                                                                                                 | The ID of the application's primary SKU (game, application subscription, etc.)                                                                                                  |
 | verify_key                                   | string                                                                                                                    | The hex encoded client public key for verification in interactions and the GameSDK's `GetTicket`                                                                                |
@@ -8160,6 +8167,9 @@ Further complicating things, some optional fields may be omitted if their value 
 ^5^ Only applicable for applications with the [`EMBEDDED` flag](#application-flags).
 
 ^6^ Only present when fetched from [Application Directory](/resources/application-directory) endpoints.
+
+^7^ The `flags` field is serialized as a number; however, this number will not grow beyond 31 bits. New flag bits beyond bit 30 will only appear in `flags_new`, a string-serialized integer
+containing the full set of flag bits.
 
 ###### Application Type
 
@@ -16699,7 +16709,7 @@ A guild's discovery settings.
 | member_count                 | integer                                                          | Approximate count of total members in the guild                             |
 | online_count                 | integer                                                          | Approximate count of non-offline members in the guild                       |
 | description                  | string                                                           | The description for the guild (max 300 characters)                          |
-| brand_color_primary          | string                                                           | The guild's accent color as a hexadecimal color string                      |
+| brand_color_primary?         | string                                                           | The guild's accent color as a hexadecimal color string                      |
 | banner_hash **(deprecated)** | ?string                                                          | The guild's [clan banner hash](/reference#cdn-formatting)                   |
 | game_application_ids         | array[snowflake]                                                 | The IDs of the applications representing the games the guild plays (max 20) |
 | game_activity                | map[snowflake, [game activity](#game-activity-structure) object] | The activity of the guild in each game                                      |
@@ -29488,7 +29498,7 @@ An object that holds the quest's reward code.
 | ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | quest_id   | snowflake         | The ID of the quest                                                                                                                                                |
 | code       | string            | The redeem code                                                                                                                                                    |
-| platform   | string            | The [platform this redeem code applies to](#quest-platform-type)                                                                                                   |
+| platform   | integer           | The [platform this redeem code applies to](#quest-platform-type)                                                                                                   |
 | user_id    | snowflake         | The ID of the user who this code belongs to                                                                                                                        |
 | claimed_at | ISO8601 timestamp | When the user claimed the quest's reward                                                                                                                           |
 | tier       | ?integer          | Which reward tier the code belongs to, if the quest's [`assignment_method`](#quest-rewards-config-structure) is set to [`TIERED`](#quest-reward-assignment-method) |
