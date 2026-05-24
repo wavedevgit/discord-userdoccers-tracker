@@ -408,6 +408,7 @@
         "title": "Finish Remote Auth",
         "method": "POST",
         "url": "/users/@me/remote-auth/finish",
+        "mfa": true,
         "urls": [
             "/users/@me/remote-auth/finish"
         ],
@@ -4875,23 +4876,24 @@
     {
         "title": "Action Guild Join Request",
         "method": "PATCH",
+        "url": "/guilds/{guild.id}/requests/{guild_join_request.id}",
+        "urls": [
+            "/guilds/{guild.id}/requests/{guild_join_request.id}"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/requests/:param"
+        ]
+    },
+    {
+        "title": "Action Guild Join Request by ID",
+        "method": "PATCH",
         "url": "/guilds/{guild.id}/requests/id/{guild_join_request.id}",
+        "deprecated": true,
         "urls": [
             "/guilds/{guild.id}/requests/id/{guild_join_request.id}"
         ],
         "urlEmpty": [
             "/guilds/:param/requests/id/:param"
-        ]
-    },
-    {
-        "title": "Action Guild Join Request by User",
-        "method": "PATCH",
-        "url": "/guilds/{guild.id}/requests/{user.id}",
-        "urls": [
-            "/guilds/{guild.id}/requests/{user.id}"
-        ],
-        "urlEmpty": [
-            "/guilds/:param/requests/:param"
         ]
     },
     {
@@ -4903,6 +4905,17 @@
         ],
         "urlEmpty": [
             "/guilds/:param/requests"
+        ]
+    },
+    {
+        "title": "Get User Guild Join Requests",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/requests/users/{user.id}",
+        "urls": [
+            "/guilds/{guild.id}/requests/users/{user.id}"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/requests/users/:param"
         ]
     },
     {
