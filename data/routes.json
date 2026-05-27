@@ -886,7 +886,7 @@
         ]
     },
     {
-        "title": "Get Application Assets",
+        "title": "Get OAuth2 Application Assets",
         "method": "GET",
         "url": "/oauth2/applications/{application.id}/assets",
         "unauthenticated": true,
@@ -898,7 +898,7 @@
         ]
     },
     {
-        "title": "Create Application Asset",
+        "title": "Create OAuth2 Application Asset",
         "method": "POST",
         "url": "/oauth2/applications/{application.id}/assets",
         "urls": [
@@ -909,11 +909,11 @@
         ]
     },
     {
-        "title": "Delete Application Asset",
+        "title": "Delete OAuth2 Application Asset",
         "method": "DELETE",
-        "url": "/oauth2/applications/{application.id}/assets/{application_asset.id}",
+        "url": "/oauth2/applications/{application.id}/assets/{oauth2_application_asset.id}",
         "urls": [
-            "/oauth2/applications/{application.id}/assets/{application_asset.id}"
+            "/oauth2/applications/{application.id}/assets/{oauth2_application_asset.id}"
         ],
         "urlEmpty": [
             "/oauth2/applications/:param/assets/:param"
@@ -928,6 +928,66 @@
         ],
         "urlEmpty": [
             "/applications/:param/external-assets"
+        ]
+    },
+    {
+        "title": "Get Application Assets",
+        "method": "GET",
+        "url": "/applications/{application.id}/assets",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/assets"
+        ],
+        "urlEmpty": [
+            "/applications/:param/assets"
+        ]
+    },
+    {
+        "title": "Upload Application Asset",
+        "method": "POST",
+        "url": "/applications/{application.id}/assets/upload",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/assets/upload"
+        ],
+        "urlEmpty": [
+            "/applications/:param/assets/upload"
+        ]
+    },
+    {
+        "title": "Create Application Asset",
+        "method": "POST",
+        "url": "/applications/{application.id}/assets",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/assets"
+        ],
+        "urlEmpty": [
+            "/applications/:param/assets"
+        ]
+    },
+    {
+        "title": "Update Application Asset",
+        "method": "PATCH",
+        "url": "/applications/{application.id}/{application_asset.key}",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/{application_asset.key}"
+        ],
+        "urlEmpty": [
+            "/applications/:param/:param"
+        ]
+    },
+    {
+        "title": "Delete Application Asset",
+        "method": "DELETE",
+        "url": "/applications/{application.id}/{application_asset.key}",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/{application_asset.key}"
+        ],
+        "urlEmpty": [
+            "/applications/:param/:param"
         ]
     },
     {
@@ -1250,44 +1310,6 @@
         ],
         "urlEmpty": [
             "/applications/:param/can-delete"
-        ]
-    },
-    {
-        "title": "Get Bulk Application Identities",
-        "method": "POST",
-        "url": "/application-identities",
-        "supportsOAuth2": true,
-        "urls": [
-            "/application-identities"
-        ],
-        "urlEmpty": [
-            "/application-identities"
-        ]
-    },
-    {
-        "title": "Get User Application Profile",
-        "method": "GET\n",
-        "": true,
-        "url": "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n",
-        "supportsBot": true,
-        "urls": [
-            "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n"
-        ],
-        "urlEmpty": [
-            "/applications/:param/users/:param/identities/:param/profile\n"
-        ]
-    },
-    {
-        "title": "Modify User Application Profile",
-        "method": "PATCH\n",
-        "": true,
-        "url": "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n",
-        "supportsBot": true,
-        "urls": [
-            "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n"
-        ],
-        "urlEmpty": [
-            "/applications/:param/users/:param/identities/:param/profile\n"
         ]
     },
     {
@@ -8708,28 +8730,6 @@
         ]
     },
     {
-        "title": "Modify Profile Widgets",
-        "method": "PUT",
-        "url": "/users/@me/widgets",
-        "urls": [
-            "/users/@me/widgets"
-        ],
-        "urlEmpty": [
-            "/users/@me/widgets"
-        ]
-    },
-    {
-        "title": "Get Profile Widgets Suggested Games",
-        "method": "GET",
-        "url": "/users/@me/widgets/suggested-games",
-        "urls": [
-            "/users/@me/widgets/suggested-games"
-        ],
-        "urlEmpty": [
-            "/users/@me/widgets/suggested-games"
-        ]
-    },
-    {
         "title": "Enable TOTP MFA",
         "method": "POST",
         "url": "/users/@me/mfa/totp/enable",
@@ -9229,17 +9229,6 @@
         ]
     },
     {
-        "title": "Get User Application Identities",
-        "method": "GET",
-        "url": "/users/{user.id}/application-identities",
-        "urls": [
-            "/users/{user.id}/application-identities"
-        ],
-        "urlEmpty": [
-            "/users/:param/application-identities"
-        ]
-    },
-    {
         "title": "Get Voice Regions",
         "method": "GET",
         "url": "/voice/regions",
@@ -9593,6 +9582,196 @@
         ],
         "urlEmpty": [
             "/webhooks/:param/:param/messages/:param"
+        ]
+    },
+    {
+        "title": "Modify Profile Widgets",
+        "method": "PUT",
+        "url": "/users/@me/widgets",
+        "urls": [
+            "/users/@me/widgets"
+        ],
+        "urlEmpty": [
+            "/users/@me/widgets"
+        ]
+    },
+    {
+        "title": "Get Profile Widgets Suggested Games",
+        "method": "GET",
+        "url": "/users/@me/widgets/suggested-games",
+        "urls": [
+            "/users/@me/widgets/suggested-games"
+        ],
+        "urlEmpty": [
+            "/users/@me/widgets/suggested-games"
+        ]
+    },
+    {
+        "title": "Get Bulk Application Identities",
+        "method": "POST",
+        "url": "/application-identities",
+        "supportsOAuth2": true,
+        "urls": [
+            "/application-identities"
+        ],
+        "urlEmpty": [
+            "/application-identities"
+        ]
+    },
+    {
+        "title": "Get User Application Profile",
+        "method": "GET\n",
+        "": true,
+        "url": "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n"
+        ],
+        "urlEmpty": [
+            "/applications/:param/users/:param/identities/:param/profile\n"
+        ]
+    },
+    {
+        "title": "Modify User Application Profile",
+        "method": "PATCH\n",
+        "": true,
+        "url": "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/users/{user.id}/identities/{external_user_id}/profile\n"
+        ],
+        "urlEmpty": [
+            "/applications/:param/users/:param/identities/:param/profile\n"
+        ]
+    },
+    {
+        "title": "Get User Application Identities",
+        "method": "GET",
+        "url": "/users/{user.id}/application-identities",
+        "urls": [
+            "/users/{user.id}/application-identities"
+        ],
+        "urlEmpty": [
+            "/users/:param/application-identities"
+        ]
+    },
+    {
+        "title": "Modify User Application Profile Config",
+        "method": "PATCH",
+        "url": "/users/@me/application-identities/{application.id}/{external_user_id}/config",
+        "urls": [
+            "/users/@me/application-identities/{application.id}/{external_user_id}/config"
+        ],
+        "urlEmpty": [
+            "/users/@me/application-identities/:param/:param/config"
+        ]
+    },
+    {
+        "title": "Get Featured Application Widget Configs",
+        "method": "GET",
+        "url": "/widget-configs/featured",
+        "supportsBot": true,
+        "urls": [
+            "/widget-configs/featured"
+        ],
+        "urlEmpty": [
+            "/widget-configs/featured"
+        ]
+    },
+    {
+        "title": "Get Developer Application Widget Configs",
+        "method": "GET",
+        "url": "/widget-configs/developer",
+        "supportsBot": true,
+        "urls": [
+            "/widget-configs/developer"
+        ],
+        "urlEmpty": [
+            "/widget-configs/developer"
+        ]
+    },
+    {
+        "title": "Get Layout Definitions",
+        "method": "GET",
+        "url": "/widget-configs/layout-definitions",
+        "supportsBot": true,
+        "urls": [
+            "/widget-configs/layout-definitions"
+        ],
+        "urlEmpty": [
+            "/widget-configs/layout-definitions"
+        ]
+    },
+    {
+        "title": "Get Application Widget Configs",
+        "method": "GET",
+        "url": "/applications/{application.id}/widget-configs",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/widget-configs"
+        ],
+        "urlEmpty": [
+            "/applications/:param/widget-configs"
+        ]
+    },
+    {
+        "title": "Create Application Widget Config",
+        "method": "POST",
+        "url": "/applications/{application.id}/widget-configs",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/widget-configs"
+        ],
+        "urlEmpty": [
+            "/applications/:param/widget-configs"
+        ]
+    },
+    {
+        "title": "Delete Application Widget Config",
+        "method": "DELETE",
+        "url": "/applications/{application.id}/widget-configs/{widget_config.id}",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/widget-configs/{widget_config.id}"
+        ],
+        "urlEmpty": [
+            "/applications/:param/widget-configs/:param"
+        ]
+    },
+    {
+        "title": "Modify Application Widget Config",
+        "method": "PATCH",
+        "url": "/applications/{application.id}/widget-configs/{widget_config.id}",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/widget-configs/{widget_config.id}"
+        ],
+        "urlEmpty": [
+            "/applications/:param/widget-configs/:param"
+        ]
+    },
+    {
+        "title": "Publish Application Widget Config",
+        "method": "POST",
+        "url": "/applications/{application.id}/widget-configs/{widget_config.id}/publish",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/widget-configs/{widget_config.id}/publish"
+        ],
+        "urlEmpty": [
+            "/applications/:param/widget-configs/:param/publish"
+        ]
+    },
+    {
+        "title": "Unpublish Application Widget Config",
+        "method": "POST",
+        "url": "/applications/{application.id}/widget-configs/{widget_config.id}/unpublish",
+        "supportsBot": true,
+        "urls": [
+            "/applications/{application.id}/widget-configs/{widget_config.id}/unpublish"
+        ],
+        "urlEmpty": [
+            "/applications/:param/widget-configs/:param/unpublish"
         ]
     },
     {
