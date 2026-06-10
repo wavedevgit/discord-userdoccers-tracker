@@ -1022,6 +1022,7 @@ These events directly correspond with a specific action or state change that has
 | [Message Reaction Remove](#message-reaction-remove)                                               | User removed a reaction from a message                                                         |
 | [Message Reaction Remove All](#message-reaction-remove-all)                                       | All reactions were explicitly removed from a message                                           |
 | [Message Reaction Remove Emoji](#message-reaction-remove-emoji)                                   | All reactions for a given emoji were explicitly removed from a message                         |
+| [Reaction Notification Sent](#reaction-notification-sent)                                         | User reacted to a message authored by the current user                                         |
 | [Recent Mention Delete](#recent-mention-delete)                                                   | Recent message that mentioned the current user was acknowledged                                |
 | [Last Messages](#last-messages)                                                                   | Response to [Request Last Messages](#request-last-messages)                                    |
 | [Notification Center Item Create](#notification-center-item-create)                               | Notification center item was created                                                           |
@@ -2887,6 +2888,23 @@ Sent when a user removes all instances of a given emoji from the reactions of a 
 | message_id | snowflake                                             | The ID of the message      |
 | guild_id?  | snowflake                                             | The ID of the guild        |
 | emoji      | partial [emoji object](/resources/emoji#emoji-object) | The emoji that was removed |
+
+#### Reaction Notification Sent
+
+Sent when a user reacts to a message authored by the current user.
+
+###### Reaction Notification Sent Structure
+
+| Field           | Type                                                  | Description                                                          |
+| --------------- | ----------------------------------------------------- | -------------------------------------------------------------------- |
+| message         | [message](/resources/message#message-object) object   | The message that was reacted to                                      |
+| reactor_user_id | snowflake                                             | The ID of the user who reacted                                       |
+| emoji           | partial [emoji](/resources/emoji#emoji-object) object | The emoji used to react                                              |
+| title           | string                                                | The notification title                                               |
+| body            | string                                                | The notification body text                                           |
+| icon            | string                                                | The notification icon URL                                            |
+| route           | string                                                | The client route opened by the notification                          |
+| tracking_type   | string                                                | The notification tracking type (always `reaction_push_notification`) |
 
 #### Recent Mention Delete
 
@@ -37524,6 +37542,7 @@ Used to represent a user's voice connection status.
 | user_id                    | snowflake                                                   | The user ID this voice state is for                                     |
 | member? ^1^                | [guild member](/resources/guild#guild-member-object) object | The guild member this voice state is for                                |
 | session_id                 | string                                                      | The session ID this voice state is from                                 |
+| connected_at?              | integer                                                     | Unix time (in seconds) of when the user connected to voice              |
 | deaf                       | boolean                                                     | Whether this user is deafened by the guild, if any                      |
 | mute                       | boolean                                                     | Whether this user is muted by the guild, if any                         |
 | self_deaf                  | boolean                                                     | Whether this user is locally deafened                                   |
@@ -37546,6 +37565,7 @@ Used to represent a user's voice connection status.
   "channel_id": "157733188964188161",
   "user_id": "80351110224678912",
   "session_id": "90326bd25d71d39b9ef95b299e3872ff",
+  "connected_at": 1617216331,
   "deaf": false,
   "mute": false,
   "self_deaf": false,
@@ -39016,10 +39036,12 @@ Desktop release channels follow [web release channels](#web-release-channel) whe
 
 ###### Desktop Executable Format
 
-| Value  | Description                  |
-| ------ | ---------------------------- |
-| deb    | Debian software package file |
-| tar.gz | Compressed archive file      |
+| Value       | Description                       |
+| ----------- | --------------------------------- |
+| deb         | Debian software package file      |
+| tar.gz      | Compressed archive file           |
+| rpm         | RPM software package file         |
+| pkg.tar.zst | Zstandard-compressed package file |
 
 ### Mobile
 
