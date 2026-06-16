@@ -4516,7 +4516,7 @@ Events associated with the `GUILD_PRESENCES` and `GUILD_MEMBERS` intents are tur
 
 #### HTTP Restrictions
 
-In addition to Gateway restrictions, privileged intents also affect the [HTTP API](/reference#http-api) endpoints bots are permitted to call, and the data they can receive. For example, to use the [Get Guild Members](/resources/guild#get-guild-members) endpoint, a bot must have the `GUILD_MEMBERS` intent enabled. If the bot does not have the intent enabled, the endpoint will return a `403 Forbidden` error.
+In addition to Gateway restrictions, privileged intents also affect the [HTTP API](/reference#http-api) endpoints bots are permitted to call, and the data they can receive. For example, to use the [List Guild Members](/resources/guild#list-guild-members) endpoint, a bot must have the `GUILD_MEMBERS` intent enabled. If the bot does not have the intent enabled, the endpoint will return a `403 Forbidden` error.
 
 HTTP API restrictions are independent of Gateway restrictions, and are unaffected by intents passed in the `intents` parameter when identifying.
 
@@ -6229,7 +6229,7 @@ Returns an [application command index](#application-command-index-object) object
   supportsOAuth2="applications.commands.update"
   supportsBot
 >
-  Get Global Application Commands
+  List Global Application Commands
 </RouteHeader>
 
 Returns a list of global [application command](#application-command-object) objects for the given application ID. User must be the owner of the application, developer of the application's team, or have a DM channel with the application's bot.
@@ -6386,7 +6386,7 @@ This will overwrite **all** types of application commands: slash commands, user 
   supportsOAuth2="applications.commands.update"
   supportsBot
 >
-  Get Guild Application Commands
+  List Guild Application Commands
 </RouteHeader>
 
 Returns a list of [application command](#application-command-object) objects for the given guild ID. User must be the owner of the application or developer of the application's team.
@@ -6525,7 +6525,7 @@ This endpoint is not usable by user accounts.
   url="/applications/{application.id}/guilds/{guild.id}/commands/permissions"
   supportsOAuth2="applications.commands.permissions.update"
 >
-  Get Guild Application Command Permissions
+  List Guild Application Command Permissions
 </RouteHeader>
 
 Returns a list of [guild application command permissions](#guild-application-command-permissions-structure) objects representing all configured command permissions for your application in a guild.
@@ -7852,7 +7852,7 @@ The application directory allows users to find fun and entertaining applications
 ## Endpoints
 
 <RouteHeader method="GET" url="/application-directory-static/categories" unauthenticated>
-  Get Application Directory Categories
+  List Application Directory Categories
 </RouteHeader>
 
 Returns a list of [application directory category](#application-directory-category-object) objects representing the available application categories.
@@ -7864,7 +7864,7 @@ Returns a list of [application directory category](#application-directory-catego
 | locale? | string | The [language](/reference#locales) to return categories in (default "en-US") |
 
 <RouteHeader method="GET" url="/application-directory-static/collections" unauthenticated>
-  Get Application Directory Collections
+  List Application Directory Collections
 </RouteHeader>
 
 Returns a list of the available [application directory collection](#application-directory-collection-structure) objects.
@@ -7948,7 +7948,7 @@ Returns a partial [application](/resources/application#application-object) objec
 | with_localizations? | boolean | Whether to also return localizations for the detailed and short descriptions (default false) |
 
 <RouteHeader method="GET" url="/application-directory-static/applications/{application.id}/similar" unauthenticated>
-  Get Application Directory Similar Applications
+  List Application Directory Similar Applications
 </RouteHeader>
 
 Returns applications similar to the given application ID.
@@ -8179,7 +8179,7 @@ Further complicating things, some optional fields may be omitted if their value 
 
 ^2^ Only present when fetched from the [Get Partial Application](#get-partial-application) endpoint with `with_guild` set to `true`. The guild must be discoverable.
 
-^3^ Only present when fetched from the [Get Guild Applications](#get-guild-applications) endpoint. You must own the application or be a member of the owning team to receive this information.
+^3^ Only present when fetched from the [List Guild Applications](#list-guild-applications) endpoint. You must own the application or be a member of the owning team to receive this information.
 
 ^4^ In some cases, these fields may still be provided instead of `integration_public` and `integration_require_code_grant`. These fields will not be present if the application does not have a bot.
 
@@ -9099,7 +9099,7 @@ Each metadata type offers a comparison operation that allows guilds to configure
 ## Endpoints
 
 <RouteHeader method="GET" url="/applications">
-  Get Applications
+  List Applications
 </RouteHeader>
 
 Returns a list of [application](#application-object) objects that the current user has.
@@ -9111,7 +9111,7 @@ Returns a list of [application](#application-object) objects that the current us
 | with_team_applications? | boolean | Whether to include applications that a [team](/resources/team) the user is a part of owns |
 
 <RouteHeader method="GET" url="/applications-with-assets">
-  Get Applications with Assets
+  List Applications with Assets
 </RouteHeader>
 
 Returns a list of [application](#application-object) objects that the current user has, additionally including the application's assets.
@@ -9408,7 +9408,7 @@ Resets the application's client secret. This revokes all previous secrets and re
 ```
 
 <RouteHeader method="GET" url="/oauth2/applications/{application.id}/allowlist">
-  Get Application Testers
+  List Application Testers
 </RouteHeader>
 
 Returns a list of [whitelisted user](#whitelisted-user-structure) objects representing the invited testers for the given application ID. User must be the owner of the application or member of the owning team.
@@ -9584,7 +9584,7 @@ Returns information about the application's eligibility for application director
 Queries whether the user can use test mode for the application. Test mode allows completing purchases without payment. User must be the owner of the application or developer of the owning team. Returns a 204 empty response on success.
 
 <RouteHeader method="GET" url="/activities/shelf">
-  Get Embedded Activities
+  List Embedded Activities
 </RouteHeader>
 
 Returns the embedded activities available globally or in a particular guild.
@@ -9642,7 +9642,7 @@ Modifies the embedded activity config for the given application ID. User must be
 | shelf_rank?                             | integer                                                                                               | The rank of the activity in the activity shelf sort order                                                        |
 
 <RouteHeader method="GET" url="/activities/{application.id}/instances/{channel.id}" deprecated>
-  Get Embedded Activity Instances
+  List Embedded Activity Instances
 </RouteHeader>
 
 Returns the currently active activity instances in a channel for the application. Useful for preventing unwanted activity sessions.
@@ -9761,7 +9761,7 @@ Notes:
 | url_map | array[[application proxy mapping](#application-proxy-mapping-structure) object] | The URLs mapped to the proxy |
 
 <RouteHeader method="GET" url="/oauth2/applications/{application.id}/assets" unauthenticated>
-  Get OAuth2 Application Assets
+  List OAuth2 Application Assets
 </RouteHeader>
 
 Returns a list of [application assets](#application-asset-object) for the given application ID.
@@ -9913,7 +9913,7 @@ Returns a partial [application](#application-object) object for the given ID wit
 | with_guild? | boolean | Whether to include the guild object in the response if the guild is discoverable (default false) |
 
 <RouteHeader method="GET" url="/applications/public">
-  Get Partial Applications
+  List Partial Applications
 </RouteHeader>
 
 Returns a list of partial [application](#application-object) objects for the given IDs.
@@ -9931,7 +9931,7 @@ Returns a list of partial [application](#application-object) objects for the giv
 Returns a partial [application](#application-object) object for the given ID with RPC-related fields.
 
 <RouteHeader method="GET" url="/applications/{application.id}/disclosures">
-  Get Application Disclosures
+  List Application Disclosures
 </RouteHeader>
 
 Returns an object representing additional safety disclosures for the application.
@@ -9982,7 +9982,7 @@ Acknowledges a list of disclosures for the application.
 | disclosures | array[integer] | The [disclosures](#application-disclosure-type) that have been acknowledged by the user |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/applications">
-  Get Guild Applications
+  List Guild Applications
 </RouteHeader>
 
 Returns a list of [application](#application-object) objects attached to the given guild ID. Requires the `MANAGE_GUILD` permission.
@@ -10075,7 +10075,7 @@ Uploads an unverified application's icon to Discord. Returns a 204 empty respons
 | icon             | [image data](/reference#cdn-data) | The application's icon             |
 
 <RouteHeader method="GET" url="/users/@me/applications/role-connections">
-  Get User Application Role Connections
+  List User Application Role Connections
 </RouteHeader>
 
 Returns a list of [application role connection](#application-role-connection-object) objects for the user.
@@ -10127,7 +10127,7 @@ All parameters to this endpoint are optional and nullable. Omitting or setting a
 | metadata?          | map[string, string] | Object mapping [application role connection metadata](#application-role-connection-metadata-object) keys to their `string`-ified value (max 100 characters) for the user on the platform a bot has connected |
 
 <RouteHeader method="GET" url="/applications/{application.id}/managed-links/">
-  Get Application Managed Links
+  List Application Managed Links
 </RouteHeader>
 
 Returns a list of [activity link](#activity-link-object) objects for the given application ID. User must be the owner of the application or developer of the owning team.
@@ -10218,7 +10218,7 @@ The application must meet the following criteria to be eligible for verification
 - All its team members must have a verified email and MFA set up, with the team owner additionally having to undergo identity verification
 
 <RouteHeader method="GET" url="/social-sdk/releases">
-  Get Social SDK Releases
+  List Social SDK Releases
 </RouteHeader>
 
 Returns the currently available social SDK releases.
@@ -10253,7 +10253,7 @@ Enables social SDK features for the given application, applying the [`SOCIAL_LAY
 | email_updates_consent? | boolean | Whether to receive emails about the social SDK (default false) |
 
 <RouteHeader method="GET" url="/applications/{application.id}/external-identity-provider-configurations">
-  Get Application External Identity Provider Configurations
+  List Application External Identity Provider Configurations
 </RouteHeader>
 
 Returns a list of [application external identity provider configuration](#application-external-identity-provider-configuration-structure) objects for the given application.
@@ -10300,7 +10300,7 @@ Returns a reason for why an application cannot be deleted.
 ----- discord-userdoccers/pages/resources/audit-log.mdx -----
 # Audit Log
 
-When an administrative action is performed in a guild, an entry is added to its audit log. Viewing audit logs requires the `VIEW_AUDIT_LOG` permission and can be fetched using the [Get Guild Audit Log](#get-guild-audit-log) endpoint. All audit log entries are stored for 45 days.
+When an administrative action is performed in a guild, an entry is added to its audit log. Viewing audit logs requires the `VIEW_AUDIT_LOG` permission and can be fetched using the [List Guild Audit Log Entries](#list-guild-audit-log-entries) endpoint. All audit log entries are stored for 45 days.
 
 ### Audit Reason
 
@@ -10540,7 +10540,7 @@ In addition to the exceptions below, the `key` field may be appended with `_hash
 ## Endpoints
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/audit-logs" supportsBot>
-  Get Guild Audit Log
+  List Guild Audit Log Entries
 </RouteHeader>
 
 Returns the audit log for the guild. Requires the `VIEW_AUDIT_LOG` permission.
@@ -11040,7 +11040,7 @@ Additional data used when an action is executed. Different fields are relevant b
 ## Endpoints
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/auto-moderation/rules" supportsBot>
-  Get Guild AutoMod Rules
+  List Guild AutoMod Rules
 </RouteHeader>
 
 Returns a list of [automod rule](#automod-rule-object) objects for the configured rules in the guild. Requires the `MANAGE_GUILD` permission.
@@ -11461,7 +11461,7 @@ Returns the user's country and subdivision code based on requesting IP address.
 | subdivision_code | ?string | The [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) subdivision code             |
 
 <RouteHeader method="GET" url="/users/@me/billing/payment-sources">
-  Get Payment Sources
+  List Payment Sources
 </RouteHeader>
 
 Returns a list of [payment source](#payment-source-object) objects. Note that the `billing_address` fields within these objects will be partial for security reasons, containing only `name` and `country`.
@@ -11567,7 +11567,7 @@ This token is used to redirect the user to PayPal to approve the billing agreeme
 | token | string | The token of the PayPal billing agreement |
 
 <RouteHeader method="GET" url="/users/@me/billing/adyen/payment-methods">
-  Get Available Adyen Payment Methods
+  List Available Adyen Payment Methods
 </RouteHeader>
 
 Returns available payment methods for the [`ADYEN` payment gateway](#payment-gateway). This endpoint is a proxy for getting available payment methods for transactions using the Adyen API. See the [Adyen documentation](https://docs.adyen.com/api-explorer/Checkout/71/post/paymentMethods) for more information.
@@ -11749,7 +11749,7 @@ Returns whether the client should prompt the user to continue their premium purc
 | is_eligible? | boolean | Whether the client should prompt the user for checkout recovery |
 
 <RouteHeader method="GET" url="/users/@me/billing/nitro-affinity">
-  Get Premium User Affinity
+  List Premium User Affinities
 </RouteHeader>
 
 Returns a list of up to 3 partial [user](/resources/user#partial-user-structure) objects representing friends with a premium subscription, used to entice the user to subscribe.
@@ -11831,15 +11831,15 @@ A guild or private channel within Discord.
 
 ^4^ This field is not automatically copied into new threads created in the channel. It should be manually set when creating a thread.
 
-^5^ Only returned when part of the `resolved` data received in an interaction or when `permissions` is set to `true` when fetching [Get Guild Channels](#get-guild-channels).
+^5^ Only returned when part of the `resolved` data received in an interaction or when `permissions` is set to `true` when fetched from the [List Guild Channels](#list-guild-channels) endpoint.
 
 ^6^ Only included in the [Gateway Guild](/gateway/gateway-events#gateway-guild-object) object.
 
-^7^ Only included in [Gateway events](/gateway/gateway-events#channels) and when fetched from the [Get Private Channels](#get-private-channels) endpoint.
+^7^ Only included in [Gateway events](/gateway/gateway-events#channels) and when fetched from the [List Private Channels](#list-private-channels) endpoint.
 
 ^8^ For ephemeral DM channels, the channel ID will always equal the ID of the other recipient.
 
-^9^ Only included when `with_can_link_lobby` is set to `true` when fetching [Get Guild Channels](#get-guild-channels).
+^9^ Only included when `with_can_link_lobby` is set to `true` when fetched from the [List Guild Channels](#list-guild-channels) endpoint.
 
 ###### Partial Channel Structure
 
@@ -12347,7 +12347,7 @@ A thread member object contains information about a user that has joined a threa
 
 ^2^ These fields are omitted for thread members other than the current user.
 
-^3^ The `member` field is only present when `with_member` is set to `true` when fetching [Get Thread Members](#get-thread-members) or [Get Thread Member](#get-thread-member).
+^3^ The `member` field is only present when `with_member` is set to `true` when fetching [List Thread Members](#list-thread-members) or [Get Thread Member](#get-thread-member).
 
 ###### Thread Member Flags
 
@@ -12417,7 +12417,7 @@ A lobby linked to a channel.
 ## Endpoints
 
 <RouteHeader method="GET" url="/users/@me/channels">
-  Get Private Channels
+  List Private Channels
 </RouteHeader>
 
 Returns a list of active [private channel](#channel-object) objects the user is participating in.
@@ -12465,7 +12465,7 @@ One of `recipient_id`, `recipients` or `access_tokens` is required. Bots cannot 
 ^3^ Requires `access_tokens` to be provided.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/channels" supportsOAuth2="guilds.channels.read" supportsBot>
-  Get Guild Channels
+  List Guild Channels
 </RouteHeader>
 
 Returns a list of [guild channel](#channel-object) objects for the guild. Does not include threads. If the user is not in the guild, the guild must be discoverable.
@@ -12482,7 +12482,7 @@ Returns a list of [guild channel](#channel-object) objects for the guild. Does n
 ^2^ Only usable in OAuth2 contexts.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/top-read-channels" supportsBot deprecated>
-  Get Guild Top Read Channels
+  List Guild Top Read Channels
 </RouteHeader>
 
 Returns a list of snowflakes representing up to 10 of the top read channels in the guild. If the user is not in the guild, the guild must be discoverable.
@@ -12611,7 +12611,7 @@ If modifying a thread and setting `archived` to `false`, when `locked` is also `
 | archived?                           | ?boolean                                                            | Whether the thread is archived                                                                                                                                                       | Thread                                                             |
 | locked?                             | ?boolean                                                            | Whether the thread is locked; when a thread is locked, only users with `MANAGE_THREADS` can unarchive it                                                                             | Thread                                                             |
 | invitable?                          | ?boolean                                                            | Whether non-moderators can add other non-moderators to a thread                                                                                                                      | Private Thread                                                     |
-| flags?                              | integer                                                             | The [channel's flags](#channel-flags) (only `GUILD_FEED_REMOVED`, `PINNED`, `ACTIVE_CHANNELS_REMOVED`, and `REQUIRE_TAG` can be set)                                                 | All                                                                |
+| flags?                              | integer                                                             | The [channel's flags](#channel-flags) (only `GUILD_FEED_REMOVED`, `PINNED`, `ACTIVE_CHANNELS_REMOVED`, `REQUIRE_TAG`, and `IS_SPOILER_CHANNEL` can be set)                           | All                                                                |
 | available_tags? ^3^                 | array[partial [forum tag](#forum-tag-object) object]                | The tags that can be used in a thread-only channel (max 20)                                                                                                                          | Forum, Media                                                       |
 | applied_tags?                       | array[snowflake]                                                    | The IDs of tags that are applied to a thread in a thread-only channel (max 5)                                                                                                        | Thread                                                             |
 | default_reaction_emoji?             | ?[default reaction](#default-reaction-object) object                | The emoji to show in the add reaction button on a thread in a thread-only channel                                                                                                    | Forum, Media                                                       |
@@ -12960,7 +12960,7 @@ This endpoint is only usable by Discord employees.
 </Alert>
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/threads/active" supportsBot>
-  Get Guild Active Threads
+  List Guild Active Threads
 </RouteHeader>
 
 Returns all active threads in the guild, including public and private threads. Threads are ordered by their `id`, in descending order.
@@ -12979,7 +12979,7 @@ This endpoint is not usable by user accounts.
 | members | array[[thread members](#thread-member-object) object] | A thread member object for each returned thread the current user has joined |
 
 <RouteHeader method="GET" url="/channels/{channel.id}/threads/active" supportsBot deprecated>
-  Get Active Threads
+  List Active Threads
 </RouteHeader>
 
 Returns all active threads in the channel, including public and private threads. Threads are ordered by their `id`, in descending order. User must be a member of the guild.
@@ -12992,7 +12992,7 @@ This endpoint is not usable by user accounts.
 
 <Alert type="warn">
 
-This endpoint is deprecated and removed in v10. It is replaced by [Get Guild Active Threads](#get-guild-active-threads).
+This endpoint is deprecated and removed in v10. It is replaced by [List Guild Active Threads](#list-guild-active-threads).
 
 </Alert>
 
@@ -13004,7 +13004,7 @@ This endpoint is deprecated and removed in v10. It is replaced by [Get Guild Act
 | members | array[[thread member](#thread-member-object) object] | A thread member object for each returned thread the current user has joined |
 
 <RouteHeader method="GET" url="/channels/{channel.id}/threads/archived/public" supportsBot>
-  Get Public Archived Threads
+  List Public Archived Threads
 </RouteHeader>
 
 Returns archived threads in the channel that are public. When called on a `GUILD_TEXT` channel, returns threads of [type](#channel-type) `PUBLIC_THREAD`. When called on a `GUILD_NEWS` channel returns threads of [type](#channel-type) `NEWS_THREAD`. Threads are ordered by `archive_timestamp`, in descending order. Requires the `READ_MESSAGE_HISTORY` permission.
@@ -13025,7 +13025,7 @@ Returns archived threads in the channel that are public. When called on a `GUILD
 | has_more | boolean                                              | Whether there are potentially additional threads that could be returned on a subsequent call |
 
 <RouteHeader method="GET" url="/channels/{channel.id}/threads/archived/private" supportsBot>
-  Get Private Archived Threads
+  List Private Archived Threads
 </RouteHeader>
 
 Returns archived threads in the channel that are of [type](#channel-type) `PRIVATE_THREAD`. Threads are ordered by `archive_timestamp`, in descending order. Requires both the `READ_MESSAGE_HISTORY` and `MANAGE_THREADS` permissions.
@@ -13046,7 +13046,7 @@ Returns archived threads in the channel that are of [type](#channel-type) `PRIVA
 | has_more | boolean                                              | Whether there are potentially additional threads that could be returned on a subsequent call |
 
 <RouteHeader method="GET" url="/channels/{channel.id}/users/@me/threads/archived/private" supportsBot>
-  Get Joined Private Archived Threads
+  List Joined Private Archived Threads
 </RouteHeader>
 
 Returns archived threads in the channel that are of [type](#channel-type) `PRIVATE_THREAD`, and the user has joined. Threads are ordered by their `id`, in descending order. Requires the `READ_MESSAGE_HISTORY` permission.
@@ -13248,7 +13248,7 @@ Returns a mapping of thread IDs to their [post data](#thread-post-data-structure
 ```
 
 <RouteHeader method="GET" url="/channels/{channel.id}/thread-members" supportsBot>
-  Get Thread Members
+  List Thread Members
 </RouteHeader>
 
 Returns an array of [thread members](#thread-member-object) objects that are members of the thread. Requires the `VIEW_CHANNEL` permission.
@@ -14258,7 +14258,7 @@ Collectibles are SKUs representing digital items that users typically purchase i
 ## Endpoints
 
 <RouteHeader method="GET" url="/collectibles-categories" deprecated>
-  Get Collectibles Categories
+  List Collectibles Categories
 </RouteHeader>
 
 Returns the list of [collectible categories](#collectible-category-structure) objects available in the store.
@@ -14286,7 +14286,7 @@ Returns the list of [collectible categories](#collectible-category-structure) ob
 | 2     | VARIANTS_GROUP      | Variants should be returned as a group             |
 
 <RouteHeader method="GET" url="/collectibles-categories/v2">
-  Get Collectibles Categories V2
+  List Collectibles Categories V2
 </RouteHeader>
 
 Returns the collectible categories available in the store.
@@ -14322,7 +14322,7 @@ Returns the collectible categories available in the store.
 | expires_at  | ?ISO8601 timestamp | When the discount expires |
 
 <RouteHeader method="GET" url="/collectibles-shop">
-  Get Collectibles Shop
+  List Collectibles Shop
 </RouteHeader>
 
 Returns the list of [collectible categories](#collectible-category-structure) available in the store.
@@ -14470,7 +14470,7 @@ Returns the [collectible product](#collectible-product-structure) for a given SK
 | variants_return_style? | integer | The [variant style](#variants-return-style) to return                                          |
 
 <RouteHeader method="GET" url="/users/@me/collectibles-purchases">
-  Get User Purchased Collectibles
+  List User Purchased Collectibles
 </RouteHeader>
 
 Returns the list of [collectible products](#collectible-product-structure) owned by the current user.
@@ -14482,7 +14482,7 @@ Returns the list of [collectible products](#collectible-product-structure) owned
 | variants_return_style? | integer | The [variant style](#variants-return-style) to return |
 
 <RouteHeader method="GET" url="/user-profile-effects" unauthenticated deprecated>
-  Get Profile Effects
+  List Profile Effects
 </RouteHeader>
 
 Returns the list of [profile effects](https://support.discord.com/hc/en-us/articles/17828465914263-Profile-Effects) available to display.
@@ -15806,7 +15806,7 @@ The connection object that the user has attached.
 | visibility           | integer                                                                   | [Visibility](#visibility-type) of the connection                        |
 | access_token? ^1^    | string                                                                    | The access token for the connection account                             |
 
-^1^ Not included when [fetching a user's connections](#get-user-connections) via OAuth2.
+^1^ Not included when [fetching a user's connections](#list-user-connections) via OAuth2.
 
 ^2^ These integrations can be used to [join your own sub-enabled guild or the guild of a creator you are supporting](/resources/integration#join-integration-guild).
 
@@ -15927,7 +15927,7 @@ The connection object that the user has attached.
 
 ^1^ Service can no longer be added by users.
 
-^2^ Service is not returned in [Get User Profile](/resources/user#get-user-profile) or when [fetching a user's connections](#get-user-connections) via OAuth2.
+^2^ Service is not returned in [Get User Profile](/resources/user#get-user-profile) or when [fetching a user's connections](#list-user-connections) via OAuth2.
 
 ###### Visibility Type
 
@@ -16097,7 +16097,7 @@ After adding the proof, the request should be retried.
 </Alert>
 
 <RouteHeader method="GET" url="/users/@me/connections" supportsOAuth2="connections">
-  Get User Connections
+  List User Connections
 </RouteHeader>
 
 Returns a list of [connection](#connection-object) objects.
@@ -16115,7 +16115,7 @@ Returns a new access token for the given connection. Only available for Twitch, 
 | access_token | string | The connection's access token |
 
 <RouteHeader method="GET" url="/users/@me/connections/reddit/{connection.id}/subreddits">
-  Get User Connection Subreddits
+  List User Connection Subreddits
 </RouteHeader>
 
 Returns a list of [subreddits](#subreddit-structure) the connected account moderates. Only available for Reddit connections.
@@ -16177,7 +16177,7 @@ Deleting a connection will remove you from any guilds you joined via the connect
 </Alert>
 
 <RouteHeader method="GET" url="/users/@me/linked-connections" supportsOAuth2="connections">
-  Get User Linked Connections
+  List User Linked Connections
 </RouteHeader>
 
 <Alert type="warn">
@@ -16232,7 +16232,7 @@ Returns a nonce for connecting to voice on PlayStation consoles.
 Cancels a console connection request. Returns a 204 empty response on success.
 
 <RouteHeader method="GET" url="/consoles/{connection.type}/devices">
-  Get Console Devices
+  List Console Devices
 </RouteHeader>
 
 Returns the consoles associated with the given connection type. Only supports `playstation` and `playstation-stg` connection types.
@@ -16300,7 +16300,7 @@ Directories are most commonly found in [student hubs](https://support.discord.co
 | guild? ^1^                 | [directory guild](#directory-guild-structure) object                                 | The guild entry                                          |
 | guild_scheduled_event? ^1^ | [directory guild scheduled event](#directory-guild-scheduled-event-structure) object | The guild scheduled event entry                          |
 
-^1^ Not included when fetched from [Get Partial Directory Entries](#get-partial-directory-entries).
+^1^ Not included when fetched from [List Partial Directory Entries](#list-partial-directory-entries).
 
 ###### Directory Guild Structure
 
@@ -16346,7 +16346,7 @@ This object is a [guild scheduled event object](/resources/guild-scheduled-event
 Returns a mapping of [directory categories](#directory-category) to their entry count in the given directory channel. Requires the `VIEW_CHANNEL` permission.
 
 <RouteHeader method="GET" url="/channels/{channel.id}/directory-entries">
-  Get Directory Entries
+  List Directory Entries
 </RouteHeader>
 
 Returns a list of [directory entry](#directory-entry-object) objects in the given directory channel. Requires the `VIEW_CHANNEL` permission.
@@ -16359,7 +16359,7 @@ Returns a list of [directory entry](#directory-entry-object) objects in the give
 | category_id? | integer | The [primary category](#directory-category) to filter by          |
 
 <RouteHeader method="GET" url="/channels/{channel.id}/directory-entries/list">
-  Get Partial Directory Entries
+  List Partial Directory Entries
 </RouteHeader>
 
 Returns a list of partial [directory entry](#directory-entry-object) objects in the given directory channel. Requires the `VIEW_CHANNEL` permission.
@@ -16892,7 +16892,7 @@ A guild's discovery settings.
 ## Endpoints
 
 <RouteHeader method="GET" url="/discoverable-guilds">
-  Get Discoverable Guilds
+  List Discoverable Guilds
 </RouteHeader>
 
 Returns a list of [discoverable guild](#discoverable-guild-object) objects representing the guilds that are available for the current user to discover.
@@ -17029,7 +17029,7 @@ If a guild has both a landing web page and a monetization store page, the store 
 | purchase_page_invite | ?partial [invite](/resources/invite#invite-object) object          | A [special `ROLE_SUBSCRIPTIONS` invite](/resources/invite#invite-target-type) for the guild |
 
 <RouteHeader method="GET" url="/discovery/categories" supportsBot>
-  Get Discovery Categories
+  List Discovery Categories
 </RouteHeader>
 
 Returns a list of [discovery category](#discovery-category-object) objects representing the available discovery categories.
@@ -17165,7 +17165,7 @@ Emoji are small images that can be used to convey an idea or emotion. Discord al
 | animated?       | boolean                                            | Whether this emoji is animated                                                             |
 | available?      | boolean                                            | Whether this emoji can be used; may be false due to loss of premium subscriptions (boosts) |
 
-^1^ Only included for emoji when fetched through the [Get Guild Emojis](#get-guild-emojis) or [Get Guild Emoji](#get-guild-emoji) endpoints by a user with the `MANAGE_EXPRESSIONS` permission. Always included when fetched from [Get Application Emojis](#get-application-emojis) or [Get Application Emoji](#get-application-emoji).
+^1^ Only included for emoji when fetched through the [List Guild Emojis](#list-guild-emojis) or [Get Guild Emoji](#get-guild-emoji) endpoints by a user with the `MANAGE_EXPRESSIONS` permission. Always included when fetched from [List Application Emojis](#list-application-emojis) or [Get Application Emoji](#get-application-emoji).
 
 ^2^ This may be `null` in the case of a custom emoji that has been deleted.
 
@@ -17183,7 +17183,7 @@ An emoji cannot have both subscription roles and non-subscription roles.
 Emoji with subscription roles are considered premium emoji, and count toward a separate limit of 25.  
 Emoji cannot be converted between normal and premium after creation.
 
-###### Appication Emoji
+###### Application Emoji
 
 An application can own up to 2,000 emoji that can only be used by the app.
 The `USE_EXTERNAL_EMOJIS` permission is not required to use these emoji.
@@ -17249,7 +17249,7 @@ In [Message Reaction Add](/gateway/gateway-events#message-reaction-add) events `
 ## Endpoints
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/emojis" supportsBot>
-  Get Guild Emojis
+  List Guild Emojis
 </RouteHeader>
 
 Returns a list of [emoji](#emoji-object) objects for the given guild. Includes the `user` field if the user has the `CREATE_EXPRESSIONS` or `MANAGE_EXPRESSIONS` permission.
@@ -17261,16 +17261,16 @@ Returns a list of [emoji](#emoji-object) objects for the given guild. Includes t
 Returns an [emoji](#emoji-object) object for the given guild and emoji IDs. Includes the `user` field if the user has the `CREATE_EXPRESSIONS` or `MANAGE_EXPRESSIONS` permission.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/top-emojis">
-  Get Guild Top Emojis
+  List Guild Top Emojis
 </RouteHeader>
 
-Returns the most-used emoji for the given guild.
+Returns the most-used emojis for the given guild.
 
 ###### Response Body
 
-| Field | Type                                            | Description                       |
-| ----- | ----------------------------------------------- | --------------------------------- |
-| items | array[[top emoji](#top-emoji-structure) object] | The most-used emoji for the guild |
+| Field | Type                                            | Description                        |
+| ----- | ----------------------------------------------- | ---------------------------------- |
+| items | array[[top emoji](#top-emoji-structure) object] | The most-used emojis for the guild |
 
 ###### Top Emoji Structure
 
@@ -17443,7 +17443,7 @@ Modifies the given emoji. For emoji created by the current user, requires either
 Deletes the given emoji. For emoji created by the current user, requires either the `CREATE_EXPRESSIONS` or `MANAGE_EXPRESSIONS` permission. For other emojis, requires the `MANAGE_EXPRESSIONS` permission. Returns a 204 empty response on success. Fires a [Guild Emojis Update](/gateway/gateway-events#guild-emojis-update) Gateway event.
 
 <RouteHeader method="GET" url="/applications/{application.id}/emojis" supportsBot>
-  Get Application Emojis
+  List Application Emojis
 </RouteHeader>
 
 Returns an object containing a list of [emoji](#emoji-object) objects for the given application under the `items` key. Includes the `user` field.
@@ -17761,7 +17761,7 @@ A batch of gift codes created together.
 ## Endpoints
 
 <RouteHeader method="GET" url="/users/@me/entitlements">
-  Get User Entitlements
+  List User Entitlements
 </RouteHeader>
 
 Returns a list of [entitlement](#entitlement-object) objects granted to the current user, both active and expired.
@@ -17776,7 +17776,7 @@ Returns a list of [entitlement](#entitlement-object) objects granted to the curr
 | entitlement_type? | integer | The [type of entitlement](#entitlement-type) to filter by          |
 
 <RouteHeader method="GET" url="/users/@me/entitlements/gifts">
-  Get User Giftable Entitlements
+  List User Giftable Entitlements
 </RouteHeader>
 
 Returns a list of [entitlement](#entitlement-object) objects that the current user can gift.
@@ -17788,7 +17788,7 @@ Returns a list of [entitlement](#entitlement-object) objects that the current us
 | country_code? | string | The user's [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/entitlements">
-  Get Guild Entitlements
+  List Guild Entitlements
 </RouteHeader>
 
 Returns a list of [entitlement](#entitlement-object) objects granted to the given guild, both active and expired.
@@ -17809,7 +17809,7 @@ Returns a list of [entitlement](#entitlement-object) objects granted to the give
   supportsOAuth2="applications.entitlements"
   supportsBot
 >
-  Get Application Entitlements
+  List Application Entitlements
 </RouteHeader>
 
 Returns a list of [entitlement](#entitlement-object) objects for the given application, both active and expired.
@@ -17828,7 +17828,7 @@ Returns a list of [entitlement](#entitlement-object) objects for the given appli
 | limit?           | integer          | Max number of entitlements to return (1-100, default 100)     |
 
 <RouteHeader method="GET" url="/users/@me/applications/{application.id}/entitlements">
-  Get User Application Entitlements
+  List User Application Entitlements
 </RouteHeader>
 
 Returns a list of [entitlement](#entitlement-object) objects granted to the current user for the given application.
@@ -17928,7 +17928,7 @@ Redeems a gift code for the current user. Returns an [entitlement](#entitlement-
 | gateway_checkout_context? | ?[gateway checkout context](/resources/billing#gateway-checkout-context-object) object | The context for the gateway checkout, if applicable              |
 
 <RouteHeader method="GET" url="/users/@me/entitlements/gift-codes">
-  Get User Gift Codes
+  List User Gift Codes
 </RouteHeader>
 
 Returns a list of [gift code](#gift-code-object) objects that the current user has created.
@@ -17961,7 +17961,7 @@ Creates a gift code. Requires an eligible giftable entitlement. Returns a [gift 
 Revokes a gift code created by the current user. Returns a 204 empty response on success.
 
 <RouteHeader method="GET" url="/applications/{application.id}/gift-code-batches">
-  Get Application Gift Code Batches
+  List Application Gift Code Batches
 </RouteHeader>
 
 Returns a list of [gift code batch](#gift-code-batch-object) objects for the given application. User must be the owner of the application or member of the owning team.
@@ -18698,7 +18698,7 @@ This structure is a superset of the [detectable application](#detectable-applica
 ## Endpoints
 
 <RouteHeader method="GET" url="/applications/{application.id}/game-claims">
-  Get Application Game Claims
+  List Application Game Claims
 </RouteHeader>
 
 Returns a list of [game claim](/resources/game#game-claim-object) objects for the given application ID.
@@ -18746,19 +18746,19 @@ Modifies the game claim. Returns a [game claim](#game-claim-object) object on su
 Deletes the given game claim. Returns a 204 empty response.
 
 <RouteHeader method="GET" url="/applications/non-games/detectable" unauthenticated>
-  Get Detectable Non Game Applications
+  List Detectable Non Game Applications
 </RouteHeader>
 
 Returns a list of [detectable application](/resources/game#detectable-application-object) objects representing non-games that can be detected by Discord for rich presence.
 
 <RouteHeader method="GET" url="/games/detectable" unauthenticated>
-  Get Detectable Games
+  List Detectable Games
 </RouteHeader>
 
 Returns a list of [detectable application](/resources/game#detectable-application-object) objects representing games that can be detected by Discord for rich presence.
 
 <RouteHeader method="GET" url="/games/detectable/exclusions" unauthenticated>
-  Get Detectable Game Exclusions
+  List Detectable Game Exclusions
 </RouteHeader>
 
 Returns the patterns which should be ignored when detecting games.
@@ -18771,7 +18771,7 @@ Returns the patterns which should be ignored when detecting games.
 | patterns    | array[string] | Regular expression patterns to match against process names |
 
 <RouteHeader method="GET" url="/games">
-  Get Games
+  List Games
 </RouteHeader>
 
 Returns a list of [game](#game-object) objects for the given application IDs.
@@ -18796,7 +18796,7 @@ Returns a [game](#game-object) object for the given application ID.
 | with_supplemental_data? | boolean | Whether to include supplemental game data (default true) |
 
 <RouteHeader method="GET" url="/games/{game.id}/announcements">
-  Get Game Announcements
+  List Game Announcements
 </RouteHeader>
 
 Returns messages in the game's announcements channel.
@@ -18858,7 +18858,7 @@ Certain data points may not be available for all aggregation intervals. If you r
 ## Endpoints
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/growth-activation/overview">
-  Get Guild Growth Activation Overview
+  List Guild Growth Activation Overview
 </RouteHeader>
 
 Returns a list of [growth activation overview](#growth-activation-overview-structure) objects representing general growth statistics per aggregation interval.
@@ -18874,7 +18874,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | new_communicators | integer           | The number of new members who communicated in the guild |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/growth-activation/joins">
-  Get Guild Growth Activation Joins
+  List Guild Growth Activation Joins
 </RouteHeader>
 
 Returns a list of [growth activation joins](#growth-activation-joins-structure) objects representing member join counts per aggregation interval.
@@ -18890,7 +18890,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | all_time_joins? | integer           | The total number of users who have ever joined the guild |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/growth-activation/joins-by-invite-link">
-  Get Guild Growth Activation Joins by Invite
+  List Guild Growth Activation Joins by Invite
 </RouteHeader>
 
 Returns a list of [growth activation joins](#growth-activation-joins-by-invite-structure) objects representing specific invite join counts per aggregation interval.
@@ -18906,7 +18906,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | joins       | integer           | The number of users who joined the guild using this invite link |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/growth-activation/joins-by-referrer">
-  Get Guild Growth Activation Joins by Referrer
+  List Guild Growth Activation Joins by Referrer
 </RouteHeader>
 
 Returns a list of [growth activation joins by referrer](#growth-activation-joins-by-referrer-structure) objects representing external referral join statistics per aggregation interval.
@@ -18922,7 +18922,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | joins            | integer           | The number of users who joined the guild using this referral |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/growth-activation/joins-by-source">
-  Get Guild Growth Activation Joins by Sources
+  List Guild Growth Activation Joins by Sources
 </RouteHeader>
 
 Returns a list of [growth activations joins by source](#growth-activation-joins-by-source-structure) objects representing detailed member join information per aggregation interval.
@@ -18944,7 +18944,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | total_joins       | integer           | The total number of users who joined the guild                                                                                   |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/growth-activation/leavers">
-  Get Guild Growth Activation Leavers
+  List Guild Growth Activation Leavers
 </RouteHeader>
 
 Returns a list of [growth activation leavers](#growth-activation-leavers-structure) objects representing user leave statistics per aggregation interval.
@@ -18960,7 +18960,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | leavers       | integer           | The number of users who left the guild on this date                             |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/growth-activation/activation">
-  Get Guild Growth Activation Percentages
+  List Guild Growth Activation Percentages
 </RouteHeader>
 
 Returns a list of [growth activation percentage](#growth-activation-percentage-structure) objects representing user engagement statistics per aggregation interval.
@@ -18977,7 +18977,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | pct_opened_channels? | float             | Percentage of new members who opened 3 or more channels in the guild        |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/growth-activation/retention">
-  Get Guild Growth Activation Retention
+  List Guild Growth Activation Retention
 </RouteHeader>
 
 Returns a list of [growth activation retention](#growth-activation-retention-structure) objects representing user retention statistics per aggregation interval.
@@ -18993,7 +18993,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | pct_retained? | float             | Percentage of new members who stayed in the guild past their first week |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/growth-activation/membership">
-  Get Guild Growth Activation Membership
+  List Guild Growth Activation Membership
 </RouteHeader>
 
 Returns a list of [growth activation membership](#growth-activation-membership-structure) objects representing the total number of members in the guild per aggregation interval.
@@ -19008,7 +19008,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | total_membership | integer           | The total number of members in the guild |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/engagement/base">
-  Get Guild Engagement Base
+  List Guild Engagement Base
 </RouteHeader>
 
 Returns a list of [engagement base](#engagement-base-structure) objects representing guild engagement statistics per aggregation interval.
@@ -19028,7 +19028,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | speaking_minutes          | integer           | Amount of time (in minutes) users spent in voice in the guild     |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/engagement/overview">
-  Get Guild Engagement Overview
+  List Guild Engagement Overview
 </RouteHeader>
 
 Returns a list of [engagement overview](#engagement-overview-structure) objects representing general guild engagement statistics per aggregation interval.
@@ -19046,7 +19046,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | speaking_minutes | integer           | Amount of time (in minutes) users spent in voice in the guild |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/engagement/muters">
-  Get Guild Engagement Muters
+  List Guild Engagement Muters
 </RouteHeader>
 
 Returns a list of [engagement muters](#engagement-muters-structure) objects representing user mute statistics per aggregation interval.
@@ -19062,7 +19062,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | muters        | integer           | The number of users who have muted the guild                          |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/engagement/pruneable-members">
-  Get Guild Engagement Pruneable Members
+  List Guild Engagement Pruneable Members
 </RouteHeader>
 
 Returns a list of [engagement pruneable members](#engagement-pruneable-members-structure) objects representing inactive user statistics per aggregation interval.
@@ -19077,7 +19077,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | inactive | integer           | The number of users who are eligible for pruning |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/engagement/text-channels">
-  Get Guild Engagement Text Channels
+  List Guild Engagement Text Channels
 </RouteHeader>
 
 Returns a list of [text channel engagement](#text-channel-engagement-structure) objects representing engagement statistics for messageable channels per aggregation interval.
@@ -19100,7 +19100,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 ^1^ Not present for voice channels.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/engagement/voice-channels">
-  Get Guild Engagement Voice Channels
+  List Guild Engagement Voice Channels
 </RouteHeader>
 
 Returns a list of [voice channel engagement](#voice-channel-engagement-structure) objects representing engagement statistics for voice channels per aggregation interval.
@@ -19121,7 +19121,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | pct_communicated_in_channel? | float             | Percentage of users who communicated in the voice channel |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/audience/new-members-by-discord-tenure">
-  Get Guild Audience New Members by Discord Tenure
+  List Guild Audience New Members by Discord Tenure
 </RouteHeader>
 
 Returns a list of [audience new members by Discord tenure](#audience-new-members-by-discord-tenure-structure) objects representing new member statistics categorized by account age per aggregation interval.
@@ -19137,7 +19137,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | new_members | integer | The number of new members who joined the guild              |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/audience/participators-by-guild-tenure">
-  Get Guild Audience Participators by Guild Tenure
+  List Guild Audience Participators by Guild Tenure
 </RouteHeader>
 
 Returns a list of [audience participators by guild tenure](#audience-participators-by-guild-tenure-structure) objects representing member statistics categorized by how long they have been in the guild per aggregation interval.
@@ -19153,7 +19153,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | participators | integer | The number of users who participated in the guild           |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/audience/participators-by-platform">
-  Get Guild Audience Participators by Platform
+  List Guild Audience Participators by Platform
 </RouteHeader>
 
 Returns a list of [audience participators by platform](#audience-participators-by-platform-structure) objects representing member statistics categorized by platform usage per aggregation interval.
@@ -19169,7 +19169,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | participators | integer | The number of users who participated in the guild |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/audience/participators-by-reg-country">
-  Get Guild Audience Participators by Registration Country
+  List Guild Audience Participators by Registration Country
 </RouteHeader>
 
 Returns a list of [audience participators by registration country](#audience-participators-by-registration-country-structure) objects representing member statistics categorized by their account registration country.
@@ -19185,7 +19185,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | participators | integer | The number of users who participated in the guild                                                                             |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/channel-following/overview">
-  Get Guild Channel Following Overview
+  List Guild Channel Following Overview
 </RouteHeader>
 
 Returns a list of [channel following overview](#channel-following-overview-structure) objects representing news channel following statistics per aggregation interval.
@@ -19202,7 +19202,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | guilds_unfollowed      | integer           | The number of guilds that unfollowed channels in the guild |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/channel-following/announcements-by-channel">
-  Get Guild Channel Following by Channel
+  List Guild Channel Following by Channel
 </RouteHeader>
 
 Returns a list of [channel following by channel](#channel-following-by-channel-structure) objects representing per-channel following statistics per channel per aggregation interval.
@@ -19220,7 +19220,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | guilds_unfollowed      | integer           | The number of guilds that unfollowed the channel |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/channel-following/reach">
-  Get Guild Channel Following Reach
+  List Guild Channel Following Reach
 </RouteHeader>
 
 Returns a list of [channel following reach](#channel-following-reach-structure) objects representing per-message reach statistics for followed channels per aggregation interval.
@@ -19238,7 +19238,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | guilds_reached       | integer           | The number of guilds that received the announcement |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/channel-following/following-guild-size" deprecated>
-  Get Guild Channel Following Guild Size
+  List Guild Channel Following Guild Size
 </RouteHeader>
 
 Returns a list of [channel following guild size](#channel-following-guild-size-structure) objects representing followed channel statistics categorized by the size of the following guilds per aggregation interval.
@@ -19254,7 +19254,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | total_guilds_following | integer           | The number of guilds following channels in the guild |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/channel-following/following-guild-size-by-channel">
-  Get Guild Channel Following Guild Size by Channel
+  List Guild Channel Following Guild Size by Channel
 </RouteHeader>
 
 Returns a list of [channel following guild size by channel](#channel-following-guild-size-by-channel-structure) objects representing per-channel followed channel statistics categorized by the size of the following guilds per aggregation interval.
@@ -19278,7 +19278,7 @@ Returns a list of [channel following guild size by channel](#channel-following-g
 | total_guilds_following | integer           | The number of guilds following the channel  |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/welcome-screen/funnel">
-  Get Guild Welcome Screen Funnel
+  List Guild Welcome Screen Funnel
 </RouteHeader>
 
 Returns a list of [welcome screen funnel](#welcome-screen-funnel-structure) objects representing welcome screen statistics per aggregation interval.
@@ -19300,7 +19300,7 @@ Accepts the [common query string parameters](#query-string-params) as described 
 | pct_sent_message?           | float             | Percentage of users who sent a message in the welcome channel option |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/analytics/welcome-screen/users" deprecated>
-  Get Guild Welcome Screen Users
+  List Guild Welcome Screen Users
 </RouteHeader>
 
 Returns a list of [welcome screen users](#welcome-screen-users-structure) objects representing user statistics for the welcome screen per aggregation interval.
@@ -19352,7 +19352,7 @@ Scheduled events are a way to plan and organize events in a guild. They can be a
 
 ^3^ Only included in [Gateway events](/gateway/gateway-events#guild-scheduled-events). See [the automations section](#guild-scheduled-event-status-update-automation) for more info on how to determine this manually.
 
-^4^ Only included when fetched from the [Get Guild Scheduled Events](#get-guild-scheduled-events) or [Get Guild Scheduled Event](#get-guild-scheduled-event) endpoints with `with_user_count` set to `true`.
+^4^ Only included when fetched from the [List Guild Scheduled Events](#list-guild-scheduled-events) or [Get Guild Scheduled Event](#get-guild-scheduled-event) endpoints with `with_user_count` set to `true`.
 
 ###### Example Guild Scheduled Event
 
@@ -19651,7 +19651,7 @@ Represents a user's subscription to a guild scheduled event or override for a sp
 | user? ^1^                           | partial [user](/resources/user#user-object) object          | The user that subscribed to the scheduled event                                    |
 | member? ^1^                         | [guild member](/resources/guild#guild-member-object) object | Guild member data for the user in the scheduled event's guild, if any              |
 
-^1^ Only included when fetched from the [Get Guild Scheduled Event Users](#get-guild-scheduled-event-users) endpoint.
+^1^ Only included when fetched from the [List Guild Scheduled Event Users](#list-guild-scheduled-event-users) endpoint.
 
 ###### Guild Scheduled Event User Response
 
@@ -19663,7 +19663,7 @@ Represents a user's subscription to a guild scheduled event or override for a sp
 ## Endpoints
 
 <RouteHeader method="GET" url="/users/@me/scheduled-events">
-  Get User Guild Scheduled Events
+  List User Guild Scheduled Events
 </RouteHeader>
 
 Returns an array of [guild scheduled event user](#guild-scheduled-event-user-object) objects for the current user for a given guild.
@@ -19675,7 +19675,7 @@ Returns an array of [guild scheduled event user](#guild-scheduled-event-user-obj
 | guild_ids | snowflake | The guild ID to get the subscribed scheduled events for |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/scheduled-events" supportsBot>
-  Get Guild Scheduled Events
+  List Guild Scheduled Events
 </RouteHeader>
 
 Returns a list of `SCHEDULED` and `ACTIVE` [guild scheduled event](#guild-scheduled-event-object) objects for the given guild.
@@ -19891,7 +19891,7 @@ Returns the number of users subscribed to a guild scheduled event.
 ```
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/users" supportsBot>
-  Get Guild Scheduled Event Users
+  List Guild Scheduled Event Users
 </RouteHeader>
 
 Returns a list of users subscribed to a guild scheduled event.
@@ -19935,7 +19935,7 @@ Unsubscribes the current user from a guild scheduled event. Returns a 204 empty 
   url="/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/{guild_scheduled_event_exception.id}/users"
   supportsBot
 >
-  Get Guild Scheduled Event Exception Users
+  List Guild Scheduled Event Exception Users
 </RouteHeader>
 
 Returns a list of [guild scheduled event user](#guild-scheduled-event-user-object) objects subscribed to a specific guild scheduled event exception.
@@ -20253,7 +20253,7 @@ Create a new guild based on a template. Returns a [guild](/resources/guild#guild
 | icon? | [image data](/reference#cdn-data) | 128x128 image for the guild's icon       |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/templates" supportsBot>
-  Get Guild Templates
+  List Guild Templates
 </RouteHeader>
 
 Returns an array of [guild template](#guild-template-object) objects. Requires the `MANAGE_GUILD` permission.
@@ -20388,7 +20388,7 @@ Guilds in Discord represent an isolated collection of users and channels, and ar
 
 ^1^ Only included when fetched from the [Get Guild Preview](#get-guild-preview) endpoint.
 
-^2^ Not included when fetched from the [Get Guild Basic](#get-guild-basic), [Get Join Request Guilds](#get-join-request-guilds), or [Get Checkpoint](/resources/checkpoint#get-checkpoint) endpoints.
+^2^ Not included when fetched from the [Get Guild Basic](#get-guild-basic), [List Join Request Guilds](#list-join-request-guilds), or [Get Checkpoint](/resources/checkpoint#get-checkpoint) endpoints.
 
 ###### Guild Identity Structure
 
@@ -20838,7 +20838,7 @@ These guild features are mutable, and can be edited with the [Modify Guild](#mod
 
 ### User Guild Object
 
-A partial guild object returned from the [Get User Guilds](#get-user-guilds) endpoint. Represents a guild the user is a member of.
+A partial guild object returned from the [List User Guilds](#list-user-guilds) endpoint. Represents a guild the user is a member of.
 
 ###### User Guild Structure
 
@@ -20854,7 +20854,7 @@ A partial guild object returned from the [Get User Guilds](#get-user-guilds) end
 | approximate_member_count? ^1^   | integer       | Approximate count of total members in the guild                   |
 | approximate_presence_count? ^1^ | integer       | Approximate count of non-offline members in the guild             |
 
-^1^ Only included when fetched from the [Get User Guilds](#get-user-guilds) endpoint with `with_counts` set to `true`.
+^1^ Only included when fetched from the [List User Guilds](#list-user-guilds) endpoint with `with_counts` set to `true`.
 
 ###### Example User Guild
 
@@ -21259,7 +21259,7 @@ Additional information about a participating user's join source in a [guild](#gu
 | join_source_application_id? ^2^ | ?snowflake                                  | The ID of the application that owns the linked lobby                                                               |
 | join_source_channel_id? ^2^     | ?snowflake                                  | The ID of the channel the lobby is linked to                                                                       |
 
-^1^ Only included when fetched from the [Get Guild Members Supplemental](#get-guild-members-supplemental) endpoint.
+^1^ Only included when fetched from the [List Guild Members Supplemental](#list-guild-members-supplemental) endpoint.
 
 ^2^ Only included when fetched from the [Search Guild Members](#search-guild-members) endpoint.
 
@@ -21401,7 +21401,7 @@ A [Guild Member Add](/gateway/gateway-events#guild-member-add) Gateway event wil
 Join requests will continue to be dispatched as normal, but there will not be an associated guild member until the join request is approved.
 
 From the joiner's perspective, they will also not receive a [Guild Create](/gateway/gateway-events#guild-create) Gateway event or any other events dispatched from the guild until they pass member verification.
-Non-previewable pending guilds can only be retrieved with the [Get Join Request Guilds](#get-join-request-guilds) endpoint. Their join requests are also sent in the [`guild_join_requests` field of the Ready event](/gateway/gateway-events#ready).
+Non-previewable pending guilds can only be retrieved with the [List Join Request Guilds](#list-join-request-guilds) endpoint. Their join requests are also sent in the [`guild_join_requests` field of the Ready event](/gateway/gateway-events#ready).
 
 Note that the preview disabled paradigm only applies if a guild meets one of the requirements for previewing in the first place.
 
@@ -21553,7 +21553,7 @@ Guild join requests are not returned to moderators until they are submitted by t
 | user? ^1^ ^2^         | partial [user](/resources/user#user-object) object                                         | The user who created this join request                                              |
 | interview_channel_id  | ?snowflake                                                                                 | The ID of a channel where an interview regarding this join request may be conducted |
 
-^1^ Only included when fetched from the [Get Guild Join Request](#get-guild-join-request) or [Get Guild Join Requests](#get-guild-join-requests) endpoints, or when receiving a [related Gateway event](/gateway/gateway-events#guild-join-request-create) as a moderator.
+^1^ Only included when fetched from the [Get Guild Join Request](#get-guild-join-request) or [List Guild Join Requests](#list-guild-join-requests) endpoints, or when receiving a [related Gateway event](/gateway/gateway-events#guild-join-request-create) as a moderator.
 
 ^2^ Only guaranteed for users other than the current user.
 
@@ -22040,7 +22040,7 @@ Represents a member's premium guild subscription ([boost](https://support.discor
 ## Endpoints
 
 <RouteHeader method="GET" url="/users/@me/guilds" supportsOAuth2="guilds" supportsBot>
-  Get User Guilds
+  List User Guilds
 </RouteHeader>
 
 Returns a list of [user guild](#user-guild-object) objects representing the guilds the current user is a member of.
@@ -22063,7 +22063,7 @@ This endpoint returns 200 guilds by default, which is the maximum number of guil
 ^1^ For OAuth2 requests, this parameter requires the additional `guilds.members.read` scope.
 
 <RouteHeader method="GET" url="/users/@me/join-request-guilds">
-  Get Join Request Guilds
+  List Join Request Guilds
 </RouteHeader>
 
 Returns a list of partial [guild](#guild-object) objects representing [non-previewable guilds](#guild-previewing) the current user has pending join requests for.
@@ -22239,7 +22239,7 @@ If the owner does not have an email address associated with their account or has
 Deletes a guild permanently. User must be the owner. Returns a 204 empty response on success. Fires a [Guild Delete](/gateway/gateway-events#guild-delete) Gateway event.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/members" supportsBot>
-  Get Guild Members
+  List Guild Members
 </RouteHeader>
 
 Returns a list of [guild member](#guild-member-object) objects that are members of the guild. User must be a member of the guild.
@@ -22385,7 +22385,7 @@ See [the unavailable resources section](/topics/rate-limits#unavailable-resource
 | total_result_count | integer                                                                      | The total number of results found |
 
 <RouteHeader method="POST" url="/guilds/{guild.id}/members/supplemental">
-  Get Guild Members Supplemental
+  List Guild Members Supplemental
 </RouteHeader>
 
 Returns a list of [supplemental guild member](#supplemental-guild-member-object) objects including join source information for the given user IDs. Requires the `MANAGE_GUILD` permission.
@@ -22397,7 +22397,7 @@ Returns a list of [supplemental guild member](#supplemental-guild-member-object)
 | user_ids | array[snowflake] | The user IDs to fetch supplemental guild member information for (max 200) |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/members/unusual-dm-activity">
-  Get Guild Members With Unusual DM Activity
+  List Guild Members With Unusual DM Activity
 </RouteHeader>
 
 Returns a list of [guild member unusual DM activity](#guild-member-unusual-dm-activity-structure) objects representing the members that have ever had unusual DM activity. User must be a member of the guild.
@@ -22617,7 +22617,7 @@ Removes a [member](#guild-member-object) from a guild. Requires the `KICK_MEMBER
 Adds the `DM_SETTINGS_UPSELL_ACKNOWLEDGED` [member flag](#guild-member-flags) to the current user. User must be a member of the guild. Returns a 204 empty response on success. Fires a [Guild Member Update](/gateway/gateway-events#guild-member-update) Gateway event.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/bans" supportsBot>
-  Get Guild Bans
+  List Guild Bans
 </RouteHeader>
 
 Returns a list of [ban](#ban-object) objects for the guild. Requires the `BAN_MEMBERS` permission.
@@ -22696,7 +22696,7 @@ Create multiple guild bans and optionally delete previous messages sent by the b
 Removes the ban for a user. Requires the `BAN_MEMBERS` permission. Returns a 204 empty response on success. Fires a [Guild Ban Remove](/gateway/gateway-events#guild-ban-remove) Gateway event.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/roles" supportsBot>
-  Get Guild Roles
+  List Guild Roles
 </RouteHeader>
 
 Returns a list of [role](#role-object) objects for the guild. User must be a member of the guild.
@@ -22724,7 +22724,7 @@ Returns a mapping of role IDs to their respective member counts. User must be a 
 ```
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/roles/{role.id}/member-ids">
-  Get Guild Role Members
+  List Guild Role Members
 </RouteHeader>
 
 Returns a list of member IDs that have the specified [role](#role-object), up to a maximum of 100. User must be a member of the guild.
@@ -22785,7 +22785,7 @@ Adds multiple [guild members](#guild-member-object) to a [role](#role-object). R
 ```
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/roles/connections-configurations">
-  Get Guild Role Connections Configurations
+  List Guild Role Connections Configurations
 </RouteHeader>
 
 Returns a list of [role connection rule](#role-connection-rule-structure) objects representing the role connections for the guild. User must be a member of the guild.
@@ -23083,7 +23083,7 @@ Modifies the member verification for the guild. Requires the `MANAGE_GUILD` perm
 | bulk_action? | string                                                                                    | When disabling the verification gate, [what to do](#guild-join-request-status) with pending applications (only `APPROVED` and `REJECTED` can be used, default `APPROVED`) |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/requests">
-  Get Guild Join Requests
+  List Guild Join Requests
 </RouteHeader>
 
 Returns a list of join requests for the guild for manual approval. Requires the `KICK_MEMBERS` permission.
@@ -23221,7 +23221,7 @@ Accepts or denies all pending join requests for the guild. Requires the `KICK_ME
 | action | string | The [action to take](#guild-join-request-status) on the join requests (only `APPROVED` and `REJECTED` can be used) |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/requests/users/{user.id}">
-  Get User Guild Join Requests
+  List User Guild Join Requests
 </RouteHeader>
 
 Returns a list of [guild join request](#guild-join-request-object) objects that the user has submitted to the guild.
@@ -23274,7 +23274,7 @@ Onboarding enforces constraints when enabled. These constraints are that at leas
 | mode?                | integer                                                         | The current [criteria mode](#onboarding-mode) for onboarding       |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/onboarding/allowed-applications">
-  Get Guild Onboarding Allowed Applications
+  List Guild Onboarding Allowed Applications
 </RouteHeader>
 
 Returns the applications that are allowed to be used as onboarding connections.
@@ -23388,7 +23388,7 @@ If it exists, returns a [new member actions progress](#new-member-actions-progre
 Completes a new member action for the user in the guild. Returns the updated [new member actions progress](#new-member-actions-progress-object) object on success. May fire a [Guild Member Update](/gateway/gateway-events#guild-member-update) Gateway event.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/top-games">
-  Get Guild Top Games
+  List Guild Top Games
 </RouteHeader>
 
 Returns up to 20 of the top most played games for the guild. Requires the `MANAGE_GUILD` permission.
@@ -23408,7 +23408,7 @@ Returns up to 20 of the top most played games for the guild. Requires the `MANAG
 | activity_score      | integer   | The activity score of the guild in the game     |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/premium/subscriptions">
-  Get Premium Guild Subscriptions
+  List Premium Guild Subscriptions
 </RouteHeader>
 
 Returns a list of [premium guild subscription](#premium-guild-subscription-object) objects for the guild. User must be a member of the guild.
@@ -23440,7 +23440,7 @@ Fires [Guild Update](/gateway/gateway-events#guild-update), optionally [Message 
 Deletes a premium guild subscription. User must be the owner of the subscription slot. Returns a 204 empty response on success. Fires a [User Premium Guild Subscription Slot Delete](/gateway/gateway-events#user-premium-guild-subscription-slot-delete), [Guild Update](/gateway/gateway-events#guild-update), [Guild Applied Boosts Update](/gateway/gateway-events#guild-applied-boosts-update) and optionally [Guild Member Update](/gateway/gateway-events#guild-member-update) Gateway events.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/powerups">
-  Get Guild Powerups
+  List Guild Powerups
 </RouteHeader>
 
 Returns a list of [entitlement](/resources/entitlement#entitlement-object) objects representing the guild's applied powerups. Powerups are special SKUs that can be purchased using premium subscriptions (boosts) to enhance the guild's features. User must be a member of the guild.
@@ -23490,13 +23490,13 @@ Removes the given powerup SKU from the guild. Requires the `MANAGE_GUILD` permis
 | entitlement_id? | snowflake | The ID of the entitlement to remove (if not specified, all entitlements will be removed) |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/game-servers">
-  Get Guild Game Servers
+  List Guild Game Servers
 </RouteHeader>
 
 Returns a list of [game server](#game-server-object) objects attached to the given guild ID.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/game-server-regions">
-  Get Guild Game Server Regions
+  List Guild Game Server Regions
 </RouteHeader>
 
 Returns a list of [game server region](#game-server-region-structure) objects for the given guild ID.
@@ -23673,9 +23673,9 @@ Integrations represent a connection between a service and a guild. This may incl
 
 ^3^ Only provided for Discord application integrations.
 
-^4^ Only included when fetched from [Get Guild Integrations](#get-guild-integrations) with `include_role_connections_metadata` set to `true`.
+^4^ Only included when fetched from [List Guild Integrations](#list-guild-integrations) with `include_role_connections_metadata` set to `true`.
 
-^5^ Only included for integrations when fetched through the [Get Guild Integrations](#get-guild-integrations) endpoint. Some older or internally-created integrations may not have an attached user.
+^5^ Only included for integrations when fetched through the [List Guild Integrations](#list-guild-integrations) endpoint. Some older or internally-created integrations may not have an attached user.
 
 ###### Integration Type
 
@@ -23724,7 +23724,7 @@ Integrations represent a connection between a service and a guild. This may incl
 | is_monetized                           | boolean                                                                 | Whether the application has monetization enabled                                                                                                                                     |
 | parent_id?                             | snowflake                                                               | The ID of the parent application                                                                                                                                                     |
 
-^1^ Only present when fetched from the [Get Guild Integrations](#get-guild-integrations) endpoint with `include_role_connections_metadata` set to `true`.
+^1^ Only present when fetched from the [List Guild Integrations](#list-guild-integrations) endpoint with `include_role_connections_metadata` set to `true`.
 
 ### Integration Guild Object
 
@@ -23788,7 +23788,7 @@ Integrations represent a connection between a service and a guild. This may incl
 ## Endpoints
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/integrations" supportsBot>
-  Get Guild Integrations
+  List Guild Integrations
 </RouteHeader>
 
 Returns a list of [integration](#integration-object) objects for the guild. Requires the `MANAGE_GUILD` permission.
@@ -23879,7 +23879,7 @@ Returns a mapping of guild IDs to lists of application IDs attached to the integ
 ```
 
 <RouteHeader method="GET" url="/channels/{channel.id}/integrations">
-  Get Channel Integrations
+  List Channel Integrations
 </RouteHeader>
 
 Returns a list of [integration](#integration-object) objects for the private channel.
@@ -23945,7 +23945,7 @@ Returns a list of up to 10 [GIFs sourced from Tenor](#tenor-gif-structure) based
 ```
 
 <RouteHeader method="GET" url="/gifs/trending-search" unauthenticated>
-  Get Trending GIF Search Terms
+  List Trending GIF Search Terms
 </RouteHeader>
 
 Returns a list of the top trending search terms.
@@ -23969,7 +23969,7 @@ Returns a list of the top trending search terms.
 | klipy | Klipy       |
 
 <RouteHeader method="GET" url="/gifs/suggest" unauthenticated>
-  Get Suggested GIF Search Terms
+  List Suggested GIF Search Terms
 </RouteHeader>
 
 Returns a list of recommended search terms based on the provided query.
@@ -24006,7 +24006,7 @@ Returns a list of [GIF](#gif-structure) objects based on the provided query.
 ^2^ Invalid values default to `mp4` for Klipy, `gif` otherwise.
 
 <RouteHeader method="GET" url="/gifs/trending" unauthenticated>
-  Get Trending GIF Categories
+  List Trending GIF Categories
 </RouteHeader>
 
 Returns trending GIF categories and their associated preview GIFs.
@@ -24059,7 +24059,7 @@ Returns trending GIF categories and their associated preview GIFs.
 ```
 
 <RouteHeader method="GET" url="/gifs/trending-gifs" unauthenticated>
-  Get Trending GIFs
+  List Trending GIFs
 </RouteHeader>
 
 Returns a list of [GIF](#gif-structure) objects that are currently trending.
@@ -24144,7 +24144,7 @@ A code that when used, adds a user to a guild or group DM channel, or creates a 
 
 ^3^ Only included when fetched from the [Get Invite](#get-invite) endpoint with `with_permissions` set to `true`.
 
-^4^ Only included when fetched from the [Get Guild Invites](#get-guild-invites) endpoint.
+^4^ Only included when fetched from the [List Guild Invites](#list-guild-invites) endpoint.
 
 ^5^ Partial role objects contain `id`, `name`, `position`, `color`, `colors`, `icon`, and `unicode_emoji`
 
@@ -24166,7 +24166,7 @@ A code that when used, adds a user to a guild or group DM channel, or creates a 
 | 4     | CREATOR_PAGE ^1^       | The invite originates from the creator page of a [guild](/resources/guild#guild-object)                      |
 | 5     | LOBBY ^1^              | The invite is for a lobby member                                                                             |
 
-^1^ Invites with these target types are not returned in the [Get Guild Invites](#get-guild-invites) and [Get Channel Invites](#get-channel-invites) endpoints.
+^1^ Invites with these target types are not returned in the [List Guild Invites](#list-guild-invites) and [List Channel Invites](#list-channel-invites) endpoints.
 They are also not deletable through [Delete Invite](#delete-invite).
 
 ###### Invite Flags
@@ -24413,7 +24413,7 @@ Bots and users who have been blocked by the inviter cannot retrieve friend invit
 | guild_scheduled_event_id? | snowflake | The guild scheduled event to include with the invite                                                                      |
 
 <RouteHeader method="GET" url="/invites/{invite.code}/friend-members" supportsBot>
-  Get Invite Friend Members
+  List Invite Friend Members
 </RouteHeader>
 
 Returns the user IDs of friends in the target guild. Always returns an empty array for group DMs and friend invites.
@@ -24425,7 +24425,7 @@ Returns the user IDs of friends in the target guild. Always returns an empty arr
 | friend_member_ids | array[snowflake] | User IDs of friends in the target guild |
 
 <RouteHeader method="GET" url="/invites/{invite.code}/target-users" supportsBot>
-  Get Invite Target Users
+  List Invite Target Users
 </RouteHeader>
 
 Returns the IDs of the users allowed to see and accept the given invite. Invite must have a target users file associated with it. Requires the `MANAGE_GUILD` or `VIEW_AUDIT_LOG` permission if the requestor is not the inviter.
@@ -24495,13 +24495,13 @@ Users who have been blocked by the inviter cannot accept friend invites.
 Deletes an invite. Requires the `MANAGE_CHANNELS` permission on the channel this invite belongs to, or `MANAGE_GUILD` to remove any invite across the guild, if the invite is to a guild. Returns an [invite](#invite-object) object on success. May fire an [Invite Delete](/gateway/gateway-events#invite-delete) Gateway event.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/invites" supportsBot>
-  Get Guild Invites
+  List Guild Invites
 </RouteHeader>
 
 Returns a list of [invite](#invite-object) objects for the guild. Requires the `MANAGE_GUILD` or `VIEW_AUDIT_LOG` permission. [Invite metadata](#invite-metadata-object) is included if the user has the `MANAGE_GUILD` permission.
 
 <RouteHeader method="GET" url="/channels/{channel.id}/invites" supportsBot>
-  Get Channel Invites
+  List Channel Invites
 </RouteHeader>
 
 Returns a list of [invite](#invite-object) objects (with [invite metadata](#invite-metadata-object)) for the channel. Only usable for guild channels and group DMs. Requires the `MANAGE_CHANNELS` permission if the channel is in a guild.
@@ -24548,7 +24548,7 @@ In the case of a guild with the instant invite operation disabled by Discord, th
 ^4^ Requires the `MANAGE_ROLES` permission. Cannot grant roles that are equal to or higher than the creator's highest role.
 
 <RouteHeader method="GET" url="/users/@me/invites">
-  Get User Invites
+  List User Invites
 </RouteHeader>
 
 Returns a list of friend [invite](#invite-object) objects (with [invite metadata](#invite-metadata-object)) for the current user.
@@ -24875,7 +24875,7 @@ This endpoint is only usable with an OAuth2 access token with the `lobbies.write
 | channel_id? | ?snowflake | The ID of the channel to link to the lobby |
 
 <RouteHeader method="GET" url="/lobbies/{lobby.id}/messages" supportsOAuth2="lobbies.write">
-  Get Lobby Messages
+  List Lobby Messages
 </RouteHeader>
 
 Returns a list of partial [message](/resources/message#message-object) objects in the lobby in reverse chronological order.
@@ -26297,7 +26297,7 @@ Conversation summaries are short, LLM-generated descriptions of a channel's acti
 ## Endpoints
 
 <RouteHeader method="GET" url="/channels/{channel.id}/messages" supportsBot>
-  Get Messages
+  List Messages
 </RouteHeader>
 
 Returns a list of [message](#message-object) objects in the channel. Requires the `VIEW_CHANNEL` permission if operating on a guild channel. If the current user is missing the `READ_MESSAGE_HISTORY` permission in the channel then this will return no messages (since they cannot read the message history).
@@ -26312,7 +26312,7 @@ Returns a list of [message](#message-object) objects in the channel. Requires th
 | limit   | integer   | Max number of messages to return (1-100, default 50) |
 
 <RouteHeader method="GET" url="/users/{user.id}/messages" supportsOAuth2="dm_channels.messages.read">
-  Get DM Messages
+  List DM Messages
 </RouteHeader>
 
 Returns a list of partial [message](#partial-message-structure) objects in the DM channel.
@@ -27047,7 +27047,7 @@ Hides a message from the feed of the guild the channel belongs to. Returns a 204
 Unhides a message from the feed of the guild the channel belongs to. Returns a 204 empty response on success. Fires a [Message Update](/gateway/gateway-events#message-update) Gateway event.
 
 <RouteHeader method="GET" url="/channels/{channel.id}/messages/{message.id}/reactions/{emoji}" supportsBot>
-  Get Reactions
+  List Reactions
 </RouteHeader>
 
 Get a list of users that reacted with this emoji. Returns an array of partial [user](/resources/user#user-object) objects.
@@ -27229,7 +27229,7 @@ This endpoint is not usable by user accounts.
 | messages | array[snowflake] | The message IDs to delete (2-100) |
 
 <RouteHeader method="GET" url="/channels/{channel.id}/messages/pins" supportsBot>
-  Get Message Pins
+  List Message Pins
 </RouteHeader>
 
 Returns all message pins in the channel. Requires the `VIEW_CHANNEL` permission.
@@ -27255,14 +27255,14 @@ If the current user does not have `READ_MESSAGE_HISTORY` permission, an empty `i
 | has_more | boolean                                          | Whether there are potentially additional message pins that could be returned on a subsequent call |
 
 <RouteHeader method="GET" url="/channels/{channel.id}/pins" deprecated supportsBot>
-  Get Pinned Messages
+  List Pinned Messages
 </RouteHeader>
 
 Returns up to 50 pinned messages in the channel as an array of [message](#message-object) objects without the `reactions` key.
 
 <Alert type="warn">
 
-This endpoint is deprecated. It is replaced by [Get Message Pins](#get-message-pins).
+This endpoint is deprecated. It is replaced by [List Message Pins](#list-message-pins).
 
 </Alert>
 
@@ -27380,7 +27380,7 @@ Returns embed data from a list of URLs.
 | embeds | array[[embed](#embed-object) object] | The found embeds for the URLs |
 
 <RouteHeader method="GET" url="/channels/{channel.id}/polls/{message.id}/answers/{poll_answer.id}" supportsBot>
-  Get Answer Voters
+  List Poll Answer Voters
 </RouteHeader>
 
 Get a list of users that voted for this specific answer.
@@ -27419,7 +27419,7 @@ Submits a poll vote for the current user. Returns a 204 empty response on succes
 | answer_ids | array[integer] | Selected answers, empty to clear votes |
 
 <RouteHeader method="GET" url="/channels/{channel.id}/summaries">
-  Get Conversation Summaries
+  List Conversation Summaries
 </RouteHeader>
 
 Get a list of up to 50 latest conversation summaries for a text channel in reverse chronological order. Requires the `READ_MESSAGE_HISTORY` permission.
@@ -27437,7 +27437,7 @@ Get a list of up to 50 latest conversation summaries for a text channel in rever
 Deletes a conversation summary. Requires the `MANAGE_MESSAGES` permission. Returns a 204 empty response on success. Fires a [Conversation Summary Update](/gateway/gateway-events#conversation-summary-update) Gateway event.
 
 <RouteHeader method="GET" url="/partner-sdk/users/@me/channels">
-  Get User Message Summaries
+  List User Message Summaries
 </RouteHeader>
 
 Returns a list of [user message summary](#user-message-summary-structure) objects for each DM channel.
@@ -27542,7 +27542,7 @@ Notification center is a feature that aggregates important notifications for use
 ## Endpoints
 
 <RouteHeader method="GET" url="/users/@me/notification-center/items">
-  Get Notification Center Items
+  List Notification Center Items
 </RouteHeader>
 
 Returns the user's notification center items. Items are ordered by most recent first.
@@ -27813,7 +27813,7 @@ Resends the payment verification email to the user. Returns an empty object on s
 | purchase_token | string | The purchase token of the payment client (max 1024 characters) |
 
 <RouteHeader method="GET" url="/users/@me/billing/payments">
-  Get Payments
+  List Payments
 </RouteHeader>
 
 Returns a list of [payment](#payment-object) objects that the current user has made.
@@ -27995,7 +27995,7 @@ Returns a subset of the [premium referral eligibility](#premium-referral-eligibi
 | is_eligible_for_incentive | boolean | Whether the user is eligible for a personal discount upon referral redemption |
 
 <RouteHeader method="POST" url="/users/@me/referrals/eligible-users">
-  Get Premium Referral Eligible Users
+  List Premium Referral Eligible Users
 </RouteHeader>
 
 Returns an object containing a list of users who are eligible to receive a referral from the user.
@@ -28452,7 +28452,7 @@ The below structure is only a _convention_ that is used by official clients. It 
 ## Endpoints
 
 <RouteHeader method="GET" url="/presences" supportsOAuth2="activities.read" deprecated>
-  Get Presences
+  List Presences
 </RouteHeader>
 
 Returns the overall user presence for the user's non-offline [friends and implicit relationships](/resources/relationships#relationship-object). Only users that have an activity or are in one of the returned `guilds` will be included.
@@ -28483,7 +28483,7 @@ Returns the overall user presence for the user's non-offline [friends and implic
 | users        | array[snowflake]                                      | The IDs of the users in the voice channel |
 | streams? ^1^ | array[[voice stream](#voice-stream-structure) object] | The streams of the users in the channel   |
 
-^1^ Only included when fetched from the [Get Presences for Xbox](#get-presences-for-xbox) endpoint.
+^1^ Only included when fetched from the [List Presences for Xbox](#list-presences-for-xbox) endpoint.
 
 ###### Voice Stream Structure
 
@@ -28514,7 +28514,7 @@ Returns the overall user presence for the user's non-offline [friends and implic
 ```
 
 <RouteHeader method="GET" url="/consoles/xbox/presences" supportsOAuth2="activities.read">
-  Get Presences for Xbox
+  List Presences for Xbox
 </RouteHeader>
 
 Returns the overall user presence for the user's non-offline [friends and implicit relationships](/resources/relationships#relationship-object), as well as their Xbox connection information.
@@ -28585,7 +28585,7 @@ See [the unavailable resources section](/topics/rate-limits#unavailable-resource
 | STOP   | Stop the current game session   |
 
 <RouteHeader method="GET" url="/activities" supportsOAuth2="activities.read">
-  Get Global Activity Statistics
+  List Global Activity Statistics
 </RouteHeader>
 
 Returns a list of [global activity statistics](#global-activity-statistics-structure) objects representing games the user's friends and affine users have recently played.
@@ -28624,7 +28624,7 @@ Returns a list of [global activity statistics](#global-activity-statistics-struc
 ```
 
 <RouteHeader method="GET" url="/activities/statistics/applications/{application.id}" supportsOAuth2="activities.read">
-  Get Application Activity Statistics
+  List Application Activity Statistics
 </RouteHeader>
 
 Returns a list of [application activity statistics](#application-activity-statistics-structure) objects representing the user's friends and affine users that have played the given game.
@@ -28648,7 +28648,7 @@ Returns a list of [application activity statistics](#application-activity-statis
 ```
 
 <RouteHeader method="GET" url="/users/@me/activities/statistics/applications">
-  Get User Application Activity Statistics
+  List User Application Activity Statistics
 </RouteHeader>
 
 Returns a list of [user application activity statistics](#user-application-activity-statistics-structure) objects representing games the user has played.
@@ -28943,7 +28943,7 @@ Promotions are special offers that users can redeem for various benefits, such a
 ## Endpoints
 
 <RouteHeader method="GET" url="/outbound-promotions" deprecated supportsBot>
-  Get Outbound Promotions
+  List Outbound Promotions
 </RouteHeader>
 
 Returns a list of [promotion](#promotion-object) objects the current user is eligible for.
@@ -28963,7 +28963,7 @@ Returns a list of [promotion](#promotion-object) objects the current user is eli
 | 1     | MOBILE  | Mobile      |
 
 <RouteHeader method="GET" url="/promotions" supportsBot>
-  Get Promotions
+  List Promotions
 </RouteHeader>
 
 Returns a list of [promotion](#promotion-object) objects the current user is eligible for.
@@ -28976,7 +28976,7 @@ Returns a list of [promotion](#promotion-object) objects the current user is eli
 | platform? | integer | The [platform](#promotion-platform-type) to get promotions for |
 
 <RouteHeader method="GET" url="/bogo-promotions">
-  Get BOGO Promotions
+  List BOGO Promotions
 </RouteHeader>
 
 Same as above, except only returns promotions of type [`BOGO`](#promotion-type).
@@ -28988,7 +28988,7 @@ Same as above, except only returns promotions of type [`BOGO`](#promotion-type).
 | locale? | string | The [language](/reference#locales) to return promotions in |
 
 <RouteHeader method="GET" url="/users/@me/outbound-promotions/codes">
-  Get Claimed Promotions
+  List Claimed Promotions
 </RouteHeader>
 
 Returns a list of [claimed promotion](#claimed-promotion-object) for the current user.
@@ -29613,7 +29613,7 @@ An object that holds the quest's reward code.
 ## Endpoints
 
 <RouteHeader method="GET" url="/quests/@me">
-  Get Current User Quests
+  List Current User Quests
 </RouteHeader>
 
 Returns information on the current [quests](#quest-object) for the current user.
@@ -29627,7 +29627,7 @@ Returns information on the current [quests](#quest-object) for the current user.
 | quest_enrollment_blocked_until | ?ISO8601 timestamp                           | When the user can enroll in quests again       |
 
 <RouteHeader method="GET" url="/quests/@me/claimed">
-  Get Claimed Quests
+  List Claimed Quests
 </RouteHeader>
 
 Returns information on the [claimed quests](#claimed-quest-object) for the current user.
@@ -30086,7 +30086,7 @@ A friend suggestion for the current user.
 ## Endpoints
 
 <RouteHeader method="GET" url="/users/@me/relationships" supportsOAuth2="relationships.read">
-  Get Relationships
+  List Relationships
 </RouteHeader>
 
 Returns a list of [relationship](#relationship-object) objects for the current user.
@@ -30220,7 +30220,7 @@ Adds multiple relationships from [contact sync](/resources/connected-accounts#up
 | successful_requests | array[snowflake] | IDs of the users who were friend requested         |
 
 <RouteHeader method="GET" url="/users/@me/game-relationships" supportsOAuth2="relationships.read">
-  Get Game Relationships
+  List Game Relationships
 </RouteHeader>
 
 Returns a list of [game relationship](#game-relationship-object) objects for the current user.
@@ -30297,7 +30297,7 @@ This endpoint is only usable with an OAuth2 access token with the `relationships
 Removes a game relationship with another user. Returns a 204 empty response on success. Fires a [Game Relationship Remove](/gateway/gateway-events#game-relationship-remove) Gateway event.
 
 <RouteHeader method="GET" url="/friend-suggestions">
-  Get Friend Suggestions
+  List Friend Suggestions
 </RouteHeader>
 
 Returns a list of [friend suggestion](#friend-suggestion-object) objects for the current user.
@@ -30727,7 +30727,7 @@ Starts the age verification process using a third-party age verification provide
 # Soundboard
 
 Soundboard sounds are short audio clips that can be played in voice channels.
-There is a set of [default sounds](#get-default-soundboard-sounds) available to all users. Soundboard sounds can also be [created in a guild](#create-guild-soundboard-sound); users will be able to use them in the guild, and premium (Nitro) subscribers can use them in all guilds.
+There is a set of [default sounds](#list-default-soundboard-sounds) available to all users. Soundboard sounds can also be [created in a guild](#create-guild-soundboard-sound); users will be able to use them in the guild, and premium (Nitro) subscribers can use them in all guilds.
 
 Custom soundboard sounds in a can be retrieved over the Gateway using [Request Soundboard Sounds](/gateway/gateway-events#request-soundboard-sounds).
 
@@ -30747,20 +30747,20 @@ Custom soundboard sounds in a can be retrieved over the Gateway using [Request S
 | user? ^1^    | partial [user](/resources/user#user-object) object | The user who created this sound                                                                  |
 | user_id? ^2^ | snowflake                                          | The ID of the user who created this sound                                                        |
 
-^1^ Only included for sounds in contexts where the sound is created or updated, as well as when fetched through the [Get Guild Soundboard Sounds](#get-guild-soundboard-sounds) or [Get Guild Soundboard Sound](#get-guild-soundboard-sound) endpoints by a user with the `MANAGE_EXPRESSIONS` permission.
+^1^ Only included for sounds in contexts where the sound is created or updated, as well as when fetched through the [List Guild Soundboard Sounds](#list-guild-soundboard-sounds) or [Get Guild Soundboard Sound](#get-guild-soundboard-sound) endpoints by a user with the `MANAGE_EXPRESSIONS` permission.
 
 ^2^ Only included in Gateway events related to the soundboard.
 
 ## Endpoints
 
 <RouteHeader method="GET" url="/soundboard-default-sounds" supportsBot>
-  Get Default Soundboard Sounds
+  List Default Soundboard Sounds
 </RouteHeader>
 
 Returns a list of [soundboard sound](#soundboard-sound-object) objects that can be used by all users.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/soundboard-sounds" supportsBot>
-  Get Guild Soundboard Sounds
+  List Guild Soundboard Sounds
 </RouteHeader>
 
 Returns an object containing a list of [soundboard sound](#soundboard-sound-object) objects for the given guild. Includes the `user` field if the user has the `CREATE_EXPRESSIONS` or `MANAGE_EXPRESSIONS` permission.
@@ -31025,7 +31025,7 @@ A sticker that can be sent in messages.
 | user? ^1^   | partial [user](/resources/user#user-object) object | The user that uploaded the guild sticker                                                           |
 | sort_value? | integer                                            | The standard sticker's sort order within its pack                                                  |
 
-^1^ Only included for guild stickers when fetched through the [Get Guild Stickers](#get-guild-stickers) or [Get Guild Sticker](#get-guild-sticker) endpoints by a user with the `MANAGE_EXPRESSIONS` permission.
+^1^ Only included for guild stickers when fetched through the [List Guild Stickers](#list-guild-stickers) or [Get Guild Sticker](#get-guild-sticker) endpoints by a user with the `MANAGE_EXPRESSIONS` permission.
 
 ^2^ A comma separated list of keywords is the format used in this field by standard stickers, but this is just a convention.
 Incidentally, official clients will always use a name generated from an emoji as the value of this field when creating or modifying a guild sticker.
@@ -31083,7 +31083,7 @@ The smallest amount of data required to render a sticker. A partial sticker obje
 ## Endpoints
 
 <RouteHeader method="GET" url="/sticker-packs" unauthenticated>
-  Get Sticker Packs
+  List Sticker Packs
 </RouteHeader>
 
 Returns the list of [sticker packs](#sticker-pack-object) available to use.
@@ -31113,7 +31113,7 @@ Returns a [sticker](#sticker-object) object for the given sticker ID.
 Returns a [discoverable guild](/resources/discovery#discoverable-guild-object) object for the guild that owns the given sticker. This endpoint requires the guild to be discoverable, not be [auto-removed](/resources/discovery#discoverable-guild-object), and have [guild expression discoverability](/resources/discovery#discovery-metadata-object) enabled.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/stickers" supportsBot>
-  Get Guild Stickers
+  List Guild Stickers
 </RouteHeader>
 
 Returns an array of [sticker](#sticker-object) objects for the given guild. Includes the `user` field if the user has the `CREATE_EXPRESSIONS` or `MANAGE_EXPRESSIONS` permission.
@@ -31244,9 +31244,9 @@ All objects serialized in the SKU inherit this behavior.
 | content_ratings? ^2^                      | map[integer, [content rating](#content-rating-structure) object]               | The content ratings of the SKU per [agency](#content-rating-agency)                                                 |
 | system_requirements?                      | map[integer, [system requirements](#system-requirements-structure) object]     | The system requirements for each [operating system](#operating-system) the SKU supports                             |
 | price? ^1^                                | [SKU price](#sku-price-structure) object                                       | The price of the SKU                                                                                                |
-| price_tier? ^2^                           | integer                                                                        | The [base price](#get-store-price-tiers) of the SKU                                                                 |
+| price_tier? ^2^                           | integer                                                                        | The [base price](#list-store-price-tiers) of the SKU                                                                |
 | price? ^2^                                | map[string, integer]                                                           | Localized pricing overrides per lower-cased [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code        |
-| sale_price_tier? ^2^                      | integer                                                                        | The [sale price](#get-store-price-tiers) of the SKU                                                                 |
+| sale_price_tier? ^2^                      | integer                                                                        | The [sale price](#list-store-price-tiers) of the SKU                                                                |
 | sale_price? ^2^                           | map[string, integer]                                                           | Localized sale pricing overrides per lower-cased [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code   |
 | created_at ^3^                            | ISO8601 datetime                                                               | When the SKU was created                                                                                            |
 | updated_at ^3^                            | ISO8601 datetime                                                               | When the SKU was last updated                                                                                       |
@@ -31651,14 +31651,14 @@ All objects serialized in the SKU inherit this behavior.
 
 ###### Social Layer Metadata Structure
 
-| Field                           | Type                                                                | Description                                         |
-| ------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------- |
-| carousel_items                  | array[[store carousel item](#store-carousel-item-structure) object] | The carousel items for the listing                  |
-| label                           | string                                                              | The label for the listing                           |
-| expires_at                      | ?ISO8601 datetime                                                   | When the listing expires                            |
-| card_image_asset_id?            | snowflake                                                           | The store asset ID for the card image               |
-| card_background_image_asset_id? | snowflake                                                           | The store asset ID for the card background image    |
-| price_tier?                     | integer                                                             | The [base price](#get-store-price-tiers) of the SKU |
+| Field                           | Type                                                                | Description                                          |
+| ------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------- |
+| carousel_items                  | array[[store carousel item](#store-carousel-item-structure) object] | The carousel items for the listing                   |
+| label                           | string                                                              | The label for the listing                            |
+| expires_at                      | ?ISO8601 datetime                                                   | When the listing expires                             |
+| card_image_asset_id?            | snowflake                                                           | The store asset ID for the card image                |
+| card_background_image_asset_id? | snowflake                                                           | The store asset ID for the card background image     |
+| price_tier?                     | integer                                                             | The [base price](#list-store-price-tiers) of the SKU |
 
 ###### Example SKU
 
@@ -31835,9 +31835,9 @@ A recurring payment to maintain entitlement to an SKU.
 | prices ^1^                    | map[integer, [subscription prices](#subscription-prices-structure) object] | The prices for the plan per [purchase type](#subscription-plan-purchase-type)                           |
 | price ^2^                     | map[string, integer]                                                       | The price for the plan per lower-cased [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code |
 
-^1^ Only included when fetched from the [Get Published Subscription Plans](#get-published-subscription-plans) or [Get Bulk Published Subscription Plans](#get-bulk-published-subscription-plans) endpoints.
+^1^ Only included when fetched from the [List Published Subscription Plans](#list-published-subscription-plans) or [List Bulk Published Subscription Plans](#list-bulk-published-subscription-plans) endpoints.
 
-^1^ Only included when fetched from the [Get Subscription Plans](#get-subscription-plans) endpoint.
+^1^ Only included when fetched from the [List Subscription Plans](#list-subscription-plans) endpoint.
 
 ###### Partial Subscription Plan Structure
 
@@ -31926,9 +31926,9 @@ An image or video associated with a store resource.
 | width               | integer   | The width of the asset in pixels                                   |
 | height              | integer   | The height of the asset in pixels                                  |
 
-^1^ Only included when fetched from the [Get Application Store Assets](#get-application-store-assets) or [Create Application Store Asset](#create-application-store-asset) endpoints.
+^1^ Only included when fetched from the [List Application Store Assets](#list-application-store-assets) or [Create Application Store Asset](#create-application-store-asset) endpoints.
 
-^2^ Only included when fetched from the [Get Games](/resources/game#get-games) endpoint.
+^2^ Only included when fetched from the [List Games](/resources/game#list-games) endpoint.
 
 ###### Example Store Asset
 
@@ -32195,7 +32195,7 @@ An abstraction around SKUs for modern marketplace items on Discord.
   supportsOAuth2="applications.store.update"
   supportsBot
 >
-  Get Application SKUs
+  List Application SKUs
 </RouteHeader>
 
 Returns a list of [SKU](#sku-object) objects for the given application. User must be the owner of the application or member of the owning team.
@@ -32232,9 +32232,9 @@ Creates a new SKU. Returns the created [SKU](#sku-object) object on success. Req
 | genres?              | array[integer]                                                             | The [genres](#sku-genre) of the SKU                                                                               |
 | content_ratings?     | map[integer, [content rating](#content-rating-structure) object]           | The content ratings of the SKU per [agency](#content-rating-agency)                                               |
 | system_requirements? | map[integer, [system requirements](#system-requirements-structure) object] | The system requirements for each [operating system](#operating-system) the SKU supports                           |
-| price_tier?          | integer                                                                    | The [base price](#get-store-price-tiers) of the SKU                                                               |
+| price_tier?          | integer                                                                    | The [base price](#list-store-price-tiers) of the SKU                                                              |
 | price?               | map[string, integer]                                                       | Localized pricing overrides per lower-cased [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code      |
-| sale_price_tier?     | integer                                                                    | The [sale price](#get-store-price-tiers) of the SKU                                                               |
+| sale_price_tier?     | integer                                                                    | The [sale price](#list-store-price-tiers) of the SKU                                                              |
 | sale_price?          | map[string, integer]                                                       | Localized sale pricing overrides per lower-cased [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code |
 | release_date?        | ISO8601 date                                                               | When the SKU will be released                                                                                     |
 
@@ -32273,14 +32273,14 @@ Modifies an existing SKU. Returns the modified [SKU](#sku-object) object on succ
 | genres?              | array[integer]                                                             | The [genres](#sku-genre) of the SKU                                                                               |
 | content_ratings?     | map[integer, [content rating](#content-rating-structure) object]           | The content ratings of the SKU per [agency](#content-rating-agency)                                               |
 | system_requirements? | map[integer, [system requirements](#system-requirements-structure) object] | The system requirements for each [operating system](#operating-system) the SKU supports                           |
-| price_tier?          | integer                                                                    | The [base price](#get-store-price-tiers) of the SKU                                                               |
+| price_tier?          | integer                                                                    | The [base price](#list-store-price-tiers) of the SKU                                                              |
 | price?               | map[string, integer]                                                       | Localized pricing overrides per lower-cased [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code      |
-| sale_price_tier?     | integer                                                                    | The [sale price](#get-store-price-tiers) of the SKU                                                               |
+| sale_price_tier?     | integer                                                                    | The [sale price](#list-store-price-tiers) of the SKU                                                              |
 | sale_price?          | map[string, integer]                                                       | Localized sale pricing overrides per lower-cased [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code |
 | release_date?        | ISO8601 date                                                               | When the SKU will be released                                                                                     |
 
 <RouteHeader method="GET" url="/store/skus/{sku.id}/listings" supportsOAuth2="applications.store.update" supportsBot>
-  Get SKU Store Listings
+  List SKU Store Listings
 </RouteHeader>
 
 Returns a list of [store listing](#store-listing-object) objects for the given SKU ID. User must own the SKU's application or be a member of the owning team.
@@ -32385,7 +32385,7 @@ Modifies an existing store listing. Returns the modified [store listing](#store-
 Deletes an existing store listing. Returns a 204 empty response on success. User must own the listing's application or be a member of the owning team.
 
 <RouteHeader method="GET" url="/store/published-listings/skus" unauthenticated>
-  Get Application Published Store Listings
+  List Application Published Store Listings
 </RouteHeader>
 
 Returns a list of published [store listing](#store-listing-object) objects for the given application ID.
@@ -32413,7 +32413,7 @@ Returns a [store listing](#store-listing-object) object for the primary SKU of t
 | localize?     | boolean | Whether to localize the SKUs for the user's location (default true)                     |
 
 <RouteHeader method="GET" url="/store/published-listings/applications" unauthenticated>
-  Get Bulk Application Primary Store Listing
+  List Bulk Application Primary Store Listing
 </RouteHeader>
 
 Returns a list of [store listing](#store-listing-object) objects for the primary SKU of the given application IDs.
@@ -32440,13 +32440,13 @@ Returns the [store listing](#store-listing-object) object for the given SKU ID.
 | localize?     | boolean | Whether to localize the SKUs for the user's location (default true)                     |
 
 <RouteHeader method="GET" url="/store/skus/{sku.id}/plans" supportsOAuth2="applications.store.update" supportsBot>
-  Get Subscription Plans
+  List Subscription Plans
 </RouteHeader>
 
 Returns a list of [subscription plan](#subscription-plan-object) objects for the given SKU ID. User must own the SKU's application or be a member of the owning team.
 
 <RouteHeader method="GET" url="/store/published-listings/skus/{sku.id}/subscription-plans">
-  Get Published Subscription Plans
+  List Published Subscription Plans
 </RouteHeader>
 
 Returns a list of published [subscription plan](#subscription-plan-object) objects for the given SKU ID.
@@ -32470,7 +32470,7 @@ Returns a list of published [subscription plan](#subscription-plan-object) objec
 | 1     | CHECKOUT  | Subscription checkout  |
 
 <RouteHeader method="GET" url="/store/published-listings/skus/subscription-plans">
-  Get Bulk Published Subscription Plans
+  List Bulk Published Subscription Plans
 </RouteHeader>
 
 Returns a list of published [subscription plan](#subscription-plan-object) objects for the given SKU IDs.
@@ -32562,7 +32562,7 @@ Creates a new purchase for the given SKU ID. Fires an [Entitlement Create](/gate
   supportsOAuth2="applications.store.update"
   supportsBot
 >
-  Get Application Store Assets
+  List Application Store Assets
 </RouteHeader>
 
 Returns a list of [store asset](#store-asset-structure) objects for the given application ID. User must be the owner of the application or member of the owning team.
@@ -32596,7 +32596,7 @@ Uploads a new store asset for the given application ID. Returns the created [sto
 Deletes the store asset with the given ID. Returns a 204 empty response on success. User must be the owner of the application or member of the owning team.
 
 <RouteHeader method="GET" url="/store/price-tiers">
-  Get Store Price Tiers
+  List Store Price Tiers
 </RouteHeader>
 
 Returns a list of integers representing the available store price tiers.
@@ -32810,7 +32810,7 @@ Returns a [storefront product](#storefront-product-object) object for the given 
 Returns an associated [storefront product](#storefront-product-object) object for the given SKU ID.
 
 <RouteHeader method="GET" url="/storefront/products/skus">
-  Get Storefront Products By SKU ID
+  List Storefront Products By SKU ID
 </RouteHeader>
 
 Returns associated [storefront product](#storefront-product-object) objects for the given SKU IDs.
@@ -32828,7 +32828,7 @@ Returns associated [storefront product](#storefront-product-object) objects for 
 | products | array[[storefront product](#storefront-product-object) object] | The products |
 
 <RouteHeader method="GET" url="/storefront/skus/prices">
-  Get Storefront SKU Prices
+  List Storefront SKU Prices
 </RouteHeader>
 
 Returns prices for the given storefront SKUs.
@@ -32852,7 +32852,7 @@ Returns prices for the given storefront SKUs.
 Returns a [storefront](#storefront-object) object for the application linked to the given guild ID.
 
 <RouteHeader method="GET" url="/partner-sdk/applications/{application.id}/skus/recommendations">
-  Get Application SKU Recommendations
+  List Application SKU Recommendations
 </RouteHeader>
 
 Returns recommended giftable SKUs for the specified users.
@@ -32888,7 +32888,7 @@ Returns recommended giftable SKUs for the specified users.
 | RECOMMENDATION | SKU is recommended for the user |
 
 <RouteHeader method="GET" url="/partner-sdk/application/{application.id}/skus">
-  Get Social Layer SKUs
+  List Social Layer SKUs
 </RouteHeader>
 
 Returns a list of [SKU](#sku-object) objects related to in-game items for the given application. Requires a partner application with access to the social layer SDK and monetization. User must be the owner of the application or member of the owning team.
@@ -32901,10 +32901,10 @@ Creates a new SKU for in-game item. Returns the created [SKU](#sku-object) objec
 
 ###### JSON Params
 
-| Field      | Type    | Description                                         |
-| ---------- | ------- | --------------------------------------------------- |
-| name       | string  | The name of the SKU (max 256 characters)            |
-| price_tier | integer | The [base price](#get-store-price-tiers) of the SKU |
+| Field      | Type    | Description                                          |
+| ---------- | ------- | ---------------------------------------------------- |
+| name       | string  | The name of the SKU (max 256 characters)             |
+| price_tier | integer | The [base price](#list-store-price-tiers) of the SKU |
 
 <RouteHeader method="GET" url="/partner-sdk/applications/{application.id}/storefront">
   Get Application Storefront
@@ -33177,7 +33177,7 @@ Represents a premium guild subscription (boost) slot.
 ## Endpoints
 
 <RouteHeader method="GET" url="/users/@me/billing/subscriptions">
-  Get Subscriptions
+  List Subscriptions
 </RouteHeader>
 
 Returns a list of [subscription](#subscription-object) objects.
@@ -33349,7 +33349,7 @@ Previews an invoice for the given subscription ID. Returns an [invoice](/resourc
 ^1^ Only the `plan_id` field is required.
 
 <RouteHeader method="GET" url="/users/@me/billing/subscriptions/{subscription.id}/invoices">
-  Get Subscription Invoices
+  List Subscription Invoices
 </RouteHeader>
 
 Returns a list of [invoice](/resources/payment#invoice-object) objects for the given subscription ID.
@@ -33408,7 +33408,7 @@ Returns the cooldown for premium guild subscription slot changes.
 | remaining | integer           | The number of changes remaining before the cooldown is applied                |
 
 <RouteHeader method="GET" url="/users/@me/guilds/premium/subscriptions">
-  Get Applied Premium Guild Subscriptions
+  List Applied Premium Guild Subscriptions
 </RouteHeader>
 
 Returns a list of [premium guild subscription](/resources/guild#premium-guild-subscription-object) objects applied by the current user.
@@ -33420,7 +33420,7 @@ Returns a list of [premium guild subscription](/resources/guild#premium-guild-su
 | paused? | boolean | Whether to return only paused premium guild subscriptions (default false) |
 
 <RouteHeader method="GET" url="/users/@me/guilds/premium/subscription-slots">
-  Get Premium Guild Subscription Slots
+  List Premium Guild Subscription Slots
 </RouteHeader>
 
 Returns a list of [premium guild subscription slot](#premium-guild-subscription-slot-object) objects for the current user.
@@ -33472,7 +33472,7 @@ For game developers, this means that you can get your engineers access to your a
 
 ^2^ Only provided in the [application](/resources/application#application-object) object.
 
-^3^ Only included when fetched from [Get Team](#get-team) or [Get Teams](#get-teams) with `include_payout_account_status` set to `true`.
+^3^ Only included when fetched from [Get Team](#get-team) or [List Teams](#list-teams) with `include_payout_account_status` set to `true`.
 
 ^4^ Only included when fetched from [Get Team](#get-team).
 
@@ -33635,7 +33635,7 @@ A development/publishing company working on a game on Discord.
 ## Endpoints
 
 <RouteHeader method="GET" url="/teams">
-  Get Teams
+  List Teams
 </RouteHeader>
 
 Returns a list of [team](#team-object) objects that the current user is a member of.
@@ -33711,7 +33711,7 @@ This action requires the user to have MFA enabled.
 ^1^ This token can be retrieved by visiting the emailed `https://click.discord.com/` link and extracting the `#token` URI fragment from the redirect URL.
 
 <RouteHeader method="GET" url="/teams/{team.id}/members">
-  Get Team Members
+  List Team Members
 </RouteHeader>
 
 Returns a list of [team member](#team-member-object) objects for the given team ID.
@@ -33763,7 +33763,7 @@ The team owner cannot be modified.
 Removes a team member. User must be an admin of the team unless removing themselves. Returns a 204 empty response on success.
 
 <RouteHeader method="GET" url="/teams/{team.id}/applications">
-  Get Team Applications
+  List Team Applications
 </RouteHeader>
 
 Returns a list of [application](/resources/application#application-object) objects for the given team ID.
@@ -33827,7 +33827,7 @@ Tipalti can be used for payouts to international bank accounts.
 ```
 
 <RouteHeader method="GET" url="/teams/{team.id}/payouts">
-  Get Team Payouts
+  List Team Payouts
 </RouteHeader>
 
 Returns a list of [team payout](#team-payout-object) objects for the given team ID.
@@ -35427,7 +35427,7 @@ All parameters to this endpoint are optional and nullable. Omitting or setting a
 | flags? | ?integer | The [notification settings flags](#notification-settings-flags) to set |
 
 <RouteHeader method="GET" url="/users/@me/notification-settings/snapshots">
-  Get Notification Settings Snapshots
+  List Notification Settings Snapshots
 </RouteHeader>
 
 Returns a list of [notification settings snapshot](#notification-settings-snapshot-object) objects for the user.
@@ -35607,7 +35607,7 @@ For users with migrated accounts, default avatar URLs will be based on the user 
 | premium_state? ^4^           | [premium state](#premium-state-structure) object                         | The user's premium state                                                                                        |
 | personal_connection_id?      | snowflake                                                                | The ID of the user's personal, non-employee user account                                                        |
 | flags ^1^                    | integer                                                                  | The [flags](#user-flags) on a user's account                                                                    |
-| public_flags                 | integer                                                                  | The public [flags](#user-flags) on a user's account                                                             |
+| public_flags?                | integer                                                                  | The public [flags](#user-flags) on a user's account                                                             |
 | purchased_flags? ^1^         | integer                                                                  | The [purchased flags](#purchased-flags) on a user's account                                                     |
 | premium_usage_flags? ^1^     | integer                                                                  | The [premium usage flags](#premium-usage-flags) on a user's account                                             |
 | desktop? ^1^ ^4^             | boolean                                                                  | Whether the user has used the desktop client before                                                             |
@@ -36366,7 +36366,7 @@ This endpoint is only usable with an OAuth2 access token with the `account.globa
 | global_name? | ?string | The user's display name (1-32 characters) |
 
 <RouteHeader method="GET" url="/users/@me/avatars">
-  Get Recent Avatars
+  List Recent Avatars
 </RouteHeader>
 
 Returns the user's 6 most recent avatars.
@@ -36661,7 +36661,7 @@ Modifies the current user's profile. Returns the updated [profile metadata](#pro
 | profile_effect_id?              | ?snowflake                         | The user's profile effect ID; can only be changed for premium users                                                                     |
 
 <RouteHeader method="GET" url="/users/{user.id}/relationships">
-  Get Mutual Relationships
+  List Mutual Relationships
 </RouteHeader>
 
 Returns a list of partial [user](#user-object) objects that are friends with the user and current user.
@@ -36743,7 +36743,7 @@ Disables SMS multi-factor authentication for the current user. Returns a 204 emp
 | password | string | The user's password |
 
 <RouteHeader method="GET" url="/users/@me/mfa/webauthn/credentials">
-  Get WebAuthn Authenticators
+  List WebAuthn Authenticators
 </RouteHeader>
 
 Returns a list of [WebAuthn authenticator](#authenticator-object) objects for the current user.
@@ -37038,7 +37038,7 @@ Sets the current user's primary guild. Returns a [user](#user-object) object on 
 | identity_guild_id? | ?snowflake | The ID of the guild whose identity is being adopted |
 
 <RouteHeader method="GET" url="/users/@me/mentions">
-  Get Recent Mentions
+  List Recent Mentions
 </RouteHeader>
 
 Returns a list of [message](/resources/message#message-object) objects that the current user has been mentioned in during the past 7 days.
@@ -37206,7 +37206,7 @@ Users may have a maximum of 1,500 note entries on their account.
 | note  | ?string | The note (max 256 characters) |
 
 <RouteHeader method="GET" url="/users/@me/affinities/users">
-  Get User Affinities
+  List User Affinities
 </RouteHeader>
 
 Returns the current user's affinity scores for other users. Affinity scores are a measure of how likely a user is to be friends with another user.
@@ -37231,7 +37231,7 @@ User affinities that share a mutual guild are also [implicit relationships](/res
 | affinity | float     | The affinity score |
 
 <RouteHeader method="GET" url="/users/@me/affinities/v2/users">
-  Get User Affinities v2
+  List User Affinities v2
 </RouteHeader>
 
 Returns more detailed user affinity scores for the current user.
@@ -37287,7 +37287,7 @@ Returns more detailed user affinity scores for the current user.
 ```
 
 <RouteHeader method="GET" url="/users/@me/affinities/guilds">
-  Get Guild Affinities
+  List Guild Affinities
 </RouteHeader>
 
 Returns the current user's affinity scores for their joined guilds. Affinity scores are a measure of how likely a user is to interact with a guild.
@@ -37306,7 +37306,7 @@ Returns the current user's affinity scores for their joined guilds. Affinity sco
 | affinity | float     | The affinity score |
 
 <RouteHeader method="GET" url="/users/@me/affinities/channels">
-  Get Channel Affinities
+  List Channel Affinities
 </RouteHeader>
 
 Returns the current user's affinity scores for their participated channels. Affinity scores are a measure of how likely a user is to interact with a channel.
@@ -37430,7 +37430,7 @@ Returns the current user's premium usage for various perks. Only available for u
 ```
 
 <RouteHeader method="GET" url="/users/@me/saved-messages">
-  Get Saved Messages
+  List Saved Messages
 </RouteHeader>
 
 Returns message bookmarks and reminders for the current user.
@@ -37604,16 +37604,16 @@ A special voice region ID of `deprecated` is used as the default in the deprecat
 ## Endpoints
 
 <RouteHeader method="GET" url="/voice/regions" supportsBot>
-  Get Voice Regions
+  List Voice Regions
 </RouteHeader>
 
 Returns an array of [voice region](#voice-region-object) objects that can be used when setting a [voice channel's `rtc_region`](/resources/channel#channel-object).
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/regions" supportsBot>
-  Get Guild Voice Regions
+  List Guild Voice Regions
 </RouteHeader>
 
-Returns a list of [voice region](#voice-region-object) objects that can be used when setting a [voice channel's `rtc_region`](/resources/channel#channel-object). Unlike the similar [Get Voice Regions](#get-voice-regions) route, this returns VIP servers when the guild is VIP-enabled.
+Returns a list of [voice region](#voice-region-object) objects that can be used when setting a [voice channel's `rtc_region`](/resources/channel#channel-object). Unlike the similar [List Voice Regions](#list-voice-regions) route, this returns VIP servers when the guild is VIP-enabled.
 
 <RouteHeader method="PUT" url="/voice/public-keys">
   Upload Voice Public Key
@@ -37709,95 +37709,6 @@ This key is used by another user to encrypt voice data. For further details, see
 | Field    | Type    | Description                                                                      |
 | -------- | ------- | -------------------------------------------------------------------------------- |
 | is_match | boolean | Whether the public key matches one of the user's uploaded persistent public keys |
-
-<RouteHeader method="GET" url="/voice-filters/catalog">
-  Get Voice Filters Catalog
-</RouteHeader>
-
-Returns the voice filters that can be used by the client.
-
-###### Query String Params
-
-| Field       | Type          | Description                                                                  |
-| ----------- | ------------- | ---------------------------------------------------------------------------- |
-| vfm_version | integer       | The version of the [voice filter native module](/topics/client-distribution) |
-| models?     | array[string] | The IDs of the ONNX models to return in the response                         |
-
-###### Response Body
-
-| Field               | Type                                                                 | Description                                                |
-| ------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------- |
-| limited_time_voices | [limited time voices](#limited-time-voices-structure) object         | The current sets of limited time voice filters available   |
-| models? ^1^         | map[str, [voice filter model](#voice-filter-model-structure) object] | The ONNX machine learning models used by the voice filters |
-| voices?             | array[[voice filter](#voice-filter-structure) object]                | The voice filters available to the client                  |
-
-^1^ This field is empty if no models were provided in the `models` query parameter in voice filter module versions 6 and above.
-
-###### Limited Time Voices Structure
-
-| Field             | Type              | Description                                     |
-| ----------------- | ----------------- | ----------------------------------------------- |
-| current_set       | array[string]     | The currently free voice filters                |
-| current_set_end   | ISO8601 timestamp | When the current set will no longer be free     |
-| current_set_start | ISO8601 timestamp | When the current set will start being free      |
-| next_set          | array[string]     | The next set of voice filters that will be free |
-| next_set_end      | ISO8601 timestamp | When the next set ends                          |
-| next_set_start    | ISO8601 timestamp | When the next set starts                        |
-
-###### Voice Filter Model Structure
-
-| Field | Type   | Description                   |
-| ----- | ------ | ----------------------------- |
-| url   | string | The CDN URL to the ONNX model |
-
-###### Voice Filter Structure
-
-| Field                     | Type              | Description                                                      |
-| ------------------------- | ----------------- | ---------------------------------------------------------------- |
-| id                        | string            | The ID of the voice filter                                       |
-| models? ^1^               | array[string]     | The IDs of the ONNX models used by the voice filter              |
-| requires_premium          | boolean           | Whether the voice filter requires a premium (Nitro) subscription |
-| limited_time_free_ends?   | ISO8601 timestamp | When the voice filter will no longer be free to use              |
-| limited_time_free_starts? | ISO8601 timestamp | When the voice filter will start being free to use               |
-| available                 | boolean           | Whether the voice filter is available to use                     |
-
-^1^ This field is no longer used and is serialized as an empty object in voice filter module versions 6 and above.
-
-###### Example Response
-
-```json
-{
-  "limited_time_voices": {
-    "current_set": ["solara", "robot"],
-    "current_set_start": "2025-05-22T00:00:00+00:00",
-    "current_set_end": "2025-05-22T23:59:59+00:00",
-    "next_set": ["tunes", "robot"],
-    "next_set_start": "2025-05-23T00:00:00+00:00",
-    "next_set_end": "2025-05-23T23:59:59+00:00"
-  },
-  "models": {
-    "vocoder_large_1": {
-      "url": "https://cdn.discordapp.com/assets/content/XXX.onnx"
-    },
-    "asr_large": {
-      "url": "https://cdn.discordapp.com/assets/content/XXX.onnx"
-    },
-    "pitch_small_3": {
-      "url": "https://cdn.discordapp.com/assets/content/XXX.onnx"
-    }
-  },
-  "voices": [
-    {
-      "id": "skye",
-      "models": ["vocoder_large_1", "asr_large", "pitch_small_3"],
-      "requires_premium": true,
-      "limited_time_free_ends": "2025-05-22T23:59:59+00:00",
-      "limited_time_free_starts": "2025-05-22T00:00:00+00:00",
-      "available": true
-    }
-  ]
-}
-```
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/voice-states/@me" supportsBot>
   Get Current User Voice State
@@ -38110,13 +38021,13 @@ Webhook names follow the naming restrictions set out in the [Usernames and Nickn
 | avatar? | ?[image data](/reference#cdn-data) | The default avatar of the webhook                 |
 
 <RouteHeader method="GET" url="/channels/{channel.id}/webhooks" supportsBot>
-  Get Channel Webhooks
+  List Channel Webhooks
 </RouteHeader>
 
 Returns a list of channel [webhook](#webhook-object) objects. Requires the `MANAGE_WEBHOOKS` permission.
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/webhooks" supportsBot>
-  Get Guild Webhooks
+  List Guild Webhooks
 </RouteHeader>
 
 Returns a list of guild [webhook](#webhook-object) objects. Requires the `MANAGE_WEBHOOKS` permission.
@@ -38688,7 +38599,7 @@ Returns suggested applications for the current user's profile game widgets.
 | suggested_wishlist_games | array[snowflake] | The suggested wishlist game application IDs |
 
 <RouteHeader method="POST" url="/application-identities" supportsOAuth2>
-  Get Bulk Application Identities
+  List Bulk Application Identities
 </RouteHeader>
 
 Returns a list of partial [application identity](#partial-application-identity-structure) objects connected to the authorized application.
@@ -38755,7 +38666,7 @@ This endpoint is not usable by user accounts.
 | data?     | [user application profile data](#user-application-profile-data-structure) object | The user application profile data to set                                                          |
 
 <RouteHeader method="GET" url="/users/{user.id}/application-identities">
-  Get User Application Identities
+  List User Application Identities
 </RouteHeader>
 
 Returns the user's external identities for connected applications.
@@ -38785,7 +38696,7 @@ Modifies the user's application profile config. Returns a 204 empty response on 
 | connection_visible? | string | Whether the connection is visible |
 
 <RouteHeader method="GET" url="/widget-configs/featured" supportsBot>
-  Get Featured Application Widget Configs
+  List Featured Application Widget Configs
 </RouteHeader>
 
 Returns featured widget configs.
@@ -38822,7 +38733,7 @@ Returns a map of [widget layout definitions](#widget-layout-definition-structure
 | configs | map[snowflake, array[[widget config](#widget-config-structure) object]] | The featured widget configs mapped by application ID |
 
 <RouteHeader method="GET" url="/applications/{application.id}/widget-configs" supportsBot>
-  Get Application Widget Configs
+  List Application Widget Configs
 </RouteHeader>
 
 Returns a list of [widget configs](#widget-config-structure) for the specified application.
@@ -40282,14 +40193,14 @@ These are all the OAuth2 scopes that Discord supports. Some scopes require appro
 | applications.store.update                | Allows [managing store data (SKUs, store listings, achievements, etc.) for the user's applications](/resources/store)                             | Yes    |
 | application_identities.write             | Allows [managing application identities](/resources/application)                                                                                  | No     |
 | bot                                      | Adds the application's bot to a user-selected guild                                                                                               | Yes    |
-| connections                              | Allows [retrieving a user's connected accounts](/resources/connected-accounts#get-user-connections), both public and private                      | Yes    |
+| connections                              | Allows [retrieving a user's connected accounts](/resources/connected-accounts#list-user-connections), both public and private                      | Yes    |
 | dm_channels.read                         | Allows [reading information about the user's DMs and group DMs](/resources/channel)                                                               | No     |
 | dm_channels.messages.read                | Allows reading messages from the user's DMs and group DMs                                                                                         | No     |
 | dm_channels.messages.write               | Allows [sending messages to the user's DMs](/resources/message#create-dm-message)                                                                 | No     |
 | email ^3^                                | Allows [retrieving a user's email address](/resources/user#get-current-user)                                                                      | Yes    |
 | gateway.connect ^3^                      | Allows [connecting to the gateway](/gateway/using-gateway#oauth2-and-the-gateway) on behalf of the user                                           | No     |
 | gdm.join                                 | Allows [adding users to managed group DMs](/resources/channel#add-channel-recipient)                                                              | Yes    |
-| guilds                                   | Allows [retrieving the user's guilds](/resources/guild#get-user-guilds)                                                                           | Yes    |
+| guilds                                   | Allows [retrieving the user's guilds](/resources/guild#list-user-guilds)                                                                           | Yes    |
 | guilds.channels.read                     | Allows [reading the channels in a user's guilds](/resources/channel)                                                                              | No     |
 | guilds.join                              | Allows [joining users to a guild](/resources/guild#add-guild-member)                                                                              | Yes    |
 | guilds.members.read                      | Allows [retrieving a user's member information in a guild](/resources/guild#get-current-guild-member)                                             | Yes    |
@@ -40324,7 +40235,7 @@ These are all the OAuth2 scopes that Discord supports. Some scopes require appro
 
 ^4^ Only available through the [authorization code grant](#authorization-code-grant) flow and requires that the [`PUBLIC_OAUTH2_CLIENT` application flag](/resources/application#application-flags) is not set.
 
-^5^ Unless the application is approved for general RPC access, the `rpc` scope is allowed for the application owner and [whitelisted users](/resources/application#get-application-testers) only and requires that the [`EMBEDDED` application flag](/resources/application#application-flags) is not set.
+^5^ Unless the application is approved for general RPC access, the `rpc` scope is allowed for the application owner and [whitelisted users](/resources/application#list-application-testers) only and requires that the [`EMBEDDED` application flag](/resources/application#application-flags) is not set.
 
 ^6^ Access to RPC for web applications requires approval from Discord.
 
@@ -41872,7 +41783,7 @@ Because rate limits depend on a variety of factors and are subject to change, **
 
 **Per-route rate limits** exist for many individual endpoints, and may include the HTTP method (`GET`, `POST`, `PUT`, or `DELETE`). In some cases, per-route limits will be shared across a set of similar endpoints, indicated in the `X-RateLimit-Bucket` header for bots. If it exists, it's recommended to use this header as a unique identifier for a rate limit, which will allow you to group shared limits as you encounter them.
 
-During calculation, per-route rate limits often account for top-level resources within the path using an identifier—for example, `guild_id` when calling [`/guilds/{guild.id}/channels`](/resources/channel#get-guild-channels). Top-level resources are currently limited to channels (`channel_id`), guilds (`guild_id`), and webhooks (`webhook_id` or `webhook_id + webhook_token`). This means that an endpoint with two different top-level resources may calculate limits independently. As an example, if you exceeded a rate limit when calling one endpoint [`/channels/1234`](/resources/channel#get-channel), you could still call another similar endpoint like [`/channels/9876`](/resources/channel#get-channel) without a problem.
+During calculation, per-route rate limits often account for top-level resources within the path using an identifier—for example, `guild_id` when calling [`/guilds/{guild.id}/channels`](/resources/channel#list-guild-channels). Top-level resources are currently limited to channels (`channel_id`), guilds (`guild_id`), and webhooks (`webhook_id` or `webhook_id + webhook_token`). This means that an endpoint with two different top-level resources may calculate limits independently. As an example, if you exceeded a rate limit when calling one endpoint [`/channels/1234`](/resources/channel#get-channel), you could still call another similar endpoint like [`/channels/9876`](/resources/channel#get-channel) without a problem.
 
 **Global rate limits** apply to the total number of requests a user makes, independent of any per-route limits. You can read more on [global rate limits](#global-rate-limit) below.
 
@@ -45363,7 +45274,7 @@ These require the `GUILD_MEMBERS` [Gateway intent](/gateway/using-gateway#gatewa
 
 </Alert>
 
-- An API `GET` call to [`/channels/<channel_id>/thread-members`](/resources/channel#get-thread-members) which returns an array of [thread member](/resources/channel#thread-member-object) objects.
+- An API `GET` call to [`/channels/<channel_id>/thread-members`](/resources/channel#list-thread-members) which returns an array of [thread member](/resources/channel#thread-member-object) objects.
 - The [Thread Members Update](/gateway/gateway-events#thread-members-update) Gateway Event which will include all users who were added to or removed from a thread by an action.
 
 ## Editing & Deleting Threads
@@ -45392,12 +45303,12 @@ Threads introduce a few new [message types](/resources/message#message-type), an
 
 There are many `GET` routes for enumerating threads in a specific channel:
 
-- [`/guilds/<guild_id>/threads/active`](/resources/channel#get-guild-active-threads) returns all active threads in a guild that the current user can access, includes public & private threads
-- [`/channels/<channel_id>/threads/active`](/resources/channel#get-active-threads) returns all active threads in a channel that the current user can access, includes public & private threads
+- [`/guilds/<guild_id>/threads/active`](/resources/channel#list-guild-active-threads) returns all active threads in a guild that the current user can access, includes public & private threads
+- [`/channels/<channel_id>/threads/active`](/resources/channel#list-active-threads) returns all active threads in a channel that the current user can access, includes public & private threads
 - [`/channels/<channel_id>/threads/search`](/resources/channel#search-threads) returns all active and archived threads in a channel that the current user can access, includes public & private threads and can be filtered by query
-- [`/channels/<channel_id>/users/@me/threads/archived/private`](/resources/channel#get-joined-private-archived-threads) returns all archived, private threads in a channel, that the current user has is a member of, sorted by thread ID descending
-- [`/channels/<channel_id>/threads/archived/public`](/resources/channel#get-public-archived-threads) returns all archived, public threads in a channel, sorted by archive timestamp descending
-- [`/channels/<channel_id>/threads/archived/private`](/resources/channel#get-private-archived-threads) returns all archived, private threads in a channel, sorted by archive timestamp descending
+- [`/channels/<channel_id>/users/@me/threads/archived/private`](/resources/channel#list-joined-private-archived-threads) returns all archived, private threads in a channel, that the current user has is a member of, sorted by thread ID descending
+- [`/channels/<channel_id>/threads/archived/public`](/resources/channel#list-public-archived-threads) returns all archived, public threads in a channel, sorted by archive timestamp descending
+- [`/channels/<channel_id>/threads/archived/private`](/resources/channel#list-private-archived-threads) returns all archived, private threads in a channel, sorted by archive timestamp descending
 
 ## Webhooks
 

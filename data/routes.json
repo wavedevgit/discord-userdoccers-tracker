@@ -68,7 +68,7 @@
         ]
     },
     {
-        "title": "Get Global Application Commands",
+        "title": "List Global Application Commands",
         "method": "GET\n",
         "": true,
         "url": "/applications/{application.id}/commands\n",
@@ -152,7 +152,7 @@
         ]
     },
     {
-        "title": "Get Guild Application Commands",
+        "title": "List Guild Application Commands",
         "method": "GET\n",
         "": true,
         "url": "/applications/{application.id}/guilds/{guild.id}/commands\n",
@@ -236,7 +236,7 @@
         ]
     },
     {
-        "title": "Get Guild Application Command Permissions",
+        "title": "List Guild Application Command Permissions",
         "method": "GET\n",
         "": true,
         "url": "/applications/{application.id}/guilds/{guild.id}/commands/permissions\n",
@@ -472,7 +472,7 @@
         ]
     },
     {
-        "title": "Get Application Directory Categories",
+        "title": "List Application Directory Categories",
         "method": "GET",
         "url": "/application-directory-static/categories",
         "unauthenticated": true,
@@ -484,7 +484,7 @@
         ]
     },
     {
-        "title": "Get Application Directory Collections",
+        "title": "List Application Directory Collections",
         "method": "GET",
         "url": "/application-directory-static/collections",
         "unauthenticated": true,
@@ -519,7 +519,7 @@
         ]
     },
     {
-        "title": "Get Application Directory Similar Applications",
+        "title": "List Application Directory Similar Applications",
         "method": "GET",
         "url": "/application-directory-static/applications/{application.id}/similar",
         "unauthenticated": true,
@@ -543,7 +543,7 @@
         ]
     },
     {
-        "title": "Get Applications",
+        "title": "List Applications",
         "method": "GET",
         "url": "/applications",
         "urls": [
@@ -554,7 +554,7 @@
         ]
     },
     {
-        "title": "Get Applications with Assets",
+        "title": "List Applications with Assets",
         "method": "GET",
         "url": "/applications-with-assets",
         "urls": [
@@ -660,7 +660,7 @@
         ]
     },
     {
-        "title": "Get Application Testers",
+        "title": "List Application Testers",
         "method": "GET",
         "url": "/oauth2/applications/{application.id}/allowlist",
         "urls": [
@@ -773,7 +773,7 @@
         ]
     },
     {
-        "title": "Get Embedded Activities",
+        "title": "List Embedded Activities",
         "method": "GET",
         "url": "/activities/shelf",
         "urls": [
@@ -817,7 +817,7 @@
         ]
     },
     {
-        "title": "Get Embedded Activity Instances",
+        "title": "List Embedded Activity Instances",
         "method": "GET",
         "url": "/activities/{application.id}/instances/{channel.id}",
         "deprecated": true,
@@ -886,7 +886,7 @@
         ]
     },
     {
-        "title": "Get OAuth2 Application Assets",
+        "title": "List OAuth2 Application Assets",
         "method": "GET",
         "url": "/oauth2/applications/{application.id}/assets",
         "unauthenticated": true,
@@ -1016,7 +1016,7 @@
         ]
     },
     {
-        "title": "Get Partial Applications",
+        "title": "List Partial Applications",
         "method": "GET",
         "url": "/applications/public",
         "urls": [
@@ -1039,7 +1039,7 @@
         ]
     },
     {
-        "title": "Get Application Disclosures",
+        "title": "List Application Disclosures",
         "method": "GET",
         "url": "/applications/{application.id}/disclosures",
         "urls": [
@@ -1061,7 +1061,7 @@
         ]
     },
     {
-        "title": "Get Guild Applications",
+        "title": "List Guild Applications",
         "method": "GET",
         "url": "/guilds/{guild.id}/applications",
         "urls": [
@@ -1094,7 +1094,7 @@
         ]
     },
     {
-        "title": "Get User Application Role Connections",
+        "title": "List User Application Role Connections",
         "method": "GET",
         "url": "/users/@me/applications/role-connections",
         "urls": [
@@ -1131,7 +1131,7 @@
         ]
     },
     {
-        "title": "Get Application Managed Links",
+        "title": "List Application Managed Links",
         "method": "GET",
         "url": "/applications/{application.id}/managed-links/",
         "urls": [
@@ -1234,7 +1234,7 @@
         ]
     },
     {
-        "title": "Get Social SDK Releases",
+        "title": "List Social SDK Releases",
         "method": "GET",
         "url": "/social-sdk/releases",
         "urls": [
@@ -1267,7 +1267,7 @@
         ]
     },
     {
-        "title": "Get Application External Identity Provider Configurations",
+        "title": "List Application External Identity Provider Configurations",
         "method": "GET",
         "url": "/applications/{application.id}/external-identity-provider-configurations",
         "urls": [
@@ -1313,7 +1313,7 @@
         ]
     },
     {
-        "title": "Get Guild Audit Log",
+        "title": "List Guild Audit Log Entries",
         "method": "GET",
         "url": "/guilds/{guild.id}/audit-logs",
         "supportsBot": true,
@@ -1325,7 +1325,7 @@
         ]
     },
     {
-        "title": "Get Guild AutoMod Rules",
+        "title": "List Guild AutoMod Rules",
         "method": "GET",
         "url": "/guilds/{guild.id}/auto-moderation/rules",
         "supportsBot": true,
@@ -1479,7 +1479,7 @@
         ]
     },
     {
-        "title": "Get Payment Sources",
+        "title": "List Payment Sources",
         "method": "GET",
         "url": "/users/@me/billing/payment-sources",
         "urls": [
@@ -1569,7 +1569,7 @@
         ]
     },
     {
-        "title": "Get Available Adyen Payment Methods",
+        "title": "List Available Adyen Payment Methods",
         "method": "GET",
         "url": "/users/@me/billing/adyen/payment-methods",
         "urls": [
@@ -1714,7 +1714,7 @@
         ]
     },
     {
-        "title": "Get Premium User Affinity",
+        "title": "List Premium User Affinities",
         "method": "GET",
         "url": "/users/@me/billing/nitro-affinity",
         "urls": [
@@ -1725,7 +1725,7 @@
         ]
     },
     {
-        "title": "Get Private Channels",
+        "title": "List Private Channels",
         "method": "GET",
         "url": "/users/@me/channels",
         "urls": [
@@ -1762,7 +1762,7 @@
         ]
     },
     {
-        "title": "Get Guild Channels",
+        "title": "List Guild Channels",
         "method": "GET",
         "url": "/guilds/{guild.id}/channels",
         "supportsOAuth2": "guilds.channels.read",
@@ -1775,7 +1775,7 @@
         ]
     },
     {
-        "title": "Get Guild Top Read Channels",
+        "title": "List Guild Top Read Channels",
         "method": "GET",
         "url": "/guilds/{guild.id}/top-read-channels",
         "supportsBot": true,
@@ -2084,7 +2084,7 @@
         ]
     },
     {
-        "title": "Get Guild Active Threads",
+        "title": "List Guild Active Threads",
         "method": "GET",
         "url": "/guilds/{guild.id}/threads/active",
         "supportsBot": true,
@@ -2096,7 +2096,7 @@
         ]
     },
     {
-        "title": "Get Active Threads",
+        "title": "List Active Threads",
         "method": "GET",
         "url": "/channels/{channel.id}/threads/active",
         "supportsBot": true,
@@ -2109,7 +2109,7 @@
         ]
     },
     {
-        "title": "Get Public Archived Threads",
+        "title": "List Public Archived Threads",
         "method": "GET",
         "url": "/channels/{channel.id}/threads/archived/public",
         "supportsBot": true,
@@ -2121,7 +2121,7 @@
         ]
     },
     {
-        "title": "Get Private Archived Threads",
+        "title": "List Private Archived Threads",
         "method": "GET",
         "url": "/channels/{channel.id}/threads/archived/private",
         "supportsBot": true,
@@ -2133,7 +2133,7 @@
         ]
     },
     {
-        "title": "Get Joined Private Archived Threads",
+        "title": "List Joined Private Archived Threads",
         "method": "GET",
         "url": "/channels/{channel.id}/users/@me/threads/archived/private",
         "supportsBot": true,
@@ -2194,7 +2194,7 @@
         ]
     },
     {
-        "title": "Get Thread Members",
+        "title": "List Thread Members",
         "method": "GET",
         "url": "/channels/{channel.id}/thread-members",
         "supportsBot": true,
@@ -2362,7 +2362,7 @@
         ]
     },
     {
-        "title": "Get Collectibles Categories",
+        "title": "List Collectibles Categories",
         "method": "GET",
         "url": "/collectibles-categories",
         "deprecated": true,
@@ -2374,7 +2374,7 @@
         ]
     },
     {
-        "title": "Get Collectibles Categories V2",
+        "title": "List Collectibles Categories V2",
         "method": "GET",
         "url": "/collectibles-categories/v2",
         "urls": [
@@ -2385,7 +2385,7 @@
         ]
     },
     {
-        "title": "Get Collectibles Shop",
+        "title": "List Collectibles Shop",
         "method": "GET",
         "url": "/collectibles-shop",
         "urls": [
@@ -2419,7 +2419,7 @@
         ]
     },
     {
-        "title": "Get User Purchased Collectibles",
+        "title": "List User Purchased Collectibles",
         "method": "GET",
         "url": "/users/@me/collectibles-purchases",
         "urls": [
@@ -2430,7 +2430,7 @@
         ]
     },
     {
-        "title": "Get Profile Effects",
+        "title": "List Profile Effects",
         "method": "GET",
         "url": "/user-profile-effects",
         "unauthenticated": true,
@@ -2554,7 +2554,7 @@
         ]
     },
     {
-        "title": "Get User Connections",
+        "title": "List User Connections",
         "method": "GET",
         "url": "/users/@me/connections",
         "supportsOAuth2": "connections",
@@ -2577,7 +2577,7 @@
         ]
     },
     {
-        "title": "Get User Connection Subreddits",
+        "title": "List User Connection Subreddits",
         "method": "GET",
         "url": "/users/@me/connections/reddit/{connection.id}/subreddits",
         "urls": [
@@ -2621,7 +2621,7 @@
         ]
     },
     {
-        "title": "Get User Linked Connections",
+        "title": "List User Linked Connections",
         "method": "GET",
         "url": "/users/@me/linked-connections",
         "supportsOAuth2": "connections",
@@ -2655,7 +2655,7 @@
         ]
     },
     {
-        "title": "Get Console Devices",
+        "title": "List Console Devices",
         "method": "GET",
         "url": "/consoles/{connection.type}/devices",
         "urls": [
@@ -2699,7 +2699,7 @@
         ]
     },
     {
-        "title": "Get Directory Entries",
+        "title": "List Directory Entries",
         "method": "GET",
         "url": "/channels/{channel.id}/directory-entries",
         "urls": [
@@ -2710,7 +2710,7 @@
         ]
     },
     {
-        "title": "Get Partial Directory Entries",
+        "title": "List Partial Directory Entries",
         "method": "GET",
         "url": "/channels/{channel.id}/directory-entries/list",
         "urls": [
@@ -2787,7 +2787,7 @@
         ]
     },
     {
-        "title": "Get Discoverable Guilds",
+        "title": "List Discoverable Guilds",
         "method": "GET",
         "url": "/discoverable-guilds",
         "urls": [
@@ -2834,7 +2834,7 @@
         ]
     },
     {
-        "title": "Get Discovery Categories",
+        "title": "List Discovery Categories",
         "method": "GET",
         "url": "/discovery/categories",
         "supportsBot": true,
@@ -2940,7 +2940,7 @@
         ]
     },
     {
-        "title": "Get Guild Emojis",
+        "title": "List Guild Emojis",
         "method": "GET",
         "url": "/guilds/{guild.id}/emojis",
         "supportsBot": true,
@@ -2964,7 +2964,7 @@
         ]
     },
     {
-        "title": "Get Guild Top Emojis",
+        "title": "List Guild Top Emojis",
         "method": "GET",
         "url": "/guilds/{guild.id}/top-emojis",
         "urls": [
@@ -3036,7 +3036,7 @@
         ]
     },
     {
-        "title": "Get Application Emojis",
+        "title": "List Application Emojis",
         "method": "GET",
         "url": "/applications/{application.id}/emojis",
         "supportsBot": true,
@@ -3096,7 +3096,7 @@
         ]
     },
     {
-        "title": "Get User Entitlements",
+        "title": "List User Entitlements",
         "method": "GET",
         "url": "/users/@me/entitlements",
         "urls": [
@@ -3107,7 +3107,7 @@
         ]
     },
     {
-        "title": "Get User Giftable Entitlements",
+        "title": "List User Giftable Entitlements",
         "method": "GET",
         "url": "/users/@me/entitlements/gifts",
         "urls": [
@@ -3118,7 +3118,7 @@
         ]
     },
     {
-        "title": "Get Guild Entitlements",
+        "title": "List Guild Entitlements",
         "method": "GET",
         "url": "/guilds/{guild.id}/entitlements",
         "urls": [
@@ -3129,7 +3129,7 @@
         ]
     },
     {
-        "title": "Get Application Entitlements",
+        "title": "List Application Entitlements",
         "method": "GET\n",
         "": true,
         "url": "/applications/{application.id}/entitlements\n",
@@ -3143,7 +3143,7 @@
         ]
     },
     {
-        "title": "Get User Application Entitlements",
+        "title": "List User Application Entitlements",
         "method": "GET",
         "url": "/users/@me/applications/{application.id}/entitlements",
         "urls": [
@@ -3231,7 +3231,7 @@
         ]
     },
     {
-        "title": "Get User Gift Codes",
+        "title": "List User Gift Codes",
         "method": "GET",
         "url": "/users/@me/entitlements/gift-codes",
         "urls": [
@@ -3264,7 +3264,7 @@
         ]
     },
     {
-        "title": "Get Application Gift Code Batches",
+        "title": "List Application Gift Code Batches",
         "method": "GET",
         "url": "/applications/{application.id}/gift-code-batches",
         "urls": [
@@ -3386,7 +3386,7 @@
         ]
     },
     {
-        "title": "Get Application Game Claims",
+        "title": "List Application Game Claims",
         "method": "GET",
         "url": "/applications/{application.id}/game-claims",
         "urls": [
@@ -3441,7 +3441,7 @@
         ]
     },
     {
-        "title": "Get Detectable Non Game Applications",
+        "title": "List Detectable Non Game Applications",
         "method": "GET",
         "url": "/applications/non-games/detectable",
         "unauthenticated": true,
@@ -3453,7 +3453,7 @@
         ]
     },
     {
-        "title": "Get Detectable Games",
+        "title": "List Detectable Games",
         "method": "GET",
         "url": "/games/detectable",
         "unauthenticated": true,
@@ -3465,7 +3465,7 @@
         ]
     },
     {
-        "title": "Get Detectable Game Exclusions",
+        "title": "List Detectable Game Exclusions",
         "method": "GET",
         "url": "/games/detectable/exclusions",
         "unauthenticated": true,
@@ -3477,7 +3477,7 @@
         ]
     },
     {
-        "title": "Get Games",
+        "title": "List Games",
         "method": "GET",
         "url": "/games",
         "urls": [
@@ -3499,7 +3499,7 @@
         ]
     },
     {
-        "title": "Get Game Announcements",
+        "title": "List Game Announcements",
         "method": "GET",
         "url": "/games/{game.id}/announcements",
         "urls": [
@@ -3510,7 +3510,7 @@
         ]
     },
     {
-        "title": "Get Guild Growth Activation Overview",
+        "title": "List Guild Growth Activation Overview",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/growth-activation/overview",
         "urls": [
@@ -3521,7 +3521,7 @@
         ]
     },
     {
-        "title": "Get Guild Growth Activation Joins",
+        "title": "List Guild Growth Activation Joins",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/growth-activation/joins",
         "urls": [
@@ -3532,7 +3532,7 @@
         ]
     },
     {
-        "title": "Get Guild Growth Activation Joins by Invite",
+        "title": "List Guild Growth Activation Joins by Invite",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/growth-activation/joins-by-invite-link",
         "urls": [
@@ -3543,7 +3543,7 @@
         ]
     },
     {
-        "title": "Get Guild Growth Activation Joins by Referrer",
+        "title": "List Guild Growth Activation Joins by Referrer",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/growth-activation/joins-by-referrer",
         "urls": [
@@ -3554,7 +3554,7 @@
         ]
     },
     {
-        "title": "Get Guild Growth Activation Joins by Sources",
+        "title": "List Guild Growth Activation Joins by Sources",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/growth-activation/joins-by-source",
         "urls": [
@@ -3565,7 +3565,7 @@
         ]
     },
     {
-        "title": "Get Guild Growth Activation Leavers",
+        "title": "List Guild Growth Activation Leavers",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/growth-activation/leavers",
         "urls": [
@@ -3576,7 +3576,7 @@
         ]
     },
     {
-        "title": "Get Guild Growth Activation Percentages",
+        "title": "List Guild Growth Activation Percentages",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/growth-activation/activation",
         "urls": [
@@ -3587,7 +3587,7 @@
         ]
     },
     {
-        "title": "Get Guild Growth Activation Retention",
+        "title": "List Guild Growth Activation Retention",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/growth-activation/retention",
         "urls": [
@@ -3598,7 +3598,7 @@
         ]
     },
     {
-        "title": "Get Guild Growth Activation Membership",
+        "title": "List Guild Growth Activation Membership",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/growth-activation/membership",
         "urls": [
@@ -3609,7 +3609,7 @@
         ]
     },
     {
-        "title": "Get Guild Engagement Base",
+        "title": "List Guild Engagement Base",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/engagement/base",
         "urls": [
@@ -3620,7 +3620,7 @@
         ]
     },
     {
-        "title": "Get Guild Engagement Overview",
+        "title": "List Guild Engagement Overview",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/engagement/overview",
         "urls": [
@@ -3631,7 +3631,7 @@
         ]
     },
     {
-        "title": "Get Guild Engagement Muters",
+        "title": "List Guild Engagement Muters",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/engagement/muters",
         "urls": [
@@ -3642,7 +3642,7 @@
         ]
     },
     {
-        "title": "Get Guild Engagement Pruneable Members",
+        "title": "List Guild Engagement Pruneable Members",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/engagement/pruneable-members",
         "urls": [
@@ -3653,7 +3653,7 @@
         ]
     },
     {
-        "title": "Get Guild Engagement Text Channels",
+        "title": "List Guild Engagement Text Channels",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/engagement/text-channels",
         "urls": [
@@ -3664,7 +3664,7 @@
         ]
     },
     {
-        "title": "Get Guild Engagement Voice Channels",
+        "title": "List Guild Engagement Voice Channels",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/engagement/voice-channels",
         "urls": [
@@ -3675,7 +3675,7 @@
         ]
     },
     {
-        "title": "Get Guild Audience New Members by Discord Tenure",
+        "title": "List Guild Audience New Members by Discord Tenure",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/audience/new-members-by-discord-tenure",
         "urls": [
@@ -3686,7 +3686,7 @@
         ]
     },
     {
-        "title": "Get Guild Audience Participators by Guild Tenure",
+        "title": "List Guild Audience Participators by Guild Tenure",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/audience/participators-by-guild-tenure",
         "urls": [
@@ -3697,7 +3697,7 @@
         ]
     },
     {
-        "title": "Get Guild Audience Participators by Platform",
+        "title": "List Guild Audience Participators by Platform",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/audience/participators-by-platform",
         "urls": [
@@ -3708,7 +3708,7 @@
         ]
     },
     {
-        "title": "Get Guild Audience Participators by Registration Country",
+        "title": "List Guild Audience Participators by Registration Country",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/audience/participators-by-reg-country",
         "urls": [
@@ -3719,7 +3719,7 @@
         ]
     },
     {
-        "title": "Get Guild Channel Following Overview",
+        "title": "List Guild Channel Following Overview",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/channel-following/overview",
         "urls": [
@@ -3730,7 +3730,7 @@
         ]
     },
     {
-        "title": "Get Guild Channel Following by Channel",
+        "title": "List Guild Channel Following by Channel",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/channel-following/announcements-by-channel",
         "urls": [
@@ -3741,7 +3741,7 @@
         ]
     },
     {
-        "title": "Get Guild Channel Following Reach",
+        "title": "List Guild Channel Following Reach",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/channel-following/reach",
         "urls": [
@@ -3752,7 +3752,7 @@
         ]
     },
     {
-        "title": "Get Guild Channel Following Guild Size",
+        "title": "List Guild Channel Following Guild Size",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/channel-following/following-guild-size",
         "deprecated": true,
@@ -3764,7 +3764,7 @@
         ]
     },
     {
-        "title": "Get Guild Channel Following Guild Size by Channel",
+        "title": "List Guild Channel Following Guild Size by Channel",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/channel-following/following-guild-size-by-channel",
         "urls": [
@@ -3775,7 +3775,7 @@
         ]
     },
     {
-        "title": "Get Guild Welcome Screen Funnel",
+        "title": "List Guild Welcome Screen Funnel",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/welcome-screen/funnel",
         "urls": [
@@ -3786,7 +3786,7 @@
         ]
     },
     {
-        "title": "Get Guild Welcome Screen Users",
+        "title": "List Guild Welcome Screen Users",
         "method": "GET",
         "url": "/guilds/{guild.id}/analytics/welcome-screen/users",
         "deprecated": true,
@@ -3798,7 +3798,7 @@
         ]
     },
     {
-        "title": "Get User Guild Scheduled Events",
+        "title": "List User Guild Scheduled Events",
         "method": "GET",
         "url": "/users/@me/scheduled-events",
         "urls": [
@@ -3809,7 +3809,7 @@
         ]
     },
     {
-        "title": "Get Guild Scheduled Events",
+        "title": "List Guild Scheduled Events",
         "method": "GET",
         "url": "/guilds/{guild.id}/scheduled-events",
         "supportsBot": true,
@@ -3928,7 +3928,7 @@
         ]
     },
     {
-        "title": "Get Guild Scheduled Event Users",
+        "title": "List Guild Scheduled Event Users",
         "method": "GET",
         "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/users",
         "supportsBot": true,
@@ -3962,7 +3962,7 @@
         ]
     },
     {
-        "title": "Get Guild Scheduled Event Exception Users",
+        "title": "List Guild Scheduled Event Exception Users",
         "method": "GET\n",
         "": true,
         "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/{guild_scheduled_event_exception.id}/users\n",
@@ -4022,7 +4022,7 @@
         ]
     },
     {
-        "title": "Get Guild Templates",
+        "title": "List Guild Templates",
         "method": "GET",
         "url": "/guilds/{guild.id}/templates",
         "supportsBot": true,
@@ -4082,7 +4082,7 @@
         ]
     },
     {
-        "title": "Get User Guilds",
+        "title": "List User Guilds",
         "method": "GET",
         "url": "/users/@me/guilds",
         "supportsOAuth2": "guilds",
@@ -4095,7 +4095,7 @@
         ]
     },
     {
-        "title": "Get Join Request Guilds",
+        "title": "List Join Request Guilds",
         "method": "GET",
         "url": "/users/@me/join-request-guilds",
         "urls": [
@@ -4215,7 +4215,7 @@
         ]
     },
     {
-        "title": "Get Guild Members",
+        "title": "List Guild Members",
         "method": "GET",
         "url": "/guilds/{guild.id}/members",
         "supportsBot": true,
@@ -4251,7 +4251,7 @@
         ]
     },
     {
-        "title": "Get Guild Members Supplemental",
+        "title": "List Guild Members Supplemental",
         "method": "POST",
         "url": "/guilds/{guild.id}/members/supplemental",
         "urls": [
@@ -4262,7 +4262,7 @@
         ]
     },
     {
-        "title": "Get Guild Members With Unusual DM Activity",
+        "title": "List Guild Members With Unusual DM Activity",
         "method": "GET",
         "url": "/guilds/{guild.id}/members/unusual-dm-activity",
         "urls": [
@@ -4422,7 +4422,7 @@
         ]
     },
     {
-        "title": "Get Guild Bans",
+        "title": "List Guild Bans",
         "method": "GET",
         "url": "/guilds/{guild.id}/bans",
         "supportsBot": true,
@@ -4497,7 +4497,7 @@
         ]
     },
     {
-        "title": "Get Guild Roles",
+        "title": "List Guild Roles",
         "method": "GET",
         "url": "/guilds/{guild.id}/roles",
         "supportsBot": true,
@@ -4533,7 +4533,7 @@
         ]
     },
     {
-        "title": "Get Guild Role Members",
+        "title": "List Guild Role Members",
         "method": "GET",
         "url": "/guilds/{guild.id}/roles/{role.id}/member-ids",
         "urls": [
@@ -4556,7 +4556,7 @@
         ]
     },
     {
-        "title": "Get Guild Role Connections Configurations",
+        "title": "List Guild Role Connections Configurations",
         "method": "GET",
         "url": "/guilds/{guild.id}/roles/connections-configurations",
         "urls": [
@@ -4797,7 +4797,7 @@
         ]
     },
     {
-        "title": "Get Guild Join Requests",
+        "title": "List Guild Join Requests",
         "method": "GET",
         "url": "/guilds/{guild.id}/requests",
         "urls": [
@@ -4930,7 +4930,7 @@
         ]
     },
     {
-        "title": "Get User Guild Join Requests",
+        "title": "List User Guild Join Requests",
         "method": "GET",
         "url": "/guilds/{guild.id}/requests/users/{user.id}",
         "urls": [
@@ -4991,7 +4991,7 @@
         ]
     },
     {
-        "title": "Get Guild Onboarding Allowed Applications",
+        "title": "List Guild Onboarding Allowed Applications",
         "method": "GET",
         "url": "/guilds/{guild.id}/onboarding/allowed-applications",
         "urls": [
@@ -5093,7 +5093,7 @@
         ]
     },
     {
-        "title": "Get Guild Top Games",
+        "title": "List Guild Top Games",
         "method": "GET",
         "url": "/guilds/{guild.id}/top-games",
         "urls": [
@@ -5104,7 +5104,7 @@
         ]
     },
     {
-        "title": "Get Premium Guild Subscriptions",
+        "title": "List Premium Guild Subscriptions",
         "method": "GET",
         "url": "/guilds/{guild.id}/premium/subscriptions",
         "urls": [
@@ -5137,7 +5137,7 @@
         ]
     },
     {
-        "title": "Get Guild Powerups",
+        "title": "List Guild Powerups",
         "method": "GET",
         "url": "/guilds/{guild.id}/powerups",
         "urls": [
@@ -5181,7 +5181,7 @@
         ]
     },
     {
-        "title": "Get Guild Game Servers",
+        "title": "List Guild Game Servers",
         "method": "GET",
         "url": "/guilds/{guild.id}/game-servers",
         "urls": [
@@ -5192,7 +5192,7 @@
         ]
     },
     {
-        "title": "Get Guild Game Server Regions",
+        "title": "List Guild Game Server Regions",
         "method": "GET",
         "url": "/guilds/{guild.id}/game-server-regions",
         "urls": [
@@ -5293,7 +5293,7 @@
         ]
     },
     {
-        "title": "Get Guild Integrations",
+        "title": "List Guild Integrations",
         "method": "GET",
         "url": "/guilds/{guild.id}/integrations",
         "supportsBot": true,
@@ -5376,7 +5376,7 @@
         ]
     },
     {
-        "title": "Get Channel Integrations",
+        "title": "List Channel Integrations",
         "method": "GET",
         "url": "/channels/{channel.id}/integrations",
         "urls": [
@@ -5422,7 +5422,7 @@
         ]
     },
     {
-        "title": "Get Trending GIF Search Terms",
+        "title": "List Trending GIF Search Terms",
         "method": "GET",
         "url": "/gifs/trending-search",
         "unauthenticated": true,
@@ -5434,7 +5434,7 @@
         ]
     },
     {
-        "title": "Get Suggested GIF Search Terms",
+        "title": "List Suggested GIF Search Terms",
         "method": "GET",
         "url": "/gifs/suggest",
         "unauthenticated": true,
@@ -5458,7 +5458,7 @@
         ]
     },
     {
-        "title": "Get Trending GIF Categories",
+        "title": "List Trending GIF Categories",
         "method": "GET",
         "url": "/gifs/trending",
         "unauthenticated": true,
@@ -5470,7 +5470,7 @@
         ]
     },
     {
-        "title": "Get Trending GIFs",
+        "title": "List Trending GIFs",
         "method": "GET",
         "url": "/gifs/trending-gifs",
         "unauthenticated": true,
@@ -5506,7 +5506,7 @@
         ]
     },
     {
-        "title": "Get Invite Friend Members",
+        "title": "List Invite Friend Members",
         "method": "GET",
         "url": "/invites/{invite.code}/friend-members",
         "supportsBot": true,
@@ -5518,7 +5518,7 @@
         ]
     },
     {
-        "title": "Get Invite Target Users",
+        "title": "List Invite Target Users",
         "method": "GET",
         "url": "/invites/{invite.code}/target-users",
         "supportsBot": true,
@@ -5579,7 +5579,7 @@
         ]
     },
     {
-        "title": "Get Guild Invites",
+        "title": "List Guild Invites",
         "method": "GET",
         "url": "/guilds/{guild.id}/invites",
         "supportsBot": true,
@@ -5591,7 +5591,7 @@
         ]
     },
     {
-        "title": "Get Channel Invites",
+        "title": "List Channel Invites",
         "method": "GET",
         "url": "/channels/{channel.id}/invites",
         "supportsBot": true,
@@ -5616,7 +5616,7 @@
         ]
     },
     {
-        "title": "Get User Invites",
+        "title": "List User Invites",
         "method": "GET",
         "url": "/users/@me/invites",
         "urls": [
@@ -5793,7 +5793,7 @@
         ]
     },
     {
-        "title": "Get Lobby Messages",
+        "title": "List Lobby Messages",
         "method": "GET",
         "url": "/lobbies/{lobby.id}/messages",
         "supportsOAuth2": "lobbies.write",
@@ -5829,7 +5829,7 @@
         ]
     },
     {
-        "title": "Get Messages",
+        "title": "List Messages",
         "method": "GET",
         "url": "/channels/{channel.id}/messages",
         "supportsBot": true,
@@ -5841,7 +5841,7 @@
         ]
     },
     {
-        "title": "Get DM Messages",
+        "title": "List DM Messages",
         "method": "GET",
         "url": "/users/{user.id}/messages",
         "supportsOAuth2": "dm_channels.messages.read",
@@ -6086,7 +6086,7 @@
         ]
     },
     {
-        "title": "Get Reactions",
+        "title": "List Reactions",
         "method": "GET",
         "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}",
         "supportsBot": true,
@@ -6233,7 +6233,7 @@
         ]
     },
     {
-        "title": "Get Message Pins",
+        "title": "List Message Pins",
         "method": "GET",
         "url": "/channels/{channel.id}/messages/pins",
         "supportsBot": true,
@@ -6245,7 +6245,7 @@
         ]
     },
     {
-        "title": "Get Pinned Messages",
+        "title": "List Pinned Messages",
         "method": "GET",
         "url": "/channels/{channel.id}/pins",
         "deprecated": true,
@@ -6317,7 +6317,7 @@
         ]
     },
     {
-        "title": "Get Answer Voters",
+        "title": "List Poll Answer Voters",
         "method": "GET",
         "url": "/channels/{channel.id}/polls/{message.id}/answers/{poll_answer.id}",
         "supportsBot": true,
@@ -6352,7 +6352,7 @@
         ]
     },
     {
-        "title": "Get Conversation Summaries",
+        "title": "List Conversation Summaries",
         "method": "GET",
         "url": "/channels/{channel.id}/summaries",
         "urls": [
@@ -6374,7 +6374,7 @@
         ]
     },
     {
-        "title": "Get User Message Summaries",
+        "title": "List User Message Summaries",
         "method": "GET",
         "url": "/partner-sdk/users/@me/channels",
         "urls": [
@@ -6398,7 +6398,7 @@
         ]
     },
     {
-        "title": "Get Notification Center Items",
+        "title": "List Notification Center Items",
         "method": "GET",
         "url": "/users/@me/notification-center/items",
         "urls": [
@@ -6464,7 +6464,7 @@
         ]
     },
     {
-        "title": "Get Payments",
+        "title": "List Payments",
         "method": "GET",
         "url": "/users/@me/billing/payments",
         "urls": [
@@ -6542,7 +6542,7 @@
         ]
     },
     {
-        "title": "Get Premium Referral Eligible Users",
+        "title": "List Premium Referral Eligible Users",
         "method": "POST",
         "url": "/users/@me/referrals/eligible-users",
         "urls": [
@@ -6564,7 +6564,7 @@
         ]
     },
     {
-        "title": "Get Presences",
+        "title": "List Presences",
         "method": "GET",
         "url": "/presences",
         "supportsOAuth2": "activities.read",
@@ -6577,7 +6577,7 @@
         ]
     },
     {
-        "title": "Get Presences for Xbox",
+        "title": "List Presences for Xbox",
         "method": "GET",
         "url": "/consoles/xbox/presences",
         "supportsOAuth2": "activities.read",
@@ -6602,7 +6602,7 @@
         ]
     },
     {
-        "title": "Get Global Activity Statistics",
+        "title": "List Global Activity Statistics",
         "method": "GET",
         "url": "/activities",
         "supportsOAuth2": "activities.read",
@@ -6614,7 +6614,7 @@
         ]
     },
     {
-        "title": "Get Application Activity Statistics",
+        "title": "List Application Activity Statistics",
         "method": "GET",
         "url": "/activities/statistics/applications/{application.id}",
         "supportsOAuth2": "activities.read",
@@ -6626,7 +6626,7 @@
         ]
     },
     {
-        "title": "Get User Application Activity Statistics",
+        "title": "List User Application Activity Statistics",
         "method": "GET",
         "url": "/users/@me/activities/statistics/applications",
         "urls": [
@@ -6708,7 +6708,7 @@
         ]
     },
     {
-        "title": "Get Outbound Promotions",
+        "title": "List Outbound Promotions",
         "method": "GET",
         "url": "/outbound-promotions",
         "deprecated": true,
@@ -6721,7 +6721,7 @@
         ]
     },
     {
-        "title": "Get Promotions",
+        "title": "List Promotions",
         "method": "GET",
         "url": "/promotions",
         "supportsBot": true,
@@ -6733,7 +6733,7 @@
         ]
     },
     {
-        "title": "Get BOGO Promotions",
+        "title": "List BOGO Promotions",
         "method": "GET",
         "url": "/bogo-promotions",
         "urls": [
@@ -6744,7 +6744,7 @@
         ]
     },
     {
-        "title": "Get Claimed Promotions",
+        "title": "List Claimed Promotions",
         "method": "GET",
         "url": "/users/@me/outbound-promotions/codes",
         "urls": [
@@ -6766,7 +6766,7 @@
         ]
     },
     {
-        "title": "Get Current User Quests",
+        "title": "List Current User Quests",
         "method": "GET",
         "url": "/quests/@me",
         "urls": [
@@ -6777,7 +6777,7 @@
         ]
     },
     {
-        "title": "Get Claimed Quests",
+        "title": "List Claimed Quests",
         "method": "GET",
         "url": "/quests/@me/claimed",
         "urls": [
@@ -6932,7 +6932,7 @@
         ]
     },
     {
-        "title": "Get Relationships",
+        "title": "List Relationships",
         "method": "GET",
         "url": "/users/@me/relationships",
         "supportsOAuth2": "relationships.read",
@@ -7035,7 +7035,7 @@
         ]
     },
     {
-        "title": "Get Game Relationships",
+        "title": "List Game Relationships",
         "method": "GET",
         "url": "/users/@me/game-relationships",
         "supportsOAuth2": "relationships.read",
@@ -7105,7 +7105,7 @@
         ]
     },
     {
-        "title": "Get Friend Suggestions",
+        "title": "List Friend Suggestions",
         "method": "GET",
         "url": "/friend-suggestions",
         "urls": [
@@ -7197,7 +7197,7 @@
         ]
     },
     {
-        "title": "Get Default Soundboard Sounds",
+        "title": "List Default Soundboard Sounds",
         "method": "GET",
         "url": "/soundboard-default-sounds",
         "supportsBot": true,
@@ -7209,7 +7209,7 @@
         ]
     },
     {
-        "title": "Get Guild Soundboard Sounds",
+        "title": "List Guild Soundboard Sounds",
         "method": "GET",
         "url": "/guilds/{guild.id}/soundboard-sounds",
         "supportsBot": true,
@@ -7346,7 +7346,7 @@
         ]
     },
     {
-        "title": "Get Sticker Packs",
+        "title": "List Sticker Packs",
         "method": "GET",
         "url": "/sticker-packs",
         "unauthenticated": true,
@@ -7393,7 +7393,7 @@
         ]
     },
     {
-        "title": "Get Guild Stickers",
+        "title": "List Guild Stickers",
         "method": "GET",
         "url": "/guilds/{guild.id}/stickers",
         "supportsBot": true,
@@ -7456,7 +7456,7 @@
         ]
     },
     {
-        "title": "Get Application SKUs",
+        "title": "List Application SKUs",
         "method": "GET\n",
         "": true,
         "url": "/applications/{application.id}/skus\n",
@@ -7509,7 +7509,7 @@
         ]
     },
     {
-        "title": "Get SKU Store Listings",
+        "title": "List SKU Store Listings",
         "method": "GET",
         "url": "/store/skus/{sku.id}/listings",
         "supportsOAuth2": "applications.store.update",
@@ -7577,7 +7577,7 @@
         ]
     },
     {
-        "title": "Get Application Published Store Listings",
+        "title": "List Application Published Store Listings",
         "method": "GET",
         "url": "/store/published-listings/skus",
         "unauthenticated": true,
@@ -7601,7 +7601,7 @@
         ]
     },
     {
-        "title": "Get Bulk Application Primary Store Listing",
+        "title": "List Bulk Application Primary Store Listing",
         "method": "GET",
         "url": "/store/published-listings/applications",
         "unauthenticated": true,
@@ -7625,7 +7625,7 @@
         ]
     },
     {
-        "title": "Get Subscription Plans",
+        "title": "List Subscription Plans",
         "method": "GET",
         "url": "/store/skus/{sku.id}/plans",
         "supportsOAuth2": "applications.store.update",
@@ -7638,7 +7638,7 @@
         ]
     },
     {
-        "title": "Get Published Subscription Plans",
+        "title": "List Published Subscription Plans",
         "method": "GET",
         "url": "/store/published-listings/skus/{sku.id}/subscription-plans",
         "urls": [
@@ -7649,7 +7649,7 @@
         ]
     },
     {
-        "title": "Get Bulk Published Subscription Plans",
+        "title": "List Bulk Published Subscription Plans",
         "method": "GET",
         "url": "/store/published-listings/skus/subscription-plans",
         "urls": [
@@ -7682,7 +7682,7 @@
         ]
     },
     {
-        "title": "Get Application Store Assets",
+        "title": "List Application Store Assets",
         "method": "GET\n",
         "": true,
         "url": "/store/applications/{application.id}/assets\n",
@@ -7724,7 +7724,7 @@
         ]
     },
     {
-        "title": "Get Store Price Tiers",
+        "title": "List Store Price Tiers",
         "method": "GET",
         "url": "/store/price-tiers",
         "urls": [
@@ -7901,7 +7901,7 @@
         ]
     },
     {
-        "title": "Get Storefront Products By SKU ID",
+        "title": "List Storefront Products By SKU ID",
         "method": "GET",
         "url": "/storefront/products/skus",
         "urls": [
@@ -7912,7 +7912,7 @@
         ]
     },
     {
-        "title": "Get Storefront SKU Prices",
+        "title": "List Storefront SKU Prices",
         "method": "GET",
         "url": "/storefront/skus/prices",
         "urls": [
@@ -7934,7 +7934,7 @@
         ]
     },
     {
-        "title": "Get Application SKU Recommendations",
+        "title": "List Application SKU Recommendations",
         "method": "GET",
         "url": "/partner-sdk/applications/{application.id}/skus/recommendations",
         "urls": [
@@ -7945,7 +7945,7 @@
         ]
     },
     {
-        "title": "Get Social Layer SKUs",
+        "title": "List Social Layer SKUs",
         "method": "GET",
         "url": "/partner-sdk/application/{application.id}/skus",
         "urls": [
@@ -8044,7 +8044,7 @@
         ]
     },
     {
-        "title": "Get Subscriptions",
+        "title": "List Subscriptions",
         "method": "GET",
         "url": "/users/@me/billing/subscriptions",
         "urls": [
@@ -8132,7 +8132,7 @@
         ]
     },
     {
-        "title": "Get Subscription Invoices",
+        "title": "List Subscription Invoices",
         "method": "GET",
         "url": "/users/@me/billing/subscriptions/{subscription.id}/invoices",
         "urls": [
@@ -8177,7 +8177,7 @@
         ]
     },
     {
-        "title": "Get Applied Premium Guild Subscriptions",
+        "title": "List Applied Premium Guild Subscriptions",
         "method": "GET",
         "url": "/users/@me/guilds/premium/subscriptions",
         "urls": [
@@ -8188,7 +8188,7 @@
         ]
     },
     {
-        "title": "Get Premium Guild Subscription Slots",
+        "title": "List Premium Guild Subscription Slots",
         "method": "GET",
         "url": "/users/@me/guilds/premium/subscription-slots",
         "urls": [
@@ -8223,7 +8223,7 @@
         ]
     },
     {
-        "title": "Get Teams",
+        "title": "List Teams",
         "method": "GET",
         "url": "/teams",
         "urls": [
@@ -8291,7 +8291,7 @@
         ]
     },
     {
-        "title": "Get Team Members",
+        "title": "List Team Members",
         "method": "GET",
         "url": "/teams/{team.id}/members",
         "urls": [
@@ -8336,7 +8336,7 @@
         ]
     },
     {
-        "title": "Get Team Applications",
+        "title": "List Team Applications",
         "method": "GET",
         "url": "/teams/{team.id}/applications",
         "urls": [
@@ -8369,7 +8369,7 @@
         ]
     },
     {
-        "title": "Get Team Payouts",
+        "title": "List Team Payouts",
         "method": "GET",
         "url": "/teams/{team.id}/payouts",
         "urls": [
@@ -8546,7 +8546,7 @@
         ]
     },
     {
-        "title": "Get Notification Settings Snapshots",
+        "title": "List Notification Settings Snapshots",
         "method": "GET",
         "url": "/users/@me/notification-settings/snapshots",
         "urls": [
@@ -8663,7 +8663,7 @@
         ]
     },
     {
-        "title": "Get Recent Avatars",
+        "title": "List Recent Avatars",
         "method": "GET",
         "url": "/users/@me/avatars",
         "urls": [
@@ -8719,7 +8719,7 @@
         ]
     },
     {
-        "title": "Get Mutual Relationships",
+        "title": "List Mutual Relationships",
         "method": "GET",
         "url": "/users/{user.id}/relationships",
         "urls": [
@@ -8777,7 +8777,7 @@
         ]
     },
     {
-        "title": "Get WebAuthn Authenticators",
+        "title": "List WebAuthn Authenticators",
         "method": "GET",
         "url": "/users/@me/mfa/webauthn/credentials",
         "urls": [
@@ -8939,7 +8939,7 @@
         ]
     },
     {
-        "title": "Get Recent Mentions",
+        "title": "List Recent Mentions",
         "method": "GET",
         "url": "/users/@me/mentions",
         "urls": [
@@ -9040,7 +9040,7 @@
         ]
     },
     {
-        "title": "Get User Affinities",
+        "title": "List User Affinities",
         "method": "GET",
         "url": "/users/@me/affinities/users",
         "urls": [
@@ -9051,7 +9051,7 @@
         ]
     },
     {
-        "title": "Get User Affinities v2",
+        "title": "List User Affinities v2",
         "method": "GET",
         "url": "/users/@me/affinities/v2/users",
         "urls": [
@@ -9062,7 +9062,7 @@
         ]
     },
     {
-        "title": "Get Guild Affinities",
+        "title": "List Guild Affinities",
         "method": "GET",
         "url": "/users/@me/affinities/guilds",
         "urls": [
@@ -9073,7 +9073,7 @@
         ]
     },
     {
-        "title": "Get Channel Affinities",
+        "title": "List Channel Affinities",
         "method": "GET",
         "url": "/users/@me/affinities/channels",
         "urls": [
@@ -9161,7 +9161,7 @@
         ]
     },
     {
-        "title": "Get Saved Messages",
+        "title": "List Saved Messages",
         "method": "GET",
         "url": "/users/@me/saved-messages",
         "urls": [
@@ -9229,7 +9229,7 @@
         ]
     },
     {
-        "title": "Get Voice Regions",
+        "title": "List Voice Regions",
         "method": "GET",
         "url": "/voice/regions",
         "supportsBot": true,
@@ -9241,7 +9241,7 @@
         ]
     },
     {
-        "title": "Get Guild Voice Regions",
+        "title": "List Guild Voice Regions",
         "method": "GET",
         "url": "/guilds/{guild.id}/regions",
         "supportsBot": true,
@@ -9272,17 +9272,6 @@
         ],
         "urlEmpty": [
             "/voice/:param/match-public-key"
-        ]
-    },
-    {
-        "title": "Get Voice Filters Catalog",
-        "method": "GET",
-        "url": "/voice-filters/catalog",
-        "urls": [
-            "/voice-filters/catalog"
-        ],
-        "urlEmpty": [
-            "/voice-filters/catalog"
         ]
     },
     {
@@ -9415,7 +9404,7 @@
         ]
     },
     {
-        "title": "Get Channel Webhooks",
+        "title": "List Channel Webhooks",
         "method": "GET",
         "url": "/channels/{channel.id}/webhooks",
         "supportsBot": true,
@@ -9427,7 +9416,7 @@
         ]
     },
     {
-        "title": "Get Guild Webhooks",
+        "title": "List Guild Webhooks",
         "method": "GET",
         "url": "/guilds/{guild.id}/webhooks",
         "supportsBot": true,
@@ -9607,7 +9596,7 @@
         ]
     },
     {
-        "title": "Get Bulk Application Identities",
+        "title": "List Bulk Application Identities",
         "method": "POST",
         "url": "/application-identities",
         "supportsOAuth2": true,
@@ -9645,7 +9634,7 @@
         ]
     },
     {
-        "title": "Get User Application Identities",
+        "title": "List User Application Identities",
         "method": "GET",
         "url": "/users/{user.id}/application-identities",
         "urls": [
@@ -9667,7 +9656,7 @@
         ]
     },
     {
-        "title": "Get Featured Application Widget Configs",
+        "title": "List Featured Application Widget Configs",
         "method": "GET",
         "url": "/widget-configs/featured",
         "supportsBot": true,
@@ -9703,7 +9692,7 @@
         ]
     },
     {
-        "title": "Get Application Widget Configs",
+        "title": "List Application Widget Configs",
         "method": "GET",
         "url": "/applications/{application.id}/widget-configs",
         "supportsBot": true,
