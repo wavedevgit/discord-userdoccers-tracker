@@ -5293,6 +5293,346 @@
         ]
     },
     {
+        "title": "Get Guild Role Subscriptions Settings",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/role-subscriptions/settings",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/settings"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/settings"
+        ]
+    },
+    {
+        "title": "Modify Guild Role Subscriptions Settings",
+        "method": "PATCH",
+        "url": "/guilds/{guild.id}/role-subscriptions/settings",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/settings"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/settings"
+        ]
+    },
+    {
+        "title": "Create Guild Role Subscription Group Listing",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/role-subscriptions/group-listings",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/group-listings"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/group-listings"
+        ]
+    },
+    {
+        "title": "Get Guild Role Subscription Group Listing",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/group-listings/:param"
+        ]
+    },
+    {
+        "title": "List Guild Role Subscription Group Listings",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/role-subscriptions/group-listings",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/group-listings"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/group-listings"
+        ]
+    },
+    {
+        "title": "Modify Guild Role Subscription Group Listing",
+        "method": "PATCH",
+        "url": "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/group-listings/:param"
+        ]
+    },
+    {
+        "title": "Delete Guild Role Subscription Group Listing",
+        "method": "DELETE",
+        "url": "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/group-listings/:param"
+        ]
+    },
+    {
+        "title": "Create Guild Role Subscription Listing",
+        "method": "POST\n",
+        "": true,
+        "url": "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/group-listings/:param/subscription-listings"
+        ]
+    },
+    {
+        "title": "Modify Guild Role Subscription Listing",
+        "method": "PATCH\n",
+        "": true,
+        "url": "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings/{subscription_listing.id}",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings/{subscription_listing.id}"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/group-listings/:param/subscription-listings/:param"
+        ]
+    },
+    {
+        "title": "Delete Guild Role Subscription Listing",
+        "method": "DELETE\n",
+        "": true,
+        "url": "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings/{subscription_listing.id}",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings/{subscription_listing.id}"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/group-listings/:param/subscription-listings/:param"
+        ]
+    },
+    {
+        "title": "Archive Guild Role Subscription Listing",
+        "method": "POST\n",
+        "": true,
+        "url": "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings/{subscription_listing.id}/archive",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings/{subscription_listing.id}/archive"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/group-listings/:param/subscription-listings/:param/archive"
+        ]
+    },
+    {
+        "title": "List Guild Role Subscription Trials",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/role-subscriptions/trials",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/trials"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/trials"
+        ]
+    },
+    {
+        "title": "Modify Guild Role Subscription Listing Trial",
+        "method": "PATCH\n",
+        "": true,
+        "url": "/guilds/{guild.id}/role-subscriptions/subscription-listings/{subscription_listing.id}/trial",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/subscription-listings/{subscription_listing.id}/trial"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/subscription-listings/:param/trial"
+        ]
+    },
+    {
+        "title": "List Guild Role Subscription Listing Templates",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/role-subscriptions/templates",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/templates"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/templates"
+        ]
+    },
+    {
+        "title": "Get Guild Role Subscription Listing Trial Eligibility",
+        "method": "GET\n",
+        "": true,
+        "url": "/guilds/{guild.id}/role-subscriptions/subscription-listings/{subscription_listing.id}/trial/{subscription_trial.id}/eligibility",
+        "urls": [
+            "/guilds/{guild.id}/role-subscriptions/subscription-listings/{subscription_listing.id}/trial/{subscription_trial.id}/eligibility"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/role-subscriptions/subscription-listings/:param/trial/:param/eligibility"
+        ]
+    },
+    {
+        "title": "Get Creator Monetization Eligibility",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/creator-monetization/requirements",
+        "urls": [
+            "/guilds/{guild.id}/creator-monetization/requirements"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/creator-monetization/requirements"
+        ]
+    },
+    {
+        "title": "Create Creator Monetization Enable Request",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/creator-monetization/enable-requests",
+        "urls": [
+            "/guilds/{guild.id}/creator-monetization/enable-requests"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/creator-monetization/enable-requests"
+        ]
+    },
+    {
+        "title": "Accept Creator Monetization Enable Request Terms",
+        "method": "POST\n",
+        "": true,
+        "url": "/guilds/{guild.id}/creator-monetization/enable-requests/{creator_monetization_request.id}/accept-terms\n",
+        "deprecated": true,
+        "urls": [
+            "/guilds/{guild.id}/creator-monetization/enable-requests/{creator_monetization_request.id}/accept-terms\n"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/creator-monetization/enable-requests/:param/accept-terms\n"
+        ]
+    },
+    {
+        "title": "Accept Creator Monetization Terms",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/creator-monetization/accept-terms",
+        "urls": [
+            "/guilds/{guild.id}/creator-monetization/accept-terms"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/creator-monetization/accept-terms"
+        ]
+    },
+    {
+        "title": "Get Creator Monetization Restrictions",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/creator-monetization/restrictions",
+        "urls": [
+            "/guilds/{guild.id}/creator-monetization/restrictions"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/creator-monetization/restrictions"
+        ]
+    },
+    {
+        "title": "Get Creator Monetization Marketing Onboarding",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/creator-monetization/marketing/onboarding",
+        "urls": [
+            "/guilds/{guild.id}/creator-monetization/marketing/onboarding"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/creator-monetization/marketing/onboarding"
+        ]
+    },
+    {
+        "title": "Update Creator Monetization Team",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/creator-monetization/ownership-transfer/onboarding",
+        "urls": [
+            "/guilds/{guild.id}/creator-monetization/ownership-transfer/onboarding"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/creator-monetization/ownership-transfer/onboarding"
+        ]
+    },
+    {
+        "title": "Accept Creator Monetization New Terms Demonetized",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/creator-monetization/accept-new-terms-demonetized",
+        "urls": [
+            "/guilds/{guild.id}/creator-monetization/accept-new-terms-demonetized"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/creator-monetization/accept-new-terms-demonetized"
+        ]
+    },
+    {
+        "title": "Remove Creator Monetization",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/creator-monetization/remove-monetization",
+        "urls": [
+            "/guilds/{guild.id}/creator-monetization/remove-monetization"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/creator-monetization/remove-monetization"
+        ]
+    },
+    {
+        "title": "Create Guild Product Listing",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/products",
+        "supportsBot": true,
+        "urls": [
+            "/guilds/{guild.id}/products"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/products"
+        ]
+    },
+    {
+        "title": "List Guild Product Listings",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/products/listings",
+        "urls": [
+            "/guilds/{guild.id}/products/listings"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/products/listings"
+        ]
+    },
+    {
+        "title": "Get Guild Product Listing",
+        "method": "GET",
+        "url": "/guilds/{guild.id}/products/listings/{product_listing.id}",
+        "urls": [
+            "/guilds/{guild.id}/products/listings/{product_listing.id}"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/products/listings/:param"
+        ]
+    },
+    {
+        "title": "Modify Guild Product Listing",
+        "method": "PATCH",
+        "url": "/guilds/{guild.id}/products/listings/{product_listing.id}",
+        "urls": [
+            "/guilds/{guild.id}/products/listings/{product_listing.id}"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/products/listings/:param"
+        ]
+    },
+    {
+        "title": "Delete Guild Product Listing",
+        "method": "DELETE",
+        "url": "/guilds/{guild.id}/products/listings/{product_listing.id}",
+        "urls": [
+            "/guilds/{guild.id}/products/listings/{product_listing.id}"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/products/listings/:param"
+        ]
+    },
+    {
+        "title": "Get Guild Product Listing Attachment URL",
+        "method": "POST\n",
+        "": true,
+        "url": "/guilds/{guild.id}/products/listings/{product_listing.id}/attachments/{attachment.id}/download",
+        "urls": [
+            "/guilds/{guild.id}/products/listings/{product_listing.id}/attachments/{attachment.id}/download"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/products/listings/:param/attachments/:param/download"
+        ]
+    },
+    {
         "title": "List Guild Integrations",
         "method": "GET",
         "url": "/guilds/{guild.id}/integrations",
@@ -5965,42 +6305,6 @@
         ],
         "urlEmpty": [
             "/channels/:param/greet"
-        ]
-    },
-    {
-        "title": "Create Attachments",
-        "method": "POST",
-        "url": "/channels/{channel.id}/attachments",
-        "supportsBot": true,
-        "urls": [
-            "/channels/{channel.id}/attachments"
-        ],
-        "urlEmpty": [
-            "/channels/:param/attachments"
-        ]
-    },
-    {
-        "title": "Delete Attachment",
-        "method": "DELETE",
-        "url": "/attachments/{cloud_attachment.upload_filename}",
-        "supportsBot": true,
-        "urls": [
-            "/attachments/{cloud_attachment.upload_filename}"
-        ],
-        "urlEmpty": [
-            "/attachments/:param"
-        ]
-    },
-    {
-        "title": "Refresh Attachment URLs",
-        "method": "POST",
-        "url": "/attachments/refresh-urls",
-        "supportsBot": true,
-        "urls": [
-            "/attachments/refresh-urls"
-        ],
-        "urlEmpty": [
-            "/attachments/refresh-urls"
         ]
     },
     {
@@ -7657,6 +7961,17 @@
         ],
         "urlEmpty": [
             "/store/published-listings/skus/subscription-plans"
+        ]
+    },
+    {
+        "title": "Get Subscription Group Listing By Subscription Plan",
+        "method": "GET",
+        "url": "/subscription-plans/{subscription_plan.id}/subscription-group-listing",
+        "urls": [
+            "/subscription-plans/{subscription_plan.id}/subscription-group-listing"
+        ],
+        "urlEmpty": [
+            "/subscription-plans/:param/subscription-group-listing"
         ]
     },
     {
@@ -9831,6 +10146,64 @@
         ],
         "urlEmpty": [
             "/updates/distributions/app/manifests/latest"
+        ]
+    },
+    {
+        "title": "Create Message Attachments",
+        "method": "POST",
+        "url": "/channels/{channel.id}/attachments",
+        "supportsBot": true,
+        "urls": [
+            "/channels/{channel.id}/attachments"
+        ],
+        "urlEmpty": [
+            "/channels/:param/attachments"
+        ]
+    },
+    {
+        "title": "Create Guild Product Attachments",
+        "method": "POST",
+        "url": "/guilds/{channel.id}/products/attachments",
+        "urls": [
+            "/guilds/{channel.id}/products/attachments"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/products/attachments"
+        ]
+    },
+    {
+        "title": "Create Gravity Attachments",
+        "method": "POST",
+        "url": "/users/@me/gravity-attachments",
+        "urls": [
+            "/users/@me/gravity-attachments"
+        ],
+        "urlEmpty": [
+            "/users/@me/gravity-attachments"
+        ]
+    },
+    {
+        "title": "Delete Attachment",
+        "method": "DELETE",
+        "url": "/attachments/{cloud_attachment.upload_filename}",
+        "supportsBot": true,
+        "urls": [
+            "/attachments/{cloud_attachment.upload_filename}"
+        ],
+        "urlEmpty": [
+            "/attachments/:param"
+        ]
+    },
+    {
+        "title": "Refresh Attachment URLs",
+        "method": "POST",
+        "url": "/attachments/refresh-urls",
+        "supportsBot": true,
+        "urls": [
+            "/attachments/refresh-urls"
+        ],
+        "urlEmpty": [
+            "/attachments/refresh-urls"
         ]
     },
     {

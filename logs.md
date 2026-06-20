@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 452 |
+| Covered | 474 |
 |---------|------------|
-| Missing | 253 |
+| Missing | 231 |
 ## Missing routes
-total: 253
+total: 231
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -56,7 +56,6 @@ total: 253
 - [ ] **FRIEND_FINDER**: `/friend-finder/find-friends`
 - [ ] **TUTORIAL_INDICATORS**: `/tutorial/indicators`
 - [ ] **USERS**: `/users`
-- [ ] **GRAVITY_ATTACHMENTS**: `/users/@me/gravity-attachments`
 - [ ] **GRAVITY_ATTACHMENTS_UPLOAD**: `/users/@me/gravity-attachments-upload`
 - [ ] **GRAVITY_ITEMS_DEHYDRATED**: `/users/@me/gravity-icymi`
 - [ ] **GRAVITY_ITEMS_DEHYDRATED_LEGACY**: `/users/@me/gravity-icymi-legacy`
@@ -172,34 +171,13 @@ total: 253
 - [ ] **GUILD_EVENT_EXCEPTION**: `/guilds/:param/scheduled-events/:param/exceptions/:param`
 - [ ] **HUB_EMAIL_VERIFY**: `/guilds/automations/email-domain-lookup/verify`
 - [ ] **OUTBOUND_PROMOTIONS_PREVIEW**: `/outbound-promotions/preview`
-- [ ] **GUILD_PRODUCT_CREATE_ATTACHMENT_UPLOAD**: `/guilds/:param/products/attachments`
 - [ ] **CHAT_WALLPAPERS**: `/chat-wallpapers`
-- [ ] **GUILD_ROLE_SUBSCRIPTIONS_SETTINGS**: `/guilds/:param/role-subscriptions/settings`
-- [ ] **GUILD_ROLE_SUBSCRIPTION_GROUP_LISTINGS**: `/guilds/:param/role-subscriptions/group-listings/:param`
-- [ ] **GUILD_ROLE_SUBSCRIPTION_LISTINGS**: `/guilds/:param/role-subscriptions/group-listings/:param/subscription-listings/:param`
-- [ ] **GUILD_ROLE_SUBSCRIPTION_GROUP_LISTING_ARCHIVE**: `/guilds/:param/role-subscriptions/group-listings/:param/subscription-listings/:param/archive`
-- [ ] **GUILD_ROLE_SUBSCRIPTION_TRIALS**: `/guilds/:param/role-subscriptions/trials`
-- [ ] **GUILD_ROLE_SUBSCRIPTION_LISTING_TRIAL**: `/guilds/:param/role-subscriptions/subscription-listings/:param/trial`
-- [ ] **GUILD_ROLE_SUBSCRIPTION_LISTING_TEMPLATES**: `/guilds/:param/role-subscriptions/templates`
-- [ ] **CREATOR_MONETIZATION_ENABLE_REQUESTS**: `/guilds/:param/creator-monetization/enable-requests`
-- [ ] **CREATOR_MONETIZATION_ELIGIBILITY**: `/guilds/:param/creator-monetization/requirements`
 - [ ] **CREATOR_MONETIZATION_ACCEPT_TERMS**: `/guilds/:param/creator-monetization/enable-requests/:param/accept-terms`
-- [ ] **CREATOR_MONETIZATION_ACCEPT_TERMS_V2**: `/guilds/:param/creator-monetization/accept-terms`
-- [ ] **CREATOR_MONETIZATION_RESTRICTIONS**: `/guilds/:param/creator-monetization/restrictions`
-- [ ] **GUILD_ROLE_SUBSCRIPTION_TRIAL_ELIGIBILITY**: `/guilds/:param/role-subscriptions/subscription-listings/:param/trial/:param/eligibility`
-- [ ] **CREATOR_MONETIZATION_MARKETING_ONBOARDING**: `/guilds/:param/creator-monetization/marketing/onboarding`
 - [ ] **CREATOR_MONETIZATION_NAG_ACTIVATE_ELIGIBLITY**: `/creator-monetization/marketing/nag-activate/eligibility`
-- [ ] **CREATOR_MONETIZATION_OWNERSHIP_TRANSFER_ONBOARD**: `/guilds/:param/creator-monetization/ownership-transfer/onboarding`
 - [ ] **CREATOR_MONETIZATION_ACCEPT_NEW_TERMS**: `/guilds/:param/creator-monetization/accept-new-terms`
-- [ ] **CREATOR_MONETIZATION_ACCEPT_NEW_TERMS_DEMONETIZED**: `/guilds/:param/creator-monetization/accept-new-terms-demonetized`
-- [ ] **CREATOR_MONETIZATION_REMOVE_MONETIZATION**: `/guilds/:param/creator-monetization/remove-monetization`
-- [ ] **SUBSCRIPTION_PLAN_GROUP_LISTING**: `/subscription-plans/:param/subscription-group-listing`
 - [ ] **SUBSCRIPTION_PLAN_GUILD_ROLE_GROUP_LISTING**: `/subscription-plans/:param/guild-role-subscription-group-listing`
 - [ ] **BUG_REPORTS**: `/private/bug-reports`
 - [ ] **PAYMENT_PAYOUT_GROUPS**: `/applications/:param/payment-payout-groups`
-- [ ] **GUILD_PRODUCTS**: `/guilds/:param/products`
-- [ ] **GUILD_PRODUCT_LISTINGS**: `/guilds/:param/products/listings/:param`
-- [ ] **GUILD_PRODUCT_ATTACHMENT_DOWNLOAD**: `/guilds/:param/products/listings/:param/attachments/:param/download`
 - [ ] **GUILD_CONVERT_TO_CLAN**: `/clan/:param`
 - [ ] **GUILD_CLAN_DISCOVERY_INFO**: `/discovery/:param/clan`
 - [ ] **GUILD_PROFILE_VISIBILITY**: `/guilds/:param/profile/visibility`
@@ -261,7 +239,7 @@ total: 253
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 452
+total: 474
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -394,6 +372,7 @@ total: 452
 - [x] **TUTORIAL_INDICATORS_SUPPRESS**: `/tutorial/indicators/suppress`
 - [x] **TUTORIAL_INDICATOR**: `/tutorial/indicators/:param`
 - [x] **ME**: `/users/@me`
+- [x] **GRAVITY_ATTACHMENTS**: `/users/@me/gravity-attachments`
 - [x] **POMELO_SUGGESTIONS**: `/users/@me/pomelo-suggestions`
 - [x] **POMELO_ATTEMPT**: `/users/@me/pomelo-attempt`
 - [x] **POMELO_CREATE**: `/users/@me/pomelo`
@@ -621,8 +600,29 @@ total: 452
 - [x] **CLAIMED_OUTBOUND_PROMOTION_CODES**: `/users/@me/outbound-promotions/codes`
 - [x] **CLAIM_OUTBOUND_PROMOTION_CODE**: `/outbound-promotions/:param/claim`
 - [x] **HUB_EMAIL_VERIFY_SEND**: `/guilds/automations/email-domain-lookup`
+- [x] **GUILD_PRODUCT_CREATE_ATTACHMENT_UPLOAD**: `/guilds/:param/products/attachments`
+- [x] **GUILD_ROLE_SUBSCRIPTIONS_SETTINGS**: `/guilds/:param/role-subscriptions/settings`
+- [x] **GUILD_ROLE_SUBSCRIPTION_GROUP_LISTINGS**: `/guilds/:param/role-subscriptions/group-listings/:param`
+- [x] **GUILD_ROLE_SUBSCRIPTION_LISTINGS**: `/guilds/:param/role-subscriptions/group-listings/:param/subscription-listings/:param`
+- [x] **GUILD_ROLE_SUBSCRIPTION_GROUP_LISTING_ARCHIVE**: `/guilds/:param/role-subscriptions/group-listings/:param/subscription-listings/:param/archive`
+- [x] **GUILD_ROLE_SUBSCRIPTION_TRIALS**: `/guilds/:param/role-subscriptions/trials`
+- [x] **GUILD_ROLE_SUBSCRIPTION_LISTING_TRIAL**: `/guilds/:param/role-subscriptions/subscription-listings/:param/trial`
+- [x] **GUILD_ROLE_SUBSCRIPTION_LISTING_TEMPLATES**: `/guilds/:param/role-subscriptions/templates`
+- [x] **CREATOR_MONETIZATION_ENABLE_REQUESTS**: `/guilds/:param/creator-monetization/enable-requests`
+- [x] **CREATOR_MONETIZATION_ELIGIBILITY**: `/guilds/:param/creator-monetization/requirements`
+- [x] **CREATOR_MONETIZATION_ACCEPT_TERMS_V2**: `/guilds/:param/creator-monetization/accept-terms`
+- [x] **CREATOR_MONETIZATION_RESTRICTIONS**: `/guilds/:param/creator-monetization/restrictions`
+- [x] **GUILD_ROLE_SUBSCRIPTION_TRIAL_ELIGIBILITY**: `/guilds/:param/role-subscriptions/subscription-listings/:param/trial/:param/eligibility`
+- [x] **CREATOR_MONETIZATION_MARKETING_ONBOARDING**: `/guilds/:param/creator-monetization/marketing/onboarding`
+- [x] **CREATOR_MONETIZATION_OWNERSHIP_TRANSFER_ONBOARD**: `/guilds/:param/creator-monetization/ownership-transfer/onboarding`
+- [x] **CREATOR_MONETIZATION_ACCEPT_NEW_TERMS_DEMONETIZED**: `/guilds/:param/creator-monetization/accept-new-terms-demonetized`
+- [x] **CREATOR_MONETIZATION_REMOVE_MONETIZATION**: `/guilds/:param/creator-monetization/remove-monetization`
+- [x] **SUBSCRIPTION_PLAN_GROUP_LISTING**: `/subscription-plans/:param/subscription-group-listing`
 - [x] **MEDIA_POST_RESHARE_GET_PREVIEW**: `/channels/:param/media-post-preview`
 - [x] **UNFURL_EMBED_URLS**: `/unfurler/embed-urls`
+- [x] **GUILD_PRODUCTS**: `/guilds/:param/products`
+- [x] **GUILD_PRODUCT_LISTINGS**: `/guilds/:param/products/listings/:param`
+- [x] **GUILD_PRODUCT_ATTACHMENT_DOWNLOAD**: `/guilds/:param/products/listings/:param/attachments/:param/download`
 - [x] **GUILD_PROFILE**: `/guilds/:param/profile`
 - [x] **USER_SET_CLAN_IDENTITY**: `/users/@me/clan`
 - [x] **EMAIL_SETTINGS**: `/users/@me/email-settings`

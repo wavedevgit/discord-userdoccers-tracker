@@ -937,6 +937,7 @@ These events directly correspond with a specific action or state change that has
 | [Channel Recipient Remove](#channel-recipient-remove)                                             | User was removed from a group DM channel                                                       |
 | [Console Command Update](#console-command-update)                                                 | Console command was updated                                                                    |
 | [Conversation Summary Update](#conversation-summary-update)                                       | Conversation summaries were updated for a text channel                                         |
+| [Creator Monetization Restrictions Update](#creator-monetization-restrictions-update)             | Guild creator monetization restrictions were updated                                           |
 | [DM Settings Upsell Show](#dm-settings-upsell-show)                                               | DM privacy settings upsell modal was triggered                                                 |
 | [Thread Create](#thread-create)                                                                   | Thread was created, also sent when being added to a private thread                             |
 | [Thread Update](#thread-update)                                                                   | Thread was updated                                                                             |
@@ -1778,6 +1779,17 @@ Sent when conversation summaries are updated for a text channel. Only new or upd
 | guild_id   | snowflake                                                                            | The ID of the guild                                |
 | channel_id | snowflake                                                                            | The ID of the text channel                         |
 | summaries  | array[[conversation summary](/resources/message#conversation-summary-object) object] | The updated conversation summaries for the channel |
+
+#### Creator Monetization Restrictions Update
+
+Sent when guild creator monetization restrictions are updated.
+
+###### Creator Monetization Restrictions Update
+
+| Field        | Type            | Description                                                                                        |
+| ------------ | --------------- | -------------------------------------------------------------------------------------------------- |
+| guild_id     | snowflake       | The ID of the guild                                                                                |
+| restrictions | ?array[integer] | The [restrictions to creator monetization](/resources/guild#creator-monetization-restriction-type) |
 
 #### DM Settings Upsell Show
 
@@ -9838,9 +9850,7 @@ Returns a list of [application assets](#application-asset-object) for the given 
   Upload Application Asset
 </RouteHeader>
 
-Creates attachment URLs to upload the intended attachments directly to Discord's GCP storage bucket. Returns an array of
-[cloud attachment](/resources/message#cloud-attachment-structure) objects. See [Uploading to Google
-Cloud](/reference#uploading-to-google-cloud) for more information.
+Creates attachment URLs to upload the intended attachments directly to Discord's GCP storage bucket. Returns an array of [cloud attachment](/topics/cloud-uploads#cloud-attachment-object) objects. See [Cloud Uploads](/topics/cloud-uploads) topic for more information.
 
 ###### JSON Params
 
@@ -11858,7 +11868,7 @@ A channel referenced in an [invite](/resources/invite#invite-object) or [message
 
 ^2^ The recipient objects contain the `id`, `username`, and `avatar` fields.
 
-^3^ Not present when the channel is fetched from an [invite](/resources/invite#invite-object), as it can be inferred from the `guild_id` field.
+^3^ Not present when the channel is fetched from an [invite](/resources/invite#invite-object) or [monetization store page](/resources/discovery#monetization-store-page-structure), as it can be inferred from the `guild_id` and `guild.id` fields respectively.
 
 ###### Channel Nick Structure
 
@@ -16680,19 +16690,19 @@ A guild's discovery settings.
 
 ###### Discovery Metadata Structure
 
-| Field                         | Type                                                          | Description                                                                                |
-| ----------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| guild_id                      | snowflake                                                     | The ID of the guild                                                                        |
-| primary_category_id           | integer                                                       | The ID of the primary [discovery category](#discovery-category-object) set for the guild   |
-| keywords                      | ?array[string]                                                | The discovery search keywords for the guild (max 30 characters, max 10)                    |
-| emoji_discoverability_enabled | boolean                                                       | Whether the guild is shown as a source through custom guild expressions                    |
-| partner_actioned_timestamp    | ?ISO8601 timestamp                                            | When the guild's partner application was actioned by an employee                           |
-| partner_application_timestamp | ?ISO8601 timestamp                                            | When the guild applied for partnership                                                     |
-| is_published                  | boolean                                                       | Whether the guild's landing web page is currently published                                |
-| reasons_to_join               | array[[discovery reason object](#discovery-reason-structure)] | The reasons to join the guild shown in the discovery web page (max 4)                      |
-| social_links                  | ?array[string]                                                | The guild's social media links shown in the discovery web page (max 256 characters, max 9) |
-| about                         | ?string                                                       | The guild's long description shown in the discovery web page (max 2400 characters)         |
-| category_ids                  | array[snowflake]                                              | The IDs of [discovery subcategories](#discovery-category-object) set for the guild (max 5) |
+| Field                         | Type                                                                 | Description                                                                                |
+| ----------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| guild_id                      | snowflake                                                            | The ID of the guild                                                                        |
+| primary_category_id           | integer                                                              | The ID of the primary [discovery category](#discovery-category-object) set for the guild   |
+| keywords                      | ?array[string]                                                       | The discovery search keywords for the guild (max 30 characters, max 10)                    |
+| emoji_discoverability_enabled | boolean                                                              | Whether the guild is shown as a source through custom guild expressions                    |
+| partner_actioned_timestamp    | ?ISO8601 timestamp                                                   | When the guild's partner application was actioned by an employee                           |
+| partner_application_timestamp | ?ISO8601 timestamp                                                   | When the guild applied for partnership                                                     |
+| is_published                  | boolean                                                              | Whether the guild's landing web page is currently published                                |
+| reasons_to_join               | array[[discovery reason object](#discovery-reason-structure) object] | The reasons to join the guild shown in the discovery web page (max 4)                      |
+| social_links                  | ?array[string]                                                       | The guild's social media links shown in the discovery web page (max 256 characters, max 9) |
+| about                         | ?string                                                              | The guild's long description shown in the discovery web page (max 2400 characters)         |
+| category_ids                  | array[snowflake]                                                     | The IDs of [discovery subcategories](#discovery-category-object) set for the guild (max 5) |
 
 ###### Discovery Reason Structure
 
@@ -17018,15 +17028,15 @@ If a guild has both a landing web page and a monetization store page, the store 
 
 ###### Store Page Role Subscription Structure
 
-| Field                | Type                                                               | Description                                                                                 |
-| -------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| settings             | role subscription settings object                                  | The guild's role subscription settings                                                      |
-| group_listings       | array[role subscription group listing object]                      | The guild's role subscription group listings                                                |
-| trials               | array[role subscription trial object]                              | The guild's role subscription trials                                                        |
-| subscriber_count     | ?integer                                                           | The number of subscribers to the guild's role subscriptions, if public                      |
-| benefit_channels     | array[partial [channel](/resources/channel#channel-object) object] | The channels that are unlocked by role subscriptions                                        |
-| benefit_emojis       | array[[emoji](/resources/emoji#emoji-object) object]               | The emoji that are unlocked by role subscriptions                                           |
-| purchase_page_invite | ?partial [invite](/resources/invite#invite-object) object          | A [special `ROLE_SUBSCRIPTIONS` invite](/resources/invite#invite-target-type) for the guild |
+| Field                | Type                                                                                                     | Description                                                                                 |
+| -------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| settings             | [role subscription settings](/resources/guild#role-subscription-settings-object) object                  | The guild's role subscription settings                                                      |
+| group_listings       | array[[role subscription group listing](/resources/guild#role-subscription-group-listing-object) object] | The guild's role subscription group listings                                                |
+| trials               | array[[role subscription trial](/resources/guild#role-subscription-trial-object) object]                 | The guild's role subscription trials                                                        |
+| subscriber_count     | ?integer                                                                                                 | The number of subscribers to the guild's role subscriptions, if public                      |
+| benefit_channels     | array[partial [channel](/resources/channel#channel-object) object]                                       | The channels that are unlocked by role subscriptions                                        |
+| benefit_emojis       | array[[emoji](/resources/emoji#emoji-object) object]                                                     | The emoji that are unlocked by role subscriptions                                           |
+| purchase_page_invite | ?partial [invite](/resources/invite#invite-object) object                                                | A [special `ROLE_SUBSCRIPTIONS` invite](/resources/invite#invite-target-type) for the guild |
 
 <RouteHeader method="GET" url="/discovery/categories" supportsBot>
   List Discovery Categories
@@ -22031,11 +22041,192 @@ Represents a member's premium guild subscription ([boost](https://support.discor
   "provider_url": "https://discord.shockbyte.com/server/6a7dd5e2-9e60-48fd-bb3c-6f7efc108db1",
   "provider_type": "shockbyte",
   "game_config": {
-    "version": "1.21.8"
-    "type": "Paper",
+    "version": "1.21.8",
+    "type": "Paper"
   }
 }
 ```
+
+### Role Subscription Settings Object
+
+###### Role Subscription Settings Structure
+
+| Field                                   | Type                                                      | Description                                                                                        |
+| --------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| guild_id                                | snowflake                                                 | The ID of the guild                                                                                |
+| full_server_gate                        | boolean                                                   | Whether the guild is fully gated behind a role subscription                                        |
+| description?                            | ?string                                                   | The description of the guild's shop                                                                |
+| server_shop_tab_order                   | integer                                                   | The [order of tabs in guild shop](#guild-product-shop-tabs-order-type)                             |
+| store_page_primary_color?               | ?integer                                                  | The store page accent color encoded as an integer representation of a hexadecimal color code       |
+| store_page_trailer_url?                 | ?string                                                   | The URL to the teaser trailer YouTube video                                                        |
+| store_page_show_subscriber_count?       | boolean                                                   | Whether to show amount of role subscribers on the store page                                       |
+| store_page_guild_products_default_sort? | integer                                                   | The default [sort order](#guild-product-sort-order-type) of the guild's products on the store page |
+| cover_image_asset?                      | [store asset](/resources/store#store-asset-object) object | The guild shop's cover image                                                                       |
+| store_page_slug ^1^                     | string                                                    | The store page's slug                                                                              |
+
+^1^ Store pages are accessible at `https://discord.com/servers/<slug>`.
+
+###### Guild Product Shop Tabs Order Type
+
+| Value | Name           | Description         |
+| ----- | -------------- | ------------------- |
+| 1     | SUBS_FIRST     | Subscriptions first |
+| 2     | PRODUCTS_FIRST | Products first      |
+| 3     | UNKNOWN_3      | Unknown             |
+
+###### Guild Product Sort Order Type
+
+| Value | Name            | Description                          |
+| ----- | --------------- | ------------------------------------ |
+| 1     | NAME            | Sort by name                         |
+| 2     | PRICE_ASC       | Sort by price in ascending order     |
+| 3     | PRICE_DESC      | Sort by price in descending order    |
+| 4     | NEWEST_ARRIVALS | Sort by creation in descending order |
+
+###### Example Role Subscriptions Settings
+
+```json
+{
+  "guild_id": "1029315212005888060",
+  "full_server_gate": false,
+  "description": "not the neller man",
+  "server_shop_tab_order": 2,
+  "store_page_primary_color": 5868359,
+  "store_page_trailer_url": "https://youtube.com/watch?v=LLFhKaqnWwkk",
+  "store_page_show_subscriber_count": true,
+  "store_page_guild_products_default_sort": 4,
+  "cover_image_asset": {
+    "id": "1118997969761489088",
+    "size": 248825,
+    "mime_type": "image/jpeg",
+    "width": 1600,
+    "height": 1344,
+    "application_id": "1050921725816213565"
+  },
+  "store_page_slug": "alien-network-1029315212005888060"
+}
+```
+
+### Guild Product Listing Object
+
+###### Guild Product Listing Structure
+
+| Field             | Type                                                             | Description                                                          |
+| ----------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------- |
+| id                | snowflake                                                        | The ID of the SKU                                                    |
+| application_id    | snowflake                                                        | The ID of the application                                            |
+| guild_id          | snowflake                                                        | The ID of the guild                                                  |
+| name              | string                                                           | The name of the product listing                                      |
+| description       | string                                                           | The description of the product listing                               |
+| image_asset       | ?[store asset](/resources/store#store-asset-object) object       | The thumbnail of the product listing                                 |
+| role_id           | snowflake                                                        | The ID of the role granted                                           |
+| published         | boolean                                                          | Whether the product listing is published                             |
+| has_entitlement   | boolean                                                          | Whether the current user has an entitlement for the product listing  |
+| attachments_count | integer                                                          | Number of attachments granted by the product listing                 |
+| published_at      | ISO8601 timestamp                                                | When the product listing was published at                            |
+| price_tier        | integer                                                          | The [base price](/resources/store#list-store-price-tiers) of the SKU |
+| attachments       | array[[attachment](/resources/message#attachment-object) object] | The attachments granted by the product listing                       |
+| price             | [unit price](/resources/payment#unit-price-structure) object     | The price for the product listing                                    |
+
+### Role Subscription Group Listing Object
+
+###### Role Subscription Group Listing Structure
+
+| Field                      | Type                                                                                            | Description                                       |
+| -------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| id                         | snowflake                                                                                       | The ID of the subscription group listing          |
+| guild_id                   | snowflake                                                                                       | The ID of the guild                               |
+| application_id             | snowflake                                                                                       | The ID of the application                         |
+| name                       | string                                                                                          | The name of the subscription group listing        |
+| description                | string                                                                                          | The description of the subscription group listing |
+| subscription_listings_ids? | array[snowflake]                                                                                | The IDs of the subscription listing SKUs          |
+| subscription_listings?     | array[[role subscription listing](#role-subscription-listing-object) object]                    | The subscription listings                         |
+| benefit_channels?          | array[[role subscription benefit channel](#role-subscription-benefit-channel-structure) object] | The benefits for the channel                      |
+
+###### Role Subscription Benefit Channel Structure
+
+| Field | Type      | Description             |
+| ----- | --------- | ----------------------- |
+| id    | snowflake | The ID of the channel   |
+| name  | string    | The name of the channel |
+
+### Role Subscription Listing Object
+
+###### Role Subscription Listing Structure
+
+| Field              | Type                                                                         | Description                                      |
+| ------------------ | ---------------------------------------------------------------------------- | ------------------------------------------------ |
+| id                 | snowflake                                                                    | The ID of the SKU                                |
+| guild_id           | snowflake                                                                    | The ID of the guild                              |
+| application_id     | snowflake                                                                    | The ID of the application                        |
+| name               | string                                                                       | The name of the subscription listing             |
+| description        | string                                                                       | The description of the subscription listing      |
+| image_asset        | [store asset](/resources/store#store-asset-object) object                    | The thumbnail of the subscription listing        |
+| subscription_plans | array[[subscription plan](/resources/store#subscription-plan-object) object] | The subscription plans for the listing           |
+| role_benefits      | [role subscription benefits](#role-subscription-benefits-structure) object   | The role benefits                                |
+| role_id            | snowflake                                                                    | The ID of the role given by the subscription     |
+| published          | boolean                                                                      | Whether the subscription listing is published    |
+| soft_deleted       | boolean                                                                      | Whether the subscription listing is soft deleted |
+| archived           | boolean                                                                      | Whether the subscription listing is archived     |
+
+###### Role Subscription Benefits Structure
+
+| Field    | Type                                                                            | Description              |
+| -------- | ------------------------------------------------------------------------------- | ------------------------ |
+| sku_id   | snowflake                                                                       | The ID of the SKU        |
+| benefits | array[[role subscription benefit](#role-subscription-benefit-structure) object] | The benefits of the role |
+
+###### Role Subscription Benefit Structure
+
+| Field          | Type       | Description                                              |
+| -------------- | ---------- | -------------------------------------------------------- |
+| emoji_id ^1^   | ?snowflake | The ID of a guild's custom emoji                         |
+| emoji_name ^1^ | ?string    | The unicode character of the emoji                       |
+| name           | string     | The name of the benefit                                  |
+| description    | string     | The description of the benefit                           |
+| ref_type       | integer    | The [type of reference](#role-subscription-benefit-type) |
+| ref_id         | ?snowflake | The ID of the referenced entity                          |
+
+^1^ At most one of `emoji_id` and `emoji_name` may be set to a non-null value.
+
+###### Role Subscription Benefit Type
+
+| Value | Name       | Description         | Reference Type                                      |
+| ----- | ---------- | ------------------- | --------------------------------------------------- |
+| 1     | CHANNEL    | Access to a channel | [channel](/resources/channel#channel-object) object |
+| 2     | INTANGIBLE | Intangible benefit  | —                                                   |
+
+### Role Subscription Trial Object
+
+###### Role Subscription Trial Structure
+
+| Field                      | Type                                                                           | Description                                          |
+| -------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------- |
+| id                         | snowflake                                                                      | The ID of the role subscription listing              |
+| num_active_trial_users     | integer                                                                        | Number of active users on the trial                  |
+| max_num_active_trial_users | ?integer                                                                       | Maximum number of possibly active users on the trial |
+| active_trial?              | [subscription trial](/resources/subscription#subscription-trial-object) object | The associated subscription trial                    |
+
+### Creator Monetization Request Object
+
+###### Creator Monetization Request Structure
+
+| Field              | Type               | Description                                                      |
+| ------------------ | ------------------ | ---------------------------------------------------------------- |
+| id                 | snowflake          | The ID of the creator monetization request                       |
+| state              | string             | The [state of application](#creator-monetization-request-state)  |
+| actioned_at        | ?ISO8601 timestamp | When the creator monetization request was actioned               |
+| requester_id       | snowflake          | The ID of the user that created the creator monetization request |
+| requester_acked_at | ISO8601 timestamp  | Unknown                                                          |
+
+###### Creator Monetization Request State
+
+| Value           | Description                 |
+| --------------- | --------------------------- |
+| OPEN            | The application is open     |
+| REJECTED        | The application is rejected |
+| APPROVED        | The application is approved |
+| ACTION_REQUIRED | Action required             |
 
 ## Endpoints
 
@@ -22165,6 +22356,12 @@ Returns a partial [guild](#guild-object) object for the given guild ID with all 
 </RouteHeader>
 
 Modifies a guild's settings. Requires the `MANAGE_GUILD` permission. Returns the updated [guild](#guild-object) object on success. Fires a [Guild Update](/gateway/gateway-events#guild-update) Gateway event.
+
+<Alert type="note">
+
+Upon transferring ownership of a guild with creator monetization enabled, the new owner will need to accept the terms before the feature can be used.
+
+</Alert>
 
 ###### JSON Params
 
@@ -23636,6 +23833,530 @@ Signs up the user for the student hub waitlist. The user will get an email and s
   "school": "discord"
 }
 ```
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/role-subscriptions/settings">
+  Get Guild Role Subscriptions Settings
+</RouteHeader>
+
+Returns a [role subscription settings](#role-subscription-settings-object) object for the given guild ID. User must be a member of the guild.
+
+<RouteHeader method="PATCH" url="/guilds/{guild.id}/role-subscriptions/settings">
+  Modify Guild Role Subscriptions Settings
+</RouteHeader>
+
+Modifies the guild's role subscription settings. Requires the `MANAGE_GUILD` permission. Returns a [role subscription settings](#role-subscription-settings-object) object on success.
+
+###### JSON Params
+
+| Field                                   | Type     | Description                                                                                        |
+| --------------------------------------- | -------- | -------------------------------------------------------------------------------------------------- |
+| full_server_gate?                       | boolean  | Whether the guild is fully gated behind a role subscription                                        |
+| description?                            | ?string  | The description of the guild's shop (max 1500 characters)                                          |
+| server_shop_tab_order?                  | integer  | The [order of tabs in guild shop](#guild-product-shop-tabs-order-type)                             |
+| store_page_enabled?                     | boolean  | Whether the store page should be enabled                                                           |
+| store_page_primary_color?               | ?integer | The store page accent color encoded as an integer representation of a hexadecimal color code       |
+| store_page_trailer_url?                 | ?string  | The URL to the teaser trailer YouTube video (max 8192 characters)                                  |
+| store_page_show_subscriber_count?       | boolean  | Whether to show amount of role subscribers on the store page                                       |
+| store_page_guild_products_default_sort? | integer  | The default [sort order](#guild-product-sort-order-type) of the guild's products on the store page |
+
+<RouteHeader method="POST" url="/guilds/{guild.id}/role-subscriptions/group-listings">
+  Create Guild Role Subscription Group Listing
+</RouteHeader>
+
+Creates a subscription group listing. Requires the `ADMINISTRATOR` permission. Accepts an empty object. Returns a [role subscription group listing](#role-subscription-group-listing-object) object on success.
+
+###### JSON Params
+
+| Field        | Type   | Description                                                             |
+| ------------ | ------ | ----------------------------------------------------------------------- |
+| description? | string | The description of the subscription group listing (max 1500 characters) |
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}">
+  Get Guild Role Subscription Group Listing
+</RouteHeader>
+
+Returns a partial [role subscription group listing](#role-subscription-group-listing-object) object without `subscription_listings` and `benefit_channels` fields for the given guild and subscription group listing ID.
+
+###### Query String Parameters
+
+| Field                          | Type    | Description                                                       |
+| ------------------------------ | ------- | ----------------------------------------------------------------- |
+| include_draft_listings? ^1^    | boolean | Whether to include drafted subscription listings (default false)  |
+| include_archived_listings? ^1^ | boolean | Whether to include archived subscription listings (default false) |
+
+^1^ Requires the `ADMINISTRATOR` permission.
+
+###### Example Response Body
+
+```json
+{
+  "id": "1005887530828320878",
+  "guild_id": "679875946597056683",
+  "application_id": "1004764183042211890",
+  "name": "Premium Membership Group",
+  "description": " ",
+  "subscription_listings_ids": ["1005887534900985896", "1031542675255603261", "1162013584243556412"]
+}
+```
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/role-subscriptions/group-listings">
+  List Guild Role Subscription Group Listings
+</RouteHeader>
+
+Returns an array of [role subscription group listing](#role-subscription-group-listing-object) objects for the given guild ID. User must be a member of the guild.
+
+###### Query String Parameters
+
+| Field                       | Type    | Description                                                                                    |
+| --------------------------- | ------- | ---------------------------------------------------------------------------------------------- |
+| include_draft_listings? ^1^ | boolean | Whether to include drafted subscription listings (default false)                               |
+| include_soft_deleted?       | boolean | Whether to include soft deleted subscription group listings (default false)                    |
+| country_code?               | string  | The user's [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code |
+
+^1^ Requires the `ADMINISTRATOR` permission.
+
+<RouteHeader method="PATCH" url="/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}">
+  Modify Guild Role Subscription Group Listing
+</RouteHeader>
+
+Modifies the guild role subscription group listing. Requires the `ADMINISTRATOR` permission. Returns the updated [role subscription group listing](#role-subscription-group-listing-object) object on success.
+
+###### JSON Params
+
+| Field        | Type   | Description                                                             |
+| ------------ | ------ | ----------------------------------------------------------------------- |
+| description? | string | The description of the subscription group listing (max 1500 characters) |
+
+<RouteHeader method="DELETE" url="/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}">
+  Delete Guild Role Subscription Group Listing
+</RouteHeader>
+
+Deletes the guild role subscription group listing. Requires the `ADMINISTRATOR` permission. Returns a 204 empty response on success.
+
+<RouteHeader
+  method="POST"
+  url="/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings"
+>
+  Create Guild Role Subscription Listing
+</RouteHeader>
+
+Creates the guild role subscription listing. Requires the `ADMINISTRATOR` permission. Returns a [role subscription listing](#role-subscription-listing-object) object on success.
+
+###### JSON Params
+
+| Field                    | Type                                                                            | Description                                                                                |
+| ------------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| name                     | string                                                                          | The name of the subscription listing (1-100 characters)                                    |
+| description              | string                                                                          | The description of the subscription listing (1-1500 characters)                            |
+| image                    | [image data](/reference#cdn-data)                                               | The thumbnail of the subscription listing                                                  |
+| price_tier               | integer                                                                         | The [base price](/resources/store#list-store-price-tiers) of the SKU                       |
+| benefits                 | array[[role subscription benefit](#role-subscription-benefit-structure) object] | The benefits of the role                                                                   |
+| can_access_all_channels? | boolean                                                                         | Whether purchasing the subscription listing will grant access to the guild (default false) |
+
+<RouteHeader
+  method="PATCH"
+  url="/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings/{subscription_listing.id}"
+>
+  Modify Guild Role Subscription Listing
+</RouteHeader>
+
+Modifies the guild role subscription listing. Requires the `ADMINISTRATOR` permission. Returns an updated [role subscription listing](#role-subscription-listing-object) object on success.
+
+###### JSON Params
+
+| Field                    | Type                                                                            | Description                                                                |
+| ------------------------ | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| name?                    | string                                                                          | The name of the subscription listing                                       |
+| description?             | string                                                                          | The description of the subscription listing                                |
+| image?                   | ?[image data](/reference#cdn-data)                                              | The thumbnail of the subscription listing                                  |
+| price_tier?              | integer                                                                         | The [base price](/resources/store#list-store-price-tiers) of the SKU       |
+| benefits?                | array[[role subscription benefit](#role-subscription-benefit-structure) object] | The benefits of the role                                                   |
+| can_access_all_channels? | boolean                                                                         | Whether purchasing the subscription listing will grant access to the guild |
+
+<RouteHeader
+  method="DELETE"
+  url="/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings/{subscription_listing.id}"
+>
+  Delete Guild Role Subscription Listing
+</RouteHeader>
+
+Deletes the guild role subscription listing. Requires the `ADMINISTRATOR` permission. Returns a 204 empty response on success.
+
+<RouteHeader
+  method="POST"
+  url="/guilds/{guild.id}/role-subscriptions/group-listings/{subscription_group_listing.id}/subscription-listings/{subscription_listing.id}/archive"
+>
+  Archive Guild Role Subscription Listing
+</RouteHeader>
+
+Archives the subscription group listing. Requires the `ADMINISTRATOR` permission. Returns a 204 empty response on success.
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/role-subscriptions/trials">
+  List Guild Role Subscription Trials
+</RouteHeader>
+
+Returns an array of [role subscription trial](#role-subscription-trial-object) objects for the given guild ID.
+
+<RouteHeader
+  method="PATCH"
+  url="/guilds/{guild.id}/role-subscriptions/subscription-listings/{subscription_listing.id}/trial"
+>
+  Modify Guild Role Subscription Listing Trial
+</RouteHeader>
+
+Modifies the subscription listing's trial information. Returns a 204 empty response.
+
+###### JSON Params
+
+| Field                       | Type                                                                                   | Description                                                   |
+| --------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| trial?                      | partial [subscription trial](/resources/subscription#subscription-trial-object) object | The subscription trial's interval information                 |
+| max_num_active_trial_users? | ?integer                                                                               | Maximum number of possibly active users of the trial (10-100) |
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/role-subscriptions/templates">
+  List Guild Role Subscription Listing Templates
+</RouteHeader>
+
+Returns the guild role subscription listing templates, used as placeholders to help guide role subscription creation.
+
+###### Response Body
+
+| Field     | Type                                                                                              | Description   |
+| --------- | ------------------------------------------------------------------------------------------------- | ------------- |
+| templates | array[[role subscription listing template](#role-subscription-listing-template-structure) object] | The templates |
+
+###### Role Subscription Listing Template Structure
+
+| Field                                 | Type                                                                                              | Description                                       |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| category                              | string                                                                                            | The category name                                 |
+| category_image                        | string                                                                                            | The CDN URL to the default category image         |
+| unselected_dark_theme_category_image  | string                                                                                            | The CDN URL to the category image for dark theme  |
+| unselected_light_theme_category_image | string                                                                                            | The CDN URL to the category image for light theme |
+| listings                              | array[[template role subscription listing](#template-role-subscription-listing-structure) object] | The template listings                             |
+
+###### Template Role Subscription Listing Structure
+
+| Field            | Type                                                                                                              | Description                                                                                        |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| name             | string                                                                                                            | The name of the subscription listing                                                               |
+| description      | string                                                                                                            | The description of the subscription listing                                                        |
+| price_tier       | integer                                                                                                           | The [base price](/resources/store#list-store-price-tiers) of the SKU                               |
+| image            | [image data](/reference#cdn-data)                                                                                 | The thumbnail of the subscription listing                                                          |
+| role_color       | integer                                                                                                           | The primary color of the role represented as an integer representation of a hexadecimal color code |
+| channels         | array[[template role subscription listing channel](#template-role-subscription-listing-channel-structure) object] | The channels available to the role                                                                 |
+| additional_perks | array[[role subscription benefit](#role-subscription-benefit-structure) object]                                   | The additional perks of the role                                                                   |
+
+###### Template Role Subscription Listing Channel Structure
+
+| Field       | Type      | Description                                            |
+| ----------- | --------- | ------------------------------------------------------ |
+| id          | snowflake | The ID of the channel                                  |
+| type        | integer   | The [type of channel](/resources/channel#channel-type) |
+| name        | string    | The name of the channel                                |
+| tagline     | string    | The tagline of the channel                             |
+| description | string    | The topic of the channel                               |
+| topic       | string    | The topic of the channel                               |
+| emoji_name  | string    | The unicode character of the emoji                     |
+
+###### Example Role Subscription Listing Template
+
+```json
+{
+  "category": "Supporter",
+  "category_image": "https://cdn.discordapp.com/assets/server-subscription-tier-template/Supporter.png",
+  "unselected_dark_theme_category_image": "https://cdn.discordapp.com/assets/server-subscription-tier-template/Supporter_unselected_dark_theme.png",
+  "unselected_light_theme_category_image": "https://cdn.discordapp.com/assets/server-subscription-tier-template/Supporter_unselected_light_theme.png",
+  "listings": [
+    {
+      "name": "Supporter",
+      "description": "Join the Supporters! Subscribe now for exclusive chats to meet and mingle with other subscribers.",
+      "image": "data:image/png;base64,i...",
+      "price_tier": 399,
+      "channels": [
+        {
+          "id": "1087447734891315201",
+          "type": 5,
+          "name": "supporter-updates",
+          "tagline": "Share the latest news!",
+          "description": "Get notified about streams, events, and more.",
+          "topic": "Get notified about streams, events, and more.",
+          "emoji_name": "📢"
+        },
+        {
+          "id": "1087447734891315202",
+          "type": 0,
+          "name": "supporter-chat",
+          "tagline": "A special chat just for fans.",
+          "description": "Meet, mix, and mingle with fellow supporters.",
+          "topic": "Meet, mix, and mingle with fellow supporters.",
+          "emoji_name": "⭐"
+        }
+      ],
+      "additional_perks": [
+        {
+          "emoji_id": null,
+          "emoji_name": "⭐",
+          "name": "Supporter-Only Chats",
+          "description": "Hangout with other supporters in exclusive spaces.",
+          "ref_type": 2,
+          "ref_id": null
+        }
+      ],
+      "role_color": 9369855
+    }
+  ]
+}
+```
+
+<RouteHeader
+  method="GET"
+  url="/guilds/{guild.id}/role-subscriptions/subscription-listings/{subscription_listing.id}/trial/{subscription_trial.id}/eligibility"
+>
+  Get Guild Role Subscription Listing Trial Eligibility
+</RouteHeader>
+
+Returns whether the current user is eligible for a role subscription listing trial.
+
+###### Response Body
+
+| Field       | Type    | Description                          |
+| ----------- | ------- | ------------------------------------ |
+| is_eligible | boolean | Whether the current user is eligible |
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/creator-monetization/requirements">
+  Get Creator Monetization Eligibility
+</RouteHeader>
+
+Returns the creator monetization eligibility for the guild. User must be the owner.
+
+###### Response Body
+
+| Field                       | Type                                                                                         | Description                                                                                            |
+| --------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| guild_id                    | snowflake                                                                                    | The ID of the guild                                                                                    |
+| can_apply?                  | boolean                                                                                      | Whether the guild meets the requirements to apply for creator monetization                             |
+| sufficient?                 | boolean                                                                                      | Whether the guild meets the requirements to use creator monetization                                   |
+| country?                    | boolean                                                                                      | Whether the guild owner is in a country eligible for creator monetization                              |
+| mfa?                        | boolean                                                                                      | Whether the guild has the [MFA requirement for moderation actions](/resources/guild#mfa-level) enabled |
+| size?                       | boolean                                                                                      | Whether the guild meets the minimum member count requirement                                           |
+| safe_environment?           | boolean                                                                                      | Whether the guild has not been flagged by Trust & Safety                                               |
+| health_score?               | ?[discovery health score](/resources/discovery#discovery-health-score-structure) object      | The guild's activity metrics                                                                           |
+| health_score_pending?       | boolean                                                                                      | Whether the guild's activity metrics have not yet been calculated                                      |
+| nsfw_properties?            | [discovery NSFW properties](/resources/discovery#discovery-nsfw-properties-structure) object | Disallowed terms found in the guild's name, description, and channel names                             |
+| retention_healthy?          | boolean                                                                                      | Whether the guild meets the new member retention requirement                                           |
+| engagement_healthy?         | boolean                                                                                      | Whether the guild meets the weekly visitor and communicator requirements                               |
+| age?                        | boolean                                                                                      | Whether the guild meets the minimum age requirement                                                    |
+| owner_age?                  | boolean                                                                                      | Whether the guild owner meets the minimum legal age requirement                                        |
+| minimum_age_in_days?        | ?integer                                                                                     | The minimum guild age requirement (in days)                                                            |
+| minimum_owner_age_in_years? | ?integer                                                                                     | The minimum guild owner legal age requirement (in years)                                               |
+| minimum_size?               | ?integer                                                                                     | The minimum guild member count requirement                                                             |
+| latest_request?             | [creator monetization request](#creator-monetization-request-object) object                  | The latest request to enable creator monetization                                                      |
+| rejection?                  | [creator monetization rejection](#creator-monetization-rejection-structure) object           | The information about the latest application rejection                                                 |
+
+###### Creator Monetization Rejection Structure
+
+| Field           | Type               | Description                                 |
+| --------------- | ------------------ | ------------------------------------------- |
+| can_reapply_at? | ?ISO8601 timestamp | When the guild can reapply for monetization |
+
+<RouteHeader method="POST" url="/guilds/{guild.id}/creator-monetization/enable-requests">
+  Create Creator Monetization Enable Request
+</RouteHeader>
+
+Creates a request to enable access to guild monetization features. User must be the owner. Returns a 204 empty response on success.
+
+<RouteHeader
+  method="POST"
+  url="/guilds/{guild.id}/creator-monetization/enable-requests/{creator_monetization_request.id}/accept-terms"
+  deprecated
+>
+  Accept Creator Monetization Enable Request Terms
+</RouteHeader>
+
+Accepts the guild monetization terms of use for the given enable request. User must be the owner. Returns a 204 empty response on success. Fires a [Guild Update](/gateway/gateway-events#guild-update) Gateway event.
+
+<Alert type="warn">
+
+This endpoint is deprecated. It is replaced by [Accept Creator Monetization Terms](#accept-creator-monetization-terms).
+
+</Alert>
+
+<RouteHeader method="POST" url="/guilds/{guild.id}/creator-monetization/accept-terms">
+  Accept Creator Monetization Terms
+</RouteHeader>
+
+Accepts the guild monetization terms of use. User must be the owner. Returns a 204 empty response on success. Fires a [Guild Update](/gateway/gateway-events#guild-update) Gateway event.
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/creator-monetization/restrictions">
+  Get Creator Monetization Restrictions
+</RouteHeader>
+
+Returns the currently active restrictions to creator monetization.
+
+###### Response Body
+
+| Field        | Type            | Description                                                                        |
+| ------------ | --------------- | ---------------------------------------------------------------------------------- |
+| restrictions | ?array[integer] | The [restrictions to creator monetization](#creator-monetization-restriction-type) |
+
+###### Creator Monetization Restriction Type
+
+| Value                               | Description                                                |
+| ----------------------------------- | ---------------------------------------------------------- |
+| NEW_PURCHASES_DISABLED              | New purchases are disabled                                 |
+| REAPPLICATION_DISABLED              | Creator cannot reapply                                     |
+| SETTINGS_READ_ONLY                  | The settings are read-only                                 |
+| SUBSCRIPTIONS_ENDED_FULL_REFUND     | Subscriptions are cancelled and a full refund is given     |
+| SUBSCRIPTIONS_ENDED_PRORATED_REFUND | Subscriptions are cancelled and a prorated refund is given |
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/creator-monetization/marketing/onboarding">
+  Get Creator Monetization Marketing Onboarding
+</RouteHeader>
+
+Returns the marketing onboarding for monetization.
+
+###### Response Body
+
+| Field    | Type                                                                                                                            | Description  |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| sections | array[[creator monetization marketing onboarding section](#creator-monetization-marketing-onboarding-section-structure) object] | The sections |
+
+###### Creator Monetization Marketing Onboarding Section Structure
+
+| Field         | Type                                                                                                                                          | Description                                                                    |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| type          | string                                                                                                                                        | The [type of section](#creator-monetization-marketing-onboarding-section-type) |
+| creators? ^1^ | array[[creator monetization marketing onboarding section review](#creator-monetization-marketing-onboarding-section-review-structure) object] | The reviews from other creators                                                |
+
+^1^ Only present if `type` is [`OTHER_CREATORS`](#creator-monetization-marketing-onboarding-section-type).
+
+###### Creator Monetization Marketing Onboarding Section Review Structure
+
+| Field                   | Type      | Description                          |
+| ----------------------- | --------- | ------------------------------------ |
+| guild_id                | snowflake | The ID of the guild                  |
+| quote                   | string    | The contents of the creator's review |
+| quote_attribution       | string    | The name of the creator              |
+| quote_attribution_title | string    | The role of the creator              |
+
+###### Creator Monetization Marketing Onboarding Section Type
+
+| Value          | Description                     |
+| -------------- | ------------------------------- |
+| HOW_IT_WORKS   | Section explaining how it works |
+| BENEFITS       | Benefits section                |
+| OTHER_CREATORS | Section with other creators     |
+
+<RouteHeader method="POST" url="/guilds/{guild.id}/creator-monetization/ownership-transfer/onboarding">
+  Update Creator Monetization Team
+</RouteHeader>
+
+Transfers ownership of the guild's internal creator monetization application to a [team](/resources/team). User must be the owner of the current team.
+
+###### JSON Params
+
+| Field   | Type      | Description                                 |
+| ------- | --------- | ------------------------------------------- |
+| team_id | snowflake | The ID of the team to transfer ownership to |
+
+###### Response Body
+
+| Field       | Type                                                                    | Description                          |
+| ----------- | ----------------------------------------------------------------------- | ------------------------------------ |
+| application | partial [application](/resources/application#application-object) object | The application that got transferred |
+
+<RouteHeader method="POST" url="/guilds/{guild.id}/creator-monetization/accept-new-terms-demonetized">
+  Accept Creator Monetization New Terms Demonetized
+</RouteHeader>
+
+Accepts the guild monetization terms of use after getting demonetized. User must be the owner. Returns a 204 empty response on success. Fires a [Guild Update](/gateway/gateway-events#guild-update) Gateway event.
+
+<RouteHeader method="POST" url="/guilds/{guild.id}/creator-monetization/remove-monetization">
+  Remove Creator Monetization
+</RouteHeader>
+
+Removes the guild's access to monetization features. Accepts an empty object. User must be the owner. Returns a 204 empty response on succses. Fires a [Guild Update](/gateway/gateway-events#guild-update) Gateway event.
+
+<RouteHeader method="POST" url="/guilds/{guild.id}/products" supportsBot>
+  Create Guild Product Listing
+</RouteHeader>
+
+Creates a guild product listing. Requires the `ADMINISTRATOR` permission. Returns a [guild product listing](#guild-product-listing-object) object on success.
+
+###### JSON Params
+
+| Field            | Type                                                                     | Description                                                              |
+| ---------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| name             | string                                                                   | The name of the product listing (1-100 characters)                       |
+| description?     | string                                                                   | The description of the product listing (max 1500 characters)             |
+| price_tier?      | integer                                                                  | The [base price](/resources/store#list-store-price-tiers) of the SKU     |
+| create_new_role? | boolean                                                                  | Whether to create a managed role for the product listing (default false) |
+| image            | [image data](/reference#cdn-data)                                        | The thumbnail of the product listing                                     |
+| image_name       | string                                                                   | The name of the thumbnail image (max 100 characters)                     |
+| attachments? ^1^ | array[partial [attachment](/resources/message#attachment-object) object] | The attachments to grant                                                 |
+
+^1^ See [Uploading Files](/reference#uploading-files) for details. The attachments must be uploaded through the [Create Guild Product Attachments](/topics/cloud-uploads#create-guild-product-attachments) endpoint.
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/products/listings">
+  List Guild Product Listings
+</RouteHeader>
+
+Returns the product listings for the given guild ID. User must be a member of the guild.
+
+###### Response Body
+
+| Field    | Type                                                                 | Description                        |
+| -------- | -------------------------------------------------------------------- | ---------------------------------- |
+| listings | array[[guild product listing](#guild-product-listing-object) object] | The product listings for the guild |
+
+<RouteHeader method="GET" url="/guilds/{guild.id}/products/listings/{product_listing.id}">
+  Get Guild Product Listing
+</RouteHeader>
+
+Returns a [guild product listing](#guild-product-listing-object) object for the given guild and product listing ID.
+
+<RouteHeader method="PATCH" url="/guilds/{guild.id}/products/listings/{product_listing.id}">
+  Modify Guild Product Listing
+</RouteHeader>
+
+Modifies the guild product listing. Requires the `ADMINISTRATOR` permission. Returns a [guild product listing](#guild-product-listing-object) object on success.
+
+###### JSON Params
+
+| Field            | Type                                                                     | Description                                                                             |
+| ---------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| name?            | string                                                                   | The name of the product listing (1-100 characters)                                      |
+| description?     | string                                                                   | The description of the product listing (max 1500 characters)                            |
+| price_tier?      | integer                                                                  | The [base price](/resources/store#list-store-price-tiers) of the SKU                    |
+| create_new_role? | boolean                                                                  | Whether to create a managed role for the product listing                                |
+| image?           | ?[image data](/reference#cdn-data)                                       | The thumbnail of the product listing                                                    |
+| image_name?      | string                                                                   | The name of the thumbnail image (max 100 characters)                                    |
+| unlink_role?     | boolean                                                                  | Whether to unlink the currently-managed role, allowing it to be deleted (default false) |
+| attachments? ^1^ | array[partial [attachment](/resources/message#attachment-object) object] | The attachments to grant                                                                |
+
+^1^ See [Uploading Files](/reference#uploading-files) for details. The attachments must be uploaded through the [Create Guild Product Attachments](/topics/cloud-uploads#create-guild-product-attachments) endpoint.
+
+<RouteHeader method="DELETE" url="/guilds/{guild.id}/products/listings/{product_listing.id}">
+  Delete Guild Product Listing
+</RouteHeader>
+
+Deletes the guild product listing. Requires the `ADMINISTRATOR` permission. Returns a 204 empty response on success.
+
+<RouteHeader
+  method="POST"
+  url="/guilds/{guild.id}/products/listings/{product_listing.id}/attachments/{attachment.id}/download"
+>
+  Get Guild Product Listing Attachment URL
+</RouteHeader>
+
+Returns a URL to the attachment for the given guild and product ID. Requires an entitlement to the product or the `ADMINISTRATOR` permission.
+
+###### Response Body
+
+| Field | Type   | Description               |
+| ----- | ------ | ------------------------- |
+| url   | string | The URL to the attachment |
 
 
 ----- discord-userdoccers/pages/resources/integration.mdx -----
@@ -25737,7 +26458,7 @@ Most embed types are "loosely defined" and, for the most part, are not used by c
 
 <Alert type="info">
 
-When sending/editing messages, only `id` is required. `filename` is also required when [uploading to Google Cloud](/reference#uploading-to-google-cloud).
+When sending/editing messages, only `id` is required. `filename` is also required when [uploading to Google Cloud](/topics/cloud-uploads).
 
 </Alert>
 
@@ -25775,7 +26496,7 @@ When sending/editing messages, only `id` is required. `filename` is also require
 
 ^2^ These fields are received only and cannot be set.
 
-^3^ This field is send-only. See [uploading to Google Cloud](/reference#uploading-to-google-cloud) for more information.
+^3^ This field is send-only. See [Cloud Uploads](/topics/cloud-uploads) topic for more information.
 
 ^4^ The proxy URL only supports attachments with a defined `width` and `height`, such as images and videos. For all other attachments, the proxy returns a 415 unsupported media type error.
 
@@ -26788,7 +27509,7 @@ Note that when sending a message, you must provide a value for **at least one of
 | shared_client_theme? | [shared client theme](#shared-client-theme-object) object                 | A shared client theme                                                                                                                                                        |
 | with_checkpoint?     | boolean                                                                   | Whether to send a [checkpoint card](/resources/components#checkpoint-card) component (default false)                                                                         |
 
-^1^ See [Uploading Files](/reference#uploading-files) for details.
+^1^ See [Uploading Files](/reference#uploading-files) for details. The attachments must be uploaded through the [Create Message Attachments](/topics/cloud-uploads#create-message-attachments) endpoint.
 
 ^2^ Cannot be used by user accounts.
 
@@ -26855,97 +27576,6 @@ Posts a greet message to a channel. This endpoint requires the channel is a DM c
 | sticker_ids        | array[snowflake]                                         | IDs of up to 1 [sticker](/resources/sticker#sticker-object) to send in the message |
 | allowed_mentions?  | [allowed mention](#allowed-mentions-object) object       | Allowed mentions for the message                                                   |
 | message_reference? | [message reference](#message-reference-structure) object | The message being replied to                                                       |
-
-<RouteHeader method="POST" url="/channels/{channel.id}/attachments" supportsBot>
-  Create Attachments
-</RouteHeader>
-
-Creates attachment URLs to upload the intended attachments directly to Discord's GCP storage bucket. Returns an array of [cloud attachment](#cloud-attachment-structure) objects. Requires the same permissions as uploading an attachment inline with a message. See [Uploading to Google Cloud](/reference#uploading-to-google-cloud) for more information.
-
-###### JSON Params
-
-| Field | Type                                                            | Description                                                               |
-| ----- | --------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| files | array[[upload attachment](#upload-attachment-structure) object] | The target files to create a URL for, containing the name and size (1-10) |
-
-###### Upload Attachment Structure
-
-| Field        | Type       | Description                                                                                                                              |
-| ------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| id?          | ?snowflake | The ID of the attachment to reference in the response                                                                                    |
-| filename     | string     | The name of the file being uploaded                                                                                                      |
-| file_size    | integer    | The size of the file being uploaded in bytes                                                                                             |
-| is_clip? ^1^ | boolean    | Whether the file being uploaded is a [clipped recording of a stream](https://support.discord.com/hc/en-us/articles/16861982215703-Clips) |
-
-^1^ When uploading a clip, an increased default file size limit of **100 MiB** applies.
-
-###### Cloud Attachment Structure
-
-| Field           | Type       | Description                                                 |
-| --------------- | ---------- | ----------------------------------------------------------- |
-| id              | ?snowflake | The ID of the attachment upload, if provided in the request |
-| upload_url      | string     | The URL to upload the file to                               |
-| upload_filename | string     | The name of the uploaded file                               |
-
-###### Example Response
-
-```json
-{
-  "attachments": [
-    {
-      "id": "23",
-      "upload_url": "https://discord-attachments-uploads-prd.storage.googleapis.com/87e49c99-43f8-4a33-baad-5a834c94424c/cat.png?upload_id=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-      "upload_filename": "87e49c99-43f8-4a33-baad-5a834c94424c/cat.png"
-    }
-  ]
-}
-```
-
-<RouteHeader method="DELETE" url="/attachments/{cloud_attachment.upload_filename}" supportsBot>
-  Delete Attachment
-</RouteHeader>
-
-Deletes an attachment from Discord's GCP storage bucket. Returns a 204 empty response on success.
-
-This endpoint should be used to delete an uploaded attachment that was not used. See [Uploading to Google Cloud](/reference#uploading-to-google-cloud) for more information.
-
-<RouteHeader method="POST" url="/attachments/refresh-urls" supportsBot>
-  Refresh Attachment URLs
-</RouteHeader>
-
-Refreshes the URLs of attachments that were uploaded to Discord's CDN. The provided URLs do not have to be valid or signed. Existing query string parameters are preserved.
-
-###### JSON Params
-
-| Field           | Type          | Description                                   |
-| --------------- | ------------- | --------------------------------------------- |
-| attachment_urls | array[string] | The URLs of the attachments to refresh (1-50) |
-
-###### Response Body
-
-| Field          | Type                                                                  | Description        |
-| -------------- | --------------------------------------------------------------------- | ------------------ |
-| refreshed_urls | array[[refreshed attachment](#refreshed-attachment-structure) object] | The refreshed URLs |
-
-###### Refreshed Attachment Structure
-
-| Field     | Type   | Description       |
-| --------- | ------ | ----------------- |
-| original  | string | The provided URL  |
-| refreshed | string | The refreshed URL |
-
-###### Example Response
-
-```json
-{
-  "refreshed_urls": [
-    {
-      "original": "https://cdn.discordapp.com/attachments/1012345678900020080/1234567891233211234/my_image.png?ex=65d903de&is=65c68ede&hm=2481f30dd67f503f54d020ae3b5533b9987fae4e55f2b4e3926e08a3fa3ee24f&",
-      "refreshed": "https://cdn.discordapp.com/attachments/1012345678900020080/1234567891233211234/my_image.png?ex=66143372&is=6601be72&hm=5a90a0ac363d9de3619044102ffe963041517f0e2f78baecabfc2f544a14eace&"
-    }
-  ]
-}
-```
 
 <RouteHeader method="PATCH" url="/channels/{channel.id}/explicit-media" supportsBot>
   Scan Explicit Media
@@ -27162,7 +27792,7 @@ Messages older than 1 hour may only be edited 3 times per 6-second window per ch
 | files[n] ^1^      | ?file contents                                                             | Contents of the file being sent                                                                |
 | attachments ^1^   | ?array[partial [attachment](#attachment-object) object]                    | Partial attachment objects with `filename` and `description`, including attached files to keep |
 
-^1^ See [Uploading Files](/reference#uploading-files) for details.
+^1^ See [Uploading Files](/reference#uploading-files) for details. The attachments must be uploaded through the [Create Message Attachments](/topics/cloud-uploads#create-message-attachments) endpoint.
 
 ^2^ Cannot be used by user accounts.
 
@@ -31928,7 +32558,7 @@ An image or video associated with a store resource.
 
 ^1^ Only included when fetched from the [List Application Store Assets](#list-application-store-assets) or [Create Application Store Asset](#create-application-store-asset) endpoints.
 
-^2^ Only included when fetched from the [List Games](/resources/game#list-games) endpoint.
+^2^ Only included when fetched from the [List Games](/resources/game#list-games) or [Get Guild Role Subscriptions Settings](/resources/guild#get-guild-role-subscriptions-settings) endpoints.
 
 ###### Example Store Asset
 
@@ -32316,7 +32946,7 @@ Creates a new store listing. Returns the created [store listing](#store-listing-
 | header_background_asset_id?       | snowflake                                                            | The store asset ID for the header background                             |
 | header_logo_dark_theme_asset_id?  | snowflake                                                            | The store asset ID for the dark theme header logo of the listing         |
 | header_logo_light_theme_asset_id? | snowflake                                                            | The store asset ID for the light theme header logo of the listing        |
-| box_art_asset_id?                 | snowflake                                                            |
+| box_art_asset_id?                 | snowflake                                                            | The store asset ID for the box art of the listing                        |
 | hero_background_asset_id?         | snowflake                                                            | The store asset ID for the hero background of the listing                |
 | hero_video_asset_id?              | snowflake                                                            | The store asset ID for the hero video of the listing                     |
 
@@ -32359,7 +32989,7 @@ Modifies an existing store listing. Returns the modified [store listing](#store-
 | summary?                          | [localized string](/reference#localized-string)                      | A summary of the listing (1-1024 characters)                             |
 | description?                      | [localized string](/reference#localized-string)                      | A description of the listing (1-8192 characters)                         |
 | tagline?                          | [localized string](/reference#localized-string)                      | A tagline for the listing (max 1024 characters)                          |
-| published?                        | boolean                                                              | Whether the listing is published (default false)                         |
+| published?                        | boolean                                                              | Whether the listing is published                                         |
 | carousel_items? ^1^               | ?array[[store carousel item](#store-carousel-item-structure) object] | The carousel items for the listing                                       |
 | guild_id?                         | snowflake                                                            | The ID of the public guild associated with the listing                   |
 | thumbnail_asset_id?               | snowflake                                                            | The store asset ID for the thumbnail of the listing                      |
@@ -32367,7 +32997,7 @@ Modifies an existing store listing. Returns the modified [store listing](#store-
 | header_background_asset_id?       | snowflake                                                            | The store asset ID for the header background                             |
 | header_logo_dark_theme_asset_id?  | snowflake                                                            | The store asset ID for the dark theme header logo of the listing         |
 | header_logo_light_theme_asset_id? | snowflake                                                            | The store asset ID for the light theme header logo of the listing        |
-| box_art_asset_id?                 | snowflake                                                            |
+| box_art_asset_id?                 | snowflake                                                            | The store asset ID for the box art of the listing                        |
 | hero_background_asset_id?         | snowflake                                                            | The store asset ID for the hero background of the listing                |
 | hero_video_asset_id?              | snowflake                                                            | The store asset ID for the hero video of the listing                     |
 
@@ -32486,6 +33116,38 @@ Returns a list of published [subscription plan](#subscription-plan-object) objec
 | payment_source_id?       | snowflake        | The ID of the payment source to get prices for                                          |
 
 ^1^ To access unpublished subscription plans, the user must own the SKUs' application or be a member of the owning team.
+
+<RouteHeader method="GET" url="/subscription-plans/{subscription_plan.id}/subscription-group-listing">
+  Get Subscription Group Listing By Subscription Plan
+</RouteHeader>
+
+Returns the information about the role subscription group for the given subscription plan ID.
+
+###### Response Body
+
+| Field                     | Type                                                                  | Description                            |
+| ------------------------- | --------------------------------------------------------------------- | -------------------------------------- |
+| id                        | snowflake                                                             | The ID of the store listing            |
+| application_id            | ?snowflake                                                            | The ID of the application              |
+| sku_flags                 | integer                                                               | The [SKU flags](#sku-flags)            |
+| published                 | boolean                                                               | Whether the store listing is published |
+| name?                     | string                                                                | The name of the SKU                    |
+| description?              | string                                                                | The description of the SKU             |
+| subscription_listings_ids | array[snowflake]                                                      | The IDs of the subscription listings   |
+| subscription_listings     | array[[subscription listing](#subscription-listing-structure) object] | The subscription listings              |
+
+###### Subscription Listing Structure
+
+| Field                  | Type                                                                     | Description                            |
+| ---------------------- | ------------------------------------------------------------------------ | -------------------------------------- |
+| id                     | snowflake                                                                | The ID of the SKU                      |
+| application_id         | ?snowflake                                                               | The ID of the application              |
+| published              | boolean                                                                  | Whether the listing is published       |
+| soft_deleted           | boolean                                                                  | Whether the listing is soft-deleted    |
+| sku_flags              | integer                                                                  | The [SKU flags](#sku-flags)            |
+| image_asset?           | [store asset](#store-asset-object) object                                | The thumbnail for the listing          |
+| subscription_plans     | array[[subscription plan](#subscription-plan-object) object]             | The subscription plans for the listing |
+| store_listing_benefits | ?array[[store listing benefit](#store-listing-benefit-structure) object] | The benefits of the listing            |
 
 <RouteHeader method="GET" url="/store/skus/{sku.id}/purchase">
   Get SKU Purchase Preview
@@ -33115,6 +33777,13 @@ Subscriptions in Discord represent an user making recurring payments for at leas
 | interval       | integer   | The [interval](/resources/store#subscription-interval) of the trial plan |
 | interval_count | integer   | The number of intervals included in the trial                            |
 | sku_id         | snowflake | The ID of the SKU the trial is for                                       |
+
+###### Partial Subscription Trial Structure
+
+| Field          | Type    | Description                                                              |
+| -------------- | ------- | ------------------------------------------------------------------------ |
+| interval       | integer | The [interval](/resources/store#subscription-interval) of the trial plan |
+| interval_count | integer | The number of intervals included in the trial                            |
 
 ###### Example Subscription Trial
 
@@ -39264,6 +39933,187 @@ Note that the rehosted version is proxied, so error responses are different, and
 ```
 
 
+----- discord-userdoccers/pages/topics/cloud-uploads.mdx -----
+# Cloud Uploads
+
+You can upload large attachments quickly directly to Discord's Google Cloud storage bucket, using the [endpoints below](#endpoints) to generate upload URLs, and sending each generated URL a `PUT` request with the intended attachment as the body.
+
+This allows you to upload up a file up to **500 MiB** directly to Google Cloud. Note that [file size limits](/reference#uploading-files) will still apply when sending the attachment in a message.
+
+An example implementation in Python pseudocode would be:
+
+```py
+import requests
+import os
+
+url = "https://discord.com/api/v10/channels/<channel_id>/attachments"
+
+headers = {
+    "Authorization": "Bot <bot_token>"
+}
+
+filename = "cat.png"
+size = os.stat(filename).st_size
+
+json = {
+    "files": [{
+        "file_size": size,
+        "filename": filename
+    }]
+}
+
+r = requests.post(url, headers=headers, json=json)
+r.raise_for_status()
+
+upload = r.json()['attachments'][0]
+with open(filename, "r") as f:
+    data = f.read()
+    r = requests.put(upload['upload_url'], data=data)
+    r.raise_for_status()
+
+upload_filename = upload['upload_filename']
+```
+
+Now, instead of sending the attachment again in a form body in the request, you can just send the `upload_filename`! For example:
+
+```json
+{
+  "content": "look at my cute cat!",
+  "attachments": [
+    {
+      "id": "0",
+      "filename": "cat.png",
+      "uploaded_filename": "6a08e58a-265f-485a-8c85-5cd4df0edde0/cat.png"
+    }
+  ]
+}
+```
+
+### Upload Attachment Object
+
+###### Upload Attachment Structure
+
+| Field                  | Type       | Description                                                                                                                              |
+| ---------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| id?                    | ?snowflake | The ID of the attachment to reference in the response                                                                                    |
+| filename               | string     | The name of the file being uploaded (max 1024 characters)                                                                                |
+| file_size              | integer    | The size of the file being uploaded in bytes                                                                                             |
+| is_clip? ^1^ ^2^       | boolean    | Whether the file being uploaded is a [clipped recording of a stream](https://support.discord.com/hc/en-us/articles/16861982215703-Clips) |
+| original_content_type? | string     | The attachment's original [media type](https://en.wikipedia.org/wiki/Media_type)                                                         |
+
+^1^ When uploading a clip, an increased default file size limit of **100 MiB** applies.
+
+^2^ Only applicable within [Create Message Attachments](#create-message-attachments) endpoint.
+
+### Cloud Attachment Object
+
+###### Cloud Attachment Structure
+
+| Field           | Type       | Description                                                 |
+| --------------- | ---------- | ----------------------------------------------------------- |
+| id              | ?snowflake | The ID of the attachment upload, if provided in the request |
+| upload_url      | string     | The URL to upload the file to                               |
+| upload_filename | string     | The name of the uploaded file                               |
+
+### Endpoints
+
+<RouteHeader method="POST" url="/channels/{channel.id}/attachments" supportsBot>
+  Create Message Attachments
+</RouteHeader>
+
+Creates attachment URLs to upload the intended attachments directly to Discord's GCP storage bucket. Returns an array of [cloud attachment](#cloud-attachment-object) objects. Requires the same permissions as uploading an attachment inline with a message. See [above](#cloud-uploads) for more information.
+
+###### JSON Params
+
+| Field | Type                                                         | Description                                                               |
+| ----- | ------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| files | array[[upload attachment](#upload-attachment-object) object] | The target files to create a URL for, containing the name and size (1-10) |
+
+###### Example Response
+
+```json
+{
+  "attachments": [
+    {
+      "id": "23",
+      "upload_url": "https://discord-attachments-uploads-prd.storage.googleapis.com/87e49c99-43f8-4a33-baad-5a834c94424c/cat.png?upload_id=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "upload_filename": "87e49c99-43f8-4a33-baad-5a834c94424c/cat.png"
+    }
+  ]
+}
+```
+
+<RouteHeader method="POST" url="/guilds/{channel.id}/products/attachments">
+  Create Guild Product Attachments
+</RouteHeader>
+
+Creates attachment URLs to upload the intended attachments directly to Discord's GCP storage bucket. Returns an array of [cloud attachment](#cloud-attachment-object) objects. See [above](#cloud-uploads) for more information.
+
+###### JSON Params
+
+| Field | Type                                                         | Description                                                               |
+| ----- | ------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| files | array[[upload attachment](#upload-attachment-object) object] | The target files to create a URL for, containing the name and size (1-10) |
+
+<RouteHeader method="POST" url="/users/@me/gravity-attachments">
+  Create Gravity Attachments
+</RouteHeader>
+
+Creates attachment URLs to upload the intended attachments directly to Discord's GCP storage bucket. Returns an array of [cloud attachment](#cloud-attachment-object) objects. See [above](#cloud-uploads) for more information.
+
+###### JSON Params
+
+| Field | Type                                                         | Description                                                               |
+| ----- | ------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| files | array[[upload attachment](#upload-attachment-object) object] | The target files to create a URL for, containing the name and size (1-10) |
+
+<RouteHeader method="DELETE" url="/attachments/{cloud_attachment.upload_filename}" supportsBot>
+  Delete Attachment
+</RouteHeader>
+
+Deletes an attachment from Discord's GCP storage bucket. Returns a 204 empty response on success.
+
+This endpoint should be used to delete an uploaded attachment that was not used. See [above](#cloud-uploads) for more information.
+
+<RouteHeader method="POST" url="/attachments/refresh-urls" supportsBot>
+  Refresh Attachment URLs
+</RouteHeader>
+
+Refreshes the URLs of attachments that were uploaded to Discord's CDN. The provided URLs do not have to be valid or signed. Existing query string parameters are preserved.
+
+###### JSON Params
+
+| Field           | Type          | Description                                   |
+| --------------- | ------------- | --------------------------------------------- |
+| attachment_urls | array[string] | The URLs of the attachments to refresh (1-50) |
+
+###### Response Body
+
+| Field          | Type                                                                  | Description        |
+| -------------- | --------------------------------------------------------------------- | ------------------ |
+| refreshed_urls | array[[refreshed attachment](#refreshed-attachment-structure) object] | The refreshed URLs |
+
+###### Refreshed Attachment Structure
+
+| Field     | Type   | Description       |
+| --------- | ------ | ----------------- |
+| original  | string | The provided URL  |
+| refreshed | string | The refreshed URL |
+
+###### Example Response
+
+```json
+{
+  "refreshed_urls": [
+    {
+      "original": "https://cdn.discordapp.com/attachments/1012345678900020080/1234567891233211234/my_image.png?ex=65d903de&is=65c68ede&hm=2481f30dd67f503f54d020ae3b5533b9987fae4e55f2b4e3926e08a3fa3ee24f&",
+      "refreshed": "https://cdn.discordapp.com/attachments/1012345678900020080/1234567891233211234/my_image.png?ex=66143372&is=6601be72&hm=5a90a0ac363d9de3619044102ffe963041517f0e2f78baecabfc2f544a14eace&"
+    }
+  ]
+}
+```
+
+
 ----- discord-userdoccers/pages/topics/email-verification.mdx -----
 # Email Verification
 
@@ -40193,14 +41043,14 @@ These are all the OAuth2 scopes that Discord supports. Some scopes require appro
 | applications.store.update                | Allows [managing store data (SKUs, store listings, achievements, etc.) for the user's applications](/resources/store)                             | Yes    |
 | application_identities.write             | Allows [managing application identities](/resources/application)                                                                                  | No     |
 | bot                                      | Adds the application's bot to a user-selected guild                                                                                               | Yes    |
-| connections                              | Allows [retrieving a user's connected accounts](/resources/connected-accounts#list-user-connections), both public and private                      | Yes    |
+| connections                              | Allows [retrieving a user's connected accounts](/resources/connected-accounts#list-user-connections), both public and private                     | Yes    |
 | dm_channels.read                         | Allows [reading information about the user's DMs and group DMs](/resources/channel)                                                               | No     |
 | dm_channels.messages.read                | Allows reading messages from the user's DMs and group DMs                                                                                         | No     |
 | dm_channels.messages.write               | Allows [sending messages to the user's DMs](/resources/message#create-dm-message)                                                                 | No     |
 | email ^3^                                | Allows [retrieving a user's email address](/resources/user#get-current-user)                                                                      | Yes    |
 | gateway.connect ^3^                      | Allows [connecting to the gateway](/gateway/using-gateway#oauth2-and-the-gateway) on behalf of the user                                           | No     |
 | gdm.join                                 | Allows [adding users to managed group DMs](/resources/channel#add-channel-recipient)                                                              | Yes    |
-| guilds                                   | Allows [retrieving the user's guilds](/resources/guild#list-user-guilds)                                                                           | Yes    |
+| guilds                                   | Allows [retrieving the user's guilds](/resources/guild#list-user-guilds)                                                                          | Yes    |
 | guilds.channels.read                     | Allows [reading the channels in a user's guilds](/resources/channel)                                                                              | No     |
 | guilds.join                              | Allows [joining users to a guild](/resources/guild#add-guild-member)                                                                              | Yes    |
 | guilds.members.read                      | Allows [retrieving a user's member information in a guild](/resources/guild#get-current-guild-member)                                             | Yes    |
