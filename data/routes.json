@@ -8249,17 +8249,6 @@
         ]
     },
     {
-        "title": "List Application SKU Recommendations",
-        "method": "GET",
-        "url": "/partner-sdk/applications/{application.id}/skus/recommendations",
-        "urls": [
-            "/partner-sdk/applications/{application.id}/skus/recommendations"
-        ],
-        "urlEmpty": [
-            "/partner-sdk/applications/:param/skus/recommendations"
-        ]
-    },
-    {
         "title": "List Social Layer SKUs",
         "method": "GET",
         "url": "/partner-sdk/application/{application.id}/skus",
@@ -8318,11 +8307,23 @@
         "title": "Get Guild Application SKU Storefront",
         "method": "GET",
         "url": "/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}",
+        "deprecated": true,
         "urls": [
             "/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}"
         ],
         "urlEmpty": [
             "/partner-sdk/guilds/:param/application-storefront/skus/:param"
+        ]
+    },
+    {
+        "title": "Get Application SKU Storefront",
+        "method": "GET",
+        "url": "/partner-sdk/applications/{application.id}/storefront/skus/{sku.id}",
+        "urls": [
+            "/partner-sdk/applications/{application.id}/storefront/skus/{sku.id}"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/applications/:param/storefront/skus/:param"
         ]
     },
     {
@@ -8337,14 +8338,27 @@
         ]
     },
     {
-        "title": "Check Social Layer SKU Purchase Eligibility",
-        "method": "POST",
-        "url": "/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}/eligibility",
+        "title": "Check Social Layer SKU Purchase Eligibility By Guild",
+        "method": "POST\n",
+        "": true,
+        "url": "/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}/eligibility\n",
+        "deprecated": true,
         "urls": [
-            "/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}/eligibility"
+            "/partner-sdk/guilds/{guild.id}/application-storefront/skus/{sku.id}/eligibility\n"
         ],
         "urlEmpty": [
-            "/partner-sdk/guilds/:param/application-storefront/skus/:param/eligibility"
+            "/partner-sdk/guilds/:param/application-storefront/skus/:param/eligibility\n"
+        ]
+    },
+    {
+        "title": "Check Social Layer SKU Purchase Eligibility",
+        "method": "POST",
+        "url": "/partner-sdk/applications/{application.id}/storefront/skus/{sku.id}/eligibility",
+        "urls": [
+            "/partner-sdk/applications/{application.id}/storefront/skus/{sku.id}/eligibility"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/applications/:param/storefront/skus/:param/eligibility"
         ]
     },
     {
@@ -8356,6 +8370,17 @@
         ],
         "urlEmpty": [
             "/partner-sdk/storefront-config"
+        ]
+    },
+    {
+        "title": "Get Social Layer Storefront Eligibilities",
+        "method": "GET",
+        "url": "/partner-sdk/storefront-eligibility",
+        "urls": [
+            "/partner-sdk/storefront-eligibility"
+        ],
+        "urlEmpty": [
+            "/partner-sdk/storefront-eligibility"
         ]
     },
     {
