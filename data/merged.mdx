@@ -2737,16 +2737,16 @@ Sent when an application responds to interaction with a modal.
 
 ###### Interaction Modal Create Structure
 
-| Field       | Type                                                                         | Description                                                 |
-| ----------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| id          | snowflake                                                                    | The ID of the interaction                                   |
-| channel_id  | snowflake                                                                    | The ID of the channel the interaction was created in        |
-| custom_id   | string                                                                       | The developer-defined identifier for the modal              |
-| application | partial [application](/resources/application#application-object) object      | The application associated with the interaction             |
-| title       | string                                                                       | The title of the modal                                      |
-| components  | array[[component](/resources/components#component-object) object]            | The modal components                                        |
-| nonce       | ?string                                                                      | The interaction's nonce, used for interaction deduplication |
-| resolved?   | [resolved data](/interactions/receiving-and-responding#resolved-data-object) | The resolved entities                                       |
+| Field       | Type                                                                                    | Description                                                 |
+| ----------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| id          | snowflake                                                                               | The ID of the interaction                                   |
+| channel_id  | snowflake                                                                               | The ID of the channel the interaction was created in        |
+| custom_id   | string                                                                                  | The developer-defined identifier for the modal              |
+| application | [integration application](/resources/integration#integration-application-object) object | The application associated with the interaction             |
+| title       | string                                                                                  | The title of the modal                                      |
+| components  | array[[component](/resources/components#component-object) object]                       | The modal components                                        |
+| nonce       | ?string                                                                                 | The interaction's nonce, used for interaction deduplication |
+| resolved?   | [resolved data](/interactions/receiving-and-responding#resolved-data-object)            | The resolved entities                                       |
 
 #### Interaction IFrame Modal Create
 
@@ -2754,16 +2754,16 @@ Sent when an application responds to interaction with an iFrame modal.
 
 ###### Interaction IFrame Modal Create Structure
 
-| Field       | Type                                                                    | Description                                                                       |
-| ----------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| id          | snowflake                                                               | The ID of the interaction                                                         |
-| channel_id  | snowflake                                                               | The ID of the channel the interaction was created in                              |
-| custom_id   | string                                                                  | The developer-defined identifier for the iFrame modal                             |
-| application | partial [application](/resources/application#application-object) object | The application associated with the interaction                                   |
-| title       | string                                                                  | The title of the modal                                                            |
-| iframe_path | string                                                                  | The relative URL to the iFrame modal                                              |
-| modal_size  | integer                                                                 | The [iFrame modal size](/interactions/receiving-and-responding#iframe-modal-size) |
-| nonce       | ?string                                                                 | The interaction's nonce, used for interaction deduplication                       |
+| Field       | Type                                                                                    | Description                                                                       |
+| ----------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| id          | snowflake                                                                               | The ID of the interaction                                                         |
+| channel_id  | snowflake                                                                               | The ID of the channel the interaction was created in                              |
+| custom_id   | string                                                                                  | The developer-defined identifier for the iFrame modal                             |
+| application | [integration application](/resources/integration#integration-application-object) object | The application associated with the interaction                                   |
+| title       | string                                                                                  | The title of the modal                                                            |
+| iframe_path | string                                                                                  | The relative URL to the iFrame modal                                              |
+| modal_size  | integer                                                                                 | The [iFrame modal size](/interactions/receiving-and-responding#iframe-modal-size) |
+| nonce       | ?string                                                                                 | The interaction's nonce, used for interaction deduplication                       |
 
 #### Social Layer SKU Purchase Eligibility Response
 
@@ -6222,8 +6222,8 @@ When embedded activities are enabled on an application, an Entry Point command (
 Autocomplete interactions allow your application to dynamically return option suggestions to a user as they type.
 
 An autocomplete interaction **can return partial data** for option values. Your application will receive partial data for any existing user input, as long as that input passes client-side validation.
-For example, you may receive partial strings, but not invalid numbers. The option the user is currently typing will be sent with a `focused: true` boolean field and options the user has already filled will also be sent but without the `focused` field.
-This is a special case where options that are otherwise required might not be present, due to the user not having filled them yet.
+For example, you may receive partial strings, but not invalid numbers. The option the user is currently typing will be sent with a `focused: true` boolean field, and will always be casted to a string.
+Options the user has already filled will also be sent but without the `focused` field. This is a special case where options that are otherwise required might not be present, due to the user not having filled them yet.
 
 Autocomplete interactions will not contain attachments.
 
@@ -6810,7 +6810,7 @@ All options have names, and an option can either be a parameter, in which case `
 
 ^1^ For [`ATTACHMENT` options](/interactions/application-commands##application-command-option-type), `value` will be the attachment ID.
 
-^2^ Only applicable for [`APPLICATION_COMMAND_AUTOCOMPLETE` interactions](#interaction-type).
+^2^ Only applicable for [`APPLICATION_COMMAND_AUTOCOMPLETE` interactions](#interaction-type). The focused option will always have a string `value`, even if the option type is not a string.
 
 ###### Message Component Data Structure
 
