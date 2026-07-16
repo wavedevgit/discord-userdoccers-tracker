@@ -5750,22 +5750,11 @@
         ]
     },
     {
-        "title": "Search Tenor GIFs",
-        "method": "GET",
-        "url": "/integrations/tenor/search",
-        "supportsBot": true,
-        "urls": [
-            "/integrations/tenor/search"
-        ],
-        "urlEmpty": [
-            "/integrations/tenor/search"
-        ]
-    },
-    {
         "title": "List Trending GIF Search Terms",
         "method": "GET",
         "url": "/gifs/trending-search",
         "unauthenticated": true,
+        "deprecated": true,
         "urls": [
             "/gifs/trending-search"
         ],
@@ -5778,6 +5767,7 @@
         "method": "GET",
         "url": "/gifs/suggest",
         "unauthenticated": true,
+        "deprecated": true,
         "urls": [
             "/gifs/suggest"
         ],

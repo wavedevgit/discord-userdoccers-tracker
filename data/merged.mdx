@@ -5046,8 +5046,11 @@ Required options must be listed before optional ones.
 | min_length?                | integer                                                                                         | The minimum length (0-6000, only applicable for [`STRING`](#application-command-option-type) options)                                                       |
 | max_length?                | integer                                                                                         | The maximum length (0-6000, only applicable for [`STRING`](#application-command-option-type) options)                                                       |
 | autocomplete?              | boolean                                                                                         | Whether the option can be autocompleted (only applicable for [`STRING`, `INTEGER`, and `NUMBER`](#application-command-option-type) options)                 |
+| file_types? ^2^            | array[[file type](/reference#file-types)]                                                       | The file types permitted to be uploaded (max 10, only applicable for [`ATTACHMENT`](#application-command-option-type) options)                              |
 
 ^1^ This field is received only and cannot be set.
+
+^2^ This field can only be set and is not received.
 
 ###### Application Command Option Type
 
@@ -11917,7 +11920,7 @@ A guild or private channel within Discord.
 | id ^8^                                        | snowflake                                                          | The ID of the channel                                                                                                                                                                        |
 | type                                          | integer                                                            | The [type of channel](#channel-type)                                                                                                                                                         |
 | guild_id?                                     | snowflake                                                          | The ID of the guild the channel is in                                                                                                                                                        |
-| position?                                     | integer                                                            | Sorting position of the channel                                                                                                                                                              |
+| position? ^10^                                | integer                                                            | Sorting position of the channel                                                                                                                                                              |
 | permission_overwrites?                        | array[[permission overwrite](#permission-overwrite-object) object] | Explicit permission overwrites for members and roles                                                                                                                                         |
 | name?                                         | ?string                                                            | The name of the channel (1-100 characters)                                                                                                                                                   |
 | topic?                                        | ?string                                                            | The channel topic (max 4096 characters)                                                                                                                                                      |
@@ -11987,6 +11990,8 @@ A guild or private channel within Discord.
 ^8^ For ephemeral DM channels, the channel ID will always equal the ID of the other recipient.
 
 ^9^ Only included when `with_can_link_lobby` is set to `true` when fetched from the [List Guild Channels](#list-guild-channels) endpoint.
+
+^10^ Channels with the same position are sorted by their ID in ascending order.
 
 ###### Partial Channel Structure
 
@@ -12694,6 +12699,7 @@ These limits are summarized in the following table by [premium tier](/resources/
 | default_forum_layout?               | ?integer                                                            | The default [layout](#forum-layout-type) of a forum channel                                                                                                                          | Forum                                  |
 | default_sort_order?                 | ?integer                                                            | The default [sort order](#sort-order-type) of a thread-only channel's threads                                                                                                        | Forum, Media                           |
 | default_tag_setting?                | ?string                                                             | The default [tag setting](#search-tag-setting) of a thread-only channel (default `match_some`)                                                                                       | Forum, Media                           |
+| flags?                              | ?integer                                                            | The [channel's flags](#channel-flags) (only `IS_SPOILER_CHANNEL` can be set)                                                                                                         | All                                    |
 
 ^1^ For stage channels, bitrate can only be set up to **64 kbps**. See the bitrate limits section above for more information.
 
@@ -12709,7 +12715,14 @@ Modifies the positions of a set of [channel](#channel-object) objects for the gu
 
 <Alert type="info">
 
-Only channels to be modified are required.
+Only channels to be modified are required. For accurate sorting, the following conventions are recommended when modifying channels, but they are not required or enforced by the API.
+
+- When moving a category, you should include every category in the guild.
+- When moving an uncategorized channel, you should include every relevant uncategorized channel.
+- When moving a channel within the same category, you should include every relevant channel in that category.
+- When moving a channel into a category, you should include every relevant channel in the target category. This also applies when the target category is `null`.
+
+A relevant channel is defined as one in the same sorting bucket. For example, text, news, and forum channels are sorted together, and voice and stage channels are sorted together. The latter are always shown below the former, so they are not relevant when sorting, and vice versa.
 
 </Alert>
 
@@ -15741,14 +15754,17 @@ File Uploads can only be used within modals and must be placed inside a [Label](
 
 ###### File Upload Structure
 
-| Field       | Type    | Description                                                         |
-| ----------- | ------- | ------------------------------------------------------------------- |
-| type        | integer | Always [`FILE_UPLOAD`](#component-type)                             |
-| id?         | integer | An optional identifier for the component                            |
-| custom_id   | string  | Developer-defined identifier for the file upload (1-100 characters) |
-| min_values? | integer | Minimum number of items that must be uploaded (max 10, default 0)   |
-| max_values? | integer | Maximum number of items that can be chosen (max 10, default 10)     |
-| required?   | boolean | Whether the user must upload a file (default false)                 |
+| Field           | Type                                      | Description                                                         |
+| --------------- | ----------------------------------------- | ------------------------------------------------------------------- |
+| type            | integer                                   | Always [`FILE_UPLOAD`](#component-type)                             |
+| id?             | integer                                   | An optional identifier for the component                            |
+| custom_id       | string                                    | Developer-defined identifier for the file upload (1-100 characters) |
+| min_values?     | integer                                   | Minimum number of items that must be uploaded (max 10, default 0)   |
+| max_values?     | integer                                   | Maximum number of items that can be chosen (max 10, default 10)     |
+| required?       | boolean                                   | Whether the user must upload a file (default false)                 |
+| file_types? ^1^ | array[[file type](/reference#file-types)] | The file types permitted to be uploaded (max 10)                    |
+
+^1^ This field can only be set and is not received.
 
 ### Checkpoint Card
 
@@ -24799,43 +24815,7 @@ This endpoint is only usable with [integrations found on the user's connections]
 
 </Alert>
 
-<RouteHeader method="GET" url="/integrations/tenor/search" supportsBot>
-  Search Tenor GIFs
-</RouteHeader>
-
-Returns a list of up to 10 [GIFs sourced from Tenor](#tenor-gif-structure) based on the provided query.
-
-###### Query String Parameters
-
-| Field | Type   | Description             |
-| ----- | ------ | ----------------------- |
-| q     | string | The search query to use |
-
-###### Tenor GIF Structure
-
-| Field  | Type    | Description                        |
-| ------ | ------- | ---------------------------------- |
-| type   | string  | The type of the GIF (always `gif`) |
-| url    | string  | The provider source URL of the GIF |
-| src    | string  | The media URL of the GIF           |
-| width  | integer | Width of image                     |
-| height | integer | Height of image                    |
-
-###### Example Response
-
-```json
-[
-  {
-    "type": "gif",
-    "url": "https://tenor.com/bQ3Du.gif",
-    "src": "https://media.tenor.com/RbG_9Eh9KLoAAAAS/alien-alien-reveal.gif",
-    "width": 100,
-    "height": 90
-  }
-]
-```
-
-<RouteHeader method="GET" url="/gifs/trending-search" unauthenticated>
+<RouteHeader method="GET" url="/gifs/trending-search" unauthenticated deprecated>
   List Trending GIF Search Terms
 </RouteHeader>
 
@@ -24845,21 +24825,12 @@ Returns a list of the top trending search terms.
 
 | Field      | Type    | Description                                                    |
 | ---------- | ------- | -------------------------------------------------------------- |
-| provider?  | string  | The [GIF provider](#gif-provider) to use (default `tenor`)     |
 | limit? ^1^ | integer | The maximum number of search terms to return (1-50, default 5) |
 | locale?    | string  | The locale to use in search results (default `en-US`)          |
 
 ^1^ The limit is only a suggestion; the API may return fewer GIFs.
 
-###### GIF Provider
-
-| Value | Description |
-| ----- | ----------- |
-| tenor | Tenor       |
-| giphy | Giphy       |
-| klipy | Klipy       |
-
-<RouteHeader method="GET" url="/gifs/suggest" unauthenticated>
+<RouteHeader method="GET" url="/gifs/suggest" unauthenticated deprecated>
   List Suggested GIF Search Terms
 </RouteHeader>
 
@@ -24869,7 +24840,6 @@ Returns a list of recommended search terms based on the provided query.
 
 | Field      | Type    | Description                                                     |
 | ---------- | ------- | --------------------------------------------------------------- |
-| provider?  | string  | The [GIF provider](#gif-provider) to use (default `tenor`)      |
 | q          | string  | The search query to use                                         |
 | limit? ^1^ | integer | The maximum number of search terms to return (1-50, default 20) |
 | locale?    | string  | The locale to use in search results (default `en-US`)           |
@@ -24886,7 +24856,6 @@ Returns a list of [GIF](#gif-structure) objects based on the provided query.
 
 | Field            | Type    | Description                                                 |
 | ---------------- | ------- | ----------------------------------------------------------- |
-| provider?        | string  | The [GIF provider](#gif-provider) to use (default `tenor`)  |
 | q                | string  | The search query to use                                     |
 | limit? ^1^       | integer | The maximum number of GIFs to return (20-500) (default 100) |
 | media_format ^2^ | string  | The [media format](#gif-media-format) to use                |
@@ -24894,7 +24863,7 @@ Returns a list of [GIF](#gif-structure) objects based on the provided query.
 
 ^1^ The limit is only a suggestion; the API may return fewer GIFs.
 
-^2^ Invalid values default to `mp4` for Klipy, `gif` otherwise.
+^2^ Invalid values default to `mp4`.
 
 <RouteHeader method="GET" url="/gifs/trending" unauthenticated>
   List Trending GIF Categories
@@ -24904,11 +24873,10 @@ Returns trending GIF categories and their associated preview GIFs.
 
 ###### Query String Parameters
 
-| Field        | Type   | Description                                                |
-| ------------ | ------ | ---------------------------------------------------------- |
-| provider?    | string | The [GIF provider](#gif-provider) to use (default `tenor`) |
-| media_format | string | The [media format](#gif-media-format) to use               |
-| locale?      | string | The locale to use in search results (default `en-US`)      |
+| Field        | Type   | Description                                           |
+| ------------ | ------ | ----------------------------------------------------- |
+| media_format | string | The [media format](#gif-media-format) to use          |
+| locale?      | string | The locale to use in search results (default `en-US`) |
 
 ###### Response Body
 
@@ -24957,12 +24925,11 @@ Returns a list of [GIF](#gif-structure) objects that are currently trending.
 
 ###### Query String Parameters
 
-| Field        | Type    | Description                                                |
-| ------------ | ------- | ---------------------------------------------------------- |
-| provider?    | string  | The [GIF provider](#gif-provider) to use (default `tenor`) |
-| limit? ^1^   | integer | The maximum number of GIFs to return (20-500)              |
-| media_format | string  | The [media format](#gif-media-format) to use               |
-| locale?      | string  | The locale to use in search results (default `en-US`)      |
+| Field        | Type    | Description                                           |
+| ------------ | ------- | ----------------------------------------------------- |
+| limit? ^1^   | integer | The maximum number of GIFs to return (20-500)         |
+| media_format | string  | The [media format](#gif-media-format) to use          |
+| locale?      | string  | The locale to use in search results (default `en-US`) |
 
 ^1^ The limit is only a suggestion; the API may return fewer GIFs.
 
@@ -24974,11 +24941,10 @@ Tracks the selection of a GIF by the user. Returns a 204 empty response on succe
 
 ###### JSON Params
 
-| Field     | Type   | Description                                              |
-| --------- | ------ | -------------------------------------------------------- |
-| id        | string | The ID of the selected GIF                               |
-| q         | string | The search query used to find the GIF                    |
-| provider? | string | The [GIF provider](#gif-provider) used (default `tenor`) |
+| Field | Type   | Description                           |
+| ----- | ------ | ------------------------------------- |
+| id    | string | The ID of the selected GIF            |
+| q     | string | The search query used to find the GIF |
 
 
 ----- discord-userdoccers/pages/resources/invite.mdx -----
@@ -37421,7 +37387,7 @@ This endpoint requires one of the following:
 | guild_member? ^1^             | private [guild member](/resources/guild#guild-member-object) object                                    | The guild member in the guild specified                                       |
 | guild_member_profile? ^1^     | [profile metadata](#profile-metadata-object) object                                                    | The guild member's profile in the guild specified                             |
 | guild_badges ^1^              | array[[profile badge](#profile-badge-structure) objcet]                                                | The guild member's guild-specific profile badges                              |
-| widgets ^1^                   | array[[game widget](/resources/widgets#game-widget-object) object]                                     | The user's game widgets                                                       |
+| widgets? ^1^                  | array[[game widget](/resources/widgets#game-widget-object) object]                                     | The user's game widgets                                                       |
 | legacy_username? ^1^ ^2^      | ?string                                                                                                | The user's pre-migration `username#discriminator`, if applicable and shown    |
 | mutual_guilds? ^1^            | array[[mutual guild](#mutual-guild-structure) object]                                                  | The mutual guilds of the user with the current user                           |
 | mutual_friends? ^1^ ^3^       | array[partial [user](#user-object) object]                                                             | The mutual friends the user has with the current user                         |
@@ -37431,12 +37397,15 @@ This endpoint requires one of the following:
 | premium_type ^1^              | ?integer                                                                                               | The [type of premium (Nitro) subscription](#premium-type) on a user's account |
 | premium_since ^1^             | ?ISO8601 timestamp                                                                                     | The date the user's premium subscription started                              |
 | premium_guild_since ^1^       | ?ISO8601 timestamp                                                                                     | The date the user's premium guild (boosting) subscription started             |
+| private? ^4^                  | boolean                                                                                                | Whether the user's extended profile is hidden (default false)                 |
 
 ^1^ These fields are unexpectedly missing or `null` if the user has blocked the current user.
 
 ^2^ See the [section on Discord's new username system](#unique-usernames) for more information.
 
 ^3^ This will always be empty for bots, even if the user has mutual friends with it.
+
+^4^ Private profiles will have `bio`, `pronouns`, `badges`, `guild_badges`, `connected_accounts`, `premium_since`, and `premium_guild_since` redacted.
 
 ###### Profile Application Structure
 
