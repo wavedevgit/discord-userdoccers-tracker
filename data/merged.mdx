@@ -26601,7 +26601,7 @@ When sending/editing messages, only `id` is required. `filename` is also require
 | Field                         | Type                                                                     | Description                                                                                                                                                                                   |
 | ----------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id                            | snowflake                                                                | The attachment ID                                                                                                                                                                             |
-| filename                      | string                                                                   | The name of file attached (max 1024 characters)                                                                                                                                               |
+| filename                      | string                                                                   | The name of file attached (1-1024 characters)                                                                                                                                                 |
 | title?                        | string                                                                   | The name of the file without the extension or title of the clip (max 1024 characters, automatically provided when the filename is normalized or randomly generated due to invalid characters) |
 | uploaded_filename? ^3^        | string                                                                   | The name of the file pre-uploaded to Discord's GCP bucket                                                                                                                                     |
 | description?                  | string                                                                   | Alt text for the file (max 1024 characters)                                                                                                                                                   |
@@ -28357,11 +28357,15 @@ Deletes a notification center item. Returns a 204 empty response on success. Fir
 
 Acknowledges a notification center item. Returns a 204 empty response on success. Fires a [Notification Center Items Ack](/gateway/gateway-events#notification-center-items-ack) Gateway event.
 
+This acknowledges the individual notification center item. To acknowledge the notification center's overall unread badge threshold, use the [`NOTIFICATION_CENTER` read state acknowledgement](/topics/read-state#acknowledge-user-feature) instead.
+
 <RouteHeader method="POST" url="/users/@me/notification-center/items/bulk-ack">
   Bulk Acknowledge Notification Center Items
 </RouteHeader>
 
 Acknowledges multiple notification center items in bulk. Returns a 204 empty response on success. Fires multiple [Notification Center Items Ack](/gateway/gateway-events#notification-center-items-ack) Gateway events.
+
+This does not replace the `NOTIFICATION_CENTER` read state acknowledgement; clients may need to keep both the item `acked` state and the read state badge threshold in sync.
 
 ###### Query String Parameters
 
@@ -34914,6 +34918,7 @@ Serialized as `discord_protos.discord_users.v1.PreloadedUserSettings`.
 | applications             | [all application settings](#all-application-settings-structure) object | Application-specific settings                                                  |
 | ads                      | [ads settings](#ads-settings-structure) object                         | Ads settings                                                                   |
 | in_app_feedback_settings | [in-app feedback settings](#in-app-feedback-settings-structure) object | In-app feedback settings                                                       |
+| app_version_settings     | [app version settings](#app-version-settings-structure) object         | App version settings                                                           |
 
 ###### Inbox Settings Structure
 
@@ -34940,7 +34945,7 @@ Serialized as `discord_protos.discord_users.v1.PreloadedUserSettings`.
 | Field                     | Type                                                             | Description                                 |
 | ------------------------- | ---------------------------------------------------------------- | ------------------------------------------- |
 | guilds                    | map[fixed64, [guild settings](#guild-settings-structure) object] | Per-guild personalization settings          |
-| ~~leaderboards_disabled~~ | ~~bool~~                                                         | ~~Whether guild leaderboards are disabled~~ |
+| ~~leaderboards_disabled~~ | ~~boolean~~                                                      | ~~Whether guild leaderboards are disabled~~ |
 
 ###### Guild Settings Structure
 
@@ -34958,6 +34963,7 @@ Serialized as `discord_protos.discord_users.v1.PreloadedUserSettings`.
 | custom_notification_sound_config?      | [custom notification sound config](#custom-notification-sound-config-structure) object           | Custom notification sound configuration                                       |
 | leaderboards_disabled                  | boolean                                                                                          | Whether guild leaderboards are disabled                                       |
 | guild_dismissible_content_states       | map[int32, [guild dismissible content state](#guild-dismissible-content-state-structure) object] | States of guild dismissible content entries                                   |
+| guild_theme_source_preference          | [guild theme source preference](#guild-theme-source-preference) enum                             | Guild theme source preference override                                        |
 
 ###### Channel Settings Structure
 
@@ -35036,15 +35042,16 @@ Serialized as `discord_protos.discord_users.v1.PreloadedUserSettings`.
 
 ###### User Content Settings Structure
 
-| Field                                         | Type                                                                                                     | Description                                                            |
-| --------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| dismissed_contents                            | bytes                                                                                                    | User dismissed content, encoded as a byte array of integer enum values |
-| last_dismissed_outbound_promotion_start_date? | StringValue                                                                                              | When the last dismissed outbound promotion started                     |
-| premium_tier_0_modal_dismissed_at?            | Timestamp                                                                                                | When the Nitro Basic promotion modal was dismissed                     |
-| guild_onboarding_upsell_dismissed_at?         | Timestamp                                                                                                | When the guild onboarding upsell was dismissed                         |
-| safety_user_sentiment_notice_dismissed_at?    | Timestamp                                                                                                | When the safety user sentiment notice was dismissed                    |
-| last_received_changelog_id                    | fixed64                                                                                                  | The ID of the last received changelog                                  |
-| recurring_dismissible_content_states          | map[int32, [recurring dismissible content state](#recurring-dismissible-content-state-structure) object] | States of recurring dismissible content entries                        |
+| Field                                               | Type                                                                                                     | Description                                                            |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| dismissed_contents                                  | bytes                                                                                                    | User dismissed content, encoded as a byte array of integer enum values |
+| last_dismissed_outbound_promotion_start_date?       | StringValue                                                                                              | When the last dismissed outbound promotion started                     |
+| premium_tier_0_modal_dismissed_at? **(deprecated)** | Timestamp                                                                                                | When the Nitro Basic promotion modal was dismissed                     |
+| guild_onboarding_upsell_dismissed_at?               | Timestamp                                                                                                | When the guild onboarding upsell was dismissed                         |
+| safety_user_sentiment_notice_dismissed_at?          | Timestamp                                                                                                | When the safety user sentiment notice was dismissed                    |
+| last_received_changelog_id                          | fixed64                                                                                                  | The ID of the last received changelog                                  |
+| recurring_dismissible_content_states                | map[int32, [recurring dismissible content state](#recurring-dismissible-content-state-structure) object] | States of recurring dismissible content entries                        |
+| last_gift_intent_dismissed_at_ms                    | fixed64                                                                                                  | Unix timestamp (in milliseconds) of when the gift intent was dismissed |
 
 ###### Recurring Dismissible Content State Structure
 
@@ -35057,18 +35064,18 @@ Serialized as `discord_protos.discord_users.v1.PreloadedUserSettings`.
 
 ###### Voice And Video Settings Structure
 
-| Field                             | Type                                                                           | Description                                                                                            |
-| --------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| blur                              | [video filter background blur](#video-filter-background-blur-structure) object | Video call background blur settings                                                                    |
-| preset_option                     | uint32                                                                         | The [selected video call background preset](#video-filter-background-preset)                           |
-| custom_asset                      | [video filter asset](#video-filter-asset-structure) object                     | Custom video call background asset                                                                     |
-| always_preview_video?             | BoolValue                                                                      | Whether to always preview video before enabling it (default false)                                     |
-| afk_timeout?                      | UInt32Value                                                                    | Duration (in seconds) the user needs to be inactive until clients update their AFK state (default 600) |
-| stream_notifications_enabled?     | BoolValue                                                                      | Whether to receive stream notifications for friends (default true)                                     |
-| native_phone_integration_enabled? | BoolValue                                                                      | Whether to enable the new Discord mobile phone number friend requesting feature (default true)         |
-| soundboard_settings?              | [soundboard settings](#soundboard-settings-structure) object                   | Settings for the soundboard feature                                                                    |
-| disable_stream_previews?          | BoolValue                                                                      | Whether clients should disable sending stream previews (default false)                                 |
-| soundmoji_volume?                 | FloatValue                                                                     | Volume level for soundmoji playback (0-100, default 100)                                               |
+| Field                             | Type                                                                           | Description                                                                                           |
+| --------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| blur                              | [video filter background blur](#video-filter-background-blur-structure) object | Video call background blur settings                                                                   |
+| preset_option                     | uint32                                                                         | The [selected video call background preset](#video-filter-background-preset)                          |
+| custom_asset                      | [video filter asset](#video-filter-asset-structure) object                     | Custom video call background asset                                                                    |
+| always_preview_video?             | BoolValue                                                                      | Whether to always preview video before enabling it (default false)                                    |
+| afk_timeout?                      | UInt32Value                                                                    | Duration (in seconds) the user needs to be inactive until clients update their AFK state (default 60) |
+| stream_notifications_enabled?     | BoolValue                                                                      | Whether to receive stream notifications for friends (default true)                                    |
+| native_phone_integration_enabled? | BoolValue                                                                      | Whether to enable the new Discord mobile phone number friend requesting feature (default true)        |
+| soundboard_settings?              | [soundboard settings](#soundboard-settings-structure) object                   | Settings for the soundboard feature                                                                   |
+| disable_stream_previews?          | BoolValue                                                                      | Whether clients should disable sending stream previews (default false)                                |
+| soundmoji_volume?                 | FloatValue                                                                     | Volume level for soundmoji playback (0-100, default 100)                                              |
 
 ###### Video Filter Background Blur Structure
 
@@ -35105,43 +35112,45 @@ Serialized as `discord_protos.discord_users.v1.PreloadedUserSettings`.
 
 ###### Text And Images Settings Structure
 
-| Field                                 | Type                                                                       | Description                                                                                                                                  |
-| ------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| diversity_surrogate?                  | StringValue                                                                | Unicode surrogate for diversity emoji                                                                                                        |
-| use_rich_chat_input? **(deprecated)** | BoolValue                                                                  | Inverse of `use_legacy_chat_input`                                                                                                           |
-| use_thread_sidebar?                   | BoolValue                                                                  | Whether to display threads in the sidebar (default true)                                                                                     |
-| render_spoilers?                      | StringValue                                                                | [How spoilers should be rendered](#spoiler-render-options)                                                                                   |
-| emoji_picker_collapsed_sections       | array[string]                                                              | [Sections of the emoji picker](#emoji-picker-section) that are collapsed                                                                     |
-| sticker_picker_collapsed_sections     | array[string]                                                              | [Sections of the sticker picker](#sticker-picker-section) that are collapsed                                                                 |
-| view_image_descriptions?              | BoolValue                                                                  | Whether to show image alt text (default false)                                                                                               |
-| show_command_suggestions?             | BoolValue                                                                  | Whether to show command suggestions in chat (default true)                                                                                   |
-| inline_attachment_media?              | BoolValue                                                                  | Whether to display attachments when they are uploaded in chat (default true)                                                                 |
-| inline_embed_media?                   | BoolValue                                                                  | Whether to display videos and images from links posted in chat (default true)                                                                |
-| gif_auto_play?                        | BoolValue                                                                  | Whether GIFs are automatically played when the Discord client is in focus (default true)                                                     |
-| render_embeds?                        | BoolValue                                                                  | Whether to render message embeds (default true)                                                                                              |
-| render_reactions?                     | BoolValue                                                                  | Whether to render message reactions (default true)                                                                                           |
-| animate_emoji?                        | BoolValue                                                                  | Whether to play animated emoji in chat (default true)                                                                                        |
-| animate_stickers?                     | UInt32Value                                                                | [When to animate stickers in chat](/resources/user-settings#sticker-animation-option)                                                        |
-| enable_tts_command?                   | BoolValue                                                                  | Whether to allow TTS messages to be sent and played (default true)                                                                           |
-| message_display_compact?              | BoolValue                                                                  | Whether to use the compact Discord display mode                                                                                              |
-| explicit_content_filter?              | UInt32Value                                                                | The [explicit content filter](/resources/user-settings#explicit-content-filter) for explicit content in all messages (default `NON_FRIENDS`) |
-| view_nsfw_guilds?                     | BoolValue                                                                  | Whether NSFW guilds are shown on iOS (default false)                                                                                         |
-| convert_emoticons?                    | BoolValue                                                                  | Whether to convert emoticons into emoji (e.g. `:)` -> `🙂`) (default true)                                                                   |
-| expression_suggestions_enabled?       | BoolValue                                                                  | Whether to show expression suggestions in chat (default true)                                                                                |
-| view_nsfw_commands?                   | BoolValue                                                                  | Whether NSFW application commands are shown in DMs (default false)                                                                           |
-| use_legacy_chat_input?                | BoolValue                                                                  | Whether to use the legacy chat input UI (default false)                                                                                      |
-| soundboard_picker_collapsed_sections  | array[string]                                                              | [Sections of the soundboard picker](#soundboard-picker-section) that are collapsed                                                           |
-| dm_spam_filter? **(deprecated)**      | UInt32Value                                                                | DM spam filter setting                                                                                                                       |
-| dm_spam_filter_v2                     | [DM spam filter v2](#dm-spam-filter-v2) enum                               | DM spam filter setting                                                                                                                       |
-| include_stickers_in_autocomplete?     | BoolValue                                                                  | Whether to autocomplete stickers in chat (default false)                                                                                     |
-| explicit_content_settings?            | [explicit content settings](#explicit-content-settings-structure) object   | Explicit content settings                                                                                                                    |
-| keyword_filter_settings?              | [keyword filter settings](#keyword-filter-settings-structure) object       | Client-side keyword filter settings                                                                                                          |
-| include_soundmoji_in_autocomplete?    | BoolValue                                                                  | Whether to autocomplete soundmoji in chat (default true)                                                                                     |
-| gore_content_settings?                | [gore content settings](#gore-content-settings-structure) object           | Gore content settings                                                                                                                        |
-| default_reaction_emoji?               | [default reaction emoji](#default-reaction-emoji-structure) object         | Default reaction emoji settings                                                                                                              |
-| show_mention_suggestions?             | BoolValue                                                                  | Whether to show mention suggestions in chat (default true)                                                                                   |
-| self_harm_content_settings?           | [self harm content settings](#self-harm-content-settings-structure) object | Self harm content settings                                                                                                                   |
-| is_cross_dm_search_enabled?           | BoolValue                                                                  | Whether cross-DM search is enabled in the DM UI (default false)                                                                              |
+| Field                                      | Type                                                                       | Description                                                                                                          |
+| ------------------------------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| diversity_surrogate?                       | StringValue                                                                | Unicode surrogate for diversity emoji                                                                                |
+| use_rich_chat_input? **(deprecated)**      | BoolValue                                                                  | Inverse of `use_legacy_chat_input`                                                                                   |
+| use_thread_sidebar?                        | BoolValue                                                                  | Whether to display threads in the sidebar (default true)                                                             |
+| render_spoilers?                           | StringValue                                                                | [How spoilers should be rendered](#spoiler-render-options)                                                           |
+| emoji_picker_collapsed_sections            | array[string]                                                              | [Sections of the emoji picker](#emoji-picker-section) that are collapsed                                             |
+| sticker_picker_collapsed_sections          | array[string]                                                              | [Sections of the sticker picker](#sticker-picker-section) that are collapsed                                         |
+| view_image_descriptions?                   | BoolValue                                                                  | Whether to show image alt text (default false)                                                                       |
+| show_command_suggestions?                  | BoolValue                                                                  | Whether to show command suggestions in chat (default true)                                                           |
+| inline_attachment_media?                   | BoolValue                                                                  | Whether to display attachments when they are uploaded in chat (default true)                                         |
+| inline_embed_media?                        | BoolValue                                                                  | Whether to display videos and images from links posted in chat (default true)                                        |
+| gif_auto_play?                             | BoolValue                                                                  | Whether GIFs are automatically played when the Discord client is in focus (default true)                             |
+| render_embeds?                             | BoolValue                                                                  | Whether to render message embeds (default true)                                                                      |
+| render_reactions?                          | BoolValue                                                                  | Whether to render message reactions (default true)                                                                   |
+| animate_emoji?                             | BoolValue                                                                  | Whether to play animated emoji in chat (default true)                                                                |
+| animate_stickers?                          | UInt32Value                                                                | [When to animate stickers in chat](/resources/user-settings#sticker-animation-option)                                |
+| enable_tts_command?                        | BoolValue                                                                  | Whether to allow TTS messages to be sent and played (default true)                                                   |
+| message_display_compact?                   | BoolValue                                                                  | Whether to use the compact Discord display mode (default false)                                                      |
+| explicit_content_filter?                   | UInt32Value                                                                | The [explicit content filter](/resources/user-settings#explicit-content-filter) for explicit content in all messages |
+| view_nsfw_guilds?                          | BoolValue                                                                  | Whether NSFW guilds are shown on iOS (default false)                                                                 |
+| convert_emoticons?                         | BoolValue                                                                  | Whether to convert emoticons into emoji (e.g. `:)` -> `🙂`) (default true)                                           |
+| expression_suggestions_enabled?            | BoolValue                                                                  | Whether to show expression suggestions in chat (default true)                                                        |
+| view_nsfw_commands?                        | BoolValue                                                                  | Whether NSFW application commands are shown in DMs (default false)                                                   |
+| use_legacy_chat_input?                     | BoolValue                                                                  | Whether to use the legacy chat input UI (default false)                                                              |
+| soundboard_picker_collapsed_sections       | array[string]                                                              | [Sections of the soundboard picker](#soundboard-picker-section) that are collapsed                                   |
+| dm_spam_filter? **(deprecated)**           | UInt32Value                                                                | DM spam filter setting                                                                                               |
+| dm_spam_filter_v2                          | [DM spam filter v2](#dm-spam-filter-v2) enum                               | DM spam filter setting                                                                                               |
+| include_stickers_in_autocomplete?          | BoolValue                                                                  | Whether to autocomplete stickers in chat (default false)                                                             |
+| explicit_content_settings?                 | [explicit content settings](#explicit-content-settings-structure) object   | Explicit content settings                                                                                            |
+| keyword_filter_settings?                   | [keyword filter settings](#keyword-filter-settings-structure) object       | Client-side keyword filter settings                                                                                  |
+| include_soundmoji_in_autocomplete?         | BoolValue                                                                  | Whether to autocomplete soundmoji in chat (default true)                                                             |
+| gore_content_settings?                     | [gore content settings](#gore-content-settings-structure) object           | Gore content settings                                                                                                |
+| default_reaction_emoji?                    | [default reaction emoji](#default-reaction-emoji-structure) object         | Default reaction emoji settings                                                                                      |
+| show_mention_suggestions? **(deprecated)** | BoolValue                                                                  | Whether to show mention suggestions in chat (default true)                                                           |
+| self_harm_content_settings?                | [self harm content settings](#self-harm-content-settings-structure) object | Self harm content settings                                                                                           |
+| is_cross_dm_search_enabled?                | BoolValue                                                                  | Whether cross-DM search is enabled in the DM UI (default false)                                                      |
+| search_provider                            | [search provider](#search-provider) enum                                   | Search provider used when searching selected text from the context menu                                              |
+| custom_search_url?                         | StringValue                                                                | Custom search provider URL                                                                                           |
 
 ###### Spoiler Render Options
 
@@ -35204,6 +35213,16 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 | 2     | NON_FRIENDS             | Apply spam filter to non-friends                  |
 | 3     | FRIENDS_AND_NON_FRIENDS | Apply spam filter to both friends and non-friends |
 
+###### Search Provider
+
+| Value | Name       | Description                               |
+| ----- | ---------- | ----------------------------------------- |
+| 0     | UNSET      | Default unset value (equates to `GOOGLE`) |
+| 1     | GOOGLE     | Google                                    |
+| 2     | BING       | Bing                                      |
+| 3     | DUCKDUCKGO | DuckDuckGo                                |
+| 4     | CUSTOM     | Custom search provider                    |
+
 ###### Explicit Content Settings Structure
 
 | Field                          | Type                                                           | Description                                          |
@@ -35256,35 +35275,39 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 
 ###### Notification Settings Structure
 
-| Field                                        | Type                                                                               | Description                                                                                        |
-| -------------------------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| show_in_app_notifications?                   | BoolValue                                                                          | Whether to show in-app notifications (default true)                                                |
-| notify_friends_on_go_live?                   | BoolValue                                                                          | Whether to notify friends when streaming in eligible guilds (default false)                        |
-| notification_center_acked_before_id          | fixed64                                                                            | The ID of the last acknowledged notification center item                                           |
-| ~~enable_burst_reaction_notifications?~~     | ~~BoolValue~~                                                                      | ~~Whether to enable burst reaction notifications~~                                                 |
-| quiet_mode?                                  | BoolValue                                                                          | Whether quiet mode is enabled (default false)                                                      |
-| focus_mode_expires_at_ms                     | fixed64                                                                            | Unix timestamp (in milliseconds) of when focus mode expires                                        |
-| reaction_notifications                       | [reaction notification type](#reaction-notification-type) enum                     | Reaction notification settings                                                                     |
-| game_activity_notifications                  | [game activity notification type](#game-activity-notification-type) enum           | Game activity notification settings                                                                |
-| custom_status_push_notifications             | [custom status push notification type](#custom-status-push-notification-type) enum | Custom status push notification settings                                                           |
-| game_activity_exclude_steam_notifications?   | BoolValue                                                                          | Whether to exclude Steam from game activity notifications                                          |
-| enable_voice_activity_notifications?         | BoolValue                                                                          | Whether to enable voice activity notifications (default true)                                      |
-| enable_friend_online_notifications?          | BoolValue                                                                          | Whether to enable friend online notifications (default true)                                       |
-| enable_user_resurrection_notifications?      | BoolValue                                                                          | Whether to enable notifications for users becoming active again after a long hiatus (default true) |
-| enable_friend_anniversary_notifications?     | BoolValue                                                                          | Whether to enable friend anniversary notifications (default true)                                  |
-| enable_game_update_notifications?            | BoolValue                                                                          | Whether to enable game update notifications (default true)                                         |
-| enable_profile_updates_notifications?        | BoolValue                                                                          | Whether to enable profile updates notifications (default true)                                     |
-| enable_server_trending_notifications?        | BoolValue                                                                          | Whether to enable server trending notifications (default true)                                     |
-| enable_dm_reply_nudge_reminders?             | BoolValue                                                                          | Whether to enable DM reply nudge reminders (default true)                                          |
-| enable_summary_reminder_notifications?       | BoolValue                                                                          | Whether to enable summary reminder notifications (default true)                                    |
-| enable_gdm_all_reaction_notifications?       | BoolValue                                                                          | Whether to enable all reaction notifications in group DMs (default `reaction_notifications`)       |
-| enable_friend_gaming_activity_notifications? | BoolValue                                                                          | Whether to enable friend gaming activity notifications (default true)                              |
+| Field                                                       | Type                                                                               | Description                                                                                        |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| show_in_app_notifications?                                  | BoolValue                                                                          | Whether to show in-app notifications (default true)                                                |
+| notify_friends_on_go_live?                                  | BoolValue                                                                          | Whether to notify friends when streaming in eligible guilds (default false)                        |
+| notification_center_acked_before_id                         | fixed64                                                                            | The notification center item ID before which items are considered acknowledged                     |
+| enable_burst_reaction_notifications? **(deprecated)**       | BoolValue                                                                          | Whether to enable burst reaction notifications                                                     |
+| quiet_mode?                                                 | BoolValue                                                                          | Whether quiet mode is enabled (default false)                                                      |
+| focus_mode_expires_at_ms                                    | fixed64                                                                            | Unix timestamp (in milliseconds) of when focus mode expires                                        |
+| reaction_notifications                                      | [reaction notification type](#reaction-notification-type) enum                     | Reaction notification settings                                                                     |
+| game_activity_notifications **(deprecated)**                | [game activity notification type](#game-activity-notification-type) enum           | Game activity notification settings                                                                |
+| custom_status_push_notifications                            | [custom status push notification type](#custom-status-push-notification-type) enum | Custom status push notification settings                                                           |
+| game_activity_exclude_steam_notifications? **(deprecated)** | BoolValue                                                                          | Whether to exclude Steam from game activity notifications                                          |
+| enable_voice_activity_notifications?                        | BoolValue                                                                          | Whether to enable voice activity notifications (default true)                                      |
+| enable_friend_online_notifications?                         | BoolValue                                                                          | Whether to enable friend online notifications (default true)                                       |
+| enable_user_resurrection_notifications? **(deprecated)**    | BoolValue                                                                          | Whether to enable notifications for users becoming active again after a long hiatus (default true) |
+| enable_friend_anniversary_notifications?                    | BoolValue                                                                          | Whether to enable friend anniversary notifications (default true)                                  |
+| enable_game_update_notifications?                           | BoolValue                                                                          | Whether to enable game update notifications (default true)                                         |
+| enable_profile_updates_notifications?                       | BoolValue                                                                          | Whether to enable profile updates notifications (default true)                                     |
+| enable_server_trending_notifications?                       | BoolValue                                                                          | Whether to enable guild trending notifications (default true)                                      |
+| enable_dm_reply_nudge_reminders?                            | BoolValue                                                                          | Whether to enable DM reply nudge reminders (default true)                                          |
+| enable_summary_reminder_notifications?                      | BoolValue                                                                          | Whether to enable summary reminder notifications (default true)                                    |
+| enable_gdm_all_reaction_notifications? **(deprecated)**     | BoolValue                                                                          | Whether to enable all reaction notifications in group DMs (default `reaction_notifications`)       |
+| enable_friend_gaming_activity_notifications?                | BoolValue                                                                          | Whether to enable friend gaming activity notifications (default true)                              |
+| enable_upcoming_server_event_notifications?                 | BoolValue                                                                          | Whether to enable upcoming guild event notifications (default true)                                |
+| enable_screen_downtime_schedule_notifications?              | BoolValue                                                                          | Whether to enable screen downtime schedule notifications (default true)                            |
+| notify_friends_on_profile_update?                           | BoolValue                                                                          | Whether to notify friends when the user updates their profile (default true)                       |
+| notify_friends_on_come_online?                              | BoolValue                                                                          | Whether to notify friends when the user comes online (default true)                                |
 
 ###### Reaction Notification Type
 
 | Value | Name                   | Description                               |
 | ----- | ---------------------- | ----------------------------------------- |
-| 0     | NOTIFICATIONS_ENABLED  | Enable reaction notifications             |
+| 0     | NOTIFICATIONS_ENABLED  | Enable reaction notifications (default)   |
 | 1     | ONLY_DMS               | Only enable reaction notifications in DMs |
 | 2     | NOTIFICATIONS_DISABLED | Disable reaction notifications            |
 
@@ -35326,8 +35349,8 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 | default_message_request_restricted?                  | BoolValue                                                                                          | Whether to automatically disable message requests in new guilds (default false)                                               |
 | drops_opted_out? **(deprecated)**                    | BoolValue                                                                                          | Whether to opt out of drops (default false)                                                                                   |
 | non_spam_retraining_opt_in?                          | BoolValue                                                                                          | Whether to help improve Discord spam models when marking messages as non-spam                                                 |
-| family_center_enabled?                               | BoolValue                                                                                          | Whether family center is enabled (default false)                                                                              |
-| family_center_enabled_v2?                            | BoolValue                                                                                          | Whether family center is enabled (default false)                                                                              |
+| family_center_enabled? **(deprecated)**              | BoolValue                                                                                          | Whether the family center sidebar is shown (default true)                                                                     |
+| family_center_enabled_v2?                            | BoolValue                                                                                          | Whether the family center sidebar is shown (default false)                                                                    |
 | hide_legacy_username?                                | BoolValue                                                                                          | Whether to hide the user's pre-pomelo username                                                                                |
 | inappropriate_conversation_warnings?                 | BoolValue                                                                                          | Whether to warn about inappropriate conversations in DMs (default true)                                                       |
 | recent_games_enabled?                                | BoolValue                                                                                          | Whether to show recent games on your profile (default true)                                                                   |
@@ -35339,6 +35362,7 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 | quests_3p_data_opted_out?                            | BoolValue                                                                                          | Whether the user opted out of using third-party data to personalize quests (default false)                                    |
 | show_local_time?                                     | BoolValue                                                                                          | Whether to show timestamps in local time (default true)                                                                       |
 | profile_visibility                                   | [profile visibility](#profile-visibility) enum                                                     | Profile visibility setting                                                                                                    |
+| hide_friend_request_notes?                           | BoolValue                                                                                          | Whether friend request notes are hidden (default false)                                                                       |
 
 ^1^ Does not apply to community guilds.
 
@@ -35362,10 +35386,10 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 
 ###### Guilds Leaderboard Opt Out Default
 
-| Value | Name               | Description                                              |
-| ----- | ------------------ | -------------------------------------------------------- |
-| 0     | OFF_FOR_NEW_GUILDS | Do not opt out of leaderboards for new guilds by default |
-| 1     | ON_FOR_NEW_GUILDS  | Opt out of leaderboards for new guilds by default        |
+| Value | Name               | Description                                                        |
+| ----- | ------------------ | ------------------------------------------------------------------ |
+| 0     | OFF_FOR_NEW_GUILDS | Do not opt out of leaderboards for new guilds by default (default) |
+| 1     | ON_FOR_NEW_GUILDS  | Opt out of leaderboards for new guilds by default                  |
 
 ###### Slayer SDK Receive In Game DMs
 
@@ -35439,20 +35463,22 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 
 ###### Appearance Settings Structure
 
-| Field                              | Type                                                             | Description                                                        |
-| ---------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ |
-| theme                              | [theme](#theme) enum                                             | The user's [client theme](#theme)                                  |
-| developer_mode                     | boolean                                                          | Whether to enable developer mode in-client (default false)         |
-| client_theme_settings?             | [client theme settings](#client-theme-settings-structure) object | Custom theme settings                                              |
-| mobile_redesign_disabled           | boolean                                                          | Whether the mobile redesign is disabled (default false)            |
-| channel_list_layout?               | StringValue                                                      | Channel list layout setting                                        |
-| message_previews?                  | StringValue                                                      | Message preview setting                                            |
-| search_result_exact_count_enabled? | BoolValue                                                        | Whether to show exact counts in tabs search results (default true) |
-| timestamp_hour_cycle               | [timestamp hour cycle](#timestamp-hour-cycle) enum               | Timestamp clock cycle format setting                               |
-| happening_now_cards_disabled?      | BoolValue                                                        | Whether Happening Now cards are disabled (default false)           |
-| launch_pad_mode                    | [launch pad mode](#launch-pad-mode) enum                         | Mobile Launch Pad behavior                                         |
-| ui_density                         | [UI density](#ui-density) enum                                   | UI density setting                                                 |
-| swipe_right_to_left_mode           | [swipe right to left mode](#swipe-right-to-left-mode) enum       | Mobile swipe right-to-left behavior                                |
+| Field                              | Type                                                                 | Description                                                         |
+| ---------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| theme                              | [theme](#theme) enum                                                 | The user's [client theme](#theme)                                   |
+| developer_mode                     | boolean                                                              | Whether to enable developer mode in-client (default false)          |
+| client_theme_settings?             | [client theme settings](#client-theme-settings-structure) object     | Custom theme settings                                               |
+| mobile_redesign_disabled           | boolean                                                              | Whether the mobile redesign is disabled (default false)             |
+| channel_list_layout?               | StringValue                                                          | Channel list layout setting                                         |
+| message_previews?                  | StringValue                                                          | Message preview setting                                             |
+| search_result_exact_count_enabled? | BoolValue                                                            | Whether to show exact counts in tabs search results (default false) |
+| timestamp_hour_cycle               | [timestamp hour cycle](#timestamp-hour-cycle) enum                   | Timestamp clock cycle format setting                                |
+| happening_now_cards_disabled?      | BoolValue                                                            | Whether Happening Now cards are disabled (default false)            |
+| launch_pad_mode                    | [launch pad mode](#launch-pad-mode) enum                             | Mobile Launch Pad behavior                                          |
+| ui_density                         | [UI density](#ui-density) enum                                       | UI density setting                                                  |
+| swipe_right_to_left_mode           | [swipe right to left mode](#swipe-right-to-left-mode) enum           | Mobile swipe right-to-left behavior                                 |
+| default_guild_theme_preference     | [guild theme source preference](#guild-theme-source-preference) enum | Default source for guild-specific themes                            |
+| dark_sidebar                       | boolean                                                              | Whether to use a dark sidebar (default false)                       |
 
 ###### Theme
 
@@ -35466,25 +35492,35 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 
 ###### Client Theme Settings Structure
 
-| Field                                       | Type        | Description                              |
-| ------------------------------------------- | ----------- | ---------------------------------------- |
-| primary_color? **(deprecated)**             | UInt32Value | The primary color of the client theme    |
-| background_gradient_preset_id?              | UInt32Value | The ID of the background gradient preset |
-| background_gradient_angle? **(deprecated)** | FloatValue  | The angle of the background gradient     |
+| Field                          | Type                                                                       | Description                               |
+| ------------------------------ | -------------------------------------------------------------------------- | ----------------------------------------- |
+| ~~primary_color?~~             | ~~UInt32Value~~                                                            | ~~The primary color of the client theme~~ |
+| background_gradient_preset_id? | UInt32Value                                                                | The ID of the background gradient preset  |
+| ~~background_gradient_angle?~~ | ~~FloatValue~~                                                             | ~~The angle of the background gradient~~  |
+| custom_user_theme_settings?    | [custom user theme settings](#custom-user-theme-settings-structure) object | Custom user theme settings                |
+
+###### Custom User Theme Settings Structure
+
+| Field                | Type          | Description                       |
+| -------------------- | ------------- | --------------------------------- |
+| colors               | array[string] | The theme colors                  |
+| gradient_color_stops | array[float]  | The gradient color stop positions |
+| gradient_angle       | int32         | The gradient angle                |
+| base_mix             | int32         | The base color mix                |
 
 ###### Timestamp Hour Cycle
 
-| Value | Name | Description                                        |
-| ----- | ---- | -------------------------------------------------- |
-| 0     | AUTO | Automatically determine hour cycle based on locale |
-| 1     | H12  | Use 12-hour clock                                  |
-| 2     | H23  | Use 24-hour clock                                  |
+| Value | Name | Description                                                  |
+| ----- | ---- | ------------------------------------------------------------ |
+| 0     | AUTO | Automatically determine hour cycle based on locale (default) |
+| 1     | H12  | Use 12-hour clock                                            |
+| 2     | H23  | Use 24-hour clock                                            |
 
 ###### Launch Pad Mode
 
 | Value | Name                | Description                           |
 | ----- | ------------------- | ------------------------------------- |
-| 0     | DISABLED            | Disable mobile launch pad             |
+| 0     | DISABLED            | Disable mobile launch pad (default)   |
 | 1     | GESTURE_FULL_SCREEN | Enable full-screen gesture launch pad |
 | 2     | GESTURE_RIGHT_EDGE  | Enable right-edge gesture launch pad  |
 | 3     | PULL_TAB            | Enable pull-tab launch pad            |
@@ -35506,6 +35542,14 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 | 0     | UNSET           | Default unset value (equates to `REPLY`) |
 | 1     | CHANNEL_DETAILS | Swipe to open channel details            |
 | 2     | REPLY           | Swipe to reply to messages               |
+
+###### Guild Theme Source Preference
+
+| Value | Name        | Description                                                                                        |
+| ----- | ----------- | -------------------------------------------------------------------------------------------------- |
+| 0     | UNSPECIFIED | Guild overrides fall back to `default_guild_theme_preference`, which defaults to `GUILD` (default) |
+| 1     | PERSONAL    | Use the user's personal theme                                                                      |
+| 2     | GUILD       | Use the guild's theme                                                                              |
 
 ###### Guild Folders Structure
 
@@ -35535,12 +35579,14 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 
 ###### Favorite Channel Structure
 
-| Field     | Type                                            | Description                       |
-| --------- | ----------------------------------------------- | --------------------------------- |
-| nickname  | string                                          | Nickname of the favorite channel  |
-| type      | [favorite channel type](#favorite-channel-type) | Type of the favorite channel      |
-| position  | uint32                                          | Position of the favorite channel  |
-| parent_id | fixed64                                         | Parent ID of the favorite channel |
+| Field         | Type                                            | Description                                                           |
+| ------------- | ----------------------------------------------- | --------------------------------------------------------------------- |
+| nickname      | string                                          | Nickname of the favorite channel                                      |
+| type          | [favorite channel type](#favorite-channel-type) | Type of the favorite channel                                          |
+| position      | uint32                                          | Position of the favorite channel                                      |
+| parent_id     | fixed64                                         | Parent ID of the favorite channel                                     |
+| channel_type? | UInt32Value                                     | The [type](/resources/channel#channel-type) of the underlying channel |
+| collapsed     | boolean                                         | Whether the favorite category is collapsed (default false)            |
 
 ###### Favorite Channel Type
 
@@ -35683,6 +35729,12 @@ This may also be a snowflake to represent a specific guild in the soundboard sou
 | --------------------- | ----------- | --------------------------------------------------------------------- |
 | last_impression_time? | UInt64Value | Unix timestamp (in milliseconds) of when the feedback was last shown  |
 | opt_out_expiry_time?  | UInt64Value | Unix timestamp (in milliseconds) of when the feedback opt-out expires |
+
+###### App Version Settings Structure
+
+| Field                            | Type    | Description                                                      |
+| -------------------------------- | ------- | ---------------------------------------------------------------- |
+| is_using_outdated_mobile_version | boolean | Whether the user is using an outdated mobile app (default false) |
 
 ### Frecency User Settings Object
 
@@ -37299,6 +37351,15 @@ This endpoint is only usable with an OAuth2 access token with the `account.globa
 | Field        | Type    | Description                               |
 | ------------ | ------- | ----------------------------------------- |
 | global_name? | ?string | The user's display name (1-32 characters) |
+
+<RouteHeader method="POST" url="/users/@me/meaningfully-online">
+  Report Meaningfully Online
+</RouteHeader>
+
+Reports that the current user should be considered meaningfully online for friend online notifications. Returns a 204 empty response on success.
+
+Clients should this after the current user's [status](/resources/presence#status-type) has remained `online` or `streaming` for 5 minutes,
+if the user has the [`notify_friends_on_come_online` setting](/resources/user-settings-proto#notification-settings-structure) enabled. Clients should also maintain a 1 hour cooldown between successful reports.
 
 <RouteHeader method="GET" url="/users/@me/avatars">
   List Recent Avatars
@@ -43061,10 +43122,14 @@ How this is determined depends on the read state type:
 - For read states of type `GUILD_EVENT`, the ID of the newest scheduled event in the guild is compared against the read state's `last_acked_id`.
 - For read states of type `GUILD_HOME`, no specific entity is tracked; guild home is considered unread if the timestamp of the read state's `last_acked_id` is more than 24 hours old.
 - For read states of type `GUILD_ONBOARDING_QUESTION`, the [guild `latest_onboarding_question_id` field](/resources/guild#guild-object) is compared against the read state's `last_acked_id`.
-- For read states of type `NOTIFICATION_CENTER`, the ID of the newest notification center item is compared against the read state's `last_acked_id`.
+- For read states of type `NOTIFICATION_CENTER`, the ID of the newest [notification center item](/resources/notification-center#notification-center-item-object) is compared against the read state's `last_acked_id`. Mobile clients also use the same read state to track whether notification tab message mentions have been viewed, comparing the mentioned message IDs against `last_acked_id`.
 - For read states of type `MESSAGE_REQUESTS`, the ID of the newest message request is compared against the read state's `last_acked_id`.
 
 These same principles can be applied to determine what entity ID to use when acknowledging a read state.
+
+For notification center, the `NOTIFICATION_CENTER` read state and the `acked` state on individual notification center items are separate.
+The read state controls the notification center's overall unread badge by storing an acknowledged item threshold,
+while [notification center item acknowledgements](/resources/notification-center#acknowledge-notification-center-item) control whether individual items are marked as acknowledged.
 
 ## Automations
 
@@ -43091,6 +43156,13 @@ However, certain read state updates are done automatically by Discord without fi
 - When a [Guild Scheduled Event Create](/gateway/gateway-events#guild-scheduled-event-create) Gateway event is received, if the guild's [notification settings](/resources/user-settings#user-guild-settings-object) does not have `mute_scheduled_events` set, the corresponding read state must be updated to increment `badge_count` by one.
 - When a [Guild Scheduled Event Create](/gateway/gateway-events#guild-scheduled-event-create) Gateway event is received, if the event's `creator_id` matches the current user's ID, the corresponding read state must be updated to set `last_acked_id` to the new event's ID, thereby resetting `badge_count` to zero.
 
+#### User Read State Automations
+
+- When a [Notification Center Item Create](/gateway/gateway-events#notification-center-item-create) Gateway event is received, the `NOTIFICATION_CENTER` read state must be updated to increment `badge_count` by one.
+- When a [Relationship Add](/gateway/gateway-events#relationship-add) Gateway event is received with q`type` `INCOMING_REQUEST`, the `NOTIFICATION_CENTER` read state must be updated to increment `badge_count` by one.
+- When a [Relationship Add](/gateway/gateway-events#relationship-add) Gateway event is received with `type` `FRIEND`, or a [Relationship Remove](/gateway/gateway-events#relationship-remove) Gateway event is received with `type` `INCOMING_REQUEST`, the `NOTIFICATION_CENTER` read state must be updated to decrement `badge_count` by one, without going below zero.
+- On mobile, message mentions can also contribute to the `NOTIFICATION_CENTER` badge. When they do, clients must use the message's ID as the latest entity for the notification center read state.
+
 ## Management
 
 Read states are almost entirely managed by clients, with the server not doing much other than storing them.
@@ -43106,7 +43178,7 @@ Flags must be calculated as follows:
 - If the channel's `type` is one of the thread types (`NEWS_THREAD`, `PUBLIC_THREAD`, `PRIVATE_THREAD`), set the `IS_THREAD` flag.
 - If the read state's `mention_count` is comprised entirely of non-ping mentions, set the `IS_MENTION_LOW_IMPORTANCE` flag. ^1^
 
-^1^ When the user has the [`MENTION_ON_ALL_MESSAGES` setting](/resources/user-settings#notification-settings-flags) enabled and the channel's [notification level](/resources/user-settings#user-guild-settings-object) is set to `ALL_MESSAGES`, all messages in the channel increase the `mention_count`. However, these mentions are considered low importance as they do not ping the user. However, if there is at least one ping mention in the channel, the read state is not considered low importance.
+^1^ When the user has the [`MENTION_ON_ALL_MESSAGES` setting](/resources/user-settings#notification-settings-flags) enabled and the channel's [notification level](/resources/user-settings#user-guild-settings-object) is set to `ALL_MESSAGES`, all messages in the channel increase the `mention_count`. These mentions are considered low importance as they do not ping the user. However, if there is at least one ping mention in the channel, the read state is not considered low importance.
 
 #### Calculating Last Viewed
 
@@ -43165,14 +43237,14 @@ The client should reset the ack token to `null` whenever it switches accounts or
 
 ###### Read State Type
 
-| Value | Name                      | Description                   |
-| ----- | ------------------------- | ----------------------------- |
-| 0     | CHANNEL                   | Channel message unreads       |
-| 1     | GUILD_EVENT               | Guild scheduled event feature |
-| 2     | NOTIFICATION_CENTER       | Notification center feature   |
-| 3     | GUILD_HOME                | Guild home feature            |
-| 4     | GUILD_ONBOARDING_QUESTION | Guild onboarding feature      |
-| 5     | MESSAGE_REQUESTS          | Message requests feature      |
+| Value | Name                      | Description                      |
+| ----- | ------------------------- | -------------------------------- |
+| 0     | CHANNEL                   | Channel message unreads          |
+| 1     | GUILD_EVENT               | Guild scheduled event feature    |
+| 2     | NOTIFICATION_CENTER       | User notification center feature |
+| 3     | GUILD_HOME                | Guild home feature               |
+| 4     | GUILD_ONBOARDING_QUESTION | Guild onboarding feature         |
+| 5     | MESSAGE_REQUESTS          | User message requests feature    |
 
 ###### Read State Flags
 
@@ -43198,7 +43270,7 @@ In this case, `mention_count` should also be updated to the amount of mentions u
 | Field              | Type    | Description                                                        |
 | ------------------ | ------- | ------------------------------------------------------------------ |
 | token?             | ?string | The last received [ack token](#ack-tokens), or `null`              |
-| manual?            | boolean | Whether the acknowleged message ID is manually set                 |
+| manual?            | boolean | Whether the acknowledged message ID is manually set                |
 | mention_count? ^1^ | integer | The new unread indicator for the channel                           |
 | flags? ^2^         | integer | The [read state flags](#read-state-flags) for the channel          |
 | last_viewed? ^2^   | integer | When the channel was last viewed (in days since the Discord epoch) |

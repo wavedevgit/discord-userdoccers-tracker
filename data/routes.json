@@ -8993,6 +8993,17 @@
         ]
     },
     {
+        "title": "Report Meaningfully Online",
+        "method": "POST",
+        "url": "/users/@me/meaningfully-online",
+        "urls": [
+            "/users/@me/meaningfully-online"
+        ],
+        "urlEmpty": [
+            "/users/@me/meaningfully-online"
+        ]
+    },
+    {
         "title": "List Recent Avatars",
         "method": "GET",
         "url": "/users/@me/avatars",
