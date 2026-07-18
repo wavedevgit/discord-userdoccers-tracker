@@ -7094,6 +7094,17 @@
         ]
     },
     {
+        "title": "Get Quest Preview",
+        "method": "GET",
+        "url": "/quests/{quest.id}/preview",
+        "urls": [
+            "/quests/{quest.id}/preview"
+        ],
+        "urlEmpty": [
+            "/quests/:param/preview"
+        ]
+    },
+    {
         "title": "Get Quest Placement",
         "method": "GET",
         "url": "/quests/decision",
@@ -7102,6 +7113,39 @@
         ],
         "urlEmpty": [
             "/quests/decision"
+        ]
+    },
+    {
+        "title": "Get Earned Quest Placement",
+        "method": "GET",
+        "url": "/quests/earned-decision",
+        "urls": [
+            "/quests/earned-decision"
+        ],
+        "urlEmpty": [
+            "/quests/earned-decision"
+        ]
+    },
+    {
+        "title": "Get Quest Decisions",
+        "method": "GET",
+        "url": "/quests/get-decisions",
+        "urls": [
+            "/quests/get-decisions"
+        ],
+        "urlEmpty": [
+            "/quests/get-decisions"
+        ]
+    },
+    {
+        "title": "Get Quest Creative Preview",
+        "method": "GET",
+        "url": "/quests/preview",
+        "urls": [
+            "/quests/preview"
+        ],
+        "urlEmpty": [
+            "/quests/preview"
         ]
     },
     {
@@ -7124,6 +7168,17 @@
         ],
         "urlEmpty": [
             "/quests/:param/claim-reward"
+        ]
+    },
+    {
+        "title": "Claim Quest Creative Reward",
+        "method": "POST",
+        "url": "/quests/creatives/{ad_creative.id}/claim-reward",
+        "urls": [
+            "/quests/creatives/{ad_creative.id}/claim-reward"
+        ],
+        "urlEmpty": [
+            "/quests/creatives/:param/claim-reward"
         ]
     },
     {
@@ -7201,6 +7256,17 @@
         ],
         "urlEmpty": [
             "/quests/:param/preview/status"
+        ]
+    },
+    {
+        "title": "Reset Recent Quest Completions",
+        "method": "DELETE",
+        "url": "/quests/reset-recent-quest-completions",
+        "urls": [
+            "/quests/reset-recent-quest-completions"
+        ],
+        "urlEmpty": [
+            "/quests/reset-recent-quest-completions"
         ]
     },
     {
