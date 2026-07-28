@@ -125,6 +125,10 @@
             "/avatar-decoration-presets/:param.:param"
         ],
         [
+            "USER_PROFILE_EFFECTS",
+            "/user-profile-effects"
+        ],
+        [
             "GUILD_MEMBER_BANNER",
             "/guilds/:param/users/:param/banners/:param.:param"
         ],
@@ -713,18 +717,6 @@
             "/tenor"
         ],
         [
-            "VIDEO_FILTER_ASSETS",
-            "/users/@me/video-filters/assets"
-        ],
-        [
-            "VIDEO_FILTER_ASSET",
-            "/users/@me/video-filters/assets/:param"
-        ],
-        [
-            "VIDEO_FILTER_ASSET_LAST_USED",
-            "/users/@me/video-filters/assets/:param/last-used"
-        ],
-        [
             "VIDEO_FILTER_ASSET_STORAGE",
             "/users/:param/video-filter-assets/:param/:param.:param"
         ],
@@ -769,16 +761,8 @@
             "/auth/sessions/logout"
         ],
         [
-            "CUSTOM_CALL_SOUNDS",
-            "/channels/:param/custom-call-sounds"
-        ],
-        [
             "APPLICATION_SUBSCRIPTION_GROUP_LISTING",
             "/applications/:param/subscription-group-listings/:param"
-        ],
-        [
-            "ELIGIBLE_APPLICATION_SUBSCRIPTION_GUILDS",
-            "/users/@me/billing/eligible-application-subscription-guilds"
         ],
         [
             "SHARED_CANVAS_LINES",
@@ -1273,10 +1257,6 @@
         [
             "FORUM_POSTS",
             "/channels/:param/post-data"
-        ],
-        [
-            "USER_PROFILE_EFFECTS",
-            "/user-profile-effects"
         ],
         [
             "COLLECTIBLES_CATEGORIES",
@@ -2471,6 +2451,18 @@
             "/users/@me/notification-settings"
         ],
         [
+            "VIDEO_FILTER_ASSETS",
+            "/users/@me/video-filters/assets"
+        ],
+        [
+            "VIDEO_FILTER_ASSET",
+            "/users/@me/video-filters/assets/:param"
+        ],
+        [
+            "VIDEO_FILTER_ASSET_LAST_USED",
+            "/users/@me/video-filters/assets/:param/last-used"
+        ],
+        [
             "GUILD_SOUNDBOARD_SOUNDS",
             "/guilds/:param/soundboard-sounds"
         ],
@@ -2575,6 +2567,10 @@
             "/guilds/:param/join-admin-server"
         ],
         [
+            "CUSTOM_CALL_SOUNDS",
+            "/channels/:param/custom-call-sounds"
+        ],
+        [
             "VOICE_CHANNEL_EFFECTS",
             "/channels/:param/voice-channel-effects"
         ],
@@ -2609,6 +2605,10 @@
         [
             "CONSOLES_DEVICES_COMMAND",
             "/consoles/:param/devices/:param/commands/:param"
+        ],
+        [
+            "ELIGIBLE_APPLICATION_SUBSCRIPTION_GUILDS",
+            "/users/@me/billing/eligible-application-subscription-guilds"
         ],
         [
             "APPLICATION_USER_ROLE_CONNECTIONS",

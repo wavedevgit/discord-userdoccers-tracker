@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 474 |
+| Covered | 478 |
 |---------|------------|
-| Missing | 231 |
+| Missing | 227 |
 ## Missing routes
-total: 231
+total: 227
 
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
@@ -37,6 +37,7 @@ total: 231
 - [ ] **ARCHIVED_AVATAR**: `/avatars/:param/archived/:param/:param.:param`
 - [ ] **USER_BANNER**: `/users/:param/banners/:param.:param`
 - [ ] **AVATAR_DECORATION_PRESETS**: `/avatar-decoration-presets/:param.:param`
+- [ ] **USER_PROFILE_EFFECTS**: `/user-profile-effects`
 - [ ] **GUILD_MEMBER_BANNER**: `/guilds/:param/users/:param/banners/:param.:param`
 - [ ] **MESSAGE_LOG_PRIVATE_CHANNELS**: `/messages-log/private-channels/get`
 - [ ] **MESSAGE_LOG_GUILD_CHANNELS**: `/messages-log/guild-channels/get`
@@ -184,9 +185,6 @@ total: 231
 - [ ] **CLAN_SETTINGS**: `/clan/:param/settings`
 - [ ] **DISABLE_CLAN**: `/clan/:param/disable`
 - [ ] **TENOR_ASSET_PATH**: `/tenor`
-- [ ] **VIDEO_FILTER_ASSETS**: `/users/@me/video-filters/assets`
-- [ ] **VIDEO_FILTER_ASSET**: `/users/@me/video-filters/assets/:param`
-- [ ] **VIDEO_FILTER_ASSET_LAST_USED**: `/users/@me/video-filters/assets/:param/last-used`
 - [ ] **VIDEO_FILTER_ASSET_STORAGE**: `/users/:param/video-filter-assets/:param/:param.:param`
 - [ ] **SOUNDBOARD_SOUND**: `/soundboard-sounds/:param`
 - [ ] **APPLICATION_COMMANDS_SEARCH**: `/channels/:param/application-commands/search`
@@ -198,9 +196,7 @@ total: 231
 - [ ] **AUTH_SESSIONS**: `/auth/sessions`
 - [ ] **AUTH_SESSION_NOTIFICATIONS_DEBUG**: `/auth/sessions/debug/notifications`
 - [ ] **AUTH_SESSIONS_LOGOUT**: `/auth/sessions/logout`
-- [ ] **CUSTOM_CALL_SOUNDS**: `/channels/:param/custom-call-sounds`
 - [ ] **APPLICATION_SUBSCRIPTION_GROUP_LISTING**: `/applications/:param/subscription-group-listings/:param`
-- [ ] **ELIGIBLE_APPLICATION_SUBSCRIPTION_GUILDS**: `/users/@me/billing/eligible-application-subscription-guilds`
 - [ ] **SHARED_CANVAS_LINES**: `/channels/:param/:param/shared-canvas/lines`
 - [ ] **SHARED_CANVAS_EMOJI_HOSES**: `/channels/:param/:param/shared-canvas/emoji-hose`
 - [ ] **SHARED_CANVAS_EMOJI_HOSE**: `/channels/:param/:param/shared-canvas/emoji-hose/:param`
@@ -239,7 +235,7 @@ total: 231
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 
 ## Covered routes
-total: 474
+total: 478
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -328,7 +324,6 @@ total: 474
 - [x] **MY_ARCHIVED_THREADS**: `/channels/:param/users/@me/threads/archived/private`
 - [x] **THREAD_SEARCH**: `/channels/:param/threads/search`
 - [x] **FORUM_POSTS**: `/channels/:param/post-data`
-- [x] **USER_PROFILE_EFFECTS**: `/user-profile-effects`
 - [x] **COLLECTIBLES_CATEGORIES**: `/collectibles-categories`
 - [x] **COLLECTIBLES_CLAIM**: `/users/@me/claim-premium-collectibles-product`
 - [x] **COLLECTIBLES_PURCHASES**: `/users/@me/collectibles-purchases`
@@ -627,6 +622,9 @@ total: 474
 - [x] **USER_SET_CLAN_IDENTITY**: `/users/@me/clan`
 - [x] **EMAIL_SETTINGS**: `/users/@me/email-settings`
 - [x] **ACCOUNT_NOTIFICATION_SETTINGS**: `/users/@me/notification-settings`
+- [x] **VIDEO_FILTER_ASSETS**: `/users/@me/video-filters/assets`
+- [x] **VIDEO_FILTER_ASSET**: `/users/@me/video-filters/assets/:param`
+- [x] **VIDEO_FILTER_ASSET_LAST_USED**: `/users/@me/video-filters/assets/:param/last-used`
 - [x] **GUILD_SOUNDBOARD_SOUNDS**: `/guilds/:param/soundboard-sounds`
 - [x] **GUILD_SOUNDBOARD_SOUND**: `/guilds/:param/soundboard-sounds/:param`
 - [x] **SOUNDBOARD_SOUND_GUILD_DATA**: `/soundboard-sounds/:param/guild/:param`
@@ -653,6 +651,7 @@ total: 474
 - [x] **RESTORE_NOTIFICATION_SNAPSHOT**: `/users/@me/notification-settings/snapshots/:param/restore-guilds`
 - [x] **GUILD_ADMIN_SERVER_ELIGIBILITY**: `/guilds/:param/admin-server-eligibility`
 - [x] **JOIN_ADMIN_SERVER**: `/guilds/:param/join-admin-server`
+- [x] **CUSTOM_CALL_SOUNDS**: `/channels/:param/custom-call-sounds`
 - [x] **VOICE_CHANNEL_EFFECTS**: `/channels/:param/voice-channel-effects`
 - [x] **GUILD_ENTITLEMENTS**: `/guilds/:param/entitlements`
 - [x] **GUILD_ROLE_CONNECTIONS_CONFIGURATION**: `/guilds/:param/roles/:param/connections/configuration`
@@ -662,6 +661,7 @@ total: 474
 - [x] **CONSOLES_DEVICES**: `/consoles/:param/devices`
 - [x] **CONSOLES_DEVICES_COMMANDS**: `/consoles/:param/devices/:param/commands`
 - [x] **CONSOLES_DEVICES_COMMAND**: `/consoles/:param/devices/:param/commands/:param`
+- [x] **ELIGIBLE_APPLICATION_SUBSCRIPTION_GUILDS**: `/users/@me/billing/eligible-application-subscription-guilds`
 - [x] **APPLICATION_USER_ROLE_CONNECTIONS**: `/users/@me/applications/role-connections`
 - [x] **GET_SAVED_MESSAGES**: `/users/@me/saved-messages`
 - [x] **PUT_SAVED_MESSAGE**: `/users/@me/saved-messages/:param/:param`

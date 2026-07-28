@@ -1050,6 +1050,7 @@ These events directly correspond with a specific action or state change that has
 | [Guild Soundboard Sound Create](#guild-soundboard-sound-create)                                   | Guild soundboard sound was created                                                                |
 | [Guild Soundboard Sound Update](#guild-soundboard-sound-update)                                   | Guild soundboard sound was updated                                                                |
 | [Guild Soundboard Sound Delete](#guild-soundboard-sound-delete)                                   | Guild soundboard sound was deleted                                                                |
+| [Guild Soundboard Sounds Update](#guild-soundboard-sound-update)                                  | Guild soundboard sounds were updated                                                              |
 | [Soundboard Sounds](#soundboard-sounds)                                                           | Response to [Request Soundboard Sounds](#request-soundboard-sounds)                               |
 | [Guild Integrations Update](#guild-integrations-update)                                           | Guild integration was updated                                                                     |
 | [Integration Create](#integration-create)                                                         | Guild integration was created                                                                     |
@@ -2597,6 +2598,17 @@ Sent when a guild soundboard sound is deleted.
 | -------- | --------- | ------------------------------ |
 | guild_id | snowflake | The ID of the guild            |
 | sound_id | snowflake | The ID of the soundboard sound |
+
+#### Guild Soundboard Sounds Update
+
+Sent when multiple guild soundboard sounds are updated.
+
+###### Guild Soundboard Sounds Update Structure
+
+| Field             | Type                                                                            | Description                   |
+| ----------------- | ------------------------------------------------------------------------------- | ----------------------------- |
+| guild_id          | snowflake                                                                       | The ID of the guild           |
+| soundboard_sounds | array[[soundboard sound](/resources/soundboard#soundboard-sound-object) object] | The guild's soundboard sounds |
 
 #### Soundboard Sounds
 
@@ -11428,6 +11440,12 @@ Discord supports a variety of payment providers to enable billing for first-part
 | state?       | string  | The state or province of the location |
 | country      | string  | The country of the location           |
 
+###### PIX Payment Metadata Structure
+
+| Field   | Type   | Description                  |
+| ------- | ------ | ---------------------------- |
+| tax_id? | string | The PIX tax ID for the payer |
+
 ###### Payment Source Type
 
 | Value | Name                    | Description        |
@@ -11621,22 +11639,44 @@ Returns a list of [payment source](#payment-source-object) objects. Note that th
 
 Returns a [payment source](#payment-source-object) object for a given payment source ID.
 
+<RouteHeader method="GET" url="/users/@me/billing/payment-source-creation-context">
+  Get Payment Source Creation Context
+</RouteHeader>
+
+Returns information about which payment source types and billing address countries are available to the current user.
+
+###### Response Body
+
+| Field                             | Type           | Description                                                                                                                          |
+| --------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| store_country                     | ?string        | The user's store country, as an [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code                  |
+| allowed_payment_source_types      | array[integer] | The creatable [payment source types](#payment-source-type)                                                                           |
+| allowed_billing_address_countries | array[string]  | The countries allowed for billing addresses, as [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes |
+
 <RouteHeader method="POST" url="/users/@me/billing/payment-sources">
   Create Payment Source
 </RouteHeader>
 
 Creates a payment source. Returns a [payment source](#payment-source-object) object on success. Fires a [User Payment Sources Update](/gateway/gateway-events#user-payment-sources-update) Gateway event.
 
+###### Query String Params
+
+| Field     | Type   | Description                                                            |
+| --------- | ------ | ---------------------------------------------------------------------- |
+| location? | string | The analytics location the request initiated from (max 100 characters) |
+
 ###### JSON Params
 
-| Field                  | Type                                                 | Description                                                                                           |
-| ---------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| token                  | string                                               | The payment source token retrieved from the payment gateway                                           |
-| payment_gateway        | integer                                              | The [payment gateway](#payment-gateway) of the payment source                                         |
-| billing_address        | [billing address](#billing-address-structure) object | The billing address of the payment source                                                             |
-| billing_address_token? | string                                               | The validation token obtained from the [Validate Billing Address](#validate-billing-address) endpoint |
-| return_url?            | string                                               | The URL to return to after the payment source is created                                              |
-| bank?                  | string                                               | The bank information for the payment source                                                           |
+| Field                  | Type                                                           | Description                                                                                           |
+| ---------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| token                  | string                                                         | The payment source token retrieved from the payment gateway                                           |
+| payment_gateway        | integer                                                        | The [payment gateway](#payment-gateway) of the payment source                                         |
+| billing_address        | [billing address](#billing-address-structure) object           | The billing address of the payment source                                                             |
+| billing_address_token? | string                                                         | The validation token obtained from the [Validate Billing Address](#validate-billing-address) endpoint |
+| return_url?            | string                                                         | The URL to return to after the payment source is created                                              |
+| bank?                  | string                                                         | The bank information for the payment source                                                           |
+| default?               | boolean                                                        | Whether the payment source is the default payment source (default false)                              |
+| pix?                   | [PIX payment metadata](#pix-payment-metadata-structure) object | PIX payment metadata                                                                                  |
 
 <RouteHeader method="PATCH" url="/users/@me/billing/payment-sources/{payment_source.id}" mfa>
   Modify Payment Source
@@ -11650,8 +11690,8 @@ Modifies a payment source. Returns an updated [payment source](#payment-source-o
 | ---------------- | ---------------------------------------------------- | -------------------------------------------------------- |
 | billing_address? | [billing address](#billing-address-structure) object | The billing address of the payment source                |
 | default?         | boolean                                              | Whether the payment source is the default payment source |
-| expires_month?   | integer                                              | The year the credit card expires at                      |
-| expires_year?    | integer                                              | The month the credit card expires at                     |
+| expires_month?   | integer                                              | The month the credit card expires at                     |
+| expires_year?    | integer                                              | The year the credit card expires at                      |
 
 <RouteHeader method="DELETE" url="/users/@me/billing/payment-sources/{payment_source.id}">
   Delete Payment Source
@@ -11902,6 +11942,19 @@ Returns whether the client should prompt the user to continue their premium purc
 </RouteHeader>
 
 Returns a list of up to 3 partial [user](/resources/user#partial-user-structure) objects representing friends with a premium subscription, used to entice the user to subscribe.
+
+<RouteHeader method="GET" url="/users/@me/billing/eligible-application-subscription-guilds">
+  List Eligible Application Subscription Guilds
+</RouteHeader>
+
+Returns a list of guild IDs eligible for an application guild subscription.
+
+###### Query String Params
+
+| Field          | Type      | Description                                             |
+| -------------- | --------- | ------------------------------------------------------- |
+| application_id | snowflake | The ID of the application the subscription belongs to   |
+| sku_id?        | snowflake | The ID of the application subscription SKU to check for |
 
 
 ----- discord-userdoccers/pages/resources/channel.mdx -----
@@ -12605,16 +12658,28 @@ One of `recipient_id`, `recipients` or `access_tokens` is required. Bots cannot 
 
 | Field                          | Type                   | Description                                                                |
 | ------------------------------ | ---------------------- | -------------------------------------------------------------------------- |
-| recipient_id? **(deprecated)** | snowflake              | The recipient to DM                                                        |
+| recipient_id? **(deprecated)** | snowflake              | The user ID of the recipient to DM                                         |
 | recipients? ^1^                | array[snowflake]       | The users to include in the private channel                                |
 | access_tokens? ^2^             | array[string]          | The access tokens of users that have granted your app the `gdm.join` scope |
 | nicks? ^3^                     | map[snowflake, string] | A mapping of user IDs to their respective nicknames                        |
 
-^1^ When creating a group DM, the client user's ID can optionally be included in the `recipients` array. This allows creating a group DM with only one other user.
+^1^ When creating a group DM, the client user's ID can optionally be included in the `recipients` array. This allows creating a group DM with only one recipient.
 
 ^2^ Only usable by bots for OAuth2 requests, which can only create group DMs.
 
 ^3^ Requires `access_tokens` to be provided.
+
+<RouteHeader method="POST" url="/users/@me/channels/group-dm-shell">
+  Create Group DM Shell
+</RouteHeader>
+
+Creates a group DM channel with one recipient. Returns a [private channel](#channel-object) object. Fires a [Channel Create](/gateway/gateway-events#channel-create) Gateway event.
+
+###### JSON Params
+
+| Field        | Type      | Description                  |
+| ------------ | --------- | ---------------------------- |
+| recipient_id | snowflake | The user ID of the recipient |
 
 <RouteHeader method="GET" url="/guilds/{guild.id}/channels" supportsOAuth2="guilds.channels.read" supportsBot>
   List Guild Channels
@@ -13981,10 +14046,12 @@ Collectibles are SKUs representing digital items that users typically purchase i
 | bundled_products?    | array[[collectible product](#collectible-product-structure) object]                        | The bundled products included in the collectible product                                                     |
 | category_sku_id      | snowflake                                                                                  | The category SKU ID of the collectible product                                                               |
 | google_sku_ids?      | map[integer, string]                                                                       | The Google SKU IDs for the collectible per [purchase type](/resources/store#subscription-plan-purchase-type) |
+| eligible_offers?     | array[snowflake]                                                                           | The IDs of eligible user discount offers for the product                                                     |
 | items ^3^            | array[[collectible item](#collectible-item-object) object]                                 | The items included in the collectible product                                                                |
 | name                 | string                                                                                     | The name of the collectible product                                                                          |
 | premium_type         | integer                                                                                    | The premium type required to purchase the collectible product                                                |
 | prices?              | map[integer, [subscription prices](/resources/store#subscription-prices-structure) object] | The prices for the collectible per [purchase type](/resources/store#subscription-plan-purchase-type)         |
+| preview_assets?      | [collectible preview assets](#collectible-preview-assets-structure) object                 | Preview assets for the collectible product                                                                   |
 | styles               | [collectible styles](#collectible-style-structure) object                                  | The colors to use in the client                                                                              |
 | summary              | string                                                                                     | A description of the collectible product                                                                     |
 | unpublished_at       | ?ISO8601 timestamp                                                                         | When the collectible product should be unpublished                                                           |
@@ -13993,9 +14060,11 @@ Collectibles are SKUs representing digital items that users typically purchase i
 | expires_at? ^2^      | ?ISO8601 timestamp                                                                         | When the collectible product expires                                                                         |
 | purchase_type? ^2^   | integer                                                                                    | The [purchase type](#collectible-purchase-type) of the collectible product                                   |
 | purchased_at? ^2^    | ISO8601 timestamp                                                                          | When the collectible product was purchased                                                                   |
+| badge_override?      | ?string                                                                                    | The badge override text for the collectible product                                                          |
+| hide_badge?          | boolean                                                                                    | Whether to hide the product badge (default false)                                                            |
 | variant_label?       | string                                                                                     | The label for the variant of the collectible product                                                         |
 | variant_value?       | string                                                                                     | The hex value of the color for the variant of the collectible product                                        |
-| variants? ^1^        | array[collectible product](#collectible-product-structure) object]                         | The variants of the collectible product                                                                      |
+| variants? ^1^        | array[[collectible product](#collectible-product-structure) object]                        | The variants of the collectible product                                                                      |
 
 ^1^ Only included when `variants_return_style` is set to `VARIANTS_GROUP`, otherwise each variant will be returned as a separate product.
 
@@ -14010,6 +14079,15 @@ Collectibles are SKUs representing digital items that users typically purchase i
 | background_colors | array[integer] | An array of background colors |
 | button_colors     | array[integer] | An array of button colors     |
 | confetti_colors   | array[integer] | An array of confetti colors   |
+
+###### Collectible Preview Assets Structure
+
+| Field        | Type   | Description                           |
+| ------------ | ------ | ------------------------------------- |
+| fg_static?   | string | The static foreground preview asset   |
+| fg_animated? | string | The animated foreground preview asset |
+| bg_static?   | string | The static background preview asset   |
+| bg_animated? | string | The animated background preview asset |
 
 ###### Collectible Purchase Type
 
@@ -14030,6 +14108,7 @@ Collectibles are SKUs representing digital items that users typically purchase i
 | 0     | [AVATAR_DECORATION](#avatar-decoration-collectible-item-structure) | An avatar decoration                            |
 | 1     | [PROFILE_EFFECT](#profile-effect-collectible-item-structure)       | A profile effect                                |
 | 2     | [NAMEPLATE](#nameplate-collectible-item-structure)                 | A nameplate                                     |
+| 3     | [PROFILE_FRAME](#profile-frame-collectible-item-structure)         | A profile frame                                 |
 | 1000  | BUNDLE                                                             | A bundle of collectibles                        |
 | 2000  | VARIANTS_GROUP                                                     | A group of variants                             |
 | 3000  | EXTERNAL_SKU                                                       | A non-collectible SKU (e.g. fractional premium) |
@@ -14039,7 +14118,6 @@ Collectibles are SKUs representing digital items that users typically purchase i
 | Field  | Type                                         | Description                                                          |
 | ------ | -------------------------------------------- | -------------------------------------------------------------------- |
 | type   | integer                                      | The [type of collectible](#collectible-product-type)                 |
-| id     | snowflake                                    | The ID of the avatar decoration                                      |
 | sku_id | snowflake                                    | The SKU ID of the avatar decoration                                  |
 | asset  | string                                       | The asset hash of the avatar decoration                              |
 | assets | [item assets](#item-assets-structure) object | The URLs for the static and animated images of the avatar decoration |
@@ -14050,15 +14128,14 @@ Collectibles are SKUs representing digital items that users typically purchase i
 | Field               | Type                                                                          | Description                                                                        |
 | ------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | type                | integer                                                                       | The [type of collectible](#collectible-product-type)                               |
-| id                  | string                                                                        | The ID of the profile effect                                                       |
-| sku_id              | string                                                                        | The ID of the profile effect SKU                                                   |
+| sku_id              | snowflake                                                                     | The ID of the profile effect SKU                                                   |
 | title               | string                                                                        | The title of the profile effect                                                    |
 | description         | string                                                                        | The description of the profile effect                                              |
 | accessibilityLabel  | string                                                                        | An accessible description of the profile effect                                    |
 | animationType       | integer                                                                       | The [type of animation](#profile-effect-animation-type) used by the profile effect |
 | thumbnailPreviewSrc | string                                                                        | The URL of the profile effect's thumbnail preview image (in APNG format)           |
 | reducedMotionSrc    | string                                                                        | A URL of the profile effect with reduced motion (in APNG format)                   |
-| staticFrameSrc      | string                                                                        | The URL of the static frame of the profile effect (in PNG format)                  |
+| staticFrameSrc?     | string                                                                        | The URL of the static frame of the profile effect (in PNG format)                  |
 | effects             | array[[profile effect animation](#profile-effect-animation-structure) object] | The animation frames for the profile effect                                        |
 
 ###### Profile Effect Animation Structure
@@ -14102,7 +14179,6 @@ Collectibles are SKUs representing digital items that users typically purchase i
 | Field   | Type                                         | Description                                                  |
 | ------- | -------------------------------------------- | ------------------------------------------------------------ |
 | type    | integer                                      | The [type of collectible](#collectible-product-type)         |
-| id      | snowflake                                    | The ID of the nameplate                                      |
 | sku_id  | snowflake                                    | The SKU ID of the nameplate                                  |
 | palette | string                                       | The nameplate's [color palette](#nameplate-color-palette)    |
 | asset   | string                                       | The [nameplate asset path](/reference#cdn-formatting)        |
@@ -14126,6 +14202,29 @@ Collectibles are SKUs representing digital items that users typically purchase i
 | lemon      | Lemon       |
 | white      | White       |
 
+###### Profile Frame Collectible Item Structure
+
+| Field               | Type                                                                | Description                                          |
+| ------------------- | ------------------------------------------------------------------- | ---------------------------------------------------- |
+| type                | integer                                                             | The [type of collectible](#collectible-product-type) |
+| sku_id              | snowflake                                                           | The SKU ID of the profile frame                      |
+| label               | string                                                              | The profile frame accessibility description          |
+| layers              | array[[profile frame layer](#profile-frame-layer-structure) object] | The profile frame layers                             |
+| inner_width         | integer                                                             | The inner width of the profile frame                 |
+| overflow_top        | integer                                                             | The top overflow of the profile frame                |
+| overflow_bottom     | integer                                                             | The bottom overflow of the profile frame             |
+| overflow_horizontal | integer                                                             | The horizontal overflow of the profile frame         |
+
+###### Profile Frame Layer Structure
+
+| Field       | Type      | Description                                     |
+| ----------- | --------- | ----------------------------------------------- |
+| id          | snowflake | The asset ID of the profile frame layer         |
+| type        | integer   | The type of layer                               |
+| order       | integer   | The layer order                                 |
+| anchor      | integer   | The layer anchor                                |
+| responsive? | boolean   | Whether the layer is responsive (default false) |
+
 ###### Item Assets Structure
 
 | Field              | Type   | Description                                                        |
@@ -14138,36 +14237,40 @@ Collectibles are SKUs representing digital items that users typically purchase i
 
 ###### Collectible Category Structure
 
-| Field                       | Type                                                                | Description                                                                                |
-| --------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| sku_id                      | snowflake                                                           | The SKU ID of the collectible category                                                     |
-| store_listing_id            | snowflake                                                           | The store listing ID associated with the collectible category                              |
-| banner_text_color?          | string                                                              | The color of the banner text as a hexadecimal color string                                 |
-| catalog_banner_asset?       | [banner asset](#banner-asset-structure) object                      | The catalog banner asset                                                                   |
-| featured_block_body?        | string                                                              | The body text for the featured block                                                       |
-| featured_block_url?         | string                                                              | The URL of the featured block image                                                        |
-| hero_banner_asset?          | [banner asset](#banner-asset-structure) object                      | The hero banner asset                                                                      |
-| hero_banner_display_config? | [asset config](#asset-config-structure) object                      | The display configuration for the hero banner                                              |
-| hero_block_title?           | string                                                              | The title text for the hero block                                                          |
-| hero_logo_display_config?   | [asset config](#asset-config-structure) object                      | The display configuration for the hero logo                                                |
-| hero_logo_url?              | string                                                              | The URL of the hero logo image                                                             |
-| hero_ranking                | ?array[snowflake]                                                   | The popularity ranking of SKU IDs within the collectible category                          |
-| hero_rive_url?              | string                                                              | The URL of the [Rive](https://rive.app/docs/runtimes/advanced-topic/format) hero animation |
-| logo_url                    | string                                                              | The URL of the logo image                                                                  |
-| mobile_banner_url?          | string                                                              | The URL of the mobile banner image                                                         |
-| mobile_bg_url?              | string                                                              | The URL of the mobile background image                                                     |
-| mobile_hero_block_title?    | string                                                              | The title text for the mobile hero block                                                   |
-| mobile_products_title?      | string                                                              | The title text for the mobile products section                                             |
-| mobile_summary              | string                                                              | The summary text for the mobile products section                                           |
-| name                        | string                                                              | The name of the collectible category                                                       |
-| pdp_bg_url                  | string                                                              | The URL of the product display page background image                                       |
-| products                    | array[[collectible product](#collectible-product-structure) object] | The list of products in the collectible category                                           |
-| styles                      | [collectible styles](#collectible-style-structure) object           | The colors to use in the client                                                            |
-| summary                     | string                                                              | A description of the collectible category                                                  |
-| unpublished_at              | ?ISO8601 timestamp                                                  | The time at which the collectible category should be unpublished                           |
-| wide_banner_asset?          | [asset config](#asset-config-structure) object                      | The wide banner asset config                                                               |
-| wide_banner_body?           | string                                                              | The body text for the wide banner                                                          |
-| wide_banner_title?          | string                                                              | The title text for the wide banner                                                         |
+| Field                        | Type                                                                | Description                                                                                |
+| ---------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| sku_id                       | snowflake                                                           | The SKU ID of the collectible category                                                     |
+| store_listing_id             | snowflake                                                           | The store listing ID associated with the collectible category                              |
+| banner_text_color?           | string                                                              | The color of the banner text as a hexadecimal color string                                 |
+| catalog_banner_asset?        | [banner asset](#banner-asset-structure) object                      | The catalog banner asset                                                                   |
+| catalog_banner_animated_url? | string                                                              | The URL of the animated catalog banner image                                               |
+| catalog_banner_rive_url?     | string                                                              | The URL of the catalog banner Rive animation                                               |
+| featured_block_body?         | string                                                              | The body text for the featured block                                                       |
+| featured_block_url?          | string                                                              | The URL of the featured block image                                                        |
+| hero_banner_asset?           | [banner asset](#banner-asset-structure) object                      | The hero banner asset                                                                      |
+| hero_banner_animated_url?    | string                                                              | The URL of the animated hero banner image                                                  |
+| hero_banner_display_config?  | [asset config](#asset-config-structure) object                      | The display configuration for the hero banner                                              |
+| hero_block_title?            | string                                                              | The title text for the hero block                                                          |
+| hero_logo_display_config?    | [asset config](#asset-config-structure) object                      | The display configuration for the hero logo                                                |
+| hero_logo_url?               | string                                                              | The URL of the hero logo image                                                             |
+| is_orbs_exclusive?           | boolean                                                             | Whether all products in the category are Orbs-exclusive (default false)                    |
+| hero_ranking                 | ?array[snowflake]                                                   | The popularity ranking of SKU IDs within the collectible category                          |
+| hero_rive_url?               | string                                                              | The URL of the [Rive](https://rive.app/docs/runtimes/advanced-topic/format) hero animation |
+| logo_url                     | string                                                              | The URL of the logo image                                                                  |
+| mobile_banner_url?           | string                                                              | The URL of the mobile banner image                                                         |
+| mobile_bg_url?               | string                                                              | The URL of the mobile background image                                                     |
+| mobile_hero_block_title?     | string                                                              | The title text for the mobile hero block                                                   |
+| mobile_products_title?       | string                                                              | The title text for the mobile products section                                             |
+| mobile_summary               | string                                                              | The summary text for the mobile products section                                           |
+| name                         | string                                                              | The name of the collectible category                                                       |
+| pdp_bg_url                   | string                                                              | The URL of the product display page background image                                       |
+| products                     | array[[collectible product](#collectible-product-structure) object] | The list of products in the collectible category                                           |
+| styles                       | [collectible styles](#collectible-style-structure) object           | The colors to use in the client                                                            |
+| summary                      | string                                                              | A description of the collectible category                                                  |
+| unpublished_at               | ?ISO8601 timestamp                                                  | The time at which the collectible category should be unpublished                           |
+| wide_banner_asset?           | [asset config](#asset-config-structure) object                      | The wide banner asset config                                                               |
+| wide_banner_body?            | string                                                              | The body text for the wide banner                                                          |
+| wide_banner_title?           | string                                                              | The title text for the wide banner                                                         |
 
 ###### Asset Config Structure
 
@@ -14189,16 +14292,19 @@ Collectibles are SKUs representing digital items that users typically purchase i
 
 ###### Shop Block Type
 
-| Value | Name                                                       | Description                    |
-| ----- | ---------------------------------------------------------- | ------------------------------ |
-| 0     | [HERO](#hero-shop-block-structure)                         | A hero shop block              |
-| 1     | [FEATURED](#featured-shop-block-structure)                 | A featured shop block          |
-| 2     | [FEED](#feed-shop-block-structure)                         | A feed shop block              |
-| 3     | [WIDE_BANNER](#wide-banner-shop-block-structure)           | A wide banner shop block       |
-| 4     | [SHELF](#shelf-shop-block-structure)                       | A shelf shop block             |
-| 5     | [COUNTDOWN_TIMER](#countdown-timer-shop-block-structure)   | A countdown timer shop block   |
-| 6     | [IMMERSIVE_BANNER](#immersive-banner-shop-block-structure) | An immersive banner shop block |
-| 7     | [REWARD HERO](#reward-hero-shop-block-structure)           | A reward hero shop block       |
+| Value | Name                                                                                                           | Description                                             |
+| ----- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| 0     | [HERO](#hero-shop-block-structure)                                                                             | A hero shop block                                       |
+| 1     | [FEATURED](#featured-shop-block-structure)                                                                     | A featured shop block                                   |
+| 2     | [FEED](#feed-shop-block-structure)                                                                             | A feed shop block                                       |
+| 3     | [WIDE_BANNER](#wide-banner-shop-block-structure)                                                               | A wide banner shop block                                |
+| 4     | [SHELF](#shelf-shop-block-structure)                                                                           | A shelf shop block                                      |
+| 5     | [COUNTDOWN_TIMER](#countdown-timer-shop-block-structure)                                                       | A countdown timer shop block                            |
+| 6     | [IMMERSIVE_BANNER](#immersive-banner-shop-block-structure)                                                     | An immersive banner shop block                          |
+| 7     | [REWARD_HERO](#reward-hero-shop-block-structure)                                                               | A reward hero shop block                                |
+| 9     | [SOCIAL_LAYER_STOREFRONT_PROMOTIONAL_BANNER](#social-layer-storefront-promotional-banner-shop-block-structure) | A social layer storefront promotional banner shop block |
+| 10    | [FRAMES_BANNER](#frames-banner-shop-block-structure)                                                           | A profile frames banner shop block                      |
+| 11    | [FRAMES_PRODUCT_SHELF](#frames-product-shelf-shop-block-structure)                                             | A profile frames product shelf shop block               |
 
 ###### Hero Shop Block Structure
 
@@ -14344,16 +14450,56 @@ Collectibles are SKUs representing digital items that users typically purchase i
 | unpublished_at            | ?ISO8601 timestamp                             | When the [collectible category](#collectible-category-structure) should be unpublished     |
 | reward_sku_id             | snowflake                                      | The SKU ID of the reward collectible                                                       |
 
+###### Social Layer Storefront Promotional Banner Shop Block Structure
+
+| Field           | Type              | Description                             |
+| --------------- | ----------------- | --------------------------------------- |
+| type            | integer           | The [shop block type](#shop-block-type) |
+| application_id  | snowflake         | The ID of the application               |
+| header_text     | string            | The header text                         |
+| gradient_colors | array[string]     | The gradient colors                     |
+| gradient_angle  | integer           | The gradient angle                      |
+| sku_ids         | array[snowflake]  | The SKU IDs shown in the banner         |
+| end_time        | ISO8601 timestamp | When the banner ends                    |
+| cta_type?       | string            | The CTA type (`storefront` or `nitro`)  |
+| logo_url?       | string            | The logo URL                            |
+
+###### Frames Banner Shop Block Structure
+
+| Field                     | Type    | Description                             |
+| ------------------------- | ------- | --------------------------------------- |
+| type                      | integer | The [shop block type](#shop-block-type) |
+| title                     | string  | The banner title                        |
+| body                      | string  | The banner body                         |
+| mobile_background_image?  | string  | The mobile background image URL         |
+| mobile_foreground_image?  | string  | The mobile foreground image URL         |
+| desktop_background_image? | string  | The desktop background image URL        |
+
+###### Frames Product Shelf Shop Block Structure
+
+| Field                     | Type             | Description                                                                  |
+| ------------------------- | ---------------- | ---------------------------------------------------------------------------- |
+| type                      | integer          | The [shop block type](#shop-block-type)                                      |
+| title                     | string           | The shelf title                                                              |
+| category_sku_id           | snowflake        | The [collectible category](#collectible-category-structure) SKU ID           |
+| category_store_listing_id | snowflake        | The [collectible category](#collectible-category-structure) store listing ID |
+| ranked_sku_ids            | array[snowflake] | The SKU IDs ranked by popularity in the collectible category                 |
+| background_image?         | string           | The legacy background image URL                                              |
+| desktop_background_image? | string           | The desktop background image URL                                             |
+| mobile_background_image?  | string           | The mobile background image URL                                              |
+| button_text?              | string           | The shelf button text                                                        |
+
 ### Collectibles Marketing Object
 
 ###### Collectibles Marketing Type
 
-| Value | Name                                                     | Description |
-| ----- | -------------------------------------------------------- | ----------- |
-| 0     | [COACHTIP](#coachtip-collectibles-marketing-structure)   | A coachtip  |
-| 1     | [BADGE](#badge-collectibles-marketing-structure)         | A badge     |
-| 2     | [BANNER](#banner-collectibles-marketing-structure)       | A banner    |
-| 3     | [COACHMARK](#coachmark-collectibles-marketing-structure) | A coachmark |
+| Value | Name                                                         | Description   |
+| ----- | ------------------------------------------------------------ | ------------- |
+| 0     | [COACHTIP](#coachtip-collectibles-marketing-structure)       | A coachtip    |
+| 1     | [BADGE](#badge-collectibles-marketing-structure)             | A badge       |
+| 2     | [BANNER](#banner-collectibles-marketing-structure)           | A banner      |
+| 3     | [COACHMARK](#coachmark-collectibles-marketing-structure)     | A coachmark   |
+| 4     | [TAB_TOOLTIP](#tab-tooltip-collectibles-marketing-structure) | A tab tooltip |
 
 ###### Coachtip Collectibles Marketing Structure
 
@@ -14391,11 +14537,15 @@ Collectibles are SKUs representing digital items that users typically purchase i
 
 ###### Badge Collectibles Marketing Structure
 
-| Field               | Type    | Description                                                     |
-| ------------------- | ------- | --------------------------------------------------------------- |
-| type                | integer | The [collectibles marketing type](#collectibles-marketing-type) |
-| version             | integer | The version of the badge                                        |
-| dismissible_content | integer | The ID of the dismissible content                               |
+| Field                  | Type                                                     | Description                                                     |
+| ---------------------- | -------------------------------------------------------- | --------------------------------------------------------------- |
+| type                   | integer                                                  | The [collectibles marketing type](#collectibles-marketing-type) |
+| version                | integer                                                  | The version of the badge                                        |
+| dismissible_content    | integer                                                  | The ID of the dismissible content                               |
+| ref_target_background? | [target background](#target-background-structure) object | The target background configuration                             |
+| badge_icon?            | string                                                   | The badge icon [asset path](/reference#cdn-formatting)          |
+| badge_text?            | string                                                   | The badge text                                                  |
+| show_hover_gradient?   | boolean                                                  | Whether to show a hover gradient (default false)                |
 
 ###### Banner Collectibles Marketing Structure
 
@@ -14420,6 +14570,24 @@ Collectibles are SKUs representing digital items that users typically purchase i
 | asset_light           | string  | The URL of the light mode coachmark image                       |
 | version               | integer | The version of the coachmark                                    |
 | ref_target_background | object  | The target background configuration                             |
+| badge_icon?           | string  | The badge icon [asset path](/reference#cdn-formatting)          |
+| badge_text?           | string  | The badge text                                                  |
+| button_label?         | string  | The coachmark button label                                      |
+
+###### Tab Tooltip Collectibles Marketing Structure
+
+| Field                  | Type                                                     | Description                                                     |
+| ---------------------- | -------------------------------------------------------- | --------------------------------------------------------------- |
+| type                   | integer                                                  | The [collectibles marketing type](#collectibles-marketing-type) |
+| title                  | string                                                   | The title of the tooltip                                        |
+| body?                  | string                                                   | The body text of the tooltip                                    |
+| asset                  | string                                                   | The tooltip asset                                               |
+| dismissible_content    | integer                                                  | The ID of the dismissible content                               |
+| version                | integer                                                  | The version of the tooltip                                      |
+| ref_target_background? | [target background](#target-background-structure) object | The target background configuration                             |
+| badge_icon?            | string                                                   | The badge icon [asset path](/reference#cdn-formatting)          |
+| badge_text?            | string                                                   | The badge text                                                  |
+| show_hover_gradient?   | boolean                                                  | Whether to show a hover gradient (default false)                |
 
 ## Endpoints
 
@@ -14431,16 +14599,18 @@ Returns the list of [collectible categories](#collectible-category-structure) ob
 
 ###### Query String Params
 
-| Field                         | Type    | Description                                                                                    |
-| ----------------------------- | ------- | ---------------------------------------------------------------------------------------------- |
-| country_code?                 | string  | The user's [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code |
-| include_bundles?              | boolean | Whether to include bundles                                                                     |
-| include_nameplates_on_mobile? | boolean | Whether to include nameplates on mobile                                                        |
-| include_unpublished? ^1^      | boolean | Whether to include unpublished categories                                                      |
-| no_cache? ^1^                 | boolean | Whether to bypass the cache                                                                    |
-| payment_gateway?              | integer | The [payment gateway](/resources/billing#payment-gateway) of the payment source                |
-| skip_num_categories? ^1^      | integer | The number of categories to skip                                                               |
-| variants_return_style?        | integer | The [variant style](#variants-return-style) to return                                          |
+| Field                    | Type    | Description                                                                                    |
+| ------------------------ | ------- | ---------------------------------------------------------------------------------------------- |
+| country_code?            | string  | The user's [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code |
+| include_bundles?         | boolean | Whether to include bundles (default false)                                                     |
+| include_dynamic_blocks?  | boolean | Whether to include dynamic shop blocks (default false)                                         |
+| include_unpublished? ^1^ | boolean | Whether to include unpublished categories (default false)                                      |
+| no_cache? ^1^            | boolean | Whether to bypass the cache (default false)                                                    |
+| payment_gateway?         | integer | The [payment gateway](/resources/billing#payment-gateway) of the payment source                |
+| shop_home_config?        | string  | The [shop home configuration](#collectibles-shop-home-config) override                         |
+| skip_num_categories? ^1^ | integer | The number of categories to skip                                                               |
+| tab?                     | string  | The [shop tab](#collectibles-shop-home-tab) to retrieve                                        |
+| variants_return_style?   | integer | The [variant style](#variants-return-style) to return                                          |
 
 ^1^ Only usable by Discord employees.
 
@@ -14459,25 +14629,28 @@ Returns the collectible categories available in the store.
 
 ###### Query String Params
 
-| Field                         | Type    | Description                                                                                    |
-| ----------------------------- | ------- | ---------------------------------------------------------------------------------------------- |
-| country_code?                 | string  | The user's [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code |
-| include_bundles?              | boolean | Whether to include bundles                                                                     |
-| include_nameplates_on_mobile? | boolean | Whether to include nameplates on mobile                                                        |
-| include_unpublished? ^1^      | boolean | Whether to include unpublished categories                                                      |
-| no_cache? ^1^                 | boolean | Whether to bypass the cache                                                                    |
-| payment_gateway?              | integer | The [payment gateway](/resources/billing#payment-gateway) of the payment source                |
-| skip_num_categories? ^1^      | integer | The number of categories to skip                                                               |
-| variants_return_style?        | integer | The [variant style](#variants-return-style) to return                                          |
+| Field                    | Type    | Description                                                                                    |
+| ------------------------ | ------- | ---------------------------------------------------------------------------------------------- |
+| country_code?            | string  | The user's [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code |
+| include_bundles?         | boolean | Whether to include bundles (default false)                                                     |
+| include_dynamic_blocks?  | boolean | Whether to include dynamic shop blocks (default false)                                         |
+| include_unpublished? ^1^ | boolean | Whether to include unpublished categories (default false)                                      |
+| no_cache? ^1^            | boolean | Whether to bypass the cache (default false)                                                    |
+| payment_gateway?         | integer | The [payment gateway](/resources/billing#payment-gateway) of the payment source                |
+| shop_home_config?        | string  | The [shop home configuration](#collectibles-shop-home-config) override                         |
+| skip_num_categories? ^1^ | integer | The number of categories to skip                                                               |
+| tab?                     | string  | The [shop tab](#collectibles-shop-home-tab) to retrieve                                        |
+| variants_return_style?   | integer | The [variant style](#variants-return-style) to return                                          |
 
 ^1^ Only usable by Discord employees.
 
 ###### Response Body
 
-| Field           | Type                                                                            | Description                            |
-| --------------- | ------------------------------------------------------------------------------- | -------------------------------------- |
-| categories      | array[[collectible category](#collectible-category-structure) object]           | The collectible categories             |
-| user_discounts? | array[[collectible user discount](#collectible-user-discount-structure) object] | The discounts the user is eligible for |
+| Field           | Type                                                                                 | Description                            |
+| --------------- | ------------------------------------------------------------------------------------ | -------------------------------------- |
+| categories      | array[[collectible category](#collectible-category-structure) object]                | The collectible categories             |
+| collections     | array[[storefront collection](/resources/store#storefront-collection-object) object] | The storefront collections             |
+| user_discounts? | array[[collectible user discount](#collectible-user-discount-structure) object]      | The discounts the user is eligible for |
 
 ###### Collectible User Discount Structure
 
@@ -14488,36 +14661,43 @@ Returns the collectible categories available in the store.
 | expires_at  | ?ISO8601 timestamp | When the discount expires |
 
 <RouteHeader method="GET" url="/collectibles-shop">
-  List Collectibles Shop
+  Get Collectibles Shop
 </RouteHeader>
 
 Returns the list of [collectible categories](#collectible-category-structure) available in the store.
 
 ###### Query String Params
 
-| Field                         | Type    | Description                                                                                    |
-| ----------------------------- | ------- | ---------------------------------------------------------------------------------------------- |
-| country_code?                 | string  | The user's [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code |
-| tab?                          | string  | The [tab](#collectibles-shop-home-tab) to retrieve                                             |
-| shop_home_config?             | string  | The shop home configuration override                                                           |
-| include_bundles?              | boolean | Whether to include bundles                                                                     |
-| include_dynamic_blocks?       | boolean | Whether to include dynamic blocks                                                              |
-| include_nameplates_on_mobile? | boolean | Whether to include nameplates on mobile                                                        |
-| include_unpublished? ^1^      | boolean | Whether to include unpublished categories                                                      |
-| no_cache? ^1^                 | boolean | Whether to bypass the cache                                                                    |
-| payment_gateway?              | integer | The [payment gateway](/resources/billing#payment-gateway) of the payment source                |
-| skip_num_categories? ^1^      | integer | The number of categories to skip                                                               |
-| variants_return_style?        | integer | The [variant style](#variants-return-style) to return                                          |
+| Field                    | Type    | Description                                                                                    |
+| ------------------------ | ------- | ---------------------------------------------------------------------------------------------- |
+| country_code?            | string  | The user's [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code |
+| tab?                     | string  | The [tab](#collectibles-shop-home-tab) to retrieve                                             |
+| shop_home_config?        | string  | The shop home configuration override                                                           |
+| include_bundles?         | boolean | Whether to include bundles (default false)                                                     |
+| include_dynamic_blocks?  | boolean | Whether to include dynamic blocks (default false)                                              |
+| include_unpublished? ^1^ | boolean | Whether to include unpublished categories (default false)                                      |
+| no_cache? ^1^            | boolean | Whether to bypass the cache (default false)                                                    |
+| payment_gateway?         | integer | The [payment gateway](/resources/billing#payment-gateway) of the payment source                |
+| skip_num_categories? ^1^ | integer | The number of categories to skip                                                               |
+| variants_return_style?   | integer | The [variant style](#variants-return-style) to return                                          |
 
 ^1^ Only usable by Discord employees.
 
 ###### Collectibles Shop Home Tab
 
-| Value   | Description     |
-| ------- | --------------- |
-| home    | The home tab    |
-| catalog | The catalog tab |
-| orbs    | The orbs tab    |
+| Value              | Description                |
+| ------------------ | -------------------------- |
+| home               | The home tab               |
+| catalog            | The catalog tab            |
+| orbs               | The orbs tab               |
+| avatar-decorations | The avatar decorations tab |
+| profile-effects    | The profile effects tab    |
+| nameplates         | The nameplates tab         |
+| profile-frames     | The profile frames tab     |
+| bundles            | The bundles tab            |
+| layout             | The layout tab             |
+| collection-index   | The collection index tab   |
+| game-shops         | The game shops tab         |
 
 ###### Collectibles Shop Home Config
 
@@ -14560,9 +14740,11 @@ Returns the collectible SKUs that match the given query.
 
 | Value             | Description                      |
 | ----------------- | -------------------------------- |
+| ALL               | All collectible product types    |
 | AVATAR_DECORATION | An avatar decoration product     |
 | PROFILE_EFFECT    | A profile effect product         |
 | NAMEPLATE         | A nameplate product              |
+| PROFILE_FRAME     | A profile frame product          |
 | BUNDLE            | A bundle of collectible products |
 
 ###### Shop Product Theme
@@ -14632,7 +14814,7 @@ Returns the [collectible product](#collectible-product-structure) for a given SK
 | Field                  | Type    | Description                                                                                    |
 | ---------------------- | ------- | ---------------------------------------------------------------------------------------------- |
 | country_code?          | string  | The user's [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code |
-| include_bundles?       | boolean | Whether to include bundles                                                                     |
+| include_bundles?       | boolean | Whether to include bundles (default false)                                                     |
 | variants_return_style? | integer | The [variant style](#variants-return-style) to return                                          |
 
 <RouteHeader method="GET" url="/users/@me/collectibles-purchases">
@@ -14646,33 +14828,6 @@ Returns the list of [collectible products](#collectible-product-structure) owned
 | Field                  | Type    | Description                                           |
 | ---------------------- | ------- | ----------------------------------------------------- |
 | variants_return_style? | integer | The [variant style](#variants-return-style) to return |
-
-<RouteHeader method="GET" url="/user-profile-effects" unauthenticated deprecated>
-  List Profile Effects
-</RouteHeader>
-
-Returns the list of [profile effects](https://support.discord.com/hc/en-us/articles/17828465914263-Profile-Effects) available to display.
-
-<Alert type="warn">
-
-This endpoint is deprecated. It is replaced by [Get Collectibles Product](#get-collectibles-product).
-
-</Alert>
-
-###### Query String Params
-
-| Field                 | Type    | Description                                    |
-| --------------------- | ------- | ---------------------------------------------- |
-| locale?               | string  | The user's locale                              |
-| with_unpublished? ^1^ | boolean | Whether to include unpublished profile effects |
-
-^1^ Only usable by Discord employees.
-
-###### Response Body
-
-| Field                  | Type                                                                                        | Description                              |
-| ---------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| profile_effect_configs | array[[profile effect collectible item](#profile-effect-collectible-item-structure) object] | The profile effects available to display |
 
 <RouteHeader method="GET" url="/users/@me/valid-collectibles-gift-recipient">
   Get Valid Collectibles Gift Recipient
@@ -14718,6 +14873,18 @@ Claims a collectible SKU provided for free to premium users. Returns a list of [
 | ------ | --------- | ------------------------------------------------------ |
 | sku_id | snowflake | The SKU ID of the premium collectible product to claim |
 
+<RouteHeader method="PUT" url="/users/@me/claim-reward-category-product">
+  Claim Reward Category Product
+</RouteHeader>
+
+Claims a reward product from a collectible category. Returns a list of [collectible products](#collectible-product-structure) objects owned by the current user.
+
+###### JSON Params
+
+| Field       | Type      | Description                                   |
+| ----------- | --------- | --------------------------------------------- |
+| category_id | snowflake | The SKU ID of the reward collectible category |
+
 <RouteHeader method="GET" url="/users/@me/collectibles-marketing">
   Get Collectibles Marketing
 </RouteHeader>
@@ -14726,9 +14893,10 @@ Returns collectibles marketing information for the current user.
 
 ###### Query String Params
 
-| Field    | Type    | Description                                                                            |
-| -------- | ------- | -------------------------------------------------------------------------------------- |
-| platform | integer | The [platform](#collectibles-marketing-platform-type) to get marketing information for |
+| Field    | Type    | Description                                                                               |
+| -------- | ------- | ----------------------------------------------------------------------------------------- |
+| platform | integer | The [platform](#collectibles-marketing-platform-type) to get marketing information for    |
+| release? | integer | The [release type](#collectibles-marketing-release-type) to get marketing information for |
 
 ###### Collectibles Marketing Platform Type
 
@@ -14737,11 +14905,40 @@ Returns collectibles marketing information for the current user.
 | 0     | DESKTOP | Desktop     |
 | 1     | MOBILE  | Mobile      |
 
+###### Collectibles Marketing Release Type
+
+| Value | Name     | Description        |
+| ----- | -------- | ------------------ |
+| 0     | PROD     | Production release |
+| 1     | BETA ^1^ | Beta release       |
+
+^1^ Only usable by Discord employees.
+
 ###### Response Body
 
-| Field      | Type                                                                          | Description                                                                                                                                   |
-| ---------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| marketings | map[integer, [collectibles marketing](#collectibles-marketing-object) object] | The mapping of [collectibles marketing type](#collectibles-marketing-type) to [collectibles marketing](#collectibles-marketing-object) object |
+| Field      | Type                                                                          | Description                                                                                                                                              |
+| ---------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| marketings | map[integer, [collectibles marketing](#collectibles-marketing-object) object] | The mapping of [collectibles marketing surface](#collectibles-marketing-surface-type) to [collectibles marketing](#collectibles-marketing-object) object |
+
+###### Collectibles Marketing Surface Type
+
+| Value | Name                  | Description           |
+| ----- | --------------------- | --------------------- |
+| 0     | DESKTOP_SHOP_BUTTON   | Desktop shop button   |
+| 1     | MOBILE_SHOP_BUTTON    | Mobile shop button    |
+| 2     | EDIT_PROFILE_SETTINGS | Edit profile settings |
+
+<RouteHeader method="GET" url="/collectibles-shop-tab-layouts/{collectibles_shop_tab}">
+  Get Collectibles Shop Tab Layout
+</RouteHeader>
+
+Returns the layout ID for the specified collectibles shop tab.
+
+###### Response Body
+
+| Field     | Type   | Description                                                         |
+| --------- | ------ | ------------------------------------------------------------------- |
+| layout_id | string | The layout-system layout ID for the requested collectibles shop tab |
 
 
 ----- discord-userdoccers/pages/resources/components.mdx -----
@@ -18228,6 +18425,7 @@ Represents the current state of the link.
 | 2     | The linked user is currently connected to the requestor        |
 | 3     | The link has been disconnected                                 |
 | 4     | The link request was rejected                                  |
+| 5     | The link request has expired                                   |
 
 ###### Link Type
 
@@ -18272,31 +18470,54 @@ Audit log of events of the linked user. Visible to both requestors and linked us
 | -------------- | --------------------------------------------------------- | ------------------------------------------------------------------------ |
 | teen_user_id   | ?snowflake                                                | The ID of the linked user                                                |
 | range_start_id | ?snowflake                                                | A snowflake representing the start time of the current 7-day track range |
-| actions        | array[[action](#action-structure) object]                 | List of [actions](#action-structure) the linked user has done            |
+| actions        | array[[action](#action-structure) object]                 | [Actions](#action-structure) the linked user has done                    |
 | users          | array[partial [user](/resources/user#user-object) object] | Users referenced in the audit log                                        |
 | guilds         | array[[guild](/resources/guild#guild-object) object]      | Guilds referenced in the audit log                                       |
-| totals         | map[integer, integer]                                     | Object keyed by [action types](#action-type) with their totals           |
+| totals         | map[integer, integer]                                     | Object keyed by [action types](#teen-action-type) with their totals      |
 
 ###### Action Structure
 
-| Field        | Type      | Description                                                                                                     |
-| ------------ | --------- | --------------------------------------------------------------------------------------------------------------- |
-| event_id     | snowflake | The ID of the event action                                                                                      |
-| user_id      | snowflake | The ID of the linked user                                                                                       |
-| entity_id    | snowflake | The ID of the entity the action relates to (user, guild, or group DM) based off the [action type](#action-type) |
-| display_type | integer   | The [type of the action](#action-type) of the action, detailing what this action involved                       |
+| Field        | Type      | Description                                                                                                                   |
+| ------------ | --------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| event_id     | snowflake | The ID of the event action                                                                                                    |
+| user_id      | snowflake | The ID of the linked user                                                                                                     |
+| entity_id    | snowflake | The ID of the entity the action relates to (user, guild, or group DM) based off the [display type](#teen-action-display-type) |
+| display_type | integer   | The [display type](#teen-action-display-type) of the action, detailing what this action involved                              |
 
-###### Action Type
+###### Teen Action Type
 
-Represents what kind of action the linked user engaged in.
+Represents a specific teen action.
 
-| Value | Description                                                        |
-| ----- | ------------------------------------------------------------------ |
-| 1     | Users added within the last 7 days                                 |
-| 2     | Guild joined within the last 7 days                                |
-| 3     | Users messaged within the last 7 days                              |
-| 4     | Guilds the linked user has sent messages in within the last 7 days |
-| 5     | Users called within the last 7 days                                |
+| Value | Name                      | Description                      |
+| ----- | ------------------------- | -------------------------------- |
+| 1     | DM_MESSAGE_SEND           | A DM message was sent            |
+| 2     | GDM_MESSAGE_SEND          | A group DM message was sent      |
+| 3     | MESSAGE_REACT             | A message reaction was added     |
+| 4     | ADD_FRIEND                | A friend was added               |
+| 5     | SEND_CALL                 | A call was sent                  |
+| 6     | CALL_JOIN                 | A call was joined                |
+| 7     | GUILD_JOIN                | A guild was joined               |
+| 8     | GUILD_MESSAGE_SEND        | A guild message was sent         |
+| 9     | GUILD_VC_JOIN             | A guild voice channel was joined |
+| 10    | GUILD_VOICE_CHANNEL_LEAVE | A guild voice channel was left   |
+| 11    | CALL_LEAVE                | A call was left                  |
+| 12    | CALL_START                | A call was started               |
+| 13    | INVOICE_COMPLETE          | An invoice was completed         |
+
+###### Teen Action Display Type
+
+Represents the grouped display type of an action.
+
+| Value | Name                | Description                                   |
+| ----- | ------------------- | --------------------------------------------- |
+| 1     | USER_ADD            | Users added within the last 7 days            |
+| 2     | GUILD_ADD           | Guilds joined within the last 7 days          |
+| 3     | USER_INTERACTION    | Users interacted with in the last 7 days      |
+| 4     | GUILD_INTERACTION   | Guilds interacted with in the last 7 days     |
+| 5     | USER_CALLED         | Users called within the last 7 days           |
+| 6     | TOTAL_VOICE_MINUTES | Total voice minutes within the last 7 days    |
+| 7     | PURCHASES           | Purchases within the last 7 days              |
+| 8     | GIFTS               | Gifts sent or received within the last 7 days |
 
 ###### Example Teen Audit Log
 
@@ -18363,9 +18584,10 @@ Opening this link on the mobile app prompts the "send connection request" screen
 
 ###### Response Body
 
-| Field     | Type   | Description                                                                                               |
-| --------- | ------ | --------------------------------------------------------------------------------------------------------- |
-| link_code | string | The code used to connect a requestor to a linked user, appended to the end of the URL the QR code encodes |
+| Field      | Type    | Description                                                                                               |
+| ---------- | ------- | --------------------------------------------------------------------------------------------------------- |
+| link_code  | string  | The code used to connect a requestor to a linked user, appended to the end of the URL the QR code encodes |
+| expires_at | integer | Unix timestamp (in milliseconds) of when the link code expires                                            |
 
 <RouteHeader method="GET" url="/users/@me/linked-users">
   Get Linked Users
@@ -18394,12 +18616,24 @@ Modifies the linked user status of a linked user. Can be invoked by either the l
 
 ###### JSON Params
 
-| Field              | Type    | Description                                                  |
-| ------------------ | ------- | ------------------------------------------------------------ |
-| link_status        | integer | The new [link status](#link-status) of the linked user       |
-| linked_user_id ^1^ | string  | The ID of the user the linked user or requestor is modifying |
+| Field              | Type      | Description                                                  |
+| ------------------ | --------- | ------------------------------------------------------------ |
+| link_status        | integer   | The new [link status](#link-status) of the linked user       |
+| linked_user_id ^1^ | snowflake | The ID of the user the linked user or requestor is modifying |
 
 ^1^ If this request is sent to remove a link (setting [`link_status`](#link-status) to `3`), the `linked_user_id` changes depending on if the requestor or linked user is invoking it. If the linked user invokes the request, `linked_user_id` is the ID of the requestor, otherwise it's the ID of the linked user.
+
+<RouteHeader method="DELETE" url="/users/@me/linked-users">
+  Remove Linked User
+</RouteHeader>
+
+Removes a linked user. Returns a list of [linked user](#linked-user-object) objects on success. Fires a [User Update](/gateway/gateway-events#user-update) Gateway event.
+
+###### JSON Params
+
+| Field          | Type      | Description                         |
+| -------------- | --------- | ----------------------------------- |
+| linked_user_id | snowflake | The ID of the linked user to remove |
 
 
 ----- discord-userdoccers/pages/resources/game-invite.mdx -----
@@ -22921,7 +23155,6 @@ Modifies the current user's member in the guild. Returns the updated private [gu
 | avatar?                   | ?[image data](/reference#cdn-data)              | The member's guild avatar; can only be changed for premium users and bots                                                                          |
 | avatar_description?       | ?string                                         | The description of the new guild avatar, usually in the format "\{filename\}, added \{date\}" (max 1024 characters)                                |
 | avatar_id?                | string                                          | The ID of the recent avatar to use                                                                                                                 |
-| avatar_decoration_id?     | ?snowflake                                      | The ID of the member's guild avatar decoration; can only be changed for premium users                                                              |
 | avatar_decoration_sku_id? | ?snowflake                                      | The SKU ID of the member's guild avatar decoration; can only be changed for premium users                                                          |
 | collectibles?             | ?[collectibles](#collectibles-structure) object | The member's equipped collectibles; can only be changed for premium users                                                                          |
 | display_name_font_id?     | ?integer                                        | The [display name font](/resources/user#display-name-font) to use; can only be changed for premium users                                           |
@@ -22941,7 +23174,6 @@ Modifies the current user's member in the guild. Returns the updated private [gu
 
 | Field   | Type      | Description                   |
 | ------- | --------- | ----------------------------- |
-| id?     | snowflake | The ID of the nameplate       |
 | sku_id? | snowflake | The ID of the nameplate's SKU |
 
 <RouteHeader method="PATCH" url="/guilds/{guild.id}/members/@me/nick" supportsAuditReason supportsBot deprecated>
@@ -28276,25 +28508,26 @@ Notification center is a feature that aggregates important notifications for use
 
 ###### Notification Center Item Type
 
-| Value                         | Description                                           |
-| ----------------------------- | ----------------------------------------------------- |
-| go_live_push                  | Friend started a stream                               |
-| friend_request_accepted       | Outgoing friend request was accepted                  |
-| friend_request_pending        | A friend request is pending                           |
-| friend_suggestion_created     | A friend suggestion was created                       |
-| friend_request_reminder       | Reminder about pending friend requests                |
-| dm_friend_nudge               | Reminder to message friends                           |
-| recent_mention                | Recent mention                                        |
-| reply_mention                 | Mention through a reply ping                          |
-| scheduled_guild_event_started | A guild scheduled event started                       |
-| system_demo                   | Demo notification                                     |
-| missed_messages               | Missed messages from frequently read channel          |
-| top_messages **(deprecated)** | Top messages from a frequently read guild's home feed |
-| lifecycle_item                | New user tutorial item                                |
-| trending_content              | Unknown                                               |
-| ~~poll_ended~~                | ~~Poll ended~~                                        |
-| game_friend_request_accepted  | Outgoing game friend request was accepted             |
-| reaction_sent                 | Reaction was added on the user's message              |
+| Value                                | Description                                           |
+| ------------------------------------ | ----------------------------------------------------- |
+| go_live_push                         | Friend started a stream                               |
+| friend_request_accepted              | Outgoing friend request was accepted                  |
+| friend_request_pending               | A friend request is pending                           |
+| friend_suggestion_created            | A friend suggestion was created                       |
+| friend_request_reminder              | Reminder about pending friend requests                |
+| dm_friend_nudge                      | Reminder to message friends                           |
+| recent_mention                       | Recent mention                                        |
+| reply_mention                        | Mention through a reply ping                          |
+| scheduled_guild_event_started        | A guild scheduled event started                       |
+| system_demo                          | Demo notification                                     |
+| missed_messages                      | Missed messages from frequently read channel          |
+| top_messages **(deprecated)**        | Top messages from a frequently read guild's home feed |
+| lifecycle_item                       | New user tutorial item                                |
+| trending_content                     | Unknown                                               |
+| referral_program_entrypoint_reminder | Referral program entrypoint reminder                  |
+| ~~poll_ended~~                       | ~~Poll ended~~                                        |
+| game_friend_request_accepted         | Outgoing game friend request was accepted             |
+| reaction_sent                        | Reaction was added on the user's message              |
 
 ###### Notification Center Item Enum
 
@@ -31142,11 +31375,13 @@ A friend suggestion for the current user.
 
 ###### Friend Suggestion Structure
 
-| Field                         | Type                                                                          | Description                                                       |
-| ----------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| suggested_user                | partial [user](/resources/user#user-object) object                            | The suggested user                                                |
-| reasons                       | array[[friend suggestion reason](#friend-suggestion-reason-structure) object] | The sources of the suggestion                                     |
-| from_suggested_user_contacts? | boolean                                                                       | Whether the suggested user has the current user in their contacts |
+| Field                         | Type                                                                          | Description                                                               |
+| ----------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| suggested_user                | partial [user](/resources/user#user-object) object                            | The suggested user                                                        |
+| reasons                       | array[[friend suggestion reason](#friend-suggestion-reason-structure) object] | The sources of the suggestion                                             |
+| from_suggested_user_contacts? | boolean                                                                       | Whether the suggested user has the current user in their contacts         |
+| mutual_friends_count?         | integer                                                                       | The number of mutual friends the current user has with the suggested user |
+| contact_names?                | array[string]                                                                 | Contact names associated with the suggested user                          |
 
 ###### Friend Suggestion Reason Structure
 
@@ -36485,6 +36720,26 @@ A snapshot of the user's guild settings.
 }
 ```
 
+### Video Filter Asset Object
+
+A user-uploaded custom video background asset.
+
+###### Video Filter Asset Structure
+
+| Field      | Type      | Description                                                      |
+| ---------- | --------- | ---------------------------------------------------------------- |
+| id         | snowflake | The ID of the video filter asset                                 |
+| type       | integer   | The [type](#video-filter-type) of video filter                   |
+| user_id    | snowflake | The ID of the user who owns the asset                            |
+| asset      | string    | The [asset hash](/reference#cdn-formatting)                      |
+| last_used? | integer   | Unix timestamp (in milliseconds) of when the asset was last used |
+
+###### Video Filter Type
+
+| Value | Name       | Description             |
+| ----- | ---------- | ----------------------- |
+| 0     | BACKGROUND | A video call background |
+
 ### User Guild Settings Object
 
 Guild-specific settings for the current user.
@@ -36777,7 +37032,7 @@ A maximum of 5 snapshots or **1 MiB** of data can be stored per user.
 
 Restores a notification settings snapshot. Returns a mapping of guild IDs to [user guild settings](#user-guild-settings-object) objects on success. Fires multiple [User Guild Settings Update](/gateway/gateway-events#user-guild-settings-update) Gateway events.
 
-<RouteHeader method="GET" url="/users/@me/notification-settings/snapshots/{notification_settings_snapshot.id}">
+<RouteHeader method="DELETE" url="/users/@me/notification-settings/snapshots/{notification_settings_snapshot.id}">
   Delete Notification Settings Snapshot
 </RouteHeader>
 
@@ -36826,6 +37081,37 @@ Modifies the user's audio context settings. Returns a 204 empty response on succ
 | muted?            | boolean | Whether the audio is muted                  |
 | volume?           | float   | Volume level of the user or stream (0-200)  |
 | soundboard_muted? | boolean | Whether the soundboard is muted (user only) |
+
+<RouteHeader method="GET" url="/users/@me/video-filters/assets">
+  List Video Filter Assets
+</RouteHeader>
+
+Returns a list of [video filter asset](#video-filter-asset-object) objects for the current user.
+
+<RouteHeader method="POST" url="/users/@me/video-filters/assets">
+  Create Video Filter Asset
+</RouteHeader>
+
+Uploads a custom video filter asset. Returns a [video filter asset](#video-filter-asset-object) object on success.
+
+###### JSON Params
+
+| Field | Type                              | Description                                    |
+| ----- | --------------------------------- | ---------------------------------------------- |
+| type  | integer                           | The [type](#video-filter-type) of video filter |
+| asset | [image data](/reference#cdn-data) | The asset                                      |
+
+<RouteHeader method="DELETE" url="/users/@me/video-filters/assets/{video_filter_asset.id}">
+  Delete Video Filter Asset
+</RouteHeader>
+
+Deletes a video filter asset. Returns a 204 empty response on success.
+
+<RouteHeader method="POST" url="/users/@me/video-filters/assets/{video_filter_asset.id}/last-used">
+  Mark Video Filter Asset Last Used
+</RouteHeader>
+
+Marks a video filter asset as the current user's last used custom background. Returns the updated [video filter asset](#video-filter-asset-object) object on success.
 
 
 ----- discord-userdoccers/pages/resources/user.mdx -----
@@ -37631,9 +37917,7 @@ At least one active Gateway session is required to modify a user account's usern
 | avatar?                   | ?[image data](/reference#cdn-data) | The user's avatar; can be animated when the user has an applicable premium plan                                                                                   |
 | avatar_description?       | ?string                            | The description of the new user avatar, usually in the format "\{filename\}, added \{date\}" (max 1024 characters)                                                |
 | avatar_id?                | string                             | The ID of the recent avatar to use                                                                                                                                |
-| avatar_decoration_id?     | ?snowflake                         | The ID of the user's avatar decoration                                                                                                                            |
 | avatar_decoration_sku_id? | ?snowflake                         | The SKU ID of the user's avatar decoration                                                                                                                        |
-| nameplate_id?             | ?snowflake                         | The ID of the user's nameplate                                                                                                                                    |
 | nameplate_sku_id?         | ?snowflake                         | The SKU ID of the user's nameplate                                                                                                                                |
 | display_name_font_id?     | ?integer                           | The [display name font](#display-name-font) to use; can only be changed for premium users                                                                         |
 | display_name_effect_id?   | ?integer                           | The [display name effect](#display-name-effect) to use; can only be changed for premium users                                                                     |
@@ -37767,6 +38051,18 @@ This endpoint requires one of the following:
 | guild_id?                  | snowflake | The guild ID to get the user's member profile in                                                   |
 | connections_role_id?       | snowflake | The role ID to get the user's application role connection metadata in                              |
 | join_request_id?           | snowflake | The join request ID to use for the request                                                         |
+| type?                      | string    | The [profile analytics location](#profile-request-type)                                            |
+
+###### Profile Request Type
+
+| Value          | Description                         |
+| -------------- | ----------------------------------- |
+| popout         | The profile popout                  |
+| modal          | The full profile modal              |
+| sidebar        | The profile DM sidebar              |
+| account_popout | The current user's account popout   |
+| action_sheet   | A user profile action sheet         |
+| you_screen     | The current user's profile overview |
 
 ###### Response Body
 
@@ -39084,11 +39380,12 @@ There are currently several caveats for this endpoint:
 
 ###### JSON Params
 
-| Field                       | Type               | Description                                    |
-| --------------------------- | ------------------ | ---------------------------------------------- |
-| channel_id?                 | snowflake          | The ID of the channel the user is currently in |
-| suppress?                   | boolean            | Whether the user is suppressed in the channel  |
-| request_to_speak_timestamp? | ?ISO8601 timestamp | When the user requested to speak               |
+| Field                       | Type               | Description                                                                        |
+| --------------------------- | ------------------ | ---------------------------------------------------------------------------------- |
+| channel_id?                 | snowflake          | The ID of the channel the user is currently in                                     |
+| suppress?                   | boolean            | Whether the user is suppressed in the channel                                      |
+| request_to_speak_timestamp? | ?ISO8601 timestamp | When the user requested to speak                                                   |
+| silent?                     | boolean            | Whether to acknowledge the stage speaker request without notifying (default false) |
 
 <RouteHeader method="PATCH" url="/guilds/{guild.id}/voice-states/{user.id}" supportsBot>
   Modify User Voice State
@@ -39129,12 +39426,14 @@ Sending a voice channel effect requires the current user to be connected to the 
 
 ###### JSON Params
 
-| Field           | Type       | Description                                                                                          |
-| --------------- | ---------- | ---------------------------------------------------------------------------------------------------- |
-| animation_type? | ?integer   | The [type of emoji animation](#voice-channel-effect-animation-type), if applicable (default `BASIC`) |
-| animation_id?   | ?integer   | The ID of the emoji animation (0-20, default 0)                                                      |
-| emoji_id?       | ?snowflake | The ID of the custom emoji to send                                                                   |
-| emoji_name?     | ?string    | The emoji name or unicode character of the emoji to send                                             |
+| Field             | Type       | Description                                                                                          |
+| ----------------- | ---------- | ---------------------------------------------------------------------------------------------------- |
+| animation_type?   | ?integer   | The [type of emoji animation](#voice-channel-effect-animation-type), if applicable (default `BASIC`) |
+| animation_id? ^1^ | ?integer   | The ID of the emoji animation (default 0)                                                            |
+| emoji_id?         | ?snowflake | The ID of the custom emoji to send                                                                   |
+| emoji_name?       | ?string    | The emoji name or unicode character of the emoji to send                                             |
+
+^1^ The animation ID is a zero-based index in the animation set selected by `animation_type`. `BASIC` only supports ID `0`. `PREMIUM` supports IDs `0` through `20`.
 
 ###### Voice Channel Effect Animation Type
 
@@ -39142,6 +39441,27 @@ Sending a voice channel effect requires the current user to be connected to the 
 | ----- | ------- | -------------------------------------------------------- |
 | 0     | PREMIUM | A fun animation, requires a premium (Nitro) subscription |
 | 1     | BASIC   | The standard animation                                   |
+
+<RouteHeader method="POST" url="/channels/{channel.id}/custom-call-sounds">
+  Send Custom Call Sound
+</RouteHeader>
+
+Sends the user's configured custom call sound effect to a voice channel. Returns a 204 empty response on success. Fires a [Voice Channel Effect Send](/gateway/gateway-events#voice-channel-effect-send) Gateway event.
+
+<Alert type="info">
+
+Sending a custom call sound requires the current user to be connected to the voice channel. The user cannot be server muted, deafened, or suppressed.
+
+</Alert>
+
+###### JSON Params
+
+| Field            | Type    | Description                                                                     |
+| ---------------- | ------- | ------------------------------------------------------------------------------- |
+| animation_type   | integer | The [type of animation](#voice-channel-effect-animation-type) (default `BASIC`) |
+| animation_id ^1^ | integer | The ID of the animation (default 0)                                             |
+
+^1^ The animation ID is a zero-based index in the animation set selected by `animation_type`. `BASIC` only supports ID `0`. For `PREMIUM`, the official client randomly selects IDs `10` through `15`, but any IDs from `0` through `20` are supported.
 
 <RouteHeader method="PATCH" url="/streams/{stream_key}/stream">
   Modify Stream

@@ -1502,6 +1502,17 @@
         ]
     },
     {
+        "title": "Get Payment Source Creation Context",
+        "method": "GET",
+        "url": "/users/@me/billing/payment-source-creation-context",
+        "urls": [
+            "/users/@me/billing/payment-source-creation-context"
+        ],
+        "urlEmpty": [
+            "/users/@me/billing/payment-source-creation-context"
+        ]
+    },
+    {
         "title": "Create Payment Source",
         "method": "POST",
         "url": "/users/@me/billing/payment-sources",
@@ -1725,6 +1736,17 @@
         ]
     },
     {
+        "title": "List Eligible Application Subscription Guilds",
+        "method": "GET",
+        "url": "/users/@me/billing/eligible-application-subscription-guilds",
+        "urls": [
+            "/users/@me/billing/eligible-application-subscription-guilds"
+        ],
+        "urlEmpty": [
+            "/users/@me/billing/eligible-application-subscription-guilds"
+        ]
+    },
+    {
         "title": "List Private Channels",
         "method": "GET",
         "url": "/users/@me/channels",
@@ -1759,6 +1781,17 @@
         ],
         "urlEmpty": [
             "/users/@me/channels"
+        ]
+    },
+    {
+        "title": "Create Group DM Shell",
+        "method": "POST",
+        "url": "/users/@me/channels/group-dm-shell",
+        "urls": [
+            "/users/@me/channels/group-dm-shell"
+        ],
+        "urlEmpty": [
+            "/users/@me/channels/group-dm-shell"
         ]
     },
     {
@@ -2385,7 +2418,7 @@
         ]
     },
     {
-        "title": "List Collectibles Shop",
+        "title": "Get Collectibles Shop",
         "method": "GET",
         "url": "/collectibles-shop",
         "urls": [
@@ -2430,19 +2463,6 @@
         ]
     },
     {
-        "title": "List Profile Effects",
-        "method": "GET",
-        "url": "/user-profile-effects",
-        "unauthenticated": true,
-        "deprecated": true,
-        "urls": [
-            "/user-profile-effects"
-        ],
-        "urlEmpty": [
-            "/user-profile-effects"
-        ]
-    },
-    {
         "title": "Get Valid Collectibles Gift Recipient",
         "method": "GET",
         "url": "/users/@me/valid-collectibles-gift-recipient",
@@ -2476,6 +2496,17 @@
         ]
     },
     {
+        "title": "Claim Reward Category Product",
+        "method": "PUT",
+        "url": "/users/@me/claim-reward-category-product",
+        "urls": [
+            "/users/@me/claim-reward-category-product"
+        ],
+        "urlEmpty": [
+            "/users/@me/claim-reward-category-product"
+        ]
+    },
+    {
         "title": "Get Collectibles Marketing",
         "method": "GET",
         "url": "/users/@me/collectibles-marketing",
@@ -2484,6 +2515,17 @@
         ],
         "urlEmpty": [
             "/users/@me/collectibles-marketing"
+        ]
+    },
+    {
+        "title": "Get Collectibles Shop Tab Layout",
+        "method": "GET",
+        "url": "/collectibles-shop-tab-layouts/{collectibles_shop_tab}",
+        "urls": [
+            "/collectibles-shop-tab-layouts/{collectibles_shop_tab}"
+        ],
+        "urlEmpty": [
+            "/collectibles-shop-tab-layouts/:param"
         ]
     },
     {
@@ -3343,6 +3385,17 @@
     {
         "title": "Modify Linked User",
         "method": "PATCH",
+        "url": "/users/@me/linked-users",
+        "urls": [
+            "/users/@me/linked-users"
+        ],
+        "urlEmpty": [
+            "/users/@me/linked-users"
+        ]
+    },
+    {
+        "title": "Remove Linked User",
+        "method": "DELETE",
         "url": "/users/@me/linked-users",
         "urls": [
             "/users/@me/linked-users"
@@ -8977,7 +9030,7 @@
     },
     {
         "title": "Delete Notification Settings Snapshot",
-        "method": "GET",
+        "method": "DELETE",
         "url": "/users/@me/notification-settings/snapshots/{notification_settings_snapshot.id}",
         "urls": [
             "/users/@me/notification-settings/snapshots/{notification_settings_snapshot.id}"
@@ -9018,6 +9071,50 @@
         ],
         "urlEmpty": [
             "/users/@me/audio-settings/:param/:param"
+        ]
+    },
+    {
+        "title": "List Video Filter Assets",
+        "method": "GET",
+        "url": "/users/@me/video-filters/assets",
+        "urls": [
+            "/users/@me/video-filters/assets"
+        ],
+        "urlEmpty": [
+            "/users/@me/video-filters/assets"
+        ]
+    },
+    {
+        "title": "Create Video Filter Asset",
+        "method": "POST",
+        "url": "/users/@me/video-filters/assets",
+        "urls": [
+            "/users/@me/video-filters/assets"
+        ],
+        "urlEmpty": [
+            "/users/@me/video-filters/assets"
+        ]
+    },
+    {
+        "title": "Delete Video Filter Asset",
+        "method": "DELETE",
+        "url": "/users/@me/video-filters/assets/{video_filter_asset.id}",
+        "urls": [
+            "/users/@me/video-filters/assets/{video_filter_asset.id}"
+        ],
+        "urlEmpty": [
+            "/users/@me/video-filters/assets/:param"
+        ]
+    },
+    {
+        "title": "Mark Video Filter Asset Last Used",
+        "method": "POST",
+        "url": "/users/@me/video-filters/assets/{video_filter_asset.id}/last-used",
+        "urls": [
+            "/users/@me/video-filters/assets/{video_filter_asset.id}/last-used"
+        ],
+        "urlEmpty": [
+            "/users/@me/video-filters/assets/:param/last-used"
         ]
     },
     {
@@ -9738,6 +9835,17 @@
         ],
         "urlEmpty": [
             "/channels/:param/voice-channel-effects"
+        ]
+    },
+    {
+        "title": "Send Custom Call Sound",
+        "method": "POST",
+        "url": "/channels/{channel.id}/custom-call-sounds",
+        "urls": [
+            "/channels/{channel.id}/custom-call-sounds"
+        ],
+        "urlEmpty": [
+            "/channels/:param/custom-call-sounds"
         ]
     },
     {
