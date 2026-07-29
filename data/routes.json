@@ -4853,6 +4853,7 @@
         "title": "List Guild Join Requests",
         "method": "GET",
         "url": "/guilds/{guild.id}/requests",
+        "supportsBot": true,
         "urls": [
             "/guilds/{guild.id}/requests"
         ],
@@ -4952,6 +4953,7 @@
         "title": "Action Guild Join Request",
         "method": "PATCH",
         "url": "/guilds/{guild.id}/requests/{guild_join_request.id}",
+        "supportsBot": true,
         "urls": [
             "/guilds/{guild.id}/requests/{guild_join_request.id}"
         ],
