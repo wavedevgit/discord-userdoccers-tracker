@@ -1884,6 +1884,17 @@
         ]
     },
     {
+        "title": "Bulk Leave Group DMs",
+        "method": "POST",
+        "url": "/users/@me/channels/bulk-leave",
+        "urls": [
+            "/users/@me/channels/bulk-leave"
+        ],
+        "urlEmpty": [
+            "/users/@me/channels/bulk-leave"
+        ]
+    },
+    {
         "title": "Modify Channel Status",
         "method": "PUT",
         "url": "/channels/{channel.id}/voice-status",
