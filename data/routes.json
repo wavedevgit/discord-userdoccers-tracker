@@ -4540,11 +4540,26 @@
         "supportsAuditReason": true,
         "mfa": true,
         "supportsBot": true,
+        "deprecated": true,
         "urls": [
             "/guilds/{guild.id}/bulk-ban"
         ],
         "urlEmpty": [
             "/guilds/:param/bulk-ban"
+        ]
+    },
+    {
+        "title": "Bulk Guild Ban V2",
+        "method": "POST",
+        "url": "/guilds/{guild.id}/bulk-ban/v2",
+        "supportsAuditReason": true,
+        "mfa": true,
+        "supportsBot": true,
+        "urls": [
+            "/guilds/{guild.id}/bulk-ban/v2"
+        ],
+        "urlEmpty": [
+            "/guilds/:param/bulk-ban/v2"
         ]
     },
     {

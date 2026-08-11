@@ -1019,6 +1019,7 @@ These events directly correspond with a specific action or state change that has
 | [Guild Audit Log Entry Create](#guild-audit-log-entry-create)                                     | Guild audit log entry was created                                                                 |
 | [Guild Ban Add](#guild-ban-add)                                                                   | User was banned from a guild                                                                      |
 | [Guild Ban Remove](#guild-ban-remove)                                                             | User was unbanned from a guild                                                                    |
+| [Guild Bulk Ban Update](#guild-bulk-ban-update)                                                   | Guild finished processing a bulk-ban operation performed by the user                              |
 | [Guild Directory Entry Create](#guild-directory-entry-create)                                     | Guild directory entry was created                                                                 |
 | [Guild Directory Entry Update](#guild-directory-entry-update)                                     | Guild directory entry was updated                                                                 |
 | [Guild Directory Entry Delete](#guild-directory-entry-delete)                                     | Guild directory entry was deleted                                                                 |
@@ -2258,6 +2259,26 @@ Sent when a user is unbanned from a guild. Requires the `BAN_MEMBERS` or `VIEW_A
 | -------- | -------------------------------------------------- | ------------------- |
 | guild_id | snowflake                                          | The ID of the guild |
 | user     | partial [user](/resources/user#user-object) object | The unbanned user   |
+
+#### Guild Bulk Ban Update
+
+Sent when a guild finishes processing a [bulk-ban operation](/resources/guild#bulk-guild-ban-v2) for the current user.
+
+###### Guild Bulk Ban Update Structure
+
+| Field    | Type                                                                      | Description                             |
+| -------- | ------------------------------------------------------------------------- | --------------------------------------- |
+| guild_id | snowflake                                                                 | The ID of the guild                     |
+| bulk_ban | [guild bulk ban](/gateway/gateway-events#guild-bulk-ban-structure) object | The information about the ban operation |
+
+###### Guild Bulk Ban Structure
+
+| Field            | Type             | Description                                |
+| ---------------- | ---------------- | ------------------------------------------ |
+| banned_users     | array[snowflake] | The user IDs that were successfully banned |
+| failed_users ^1^ | array[snowflake] | The user IDs that were not banned          |
+
+^1^ A ban will fail if the user is already banned, the user has a higher role than the current user, the user is the owner of the guild, or the user is the current user.
 
 #### Guild Directory Entry Create
 
@@ -23295,11 +23316,17 @@ Creates a guild ban and optionally deletes previous messages sent by the banned 
 | delete_message_days? **(deprecated)** | integer | Number of days to delete messages for (0-7, default 0)         |
 | delete_message_seconds?               | integer | Number of seconds to delete messages for (0-604800, default 0) |
 
-<RouteHeader method="POST" url="/guilds/{guild.id}/bulk-ban" supportsAuditReason mfa supportsBot>
+<RouteHeader method="POST" url="/guilds/{guild.id}/bulk-ban" supportsAuditReason mfa supportsBot deprecated>
   Bulk Guild Ban
 </RouteHeader>
 
 Create multiple guild bans and optionally delete previous messages sent by the banned users. Requires both the `BAN_MEMBERS` and `MANAGE_GUILD` permissions. Fires multiple [Guild Ban Add](/gateway/gateway-events#guild-ban-add) and optionally [Guild Member Remove](/gateway/gateway-events#guild-member-remove) Gateway events.
+
+<Alert type="warn">
+
+This endpoint is deprecated. It is replaced by [Bulk Guild Ban V2](#bulk-guild-ban-v2).
+
+</Alert>
 
 ###### JSON Params
 
@@ -23315,7 +23342,22 @@ Create multiple guild bans and optionally delete previous messages sent by the b
 | banned_users     | array[snowflake] | The user IDs that were successfully banned |
 | failed_users ^1^ | array[snowflake] | The user IDs that were not banned          |
 
-^1^ A ban will fail if the user is already banned, the user has a higher role than the current user, the user is the owner of the guild, or the user is the current user. If a bulk ban has no successful bans, the response will be an error.
+^1^ A ban will fail if the user is already banned, the user has a higher role than the current user, the user is the owner of the guild, or the user is the current user. If a bulk ban has no successful bans, the request will fail with a [`500000` JSON error code](/topics/errors#json-error-codes).
+
+<RouteHeader method="POST" url="/guilds/{guild.id}/bulk-ban/v2" supportsAuditReason mfa supportsBot>
+  Bulk Guild Ban V2
+</RouteHeader>
+
+Create multiple guild bans and optionally delete previous messages sent by the banned users. Requires both the `BAN_MEMBERS` and `MANAGE_GUILD` permissions. Returns a 204 empty response on success. Fires a [Guild Bulk Ban Update](/gateway/gateway-events#guild-bulk-ban-update) Gateway event for the current user. Fires multiple [Guild Ban Add](/gateway/gateway-events#guild-ban-add) and optionally [Guild Member Remove](/gateway/gateway-events#guild-member-remove) Gateway events.
+
+###### JSON Params
+
+| Field                   | Type             | Description                                                    |
+| ----------------------- | ---------------- | -------------------------------------------------------------- |
+| user_ids ^1^            | array[snowflake] | The user IDs to ban (max 200)                                  |
+| delete_message_seconds? | integer          | Number of seconds to delete messages for (0-604800, default 0) |
+
+^1^ If the only user ID provided belongs to the current user, the request will fail with a [`500000` JSON error code](/topics/errors#json-error-codes).
 
 <RouteHeader method="DELETE" url="/guilds/{guild.id}/bans/{user.id}" supportsAuditReason supportsBot>
   Delete Guild Ban
@@ -23476,11 +23518,11 @@ Guilds may have a maximum of 250 roles.
 | description?                | ?string                                       | The description for the role (max 90 characters)                                       |
 | color? **(deprecated)** ^1^ | ?integer                                      | Integer representation of a hexadecimal color code for the role                        |
 | colors? ^1^ ^2^             | ?[role colors](#role-colors-structure) object | The colors of the role encoded as an integer representation of hexadecimal color codes |
-| hoist?                      | boolean                                       | Whether this role is pinned in the user listing (default false)                        |
+| hoist?                      | ?boolean                                      | Whether this role is pinned in the user listing (default false)                        |
 | icon?                       | ?[image data](/reference#cdn-data)            | The role's icon                                                                        |
 | unicode_emoji?              | ?string                                       | The role's unicode emoji                                                               |
 | permissions?                | ?string                                       | The permission bitwise value for the role (default @everyone permissions)              |
-| mentionable?                | boolean                                       | Whether this role is mentionable (default false)                                       |
+| mentionable?                | ?boolean                                      | Whether this role is mentionable (default false)                                       |
 
 ^1^ If both `color` and `colors` are provided, the `color` field will be ignored.
 
@@ -23718,12 +23760,12 @@ Returns a list of join requests for the guild for manual approval. Requires the 
 
 ###### Query String Params
 
-| Field      | Type      | Description                                                                |
-| ---------- | --------- | -------------------------------------------------------------------------- |
-| status ^1^ | string    | The [status of the join requests](#guild-join-request-status) to filter by |
-| limit?     | integer   | Max number of join requests to return (1-100, default 100)                 |
-| before?    | snowflake | Get join requests before this request ID                                   |
-| after?     | snowflake | Get join requests after this request ID                                    |
+| Field       | Type      | Description                                                                                      |
+| ----------- | --------- | ------------------------------------------------------------------------------------------------ |
+| status? ^1^ | string    | The [status of the join requests](#guild-join-request-status) to filter by (default `SUBMITTED`) |
+| limit?      | integer   | Max number of join requests to return (1-100, default 100)                                       |
+| before?     | snowflake | Get join requests before this request ID                                                         |
+| after?      | snowflake | Get join requests after this request ID                                                          |
 
 ^1^ Requests of status `STARTED` cannot be queried.
 
