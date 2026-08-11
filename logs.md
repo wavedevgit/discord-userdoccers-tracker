@@ -1,51 +1,75 @@
 # Results
 
-| Covered | 478 |
+| Covered | 526 |
 |---------|------------|
-| Missing | 227 |
+| Missing | 332 |
 ## Missing routes
-total: 227
+total: 332
 
+- [ ] **USER_BADGES**: `/users/:param/badges`
+- [ ] **USER_BADGE**: `/users/:param/badges/:param`
+- [ ] **USER_BADGE_SETTINGS**: `/users/@me/badges/settings`
+- [ ] **USER_PROFILE_WIDGET_ASSET_UPLOAD**: `/users/@me/widgets/assets/upload`
+- [ ] **USER_PROFILE_WIDGET_CLIP_UPLOAD**: `/users/@me/widgets/clips/upload`
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
+- [ ] **USER_WISHLIST**: `/wishlists/:param`
+- [ ] **USER_WISHLIST_PATCH**: `/users/@me/wishlists/:param`
+- [ ] **USER_WISHLIST_ITEMS**: `/users/@me/wishlist/items`
+- [ ] **USER_WISHLIST_ITEM**: `/users/@me/wishlists/:param/items/:param`
+- [ ] **USER_WISHLIST_RECOMMENDATIONS**: `/wishlist/gift-recommendations`
+- [ ] **GIFT_INTENT_DISMISSALS**: `/users/@me/gift-intent-dismissals`
 - [ ] **USER_ACTIVITY_JOIN**: `/users/:param/sessions/:param/activities/:param/1`
-- [ ] **JOIN_CONTEXTLESS_EMBEDDED_ACTIVITY_VIA_PRESENCE**: `/users/:param/sessions/:param/embedded-activities/:param/1`
-- [ ] **JOIN_CONTEXTLESS_EMBEDDED_ACTIVITY_VIA_INSTANCE**: `/activity-instances/:param/embedded-activities/:param/join`
 - [ ] **NETWORKING_TOKEN**: `/networking/token`
 - [ ] **USER_GAMES_NOTIFICATIONS**: `/users/@me/settings/game-notifications`
 - [ ] **USER_GAMES_NOTIFICATIONS_OVERRIDES**: `/users/@me/settings/game-notifications/overrides`
+- [ ] **PLATFORM_APPLICATION**: `/platform-application`
+- [ ] **ROBLOX_APPLICATIONS_SUPPLEMENTAL_DATA**: `/roblox-applications-supplemental-data`
 - [ ] **GUILD_MEMBER_NICK**: `/guilds/:param/members/:param/nick`
-- [ ] **GUILD_MEMBER_AVATAR**: `/guilds/:param/users/:param/avatars/:param.:param`
+- [ ] **GUILD_MEMBER_AVATAR**: `/guilds/:param/users/:param/avatars/:param./:param`
+- [ ] **GAME_NOTIFICATION_SETTINGS**: `/users/@me/notification-settings/muted-games`
+- [ ] **GAME_NOTIFICATION_SETTING_UPDATE**: `/users/@me/notification-settings/muted-games/:param`
 - [ ] **GUILD_ONBOARDING_PROMPT**: `/guilds/:param/onboarding-prompts/:param`
 - [ ] **ROLE_ICON**: `/roles/:param/icons/:param.png`
-- [ ] **GUILD_ICON**: `/guilds/:param/icons/:param.:param`
-- [ ] **GUILD_TEMPLATE_ICON**: `/templates/:param/icons/:param.:param`
+- [ ] **GUILD_PRUNE_V2**: `/guilds/:param/prune/v2`
+- [ ] **GUILD_ICON**: `/guilds/:param/icons/:param./:param`
+- [ ] **GUILD_TEMPLATE_ICON**: `/templates/:param/icons/:param./:param`
 - [ ] **GUILD_DISCOVERY_CHECKLIST**: `/guilds/:param/discovery-checklist`
+- [ ] **GUILD_OFFICIAL_MESSAGES**: `/guilds/:param/messages/official`
 - [ ] **GUILD_ANALYTICS_OVERVIEW**: `/guilds/:param/analytics/overview`
-- [ ] **EMOJI**: `/emojis/:param.:param`
+- [ ] **EMOJI**: `/emojis/:param./:param`
 - [ ] **GUILD_SPLASH**: `/guilds/:param/splashes/:param.jpg`
 - [ ] **GUILD_DISCOVERY_SPLASH**: `/guilds/:param/discovery-splashes/:param.jpg`
-- [ ] **GUILD_BANNER**: `/guilds/:param/banners/:param.:param`
-- [ ] **GUILD_RESOURCE_CHANNELS_ICON**: `/guilds/:param/avatars/:param.:param`
-- [ ] **GUILD_NEW_MEMBER_ACTIONS_ICON**: `/guilds/:param/avatars/:param.:param`
+- [ ] **GUILD_BANNER**: `/guilds/:param/banners/:param./:param`
+- [ ] **GUILD_CONFIG_GATES**: `/guilds/:param/config-gates`
+- [ ] **GUILD_RESOURCE_CHANNELS_ICON**: `/guilds/:param/avatars/:param./:param`
+- [ ] **GUILD_NEW_MEMBER_ACTIONS_ICON**: `/guilds/:param/avatars/:param./:param`
 - [ ] **GUILD_HOME_HEADER**: `/guilds/:param/home-headers/:param.jpg`
+- [ ] **GUILD_SPACE**: `/guilds/:param/space`
+- [ ] **GUILD_SPACE_WIDGETS_HYDRATE**: `/guilds/:param/space/widgets/hydrate`
+- [ ] **GUILD_SPACE_WIDGETS_CATALOG**: `/guilds/:param/space/widgets/catalog`
+- [ ] **GUILD_SPACE_SETTINGS**: `/guilds/:param/space/settings`
 - [ ] **GUILD_DELETE**: `/guilds/:param/delete`
 - [ ] **CHANNELS**: `/channels`
+- [ ] **THREADS_BULK**: `/threads/bulk`
 - [ ] **ALL_ARCHIVED_THREADS**: `/channels/:param/threads/archived/:param`
-- [ ] **VOICE_CHANNEL_NOTIFICATIONS**: `/channels/:param/voice-push`
 - [ ] **PARTNER_REQUIREMENTS**: `/partners/:param/requirements`
-- [ ] **AVATAR**: `/users/:param/avatars/:param.:param`
-- [ ] **ARCHIVED_AVATAR**: `/avatars/:param/archived/:param/:param.:param`
-- [ ] **USER_BANNER**: `/users/:param/banners/:param.:param`
-- [ ] **AVATAR_DECORATION_PRESETS**: `/avatar-decoration-presets/:param.:param`
-- [ ] **USER_PROFILE_EFFECTS**: `/user-profile-effects`
-- [ ] **GUILD_MEMBER_BANNER**: `/guilds/:param/users/:param/banners/:param.:param`
+- [ ] **AVATAR**: `/users/:param/avatars/:param./:param`
+- [ ] **ARCHIVED_AVATAR**: `/avatars/:param/archived/:param/:param./:param`
+- [ ] **USER_BANNER**: `/users/:param/banners/:param./:param`
+- [ ] **AVATAR_DECORATION_PRESETS**: `/avatar-decoration-presets/:param./:param`
+- [ ] **LAYOUT_SYSTEM**: `/layouts/:param/:param`
+- [ ] **LAYOUT_SYSTEM_TEMPLATE**: `/templates/:param/:param`
+- [ ] **GUILD_MEMBER_BANNER**: `/guilds/:param/users/:param/banners/:param./:param`
+- [ ] **CHANNEL_CONVERSATIONS**: `/channels/:param/conversations`
+- [ ] **CHANNEL_CONVERSATION_MESSAGES**: `/channels/:param/conversations/:param/messages`
+- [ ] **MESSAGES_ANNOUNCEMENT**: `/channels/:param/messages/announcement`
+- [ ] **CHANNEL_VOICE_HANGOUT**: `/channels/:param/voice-hangout`
+- [ ] **VOICE_HANGOUT_BANNER**: `/voice-hangouts/:param/:param`
+- [ ] **GUILD_VOICE_HANGOUT_RECENT_IMAGES**: `/guilds/:param/voice-hangout/recent-images`
+- [ ] **AI_TEXT_TRANSFORM**: `/ai/text-transform`
 - [ ] **MESSAGE_LOG_PRIVATE_CHANNELS**: `/messages-log/private-channels/get`
 - [ ] **MESSAGE_LOG_GUILD_CHANNELS**: `/messages-log/guild-channels/get`
 - [ ] **BACKGROUND_SYNC**: `/users/@me/background-sync`
-- [ ] **GUILD_FEED_MESSAGE_SET_PREFERENCE**: `/guilds/:param/guild-feed/preference`
-- [ ] **GUILD_FEED_FEATURE_ITEM**: `/guilds/:param/guild-feed/feature`
-- [ ] **GUILD_FEED_MARK_SEEN**: `/guilds/:param/guild-feed/mark-seen`
-- [ ] **PIN**: `/channels/:param/pins/:param`
 - [ ] **CHANNEL_RECIPIENTS**: `/channels/:param/recipients`
 - [ ] **CHANNEL_ICON**: `/channels/:param/icons/:param.jpg`
 - [ ] **CHANNEL_CONVERT**: `/channels/:param/convert`
@@ -54,6 +78,7 @@ total: 227
 - [ ] **CHANNEL_ENTITLEMENT_GRANT**: `/channels/:param/store-listing/entitlement-grant`
 - [ ] **CHANNEL_FOLLOWER_STATS**: `/channels/:param/follower-stats`
 - [ ] **CHANNEL_FOLLOWER_MESSAGE_STATS**: `/channels/:param/follower-message-stats`
+- [ ] **CHANNEL_VOICE_HISTORY**: `/channels/:param/voice-history`
 - [ ] **FRIEND_FINDER**: `/friend-finder/find-friends`
 - [ ] **TUTORIAL_INDICATORS**: `/tutorial/indicators`
 - [ ] **USERS**: `/users`
@@ -61,7 +86,6 @@ total: 227
 - [ ] **GRAVITY_ITEMS_DEHYDRATED**: `/users/@me/gravity-icymi`
 - [ ] **GRAVITY_ITEMS_DEHYDRATED_LEGACY**: `/users/@me/gravity-icymi-legacy`
 - [ ] **GRAVITY_RECOMMENDED_GUILDS**: `/gravity-recommended-guilds`
-- [ ] **GRAVITY_ITEMS_NEGATIVE**: `/users/@me/gravity-icymi-negative`
 - [ ] **GRAVITY_ITEMS_HYDRATE**: `/gravity-content`
 - [ ] **GRAVITY_CUSTOM_GUILD_SCORES**: `/gravity-custom-guild-score`
 - [ ] **GRAVITY_CUSTOM_SCORES**: `/gravity-custom-channel-scores`
@@ -71,18 +95,36 @@ total: 227
 - [ ] **POMELO_ATTEMPT_UNAUTHED**: `/unique-username/username-attempt-unauthed`
 - [ ] **PHONE_VERIFY_NO_PASSWORD**: `/users/@me/phone/verify`
 - [ ] **VERIFY_PHONE_FOR_TICKET**: `/phone-verifications/validate-support-ticket`
+- [ ] **UNCLAIMED_GAMES**: `/users/@me/unclaimed-games`
+- [ ] **USERS_ME_CUSTOM_THEMES**: `/users/@me/custom-themes`
 - [ ] **CONNECTIONS_SESSION_HANDOFF**: `/connections/:param/callback/session-handoff`
 - [ ] **CONNECTION_SYNC_CONTACTS**: `/users/@me/connections/contacts/@me/external-friend-list-entries`
 - [ ] **CONNECTIONS_LINK_DISPATCH_AUTH_CALLBACK**: `/connections/:param/link-dispatch-auth-callback`
 - [ ] **XBOX_HANDOFF**: `/consoles/xbox-handoff`
 - [ ] **CAPTCHA_TEST**: `/captcha/decider`
 - [ ] **AGE_ASSURANCE_TEST**: `/age-verification/test`
+- [ ] **VERIFY_AGE_V2**: `/age-verification/verify/v2`
+- [ ] **REGISTER_INCODE_INTERVIEW**: `/age-verification/incode/interview`
+- [ ] **CREATE_INCODE_SESSION**: `/age-verification/incode/session`
+- [ ] **AGE_VERIFICATION_METHODS**: `/age-verification/methods`
+- [ ] **AGE_VERIFICATION_METHODS_V2**: `/age-verification/methods/v2`
+- [ ] **GOOGLE_WALLET_REQUEST**: `/age-verification/google-wallet/request`
+- [ ] **GOOGLE_WALLET_VERIFY**: `/age-verification/google-wallet/verify`
+- [ ] **AGE_SIGNAL**: `/users/@me/age-signal`
+- [ ] **AGE_SIGNAL_CHALLENGE**: `/users/@me/age-signal/challenge`
+- [ ] **AGE_VERIFICATION_REACTIVE_CHECK**: `/users/@me/age-verification/check`
+- [ ] **AGE_VERIFICATION_RESET**: `/users/@me/age-verification/reset`
 - [ ] **LOGIN**: `/auth/login`
+- [ ] **LOGIN_GENERATED_USER**: `/auth/login/generated-user/:param`
+- [ ] **GENERATED_POOLS_FOR_CURRENT_USER**: `/generated-pools/@me`
+- [ ] **GENERATED_POOL_BY_ID**: `/generated-pools/:param`
 - [ ] **LOGIN_MFA**: `/auth/mfa/:param`
 - [ ] **LOGIN_SMS_SEND**: `/auth/mfa/sms/send`
+- [ ] **ONE_TIME_LOGIN**: `/auth/one-time-login`
 - [ ] **LOGOUT**: `/auth/logout`
 - [ ] **REGISTER**: `/auth/register`
 - [ ] **REGISTER_PHONE**: `/auth/register/phone`
+- [ ] **SCORE_PASSWORD**: `/auth/password/validate`
 - [ ] **WEBAUTHN_CONDITIONAL_UI_CHALLENGE**: `/auth/conditional/start`
 - [ ] **WEBAUTHN_CONDITIONAL_UI_LOGIN**: `/auth/conditional/finish`
 - [ ] **WEBAUTHN_PASSWORDLESS_CHALLENGE**: `/auth/passwordless/start`
@@ -97,37 +139,51 @@ total: 227
 - [ ] **DEBUG_LOG**: `/debug-logs/:param/:param`
 - [ ] **DEBUG_LOGS**: `/debug-logs/multi/:param`
 - [ ] **INTEGRATIONS**: `/integrations`
-- [ ] **INTEGRATION_SEARCH**: `/integrations/:param/search`
-- [ ] **APPLICATIONS_DETECTABLE**: `/applications/detectable`
-- [ ] **APPLICATIONS_GAMES_SUPPLEMENTAL**: `/applications/games-supplemental`
+- [ ] **GAMES_AUTOCOMPLETE**: `/games/autocomplete`
 - [ ] **APPLICATION_ICON**: `/applications/:param/app-icons/:param.png`
 - [ ] **APPLICATION_RPC**: `/oauth2/applications/:param/rpc`
 - [ ] **OWNED_APPLICATION_BRANCHES**: `/applications/:param/branches`
 - [ ] **OAUTH2_AUTHORIZE_SAMSUNG**: `/oauth2/samsung/authorize`
 - [ ] **OAUTH2_AUTHORIZE_SAMSUNG_CALLBACK**: `/oauth2/samsung/authorize/callback`
 - [ ] **OAUTH2_AUTHORIZE_WEBHOOK_CHANNELS**: `/oauth2/authorize/webhook-channels`
+- [ ] **OAUTH2_ACCOUNT_LINKING_ACHIEVEMENT**: `/oauth2/account-linking-achievement`
 - [ ] **MFA_TOTP_ENABLE_VERIFY**: `/users/@me/mfa/totp/enable/verify`
 - [ ] **MFA_TOTP_ENABLE_RESEND**: `/users/@me/mfa/totp/enable/resend`
 - [ ] **DISABLE_EMAIL_NOTIFICATIONS**: `/users/disable-email-notifications`
 - [ ] **DISABLE_SERVER_HIGHLIGHT_NOTIFICATIONS**: `/users/disable-server-highlight-notifications`
 - [ ] **REACTION**: `/channels/:param/messages/:param/reactions/:param/:param`
 - [ ] **REACTION_WITH_TYPE**: `/channels/:param/messages/:param/reactions/:param/:param/:param`
-- [ ] **SEARCH_FAVORITES**: `/search/favorites`
-- [ ] **SEARCH_DMS**: `/users/@me/messages/search`
 - [ ] **CHANGELOG_MESSAGES**: `/changelogs/@me/messages`
-- [ ] **BILLING_PAYMENTS_REFUND**: `/users/@me/billing/payments/:param/refund`
+- [ ] **GAME_SERVER_MY_REGIONS**: `/users/@me/game-server-regions`
+- [ ] **GAME_SERVERS_ME**: `/users/@me/game-servers`
+- [ ] **GAME_SERVER_ME**: `/users/@me/game-servers/:param`
+- [ ] **GAME_SERVER_ME_WAKE**: `/users/@me/game-servers/:param/wake`
+- [ ] **BILLING_STRIPE_SETUP_INTENT_SECRET_FOR_PAYMENT_ELEMENTS**: `/users/@me/billing/stripe/payment-elements/setup-intents`
+- [ ] **BILLING_WALLET_INFORMATION**: `/users/@me/billing/wallet/:param/information`
 - [ ] **BILLING_INVOICE_PDF**: `/users/@me/billing/invoice`
 - [ ] **BILLING_STRIPE_PAYMENT_INTENTS**: `/users/@me/billing/stripe/payment-intents/payments/:param`
 - [ ] **BILLING_STRIPE_PAYMENT_INTENTS_VIA_ID**: `/users/@me/billing/stripe/payment-intents/:param`
-- [ ] **BILLING_STANDALONE_CHECKOUT_PAGE**: `/billing/premium/subscribe?plan_id=:param&gift=:param&load_id=:param&payment_method_type=:param`
-- [ ] **BILLING_STANDALONE_CHECKOUT_LOGIN_HANDOFF**: `//canary.discord.com/billing/premium/subscribe/login-handoff?handoff_key=:param&handoff_token=:param&destination=:param`
+- [ ] **BILLING_STANDALONE_CHECKOUT_LOGIN_HANDOFF**: `/:param/billing/premium/subscribe/login-handoff?handoff_key=:param&handoff_token=:param&destination=:param`
 - [ ] **BILLING_PERKS_RELEVANCE**: `/users/@me/billing/perks-relevance`
 - [ ] **BILLING_APPLY_APPLE_RECEIPT**: `/billing/apple/apply-receipt`
 - [ ] **BILLING_APPLE_SUBSCRIPTION**: `/billing/apple/subscriptions/:param`
 - [ ] **BILLING_GENERATE_APPLE_TRIAL_OFFER_SIGNATURE**: `/users/@me/billing/apple/trial-offer-signature`
 - [ ] **BILLING_CREATE_APPLE_IAP_JWT_TOKEN**: `/billing/apple/jwt-token`
+- [ ] **BILLING_ACOM_SUBSCRIPTION_MIGRATION**: `/billing/apple/acom-subscriptions/migrate`
 - [ ] **BILLING_SUBSCRIPTION_REWARDS**: `/users/@me/billing/subscriptions/:param/rewards`
 - [ ] **Billing_SUBSCRIPTION_REWARD_ELIGIBILITY**: `/users/@me/billing/subscriptions/:param/reward-eligibility`
+- [ ] **BILLING_SUBSCRIPTION_ELIGIBLE_USERS**: `/users/@me/billing/subscriptions/:param/eligible-users`
+- [ ] **BILLING_SUBSCRIPTION_INVITES**: `/users/@me/billing/subscriptions/:param/invites`
+- [ ] **BILLING_SUBSCRIPTION_INVITE**: `/users/@me/billing/subscriptions/:param/members/:param/invite`
+- [ ] **BILLING_SUBSCRIPTION_REMOVE_USER**: `/users/@me/billing/subscriptions/:param/members/:param`
+- [ ] **BILLING_SUBSCRIPTION_MEMBERS**: `/users/@me/billing/subscriptions/:param/members`
+- [ ] **BILLING_GIFT_CARD_VIEW**: `/billing/gift-card/view`
+- [ ] **BILLING_GIFT_CARD_REDEEM**: `/billing/gift-card/redeem`
+- [ ] **BILLING_STORE_COUNTRY**: `/billing/store-country`
+- [ ] **PREMIUM_GROUP_MEMBERSHIP**: `/users/@me/premium-group/membership`
+- [ ] **PREMIUM_GROUP_INVITES**: `/users/@me/premium-group/invites`
+- [ ] **PREMIUM_GROUP_INVITE**: `/users/@me/premium-group/invites/:param`
+- [ ] **PROGRAM_REWARDS**: `/users/@me/program-rewards`
 - [ ] **VERIFY_PURCHASE**: `/google-play/verify-purchase-token`
 - [ ] **DOWNGRADE_SUBSCRIPTION**: `/google-play/downgrade-subscription`
 - [ ] **GOOGLE_PLAY_VALIDATE_PURCHASE**: `/google-play/validate-purchase`
@@ -143,83 +199,111 @@ total: 227
 - [ ] **APPLICATIONS_TRENDING**: `/applications/trending/global`
 - [ ] **APPLICATION_BRANCH_LIST**: `/applications/:param/branches`
 - [ ] **LIBRARY_APPLICATION_INSTALLED**: `/users/@me/library/:param/:param/installed`
+- [ ] **STOREFRONT_COLLECTIONS_WITH_PRODUCTS**: `/storefront/collections`
+- [ ] **STOREFRONT_COLLECTIONS_FOR_APPLICATION**: `/storefront/collections/applications`
+- [ ] **STOREFRONT_PRODUCTS_WITH_SKUS**: `/storefront/products`
+- [ ] **STOREFRONT_PROMOTIONS**: `/storefront/promotions`
+- [ ] **STOREFRONT_PRICES**: `/storefront/pricing`
 - [ ] **STORE_DIRECTORY_LAYOUT**: `/store/directory-layouts/:param`
 - [ ] **STORE_DIRECTORY**: `/store/directory/:param`
 - [ ] **STORE_PUBLISHED_LISTINGS_SKU_JOIN_GUILD**: `/store/published-listings/skus/:param/guild/join`
 - [ ] **STORE_LISTING**: `/store/listings/:param`
+- [ ] **SOCIAL_LAYER_STOREFRONT_BY_APPLICATION_ID**: `/partner-sdk/applications/:param/application-storefront`
+- [ ] **SOCIAL_LAYER_STOREFRONTS_ALL**: `/partner-sdk/applications/:param/storefronts/preview`
+- [ ] **SOCIAL_LAYER_STOREFRONT_BY_ID**: `/partner-sdk/applications/:param/storefront/:param/preview`
+- [ ] **SOCIAL_LAYER_STOREFRONT_LAUNCH_ANNOUNCEMENT**: `/partner-sdk/storefront-launch-announcement`
+- [ ] **ORDER_GET**: `/billing/orders/:param`
+- [ ] **ORDER_CREATE**: `/billing/orders`
+- [ ] **ORDER_LIST**: `/billing/orders`
+- [ ] **ORDER_PATCH_LINE_ITEM**: `/billing/orders/:param/line-items/:param`
+- [ ] **ORDER_UPDATE**: `/billing/orders/:param`
+- [ ] **ORDER_SIGN**: `/billing/orders/:param/sign`
+- [ ] **ORDER_CANCEL_SIGNING**: `/billing/orders/:param/cancel-signing`
+- [ ] **ORDER_DISCARD**: `/billing/orders/:param/discard`
+- [ ] **ORDER_ENTITLEMENTS**: `/billing/orders/:param/entitlements`
 - [ ] **APPLICATION_SKUS**: `/applications/:param/skus`
 - [ ] **ENTITLEMENT_TICKET**: `/users/@me/applications/:param/entitlement-ticket`
 - [ ] **APPLICATION_TICKET**: `/users/@me/applications/:param/ticket`
-- [ ] **STORE_ASSET**: `/store/applications/:param/assets/:param.:param`
-- [ ] **APPLICATION_ASSET**: `/applications/:param/app-assets/:param.:param`
+- [ ] **STORE_ASSET**: `/store/applications/:param/assets/:param./:param`
+- [ ] **APPLICATION_ASSET**: `/applications/:param/app-assets/:param./:param`
 - [ ] **APPLICATION_STORAGE**: `/applications/:param/branches/:param/storage`
 - [ ] **PARTNER_PROMOTIONS**: `/entitlements/partner-promotions/:param`
+- [ ] **GIFT_INTENTS_DISMISS**: `/users/@me/gift-intents/dismiss`
+- [ ] **REACTIVATION_OFFER_REDEEM**: `/users/@me/billing/subscriptions/:param/reactivation-offers/:param/redeem`
 - [ ] **USER_PERKS_DEMOS**: `/users/@me/perks-demos`
 - [ ] **USER_PERKS_DEMOS_ACTIVATE**: `/users/@me/activate-perk-demo/:param`
-- [ ] **FUNIMATION_PROMOTION**: `/promotions/funimation`
+- [ ] **PARTNER_PERK**: `/users/@me/partner-perks/:param`
+- [ ] **PARTNER_PERK_ACTIVATION_STATUS**: `/users/@me/partner-perks/:param/activation-status`
+- [ ] **MOBILE_GAME_COMMUNITIES**: `/discoverable-guilds/mobile-game-communities`
+- [ ] **CHANNEL_AFFINITIES_V2**: `/users/@me/affinities/v2/channels`
 - [ ] **PARTNERS_CONNECTIONS**: `/partners/connections`
 - [ ] **PARTNERS_APPLY**: `/partners/apply`
 - [ ] **STORE_DIRECTORY_LAYOUT_STICKER_PACKS**: `/sticker-packs/directory-v2/:param`
-- [ ] **USER_STICKER_PACKS**: `/users/@me/sticker-packs`
-- [ ] **STICKER_ASSET**: `/stickers/:param.:param`
+- [ ] **STICKER_ASSET**: `/stickers/:param./:param`
 - [ ] **ACTIVITY_JOIN_INSTANCE**: `/activities/applications/:param/activity-instances/:param/join`
+- [ ] **ACTIVITIES_DISCORD_CONFIG**: `/activities/discord-config/:param`
+- [ ] **ACTIVITIES_TRUSTED_LINKS**: `/applications/:param/trusted-links/check`
+- [ ] **APPLICATION_PROXY_TICKET**: `/applications/:param/proxy-tickets`
 - [ ] **APPLICATION_BOT_GUILD_COMMAND_PERMISSIONS**: `/applications/:param/guilds/:param/commands/:param/permissions`
+- [ ] **SUBMIT_MODERATOR_MESSAGE_REPORT**: `/channels/:param/:param/mod-report`
+- [ ] **MODERATOR_REPORT_CLOSE**: `/mod-report/:param/close`
+- [ ] **REPORT_TO_MOD_REOPEN**: `/mod-report/:param/reopen`
 - [ ] **STAGE_INSTANCES_EXTRA**: `/stage-instances/extra`
+- [ ] **EMBEDDED_SURVEY**: `/users/@me/embedded-survey/:param`
+- [ ] **EMBEDDED_SURVEY_RESPONSE**: `/users/@me/embedded-surveys/:param/responses`
+- [ ] **EMBEDDED_SURVEY_ACTION**: `/users/@me/embedded-survey/action`
 - [ ] **GUILD_EVENTS**: `/guild-events`
-- [ ] **GUILD_EVENT_IMAGE**: `/guild-events/:param/images/:param.:param`
-- [ ] **GUILD_EVENT_USERS**: `/guilds/:param/scheduled-events/:param/:param/users`
+- [ ] **GUILD_EVENT_IMAGE**: `/guild-events/:param/images/:param./:param`
 - [ ] **GUILD_EVENT_EXCEPTIONS**: `/guilds/:param/scheduled-events/:param/exceptions`
 - [ ] **GUILD_EVENT_EXCEPTION**: `/guilds/:param/scheduled-events/:param/exceptions/:param`
 - [ ] **HUB_EMAIL_VERIFY**: `/guilds/automations/email-domain-lookup/verify`
-- [ ] **OUTBOUND_PROMOTIONS_PREVIEW**: `/outbound-promotions/preview`
-- [ ] **CHAT_WALLPAPERS**: `/chat-wallpapers`
 - [ ] **CREATOR_MONETIZATION_ACCEPT_TERMS**: `/guilds/:param/creator-monetization/enable-requests/:param/accept-terms`
-- [ ] **CREATOR_MONETIZATION_NAG_ACTIVATE_ELIGIBLITY**: `/creator-monetization/marketing/nag-activate/eligibility`
 - [ ] **CREATOR_MONETIZATION_ACCEPT_NEW_TERMS**: `/guilds/:param/creator-monetization/accept-new-terms`
 - [ ] **SUBSCRIPTION_PLAN_GUILD_ROLE_GROUP_LISTING**: `/subscription-plans/:param/guild-role-subscription-group-listing`
 - [ ] **BUG_REPORTS**: `/private/bug-reports`
+- [ ] **CLIP_FEEDBACK**: `/private/clip-feedback`
+- [ ] **CLIPS_MODULE_ASSETS**: `/clips/module-assets`
 - [ ] **PAYMENT_PAYOUT_GROUPS**: `/applications/:param/payment-payout-groups`
-- [ ] **GUILD_CONVERT_TO_CLAN**: `/clan/:param`
-- [ ] **GUILD_CLAN_DISCOVERY_INFO**: `/discovery/:param/clan`
 - [ ] **GUILD_PROFILE_VISIBILITY**: `/guilds/:param/profile/visibility`
-- [ ] **CLAN_SETTINGS**: `/clan/:param/settings`
-- [ ] **DISABLE_CLAN**: `/clan/:param/disable`
+- [ ] **GUILD_THEME**: `/guilds/:param/theme`
 - [ ] **TENOR_ASSET_PATH**: `/tenor`
-- [ ] **VIDEO_FILTER_ASSET_STORAGE**: `/users/:param/video-filter-assets/:param/:param.:param`
+- [ ] **GIPHY_ASSET_PATH**: `/giphy`
+- [ ] **KLIPY_ASSET_PATH**: `/klipy`
+- [ ] **VIDEO_FILTER_ASSET_STORAGE**: `/users/:param/video-filter-assets/:param/:param./:param`
 - [ ] **SOUNDBOARD_SOUND**: `/soundboard-sounds/:param`
+- [ ] **SEND_CLIPS_REMOTE_TRIGGER**: `/channels/:param/clips-remote-trigger`
 - [ ] **APPLICATION_COMMANDS_SEARCH**: `/channels/:param/application-commands/search`
 - [ ] **GUILD_COMMANDS_FOR_APPLICATION**: `/guilds/:param/application-commands/:param`
-- [ ] **APPLICATION_DIRECTORY_COLLECTION_ITEM_IMAGE**: `/application-directory/collection-items/:param/:param.:param`
-- [ ] **APP_RECOMMENDATIONS**: `/app-recommendations`
+- [ ] **APPLICATION_DIRECTORY_COLLECTION_ITEM_IMAGE**: `/application-directory/collection-items/:param/:param./:param`
 - [ ] **GUILD_FEED**: `/guilds/:param/guild-feed`
 - [ ] **ACTIVE_CHANNELS**: `/guilds/:param/active-channels`
 - [ ] **AUTH_SESSIONS**: `/auth/sessions`
 - [ ] **AUTH_SESSION_NOTIFICATIONS_DEBUG**: `/auth/sessions/debug/notifications`
 - [ ] **AUTH_SESSIONS_LOGOUT**: `/auth/sessions/logout`
 - [ ] **APPLICATION_SUBSCRIPTION_GROUP_LISTING**: `/applications/:param/subscription-group-listings/:param`
-- [ ] **SHARED_CANVAS_LINES**: `/channels/:param/:param/shared-canvas/lines`
-- [ ] **SHARED_CANVAS_EMOJI_HOSES**: `/channels/:param/:param/shared-canvas/emoji-hose`
-- [ ] **SHARED_CANVAS_EMOJI_HOSE**: `/channels/:param/:param/shared-canvas/emoji-hose/:param`
-- [ ] **BURST_CREDIT_BALANCE**: `/users/@me/burst-credits`
 - [ ] **FAMILY_CENTER_TEEN_ACTIVITY**: `/family-center/:param/activity`
 - [ ] **FAMILY_CENTER_TEEN_ACTIVITY_MORE**: `/family-center/more-activity/:param/:param/:param/:param`
+- [ ] **FAMILY_CENTER_CONNECTION_PREREQUISITES**: `/family-center/connection-prerequisites`
 - [ ] **FAMILY_CENTER_FETCH_TEEN_USER**: `/family-center/teen-user/:param`
-- [ ] **APPLICATIONS_SHELF**: `/applications/shelf`
-- [ ] **DISCORDIFY_ME**: `/users/@me/avatars/discordify`
+- [ ] **FAMILY_CENTER_TEEN_SETTINGS_AND_CONSENTS**: `/family-center/:param/settings-and-consents`
+- [ ] **FAMILY_CENTER_TEEN_SETTINGS**: `/family-center/:param/settings-proto`
+- [ ] **FAMILY_CENTER_TEEN_CONSENTS**: `/family-center/:param/consents`
+- [ ] **FAMILY_CENTER_SHARE_IAR_WITH_PARENTS**: `/family-center/share-iar-with-parents`
+- [ ] **FAMILY_CENTER_RESTRICTED_SCHEDULE_RULE**: `/family-center/:param/restricted-schedule/rule`
+- [ ] **FAMILY_CENTER_RESTRICTED_SCHEDULE_RULES**: `/family-center/:param/restricted-schedule/rules/:param`
 - [ ] **BADGE_ICON**: `/badge-icons/:param.png`
 - [ ] **FINISH_MFA_CHECK**: `/mfa/finish`
+- [ ] **CREATE_REVERSE_TRIAL**: `/user-offers/reverse-trial`
 - [ ] **CREATE_USER_OFFER**: `/user-offers/create/:param/:param`
 - [ ] **UPDATE_USER_OFFER**: `/user-offers/:param/:param`
 - [ ] **USER_OFFERS**: `/user-offers`
 - [ ] **USER_OFFER_IDS**: `/user-offer-ids`
-- [ ] **EMOJI_CAPTIONS_GET**: `/users/@me/emoji-captions`
+- [ ] **SAFETY_HUB_GET_SUSPENDED_AGE_VERIFICATION_METHODS**: `/age-verification/suspended/methods`
 - [ ] **INITIATE_CHANNEL_PROMPTS**: `/initiate-prompts`
 - [ ] **FORCE_SEND_PROMPT**: `/:param/force-send-prompt`
-- [ ] **SEND_GAMING_STATS**: `/:param/gaming-stats`
-- [ ] **UPDATE_GAMING_STATS**: `/:param/:param/update-gaming-stats`
-- [ ] **PREMIUM_MARKETING**: `/premium-marketing`
-- [ ] **QUEST_FETCH_QUEST_TO_DELIVER**: `/quests/decision?placement=:param&client_heartbeat_session_id=:param`
-- [ ] **MY_CONTENT_INVENTORY**: `/content-inventory/users/@me?refresh_token=:param`
+- [ ] **MARKETING_CAMPAIGN_ELIGIBILITY**: `/premium-marketing/@me/campaigns/:param/eligibility`
+- [ ] **QUEST_EARNED_DECISION**: `/quests/earned-decision?quest_ids=:param&content=:param`
+- [ ] **MY_CONTENT_INVENTORY**: `/content-inventory/users/@me/:param`
 - [ ] **CONTENT_INVENTORY_OUTBOX**: `/content-inventory/users/:param/outbox`
 - [ ] **DELETE_MY_CONTENT_INVENTORY_OUTBOX_ENTRY_HISTORY**: `/content-inventory/users/@me/outbox/entries/id/:param/history`
 - [ ] **MY_SPOTIFY_CONTENT_INVENTORY**: `/content-inventory/users/@me/spotify`
@@ -228,14 +312,35 @@ total: 227
 - [ ] **CAMPAIGN_CONTEXT**: `/users/@me/billing/campaign-context`
 - [ ] **SIMILAR_GAMES**: `/content-inventory/users/@me/similar-games/:param`
 - [ ] **ACCOUNT_REVERT**: `/auth/revert`
-- [ ] **GUILD_LEADERBOARD**: `/guilds/:param/leaderboards/:param`
-- [ ] **UPDATE_MY_LOL_LEADERBOARD**: `/users/@me/update-league-of-legends-leaderboard`
-- [ ] **GUILD_LEADERBOARD_SETTINGS**: `/guilds/:param/leaderboards/:param/settings`
 - [ ] **SCHEDULED_MESSAGES**: `/users/@me/scheduled-messages`
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
+- [ ] **HOLIDAY_REDEEM_PRIZE**: `/holidays/redeem-prize`
+- [ ] **APPLIED_BOOST_MODIFY_END_DATE**: `/debug/applied-boosts/ends-at`
+- [ ] **SEND_POWERUPS_SYSTEM_MESSAGE**: `/guilds/:param/powerups-system-message`
+- [ ] **SAFETY_FLOWS_TASK**: `/safety-flows/task`
+- [ ] **SAFETY_FLOWS_RESEND_VERIFICATION_CODE**: `/safety-flows/resend/email/reverification/pincode`
+- [ ] **CONFERENCE_MODE_GUILDS**: `/conference-mode/guilds`
+- [ ] **CONFERENCE_MODE_VOICE_CHANNELS**: `/conference-mode/:param/channels`
+- [ ] **CONFERENCE_MODE_VOICE_CHANNEL**: `/conference-mode/channels/:param`
+- [ ] **CONFERENCE_MODE_VOICE_CHANNEL_USERS**: `/conference-mode/channels/:param/users`
+- [ ] **CONFERENCE_MODE_EVENTS**: `/conference-mode/events`
+- [ ] **CONFERENCE_MODE_CONFERENCES**: `/conference-mode/conference`
+- [ ] **QUESTS_APP_STORE_METADATA**: `/quests/appstore-metadata`
+- [ ] **GUILD_ROOM**: `/guilds/:param/rooms/:param`
+- [ ] **GUILD_ROOM_CONNECT**: `/guilds/:param/rooms/:param/connect`
+- [ ] **GUILD_ROOM_UPDATE**: `/guilds/:param/rooms/:param/update`
+- [ ] **GUILD_ROOM_OBJECT_CREATE**: `/guilds/:param/rooms/:param/objects`
+- [ ] **GUILD_ROOM_OBJECT_UPDATE**: `/guilds/:param/rooms/:param/objects/:param/update`
+- [ ] **GUILD_ROOM_OBJECT_DELETE**: `/guilds/:param/rooms/:param/objects/:param`
+- [ ] **VIBEGRATIONS_PROJECTS**: `/vibegrations/projects`
+- [ ] **VIBEGRATIONS_PROJECT**: `/vibegrations/projects/:param`
+- [ ] **VIBEGRATIONS_PROJECT_WS_TICKET**: `/vibegrations/projects/:param/ws-ticket`
+- [ ] **VIBEGRATIONS_PROJECT_PUBLISH**: `/vibegrations/projects/:param/publish`
+- [ ] **VIBEGRATIONS_PROJECT_PUBLISH_PREVIEW**: `/vibegrations/projects/:param/publish-preview`
+- [ ] **GUILD_SPACE_IMAGE_TEXT_WIDGET_IMAGE**: `/guild-space/:param/image-text-widget/:param/:param./:param`
 
 ## Covered routes
-total: 478
+total: 526
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -243,7 +348,16 @@ total: 478
 - [x] **USER_BULK_RELATIONSHIPS**: `/users/@me/relationships/bulk`
 - [x] **USER_GAME_RELATIONSHIP**: `/users/@me/game-relationships/:param/:param`
 - [x] **USER_PROFILE**: `/users/:param/profile`
+- [x] **USER_PROFILE_WIDGETS**: `/users/@me/widgets`
+- [x] **USER_PROFILE_SUGGESTED_GAMES**: `/users/@me/widgets/suggested-games`
+- [x] **WIDGET_CONFIGS_FEATURED**: `/widget-configs/featured`
+- [x] **WIDGET_CONFIGS_DEVELOPER**: `/widget-configs/developer`
+- [x] **APPLICATION_WIDGET_CONFIGS**: `/applications/:param/widget-configs`
 - [x] **USER_CHANNELS**: `/users/@me/channels`
+- [x] **USER_CHANNELS_BULK_LEAVE**: `/users/@me/channels/bulk-leave`
+- [x] **USER_GROUP_DM_SHELL**: `/users/@me/channels/group-dm-shell`
+- [x] **USER_APPLICATION_IDENTITIES**: `/users/:param/application-identities`
+- [x] **SELF_APPLICATION_IDENTITY_CONFIG**: `/users/@me/application-identities/:param/:param/config`
 - [x] **DM_CHANNEL**: `/users/@me/dms/:param`
 - [x] **USER_SETTINGS_PROTO**: `/users/@me/settings-proto/:param`
 - [x] **USER_ACTIVITY_METADATA**: `/users/:param/sessions/:param/activities/:param/metadata`
@@ -280,6 +394,7 @@ total: 478
 - [x] **GUILD_ROLE_CONNECTIONS_ASSIGN**: `/guilds/:param/roles/:param/connections/assign`
 - [x] **GUILD_ROLE_CONNECTIONS_UNASSIGN**: `/guilds/:param/roles/:param/connections/unassign`
 - [x] **GUILD_ONBOARDING**: `/guilds/:param/onboarding`
+- [x] **GUILD_ONBOARDING_ALLOWED_APPLICATIONS**: `/guilds/:param/onboarding/allowed-applications`
 - [x] **GUILD_ONBOARDING_RESPONSES**: `/guilds/:param/onboarding-responses`
 - [x] **GUILD_INSTANT_INVITES**: `/guilds/:param/invites`
 - [x] **GUILD_WIDGET**: `/guilds/:param/widget`
@@ -305,15 +420,14 @@ total: 478
 - [x] **GUILD_MEMBER_ACTION_UPDATE**: `/guilds/:param/new-member-action/:param`
 - [x] **GUILD_WELCOME_SCREEN**: `/guilds/:param/welcome-screen`
 - [x] **GUILD_MEMBER_VERIFICATION**: `/guilds/:param/member-verification`
-- [x] **GUILD_JOIN_REQUEST_BY_ID**: `/join-requests/:param`
-- [x] **GUILD_JOIN_REQUESTS**: `/guilds/:param/requests`
 - [x] **USER_JOIN_REQUEST_GUILDS**: `/users/@me/join-request-guilds`
 - [x] **GUILD_MEMBER_REQUEST_TO_JOIN**: `/guilds/:param/requests/@me`
-- [x] **GUILD_MEMBER_JOIN_REQUEST_COOLDOWN**: `/guilds/:param/requests/@me/cooldown`
+- [x] **GUILD_JOIN_REQUESTS**: `/guilds/:param/requests`
 - [x] **GUILD_JOIN_REQUEST**: `/guilds/:param/requests/:param`
-- [x] **GUILD_JOIN_REQUEST_ID**: `/guilds/:param/requests/id/:param`
 - [x] **GUILD_JOIN_REQUEST_ACK**: `/guilds/:param/requests/:param/ack`
-- [x] **GUILD_JOIN_REQUEST_INTERVIEW**: `/join-requests/:param/interview`
+- [x] **GUILD_JOIN_REQUESTS_FOR_USER**: `/guilds/:param/requests/users/:param`
+- [x] **JOIN_REQUEST**: `/join-requests/:param`
+- [x] **JOIN_REQUEST_INTERVIEW**: `/join-requests/:param/interview`
 - [x] **GUILDS**: `/guilds`
 - [x] **GUILD**: `/guilds/:param`
 - [x] **GUILD_BASIC**: `/guilds/:param/basic`
@@ -325,17 +439,17 @@ total: 478
 - [x] **THREAD_SEARCH**: `/channels/:param/threads/search`
 - [x] **FORUM_POSTS**: `/channels/:param/post-data`
 - [x] **COLLECTIBLES_CATEGORIES**: `/collectibles-categories`
+- [x] **COLLECTIBLES_CATEGORIES_V2**: `/collectibles-categories/v2`
+- [x] **COLLECTIBLES_SEARCH**: `/shop/search`
 - [x] **COLLECTIBLES_CLAIM**: `/users/@me/claim-premium-collectibles-product`
+- [x] **COLLECTIBLES_CLAIM_CATEGORY_REWARD**: `/users/@me/claim-reward-category-product`
 - [x] **COLLECTIBLES_PURCHASES**: `/users/@me/collectibles-purchases`
 - [x] **COLLECTIBLES_PRODUCTS**: `/collectibles-products/:param`
 - [x] **COLLECTIBLES_VALID_GIFT_RECIPIENT**: `/users/@me/valid-collectibles-gift-recipient`
+- [x] **COLLECTIBLES_VALID_GIFT_RECIPIENTS_BATCH**: `/users/@me/valid-collectibles-gift-recipients-batch`
 - [x] **COLLECTIBLES_MARKETING**: `/users/@me/collectibles-marketing`
 - [x] **COLLECTIBLES_SHOP**: `/collectibles-shop`
-- [x] **CONSUMABLE_FETCH_PRICE**: `/store/consumable/pricing/:param`
-- [x] **CONSUME_HD_STREAMING_POTION**: `/users/@me/consumable/hd-streaming`
-- [x] **FETCH_HD_STREAMING_ENTITLEMENT**: `/users/@me/consumable/hd-streaming`
-- [x] **CONSUME_MESSAGE_CONFETTI_POTION**: `/users/@me/consumable/confetti`
-- [x] **FETCH_MESSAGE_CONFETTI_ENTITLEMENT**: `/users/@me/consumable/confetti`
+- [x] **COLLECTIBLES_SHOP_TAB_LAYOUT**: `/collectibles-shop-tab-layouts/:param`
 - [x] **MESSAGES**: `/channels/:param/messages`
 - [x] **MESSAGES_GREET**: `/channels/:param/greet`
 - [x] **MESSAGE**: `/channels/:param/messages/:param`
@@ -344,10 +458,14 @@ total: 478
 - [x] **UPDATE_VOICE_CHANNEL_STATUS**: `/channels/:param/voice-status`
 - [x] **MESSAGE_DELETE_UPLOAD**: `/attachments/:param`
 - [x] **MESSAGE_CROSSPOST**: `/channels/:param/messages/:param/crosspost`
+- [x] **AI_TITLE**: `/ai/title`
+- [x] **AI_TRANSLATE**: `/ai/translate`
+- [x] **AI_FIX_GRAMMAR**: `/ai/fix-grammar`
+- [x] **AI_SUMMARIZE_THREAD**: `/ai/summarize-thread/:param`
 - [x] **MESSAGE_PREVIEWS**: `/channels/preload-messages`
-- [x] **GUILD_FEED_MESSAGE_REMOVE**: `/channels/:param/messages/:param/hide-guild-feed`
 - [x] **PINS_ACK**: `/channels/:param/pins/ack`
-- [x] **PINS**: `/channels/:param/pins`
+- [x] **PINS**: `/channels/:param/messages/pins`
+- [x] **PIN**: `/channels/:param/messages/pins/:param`
 - [x] **INSTANT_INVITES**: `/channels/:param/invites`
 - [x] **TYPING**: `/channels/:param/typing`
 - [x] **CHANNEL_PERMISSIONS_OVERWRITE**: `/channels/:param/permissions/:param`
@@ -356,7 +474,6 @@ total: 478
 - [x] **CHANNEL_RECIPIENT_REJECT_BATCH**: `/channels/recipients/@me/batch-reject`
 - [x] **CHANNEL_ACK**: `/channels/:param/messages/ack`
 - [x] **CHANNEL_FOLLOWERS**: `/channels/:param/followers`
-- [x] **CHANNEL_INTEGRATIONS**: `/channels/:param/integrations`
 - [x] **CHANNEL_INTEGRATION**: `/channels/:param/integrations/:param`
 - [x] **CHANNEL_SAFETY_WARNINGS_ACK**: `/channels/:param/safety-warnings/ack`
 - [x] **CHANNEL_BLOCKED_USER_WARNING_ACK**: `/channels/:param/blocked-user-warning-dismissal`
@@ -405,6 +522,7 @@ total: 478
 - [x] **MFA_WEBAUTHN_CREDENTIALS**: `/users/@me/mfa/webauthn/credentials`
 - [x] **MFA_WEBAUTHN_CREDENTIAL**: `/users/@me/mfa/webauthn/credentials/:param`
 - [x] **INVITE**: `/invites/:param`
+- [x] **INVITE_FRIEND_MEMBERS**: `/invites/:param/friend-members`
 - [x] **UNRESOLVED_GUILD_TEMPLATE**: `/guilds/templates/:param`
 - [x] **GUILD_TEMPLATES**: `/guilds/:param/templates`
 - [x] **GUILD_TEMPLATE**: `/guilds/:param/templates/:param`
@@ -419,6 +537,10 @@ total: 478
 - [x] **INTEGRATION_APPLICATION_IDS_FOR_MY_GUILDS**: `/users/@me/guilds/integration-application-ids`
 - [x] **USER_GUILD_SETTINGS_BULK**: `/users/@me/guilds/settings`
 - [x] **USER_GUILD_SETTINGS**: `/users/@me/guilds/:param/settings`
+- [x] **GAMES_DETECTABLE**: `/games/detectable`
+- [x] **GAMES_BLOCKLIST**: `/games/detectable/exclusions`
+- [x] **NON_GAMES_DETECTABLE**: `/applications/non-games/detectable`
+- [x] **GAMES**: `/games`
 - [x] **APPLICATION_ASSETS**: `/oauth2/applications/:param/assets`
 - [x] **APPLICATION_EXTERNAL_ASSETS**: `/applications/:param/external-assets`
 - [x] **OAUTH2_AUTHORIZE**: `/oauth2/authorize`
@@ -457,6 +579,10 @@ total: 478
 - [x] **USER_GUILD_BOOST_SLOT_UNCANCEL**: `/users/@me/guilds/premium/subscription-slots/:param/uncancel`
 - [x] **GUILD_POWERUPS**: `/guilds/:param/powerups`
 - [x] **GUILD_POWERUP_TOGGLE**: `/guilds/:param/skus/:param`
+- [x] **GUILD_POWERUP_UPDATE**: `/guilds/:param/entitlements/:param`
+- [x] **GAME_SERVERS**: `/guilds/:param/game-servers`
+- [x] **GAME_SERVER_REGIONS**: `/guilds/:param/game-server-regions`
+- [x] **GAME_SERVER_WAKE**: `/guilds/:param/game-servers/:param/wake`
 - [x] **SEARCH_CHANNEL**: `/channels/:param/messages/search`
 - [x] **SEARCH_TABS_CHANNEL**: `/channels/:param/messages/search/tabs`
 - [x] **BILLING_STRIPE_SETUP_INTENT_SECRET**: `/users/@me/billing/stripe/setup-intents`
@@ -479,13 +605,19 @@ total: 478
 - [x] **BILLING_SUBSCRIPTION_PREVIEW**: `/users/@me/billing/subscriptions/:param/preview`
 - [x] **BILLING_SUBSCRIPTION_INVOICE**: `/users/@me/billing/subscriptions/:param/invoices`
 - [x] **BILLING_INVOICE_MANUAL_PAYMENT**: `/users/@me/billing/subscriptions/:param/invoices/:param/pay`
+- [x] **BILLING_SUBSCRIPTION_PROMOTION_REWARD**: `/users/@me/billing/subscriptions/:param/promotion-reward`
 - [x] **BILLING_COUNTRY_CODE**: `/users/@me/billing/country-code`
+- [x] **BILLING_PAYMENT_SOURCE_CREATION_CONTEXT**: `/users/@me/billing/payment-source-creation-context`
+- [x] **BILLING_LOCATION**: `/users/@me/billing/location-info`
 - [x] **BILLING_LOCALIZED_PROMO**: `/users/@me/billing/localized-pricing-promo`
 - [x] **USER_AGREEMENTS**: `/users/@me/agreements`
 - [x] **USER_HARVEST**: `/users/@me/harvest`
 - [x] **APPLICATION_PUBLIC**: `/applications/:param/public`
 - [x] **APPLICATIONS_PUBLIC**: `/applications/public`
 - [x] **STOREFRONT_PREMIUM_BUTTON**: `/applications/storefront/interactions/premium-button/:param`
+- [x] **STOREFRONT_COLLECTION_WITH_PRODUCTS**: `/storefront/collections/:param`
+- [x] **STOREFRONT_PRODUCTS_BY_SKU_IDS**: `/storefront/products/skus`
+- [x] **STOREFRONT_PRODUCT_BY_SKU_ID**: `/storefront/products/sku/:param`
 - [x] **STORE_EMAIL_RESEND_PAYMENT_VERIFICATION**: `/store/email/resend-payment-verification`
 - [x] **STORE_PUBLISHED_LISTINGS_APPLICATIONS**: `/store/published-listings/applications`
 - [x] **STORE_PUBLISHED_LISTINGS_APPLICATION**: `/store/published-listings/applications/:param`
@@ -495,12 +627,19 @@ total: 478
 - [x] **STORE_SKU**: `/store/skus/:param`
 - [x] **STORE_SKU_PURCHASE**: `/store/skus/:param/purchase`
 - [x] **STORE_LISTINGS_SKU**: `/store/skus/:param/listings`
+- [x] **SOCIAL_LAYER_APPLICATION_STOREFRONT**: `/partner-sdk/guilds/:param/application-storefront`
+- [x] **SOCIAL_LAYER_APPLICATION_STOREFRONT_SKU_BY_APPLICATION_ID**: `/partner-sdk/applications/:param/storefront/skus/:param`
+- [x] **SOCIAL_LAYER_APPLICATION_STOREFRONT_SKU**: `/partner-sdk/guilds/:param/application-storefront/skus/:param`
+- [x] **SOCIAL_LAYER_APPLICATION_STOREFRONT_SKU_ELIGIBILITY**: `/partner-sdk/applications/:param/storefront/skus/:param/eligibility`
+- [x] **SOCIAL_LAYER_STOREFRONT_ANNOUNCEMENT**: `/partner-sdk/guilds/:param/application-storefront/announcement`
+- [x] **SOCIAL_LAYER_STOREFRONT_CONFIG**: `/partner-sdk/storefront-config`
 - [x] **APPLICATION_MANAGED_ACTIVITY_LINK**: `/applications/:param/managed-links/:param`
+- [x] **APPLICATION_QUICK_ACTIVITY_LINK**: `/applications/:param/quick-links/:param`
 - [x] **STORE_EULA**: `/store/eulas/:param`
 - [x] **ENTITLEMENTS_FOR_APPLICATION**: `/users/@me/applications/:param/entitlements`
 - [x] **ENTITLEMENTS_FOR_USER**: `/users/@me/entitlements`
+- [x] **USER_MEANINGFULLY_ONLINE**: `/users/@me/meaningfully-online`
 - [x] **ENTITLEMENTS_GIFTABLE**: `/users/@me/entitlements/gifts`
-- [x] **HYPESQUAD_ONLINE**: `/hypesquad/online`
 - [x] **APPLICATION_DISCLOSURES**: `/applications/:param/disclosures`
 - [x] **GIFS_SEARCH**: `/gifs/search`
 - [x] **GIFS_TRENDING**: `/gifs/trending`
@@ -557,6 +696,7 @@ total: 478
 - [x] **SEND_UNAUTHENTICATED_REPORT_PINCODE**: `/reporting/unauthenticated/:param/code`
 - [x] **VERIFY_UNAUTHENTICATED_REPORT**: `/reporting/unauthenticated/:param/verify`
 - [x] **DSA_EXPERIMENT_UNAUTHENTICATED**: `/reporting/unauthenticated/experiment`
+- [x] **DSA_CAPABILITIES**: `/reporting/unauthenticated/capabilities`
 - [x] **SUBMIT_REPORT_SECOND_LOOK**: `/reporting/review`
 - [x] **STAGE_INSTANCES**: `/stage-instances`
 - [x] **STAGE_INSTANCE**: `/stage-instances/:param`
@@ -565,7 +705,8 @@ total: 478
 - [x] **GUILD_EVENT**: `/guilds/:param/scheduled-events/:param`
 - [x] **GUILD_EVENTS_FOR_GUILD**: `/guilds/:param/scheduled-events`
 - [x] **GUILD_EVENT_USER_COUNTS**: `/guilds/:param/scheduled-events/:param/users/counts`
-- [x] **USER_GUILD_EVENT**: `/guilds/:param/scheduled-events/:param/:param/users/@me`
+- [x] **GUILD_EVENT_USERS**: `/guilds/:param/scheduled-events/:param/users`
+- [x] **USER_GUILD_EVENT**: `/guilds/:param/scheduled-events/:param/users/@me`
 - [x] **USER_GUILD_EVENTS**: `/users/@me/scheduled-events`
 - [x] **MEMBER_SAFETY_SUPPLEMENTAL**: `/guilds/:param/members/supplemental`
 - [x] **GUILD_MEMBER_SEARCH**: `/guilds/:param/members-search`
@@ -590,7 +731,7 @@ total: 478
 - [x] **APPLICATION_OWNER_TRANSFER**: `/applications/:param/transfer`
 - [x] **HUB_WAITLIST_SIGNUP**: `/hub-waitlist/signup`
 - [x] **HUB_EMAIL_VERIFY_CODE**: `/guilds/automations/email-domain-lookup/verify-code`
-- [x] **OUTBOUND_PROMOTIONS**: `/outbound-promotions`
+- [x] **PROMOTIONS**: `/promotions`
 - [x] **BOGO_PROMOTIONS**: `/bogo-promotions`
 - [x] **CLAIMED_OUTBOUND_PROMOTION_CODES**: `/users/@me/outbound-promotions/codes`
 - [x] **CLAIM_OUTBOUND_PROMOTION_CODE**: `/outbound-promotions/:param/claim`
@@ -619,7 +760,7 @@ total: 478
 - [x] **GUILD_PRODUCT_LISTINGS**: `/guilds/:param/products/listings/:param`
 - [x] **GUILD_PRODUCT_ATTACHMENT_DOWNLOAD**: `/guilds/:param/products/listings/:param/attachments/:param/download`
 - [x] **GUILD_PROFILE**: `/guilds/:param/profile`
-- [x] **USER_SET_CLAN_IDENTITY**: `/users/@me/clan`
+- [x] **USER_SET_GUILD_IDENTITY**: `/users/@me/clan`
 - [x] **EMAIL_SETTINGS**: `/users/@me/email-settings`
 - [x] **ACCOUNT_NOTIFICATION_SETTINGS**: `/users/@me/notification-settings`
 - [x] **VIDEO_FILTER_ASSETS**: `/users/@me/video-filters/assets`
@@ -683,6 +824,7 @@ total: 478
 - [x] **EXPLICIT_MEDIA_REPORT_FALSE_POSITIVE**: `/attachments/report-false-positive`
 - [x] **EXPLICIT_MEDIA_SENDER_REPORT_FALSE_POSITIVE**: `/attachments/sender-report-false-positive`
 - [x] **BULK_GUILD_BAN**: `/guilds/:param/bulk-ban`
+- [x] **BULK_GUILD_BAN_V2**: `/guilds/:param/bulk-ban/v2`
 - [x] **EXPLICIT_MEDIA_SCAN_MESSAGES**: `/channels/:param/explicit-media`
 - [x] **EXPLICIT_MEDIA_SCAN_MULTI_CHANNEL_MESSAGES**: `/messages/explicit-media`
 - [x] **POLL_ANSWERS**: `/channels/:param/polls/:param/answers/@me`
@@ -691,6 +833,7 @@ total: 478
 - [x] **QUESTS_CURRENT_QUESTS**: `/quests/@me`
 - [x] **QUESTS_CLAIMED_QUESTS**: `/quests/@me/claimed`
 - [x] **QUEST**: `/quests/:param`
+- [x] **QUEST_PREVIEW**: `/quests/:param/preview`
 - [x] **QUESTS_ENROLL**: `/quests/:param/enroll`
 - [x] **QUEST_ON_CONSOLE_START**: `/quests/:param/console/start`
 - [x] **QUEST_ON_CONSOLE_STOP**: `/quests/:param/console/stop`
@@ -702,6 +845,8 @@ total: 478
 - [x] **QUESTS_PREVIEW_STATUS**: `/quests/:param/preview/status`
 - [x] **QUESTS_PREVIEW_DISMISSIBILITY**: `/quests/:param/preview/dismissibility`
 - [x] **QUESTS_PREVIEW_COMPLETE**: `/quests/:param/preview/complete`
+- [x] **QUESTS_RESET_RECENT_QUEST_COMPLETIONS**: `/quests/reset-recent-quest-completions`
+- [x] **QUEST_FETCH_QUEST_TO_DELIVER**: `/quests/decision`
 - [x] **ATTACHMENTS_REFRESH_URLS**: `/attachments/refresh-urls`
 - [x] **GAME_INVITE**: `/game-invite/@me/:param`
 - [x] **GAME_INVITES**: `/game-invite/@me`
@@ -715,3 +860,11 @@ total: 478
 - [x] **VIRTUAL_CURRENCY_SKU_REDEEM**: `/virtual-currency/skus/:param/redeem`
 - [x] **VIRTUAL_CURRENCY_USER_BALANCE**: `/users/@me/virtual-currency/balance`
 - [x] **IGNORE_USER**: `/users/@me/relationships/:param/ignore`
+- [x] **APEX_EXPERIMENTS_METADATA**: `/apex/experiments/metadata`
+- [x] **APEX_EXPERIMENTS**: `/apex/experiments`
+- [x] **GUILD_MIGRATE_PIN_PERMISSION**: `/guilds/:param/migrate-pin-permission`
+- [x] **GUILD_MIGRATE_SLOWMODE_PERMISSION**: `/guilds/:param/migrate-bypass-slowmode-permission`
+- [x] **QUESTS_GET_DECISIONS**: `/quests/get-decisions`
+- [x] **QUESTS_CREATIVE_PREVIEW**: `/quests/preview`
+- [x] **QUESTS_CREATIVES_CLAIM_REWARD**: `/quests/creatives/:param/claim-reward`
+- [x] **GAME_ANNOUNCEMENTS**: `/games/:param/announcements`

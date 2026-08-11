@@ -1,20 +1,56 @@
 {
     "missing": [
         [
+            "USER_BADGES",
+            "/users/:param/badges"
+        ],
+        [
+            "USER_BADGE",
+            "/users/:param/badges/:param"
+        ],
+        [
+            "USER_BADGE_SETTINGS",
+            "/users/@me/badges/settings"
+        ],
+        [
+            "USER_PROFILE_WIDGET_ASSET_UPLOAD",
+            "/users/@me/widgets/assets/upload"
+        ],
+        [
+            "USER_PROFILE_WIDGET_CLIP_UPLOAD",
+            "/users/@me/widgets/clips/upload"
+        ],
+        [
             "USER_GUILD_PROFILE",
             "/guilds/:param/profile/:param"
         ],
         [
+            "USER_WISHLIST",
+            "/wishlists/:param"
+        ],
+        [
+            "USER_WISHLIST_PATCH",
+            "/users/@me/wishlists/:param"
+        ],
+        [
+            "USER_WISHLIST_ITEMS",
+            "/users/@me/wishlist/items"
+        ],
+        [
+            "USER_WISHLIST_ITEM",
+            "/users/@me/wishlists/:param/items/:param"
+        ],
+        [
+            "USER_WISHLIST_RECOMMENDATIONS",
+            "/wishlist/gift-recommendations"
+        ],
+        [
+            "GIFT_INTENT_DISMISSALS",
+            "/users/@me/gift-intent-dismissals"
+        ],
+        [
             "USER_ACTIVITY_JOIN",
             "/users/:param/sessions/:param/activities/:param/1"
-        ],
-        [
-            "JOIN_CONTEXTLESS_EMBEDDED_ACTIVITY_VIA_PRESENCE",
-            "/users/:param/sessions/:param/embedded-activities/:param/1"
-        ],
-        [
-            "JOIN_CONTEXTLESS_EMBEDDED_ACTIVITY_VIA_INSTANCE",
-            "/activity-instances/:param/embedded-activities/:param/join"
         ],
         [
             "NETWORKING_TOKEN",
@@ -29,12 +65,28 @@
             "/users/@me/settings/game-notifications/overrides"
         ],
         [
+            "PLATFORM_APPLICATION",
+            "/platform-application"
+        ],
+        [
+            "ROBLOX_APPLICATIONS_SUPPLEMENTAL_DATA",
+            "/roblox-applications-supplemental-data"
+        ],
+        [
             "GUILD_MEMBER_NICK",
             "/guilds/:param/members/:param/nick"
         ],
         [
             "GUILD_MEMBER_AVATAR",
-            "/guilds/:param/users/:param/avatars/:param.:param"
+            "/guilds/:param/users/:param/avatars/:param./:param"
+        ],
+        [
+            "GAME_NOTIFICATION_SETTINGS",
+            "/users/@me/notification-settings/muted-games"
+        ],
+        [
+            "GAME_NOTIFICATION_SETTING_UPDATE",
+            "/users/@me/notification-settings/muted-games/:param"
         ],
         [
             "GUILD_ONBOARDING_PROMPT",
@@ -45,16 +97,24 @@
             "/roles/:param/icons/:param.png"
         ],
         [
+            "GUILD_PRUNE_V2",
+            "/guilds/:param/prune/v2"
+        ],
+        [
             "GUILD_ICON",
-            "/guilds/:param/icons/:param.:param"
+            "/guilds/:param/icons/:param./:param"
         ],
         [
             "GUILD_TEMPLATE_ICON",
-            "/templates/:param/icons/:param.:param"
+            "/templates/:param/icons/:param./:param"
         ],
         [
             "GUILD_DISCOVERY_CHECKLIST",
             "/guilds/:param/discovery-checklist"
+        ],
+        [
+            "GUILD_OFFICIAL_MESSAGES",
+            "/guilds/:param/messages/official"
         ],
         [
             "GUILD_ANALYTICS_OVERVIEW",
@@ -62,7 +122,7 @@
         ],
         [
             "EMOJI",
-            "/emojis/:param.:param"
+            "/emojis/:param./:param"
         ],
         [
             "GUILD_SPLASH",
@@ -74,19 +134,39 @@
         ],
         [
             "GUILD_BANNER",
-            "/guilds/:param/banners/:param.:param"
+            "/guilds/:param/banners/:param./:param"
+        ],
+        [
+            "GUILD_CONFIG_GATES",
+            "/guilds/:param/config-gates"
         ],
         [
             "GUILD_RESOURCE_CHANNELS_ICON",
-            "/guilds/:param/avatars/:param.:param"
+            "/guilds/:param/avatars/:param./:param"
         ],
         [
             "GUILD_NEW_MEMBER_ACTIONS_ICON",
-            "/guilds/:param/avatars/:param.:param"
+            "/guilds/:param/avatars/:param./:param"
         ],
         [
             "GUILD_HOME_HEADER",
             "/guilds/:param/home-headers/:param.jpg"
+        ],
+        [
+            "GUILD_SPACE",
+            "/guilds/:param/space"
+        ],
+        [
+            "GUILD_SPACE_WIDGETS_HYDRATE",
+            "/guilds/:param/space/widgets/hydrate"
+        ],
+        [
+            "GUILD_SPACE_WIDGETS_CATALOG",
+            "/guilds/:param/space/widgets/catalog"
+        ],
+        [
+            "GUILD_SPACE_SETTINGS",
+            "/guilds/:param/space/settings"
         ],
         [
             "GUILD_DELETE",
@@ -97,12 +177,12 @@
             "/channels"
         ],
         [
-            "ALL_ARCHIVED_THREADS",
-            "/channels/:param/threads/archived/:param"
+            "THREADS_BULK",
+            "/threads/bulk"
         ],
         [
-            "VOICE_CHANNEL_NOTIFICATIONS",
-            "/channels/:param/voice-push"
+            "ALL_ARCHIVED_THREADS",
+            "/channels/:param/threads/archived/:param"
         ],
         [
             "PARTNER_REQUIREMENTS",
@@ -110,27 +190,59 @@
         ],
         [
             "AVATAR",
-            "/users/:param/avatars/:param.:param"
+            "/users/:param/avatars/:param./:param"
         ],
         [
             "ARCHIVED_AVATAR",
-            "/avatars/:param/archived/:param/:param.:param"
+            "/avatars/:param/archived/:param/:param./:param"
         ],
         [
             "USER_BANNER",
-            "/users/:param/banners/:param.:param"
+            "/users/:param/banners/:param./:param"
         ],
         [
             "AVATAR_DECORATION_PRESETS",
-            "/avatar-decoration-presets/:param.:param"
+            "/avatar-decoration-presets/:param./:param"
         ],
         [
-            "USER_PROFILE_EFFECTS",
-            "/user-profile-effects"
+            "LAYOUT_SYSTEM",
+            "/layouts/:param/:param"
+        ],
+        [
+            "LAYOUT_SYSTEM_TEMPLATE",
+            "/templates/:param/:param"
         ],
         [
             "GUILD_MEMBER_BANNER",
-            "/guilds/:param/users/:param/banners/:param.:param"
+            "/guilds/:param/users/:param/banners/:param./:param"
+        ],
+        [
+            "CHANNEL_CONVERSATIONS",
+            "/channels/:param/conversations"
+        ],
+        [
+            "CHANNEL_CONVERSATION_MESSAGES",
+            "/channels/:param/conversations/:param/messages"
+        ],
+        [
+            "MESSAGES_ANNOUNCEMENT",
+            "/channels/:param/messages/announcement"
+        ],
+        [
+            "CHANNEL_VOICE_HANGOUT",
+            "/channels/:param/voice-hangout"
+        ],
+        [
+            "VOICE_HANGOUT_BANNER",
+            "/voice-hangouts/:param/:param"
+        ],
+        [
+            "GUILD_VOICE_HANGOUT_RECENT_IMAGES",
+            "/guilds/:param/voice-hangout/recent-images"
+        ],
+        [
+            "AI_TEXT_TRANSFORM",
+            "/ai/text-transform"
         ],
         [
             "MESSAGE_LOG_PRIVATE_CHANNELS",
@@ -143,22 +255,6 @@
         [
             "BACKGROUND_SYNC",
             "/users/@me/background-sync"
-        ],
-        [
-            "GUILD_FEED_MESSAGE_SET_PREFERENCE",
-            "/guilds/:param/guild-feed/preference"
-        ],
-        [
-            "GUILD_FEED_FEATURE_ITEM",
-            "/guilds/:param/guild-feed/feature"
-        ],
-        [
-            "GUILD_FEED_MARK_SEEN",
-            "/guilds/:param/guild-feed/mark-seen"
-        ],
-        [
-            "PIN",
-            "/channels/:param/pins/:param"
         ],
         [
             "CHANNEL_RECIPIENTS",
@@ -193,6 +289,10 @@
             "/channels/:param/follower-message-stats"
         ],
         [
+            "CHANNEL_VOICE_HISTORY",
+            "/channels/:param/voice-history"
+        ],
+        [
             "FRIEND_FINDER",
             "/friend-finder/find-friends"
         ],
@@ -219,10 +319,6 @@
         [
             "GRAVITY_RECOMMENDED_GUILDS",
             "/gravity-recommended-guilds"
-        ],
-        [
-            "GRAVITY_ITEMS_NEGATIVE",
-            "/users/@me/gravity-icymi-negative"
         ],
         [
             "GRAVITY_ITEMS_HYDRATE",
@@ -261,6 +357,14 @@
             "/phone-verifications/validate-support-ticket"
         ],
         [
+            "UNCLAIMED_GAMES",
+            "/users/@me/unclaimed-games"
+        ],
+        [
+            "USERS_ME_CUSTOM_THEMES",
+            "/users/@me/custom-themes"
+        ],
+        [
             "CONNECTIONS_SESSION_HANDOFF",
             "/connections/:param/callback/session-handoff"
         ],
@@ -285,8 +389,64 @@
             "/age-verification/test"
         ],
         [
+            "VERIFY_AGE_V2",
+            "/age-verification/verify/v2"
+        ],
+        [
+            "REGISTER_INCODE_INTERVIEW",
+            "/age-verification/incode/interview"
+        ],
+        [
+            "CREATE_INCODE_SESSION",
+            "/age-verification/incode/session"
+        ],
+        [
+            "AGE_VERIFICATION_METHODS",
+            "/age-verification/methods"
+        ],
+        [
+            "AGE_VERIFICATION_METHODS_V2",
+            "/age-verification/methods/v2"
+        ],
+        [
+            "GOOGLE_WALLET_REQUEST",
+            "/age-verification/google-wallet/request"
+        ],
+        [
+            "GOOGLE_WALLET_VERIFY",
+            "/age-verification/google-wallet/verify"
+        ],
+        [
+            "AGE_SIGNAL",
+            "/users/@me/age-signal"
+        ],
+        [
+            "AGE_SIGNAL_CHALLENGE",
+            "/users/@me/age-signal/challenge"
+        ],
+        [
+            "AGE_VERIFICATION_REACTIVE_CHECK",
+            "/users/@me/age-verification/check"
+        ],
+        [
+            "AGE_VERIFICATION_RESET",
+            "/users/@me/age-verification/reset"
+        ],
+        [
             "LOGIN",
             "/auth/login"
+        ],
+        [
+            "LOGIN_GENERATED_USER",
+            "/auth/login/generated-user/:param"
+        ],
+        [
+            "GENERATED_POOLS_FOR_CURRENT_USER",
+            "/generated-pools/@me"
+        ],
+        [
+            "GENERATED_POOL_BY_ID",
+            "/generated-pools/:param"
         ],
         [
             "LOGIN_MFA",
@@ -295,6 +455,10 @@
         [
             "LOGIN_SMS_SEND",
             "/auth/mfa/sms/send"
+        ],
+        [
+            "ONE_TIME_LOGIN",
+            "/auth/one-time-login"
         ],
         [
             "LOGOUT",
@@ -307,6 +471,10 @@
         [
             "REGISTER_PHONE",
             "/auth/register/phone"
+        ],
+        [
+            "SCORE_PASSWORD",
+            "/auth/password/validate"
         ],
         [
             "WEBAUTHN_CONDITIONAL_UI_CHALLENGE",
@@ -365,16 +533,8 @@
             "/integrations"
         ],
         [
-            "INTEGRATION_SEARCH",
-            "/integrations/:param/search"
-        ],
-        [
-            "APPLICATIONS_DETECTABLE",
-            "/applications/detectable"
-        ],
-        [
-            "APPLICATIONS_GAMES_SUPPLEMENTAL",
-            "/applications/games-supplemental"
+            "GAMES_AUTOCOMPLETE",
+            "/games/autocomplete"
         ],
         [
             "APPLICATION_ICON",
@@ -401,6 +561,10 @@
             "/oauth2/authorize/webhook-channels"
         ],
         [
+            "OAUTH2_ACCOUNT_LINKING_ACHIEVEMENT",
+            "/oauth2/account-linking-achievement"
+        ],
+        [
             "MFA_TOTP_ENABLE_VERIFY",
             "/users/@me/mfa/totp/enable/verify"
         ],
@@ -425,20 +589,32 @@
             "/channels/:param/messages/:param/reactions/:param/:param/:param"
         ],
         [
-            "SEARCH_FAVORITES",
-            "/search/favorites"
-        ],
-        [
-            "SEARCH_DMS",
-            "/users/@me/messages/search"
-        ],
-        [
             "CHANGELOG_MESSAGES",
             "/changelogs/@me/messages"
         ],
         [
-            "BILLING_PAYMENTS_REFUND",
-            "/users/@me/billing/payments/:param/refund"
+            "GAME_SERVER_MY_REGIONS",
+            "/users/@me/game-server-regions"
+        ],
+        [
+            "GAME_SERVERS_ME",
+            "/users/@me/game-servers"
+        ],
+        [
+            "GAME_SERVER_ME",
+            "/users/@me/game-servers/:param"
+        ],
+        [
+            "GAME_SERVER_ME_WAKE",
+            "/users/@me/game-servers/:param/wake"
+        ],
+        [
+            "BILLING_STRIPE_SETUP_INTENT_SECRET_FOR_PAYMENT_ELEMENTS",
+            "/users/@me/billing/stripe/payment-elements/setup-intents"
+        ],
+        [
+            "BILLING_WALLET_INFORMATION",
+            "/users/@me/billing/wallet/:param/information"
         ],
         [
             "BILLING_INVOICE_PDF",
@@ -453,12 +629,8 @@
             "/users/@me/billing/stripe/payment-intents/:param"
         ],
         [
-            "BILLING_STANDALONE_CHECKOUT_PAGE",
-            "/billing/premium/subscribe?plan_id=:param&gift=:param&load_id=:param&payment_method_type=:param"
-        ],
-        [
             "BILLING_STANDALONE_CHECKOUT_LOGIN_HANDOFF",
-            "//canary.discord.com/billing/premium/subscribe/login-handoff?handoff_key=:param&handoff_token=:param&destination=:param"
+            "/:param/billing/premium/subscribe/login-handoff?handoff_key=:param&handoff_token=:param&destination=:param"
         ],
         [
             "BILLING_PERKS_RELEVANCE",
@@ -481,12 +653,64 @@
             "/billing/apple/jwt-token"
         ],
         [
+            "BILLING_ACOM_SUBSCRIPTION_MIGRATION",
+            "/billing/apple/acom-subscriptions/migrate"
+        ],
+        [
             "BILLING_SUBSCRIPTION_REWARDS",
             "/users/@me/billing/subscriptions/:param/rewards"
         ],
         [
             "Billing_SUBSCRIPTION_REWARD_ELIGIBILITY",
             "/users/@me/billing/subscriptions/:param/reward-eligibility"
+        ],
+        [
+            "BILLING_SUBSCRIPTION_ELIGIBLE_USERS",
+            "/users/@me/billing/subscriptions/:param/eligible-users"
+        ],
+        [
+            "BILLING_SUBSCRIPTION_INVITES",
+            "/users/@me/billing/subscriptions/:param/invites"
+        ],
+        [
+            "BILLING_SUBSCRIPTION_INVITE",
+            "/users/@me/billing/subscriptions/:param/members/:param/invite"
+        ],
+        [
+            "BILLING_SUBSCRIPTION_REMOVE_USER",
+            "/users/@me/billing/subscriptions/:param/members/:param"
+        ],
+        [
+            "BILLING_SUBSCRIPTION_MEMBERS",
+            "/users/@me/billing/subscriptions/:param/members"
+        ],
+        [
+            "BILLING_GIFT_CARD_VIEW",
+            "/billing/gift-card/view"
+        ],
+        [
+            "BILLING_GIFT_CARD_REDEEM",
+            "/billing/gift-card/redeem"
+        ],
+        [
+            "BILLING_STORE_COUNTRY",
+            "/billing/store-country"
+        ],
+        [
+            "PREMIUM_GROUP_MEMBERSHIP",
+            "/users/@me/premium-group/membership"
+        ],
+        [
+            "PREMIUM_GROUP_INVITES",
+            "/users/@me/premium-group/invites"
+        ],
+        [
+            "PREMIUM_GROUP_INVITE",
+            "/users/@me/premium-group/invites/:param"
+        ],
+        [
+            "PROGRAM_REWARDS",
+            "/users/@me/program-rewards"
         ],
         [
             "VERIFY_PURCHASE",
@@ -549,6 +773,26 @@
             "/users/@me/library/:param/:param/installed"
         ],
         [
+            "STOREFRONT_COLLECTIONS_WITH_PRODUCTS",
+            "/storefront/collections"
+        ],
+        [
+            "STOREFRONT_COLLECTIONS_FOR_APPLICATION",
+            "/storefront/collections/applications"
+        ],
+        [
+            "STOREFRONT_PRODUCTS_WITH_SKUS",
+            "/storefront/products"
+        ],
+        [
+            "STOREFRONT_PROMOTIONS",
+            "/storefront/promotions"
+        ],
+        [
+            "STOREFRONT_PRICES",
+            "/storefront/pricing"
+        ],
+        [
             "STORE_DIRECTORY_LAYOUT",
             "/store/directory-layouts/:param"
         ],
@@ -565,6 +809,58 @@
             "/store/listings/:param"
         ],
         [
+            "SOCIAL_LAYER_STOREFRONT_BY_APPLICATION_ID",
+            "/partner-sdk/applications/:param/application-storefront"
+        ],
+        [
+            "SOCIAL_LAYER_STOREFRONTS_ALL",
+            "/partner-sdk/applications/:param/storefronts/preview"
+        ],
+        [
+            "SOCIAL_LAYER_STOREFRONT_BY_ID",
+            "/partner-sdk/applications/:param/storefront/:param/preview"
+        ],
+        [
+            "SOCIAL_LAYER_STOREFRONT_LAUNCH_ANNOUNCEMENT",
+            "/partner-sdk/storefront-launch-announcement"
+        ],
+        [
+            "ORDER_GET",
+            "/billing/orders/:param"
+        ],
+        [
+            "ORDER_CREATE",
+            "/billing/orders"
+        ],
+        [
+            "ORDER_LIST",
+            "/billing/orders"
+        ],
+        [
+            "ORDER_PATCH_LINE_ITEM",
+            "/billing/orders/:param/line-items/:param"
+        ],
+        [
+            "ORDER_UPDATE",
+            "/billing/orders/:param"
+        ],
+        [
+            "ORDER_SIGN",
+            "/billing/orders/:param/sign"
+        ],
+        [
+            "ORDER_CANCEL_SIGNING",
+            "/billing/orders/:param/cancel-signing"
+        ],
+        [
+            "ORDER_DISCARD",
+            "/billing/orders/:param/discard"
+        ],
+        [
+            "ORDER_ENTITLEMENTS",
+            "/billing/orders/:param/entitlements"
+        ],
+        [
             "APPLICATION_SKUS",
             "/applications/:param/skus"
         ],
@@ -578,11 +874,11 @@
         ],
         [
             "STORE_ASSET",
-            "/store/applications/:param/assets/:param.:param"
+            "/store/applications/:param/assets/:param./:param"
         ],
         [
             "APPLICATION_ASSET",
-            "/applications/:param/app-assets/:param.:param"
+            "/applications/:param/app-assets/:param./:param"
         ],
         [
             "APPLICATION_STORAGE",
@@ -593,6 +889,14 @@
             "/entitlements/partner-promotions/:param"
         ],
         [
+            "GIFT_INTENTS_DISMISS",
+            "/users/@me/gift-intents/dismiss"
+        ],
+        [
+            "REACTIVATION_OFFER_REDEEM",
+            "/users/@me/billing/subscriptions/:param/reactivation-offers/:param/redeem"
+        ],
+        [
             "USER_PERKS_DEMOS",
             "/users/@me/perks-demos"
         ],
@@ -601,8 +905,20 @@
             "/users/@me/activate-perk-demo/:param"
         ],
         [
-            "FUNIMATION_PROMOTION",
-            "/promotions/funimation"
+            "PARTNER_PERK",
+            "/users/@me/partner-perks/:param"
+        ],
+        [
+            "PARTNER_PERK_ACTIVATION_STATUS",
+            "/users/@me/partner-perks/:param/activation-status"
+        ],
+        [
+            "MOBILE_GAME_COMMUNITIES",
+            "/discoverable-guilds/mobile-game-communities"
+        ],
+        [
+            "CHANNEL_AFFINITIES_V2",
+            "/users/@me/affinities/v2/channels"
         ],
         [
             "PARTNERS_CONNECTIONS",
@@ -617,24 +933,56 @@
             "/sticker-packs/directory-v2/:param"
         ],
         [
-            "USER_STICKER_PACKS",
-            "/users/@me/sticker-packs"
-        ],
-        [
             "STICKER_ASSET",
-            "/stickers/:param.:param"
+            "/stickers/:param./:param"
         ],
         [
             "ACTIVITY_JOIN_INSTANCE",
             "/activities/applications/:param/activity-instances/:param/join"
         ],
         [
+            "ACTIVITIES_DISCORD_CONFIG",
+            "/activities/discord-config/:param"
+        ],
+        [
+            "ACTIVITIES_TRUSTED_LINKS",
+            "/applications/:param/trusted-links/check"
+        ],
+        [
+            "APPLICATION_PROXY_TICKET",
+            "/applications/:param/proxy-tickets"
+        ],
+        [
             "APPLICATION_BOT_GUILD_COMMAND_PERMISSIONS",
             "/applications/:param/guilds/:param/commands/:param/permissions"
         ],
         [
+            "SUBMIT_MODERATOR_MESSAGE_REPORT",
+            "/channels/:param/:param/mod-report"
+        ],
+        [
+            "MODERATOR_REPORT_CLOSE",
+            "/mod-report/:param/close"
+        ],
+        [
+            "REPORT_TO_MOD_REOPEN",
+            "/mod-report/:param/reopen"
+        ],
+        [
             "STAGE_INSTANCES_EXTRA",
             "/stage-instances/extra"
+        ],
+        [
+            "EMBEDDED_SURVEY",
+            "/users/@me/embedded-survey/:param"
+        ],
+        [
+            "EMBEDDED_SURVEY_RESPONSE",
+            "/users/@me/embedded-surveys/:param/responses"
+        ],
+        [
+            "EMBEDDED_SURVEY_ACTION",
+            "/users/@me/embedded-survey/action"
         ],
         [
             "GUILD_EVENTS",
@@ -642,11 +990,7 @@
         ],
         [
             "GUILD_EVENT_IMAGE",
-            "/guild-events/:param/images/:param.:param"
-        ],
-        [
-            "GUILD_EVENT_USERS",
-            "/guilds/:param/scheduled-events/:param/:param/users"
+            "/guild-events/:param/images/:param./:param"
         ],
         [
             "GUILD_EVENT_EXCEPTIONS",
@@ -661,20 +1005,8 @@
             "/guilds/automations/email-domain-lookup/verify"
         ],
         [
-            "OUTBOUND_PROMOTIONS_PREVIEW",
-            "/outbound-promotions/preview"
-        ],
-        [
-            "CHAT_WALLPAPERS",
-            "/chat-wallpapers"
-        ],
-        [
             "CREATOR_MONETIZATION_ACCEPT_TERMS",
             "/guilds/:param/creator-monetization/enable-requests/:param/accept-terms"
-        ],
-        [
-            "CREATOR_MONETIZATION_NAG_ACTIVATE_ELIGIBLITY",
-            "/creator-monetization/marketing/nag-activate/eligibility"
         ],
         [
             "CREATOR_MONETIZATION_ACCEPT_NEW_TERMS",
@@ -689,40 +1021,48 @@
             "/private/bug-reports"
         ],
         [
+            "CLIP_FEEDBACK",
+            "/private/clip-feedback"
+        ],
+        [
+            "CLIPS_MODULE_ASSETS",
+            "/clips/module-assets"
+        ],
+        [
             "PAYMENT_PAYOUT_GROUPS",
             "/applications/:param/payment-payout-groups"
-        ],
-        [
-            "GUILD_CONVERT_TO_CLAN",
-            "/clan/:param"
-        ],
-        [
-            "GUILD_CLAN_DISCOVERY_INFO",
-            "/discovery/:param/clan"
         ],
         [
             "GUILD_PROFILE_VISIBILITY",
             "/guilds/:param/profile/visibility"
         ],
         [
-            "CLAN_SETTINGS",
-            "/clan/:param/settings"
-        ],
-        [
-            "DISABLE_CLAN",
-            "/clan/:param/disable"
+            "GUILD_THEME",
+            "/guilds/:param/theme"
         ],
         [
             "TENOR_ASSET_PATH",
             "/tenor"
         ],
         [
+            "GIPHY_ASSET_PATH",
+            "/giphy"
+        ],
+        [
+            "KLIPY_ASSET_PATH",
+            "/klipy"
+        ],
+        [
             "VIDEO_FILTER_ASSET_STORAGE",
-            "/users/:param/video-filter-assets/:param/:param.:param"
+            "/users/:param/video-filter-assets/:param/:param./:param"
         ],
         [
             "SOUNDBOARD_SOUND",
             "/soundboard-sounds/:param"
+        ],
+        [
+            "SEND_CLIPS_REMOTE_TRIGGER",
+            "/channels/:param/clips-remote-trigger"
         ],
         [
             "APPLICATION_COMMANDS_SEARCH",
@@ -734,11 +1074,7 @@
         ],
         [
             "APPLICATION_DIRECTORY_COLLECTION_ITEM_IMAGE",
-            "/application-directory/collection-items/:param/:param.:param"
-        ],
-        [
-            "APP_RECOMMENDATIONS",
-            "/app-recommendations"
+            "/application-directory/collection-items/:param/:param./:param"
         ],
         [
             "GUILD_FEED",
@@ -765,22 +1101,6 @@
             "/applications/:param/subscription-group-listings/:param"
         ],
         [
-            "SHARED_CANVAS_LINES",
-            "/channels/:param/:param/shared-canvas/lines"
-        ],
-        [
-            "SHARED_CANVAS_EMOJI_HOSES",
-            "/channels/:param/:param/shared-canvas/emoji-hose"
-        ],
-        [
-            "SHARED_CANVAS_EMOJI_HOSE",
-            "/channels/:param/:param/shared-canvas/emoji-hose/:param"
-        ],
-        [
-            "BURST_CREDIT_BALANCE",
-            "/users/@me/burst-credits"
-        ],
-        [
             "FAMILY_CENTER_TEEN_ACTIVITY",
             "/family-center/:param/activity"
         ],
@@ -789,16 +1109,36 @@
             "/family-center/more-activity/:param/:param/:param/:param"
         ],
         [
+            "FAMILY_CENTER_CONNECTION_PREREQUISITES",
+            "/family-center/connection-prerequisites"
+        ],
+        [
             "FAMILY_CENTER_FETCH_TEEN_USER",
             "/family-center/teen-user/:param"
         ],
         [
-            "APPLICATIONS_SHELF",
-            "/applications/shelf"
+            "FAMILY_CENTER_TEEN_SETTINGS_AND_CONSENTS",
+            "/family-center/:param/settings-and-consents"
         ],
         [
-            "DISCORDIFY_ME",
-            "/users/@me/avatars/discordify"
+            "FAMILY_CENTER_TEEN_SETTINGS",
+            "/family-center/:param/settings-proto"
+        ],
+        [
+            "FAMILY_CENTER_TEEN_CONSENTS",
+            "/family-center/:param/consents"
+        ],
+        [
+            "FAMILY_CENTER_SHARE_IAR_WITH_PARENTS",
+            "/family-center/share-iar-with-parents"
+        ],
+        [
+            "FAMILY_CENTER_RESTRICTED_SCHEDULE_RULE",
+            "/family-center/:param/restricted-schedule/rule"
+        ],
+        [
+            "FAMILY_CENTER_RESTRICTED_SCHEDULE_RULES",
+            "/family-center/:param/restricted-schedule/rules/:param"
         ],
         [
             "BADGE_ICON",
@@ -807,6 +1147,10 @@
         [
             "FINISH_MFA_CHECK",
             "/mfa/finish"
+        ],
+        [
+            "CREATE_REVERSE_TRIAL",
+            "/user-offers/reverse-trial"
         ],
         [
             "CREATE_USER_OFFER",
@@ -825,8 +1169,8 @@
             "/user-offer-ids"
         ],
         [
-            "EMOJI_CAPTIONS_GET",
-            "/users/@me/emoji-captions"
+            "SAFETY_HUB_GET_SUSPENDED_AGE_VERIFICATION_METHODS",
+            "/age-verification/suspended/methods"
         ],
         [
             "INITIATE_CHANNEL_PROMPTS",
@@ -837,24 +1181,16 @@
             "/:param/force-send-prompt"
         ],
         [
-            "SEND_GAMING_STATS",
-            "/:param/gaming-stats"
+            "MARKETING_CAMPAIGN_ELIGIBILITY",
+            "/premium-marketing/@me/campaigns/:param/eligibility"
         ],
         [
-            "UPDATE_GAMING_STATS",
-            "/:param/:param/update-gaming-stats"
-        ],
-        [
-            "PREMIUM_MARKETING",
-            "/premium-marketing"
-        ],
-        [
-            "QUEST_FETCH_QUEST_TO_DELIVER",
-            "/quests/decision?placement=:param&client_heartbeat_session_id=:param"
+            "QUEST_EARNED_DECISION",
+            "/quests/earned-decision?quest_ids=:param&content=:param"
         ],
         [
             "MY_CONTENT_INVENTORY",
-            "/content-inventory/users/@me?refresh_token=:param"
+            "/content-inventory/users/@me/:param"
         ],
         [
             "CONTENT_INVENTORY_OUTBOX",
@@ -889,24 +1225,108 @@
             "/auth/revert"
         ],
         [
-            "GUILD_LEADERBOARD",
-            "/guilds/:param/leaderboards/:param"
-        ],
-        [
-            "UPDATE_MY_LOL_LEADERBOARD",
-            "/users/@me/update-league-of-legends-leaderboard"
-        ],
-        [
-            "GUILD_LEADERBOARD_SETTINGS",
-            "/guilds/:param/leaderboards/:param/settings"
-        ],
-        [
             "SCHEDULED_MESSAGES",
             "/users/@me/scheduled-messages"
         ],
         [
             "SCHEDULED_MESSAGE",
             "/users/@me/scheduled-messages/:param"
+        ],
+        [
+            "HOLIDAY_REDEEM_PRIZE",
+            "/holidays/redeem-prize"
+        ],
+        [
+            "APPLIED_BOOST_MODIFY_END_DATE",
+            "/debug/applied-boosts/ends-at"
+        ],
+        [
+            "SEND_POWERUPS_SYSTEM_MESSAGE",
+            "/guilds/:param/powerups-system-message"
+        ],
+        [
+            "SAFETY_FLOWS_TASK",
+            "/safety-flows/task"
+        ],
+        [
+            "SAFETY_FLOWS_RESEND_VERIFICATION_CODE",
+            "/safety-flows/resend/email/reverification/pincode"
+        ],
+        [
+            "CONFERENCE_MODE_GUILDS",
+            "/conference-mode/guilds"
+        ],
+        [
+            "CONFERENCE_MODE_VOICE_CHANNELS",
+            "/conference-mode/:param/channels"
+        ],
+        [
+            "CONFERENCE_MODE_VOICE_CHANNEL",
+            "/conference-mode/channels/:param"
+        ],
+        [
+            "CONFERENCE_MODE_VOICE_CHANNEL_USERS",
+            "/conference-mode/channels/:param/users"
+        ],
+        [
+            "CONFERENCE_MODE_EVENTS",
+            "/conference-mode/events"
+        ],
+        [
+            "CONFERENCE_MODE_CONFERENCES",
+            "/conference-mode/conference"
+        ],
+        [
+            "QUESTS_APP_STORE_METADATA",
+            "/quests/appstore-metadata"
+        ],
+        [
+            "GUILD_ROOM",
+            "/guilds/:param/rooms/:param"
+        ],
+        [
+            "GUILD_ROOM_CONNECT",
+            "/guilds/:param/rooms/:param/connect"
+        ],
+        [
+            "GUILD_ROOM_UPDATE",
+            "/guilds/:param/rooms/:param/update"
+        ],
+        [
+            "GUILD_ROOM_OBJECT_CREATE",
+            "/guilds/:param/rooms/:param/objects"
+        ],
+        [
+            "GUILD_ROOM_OBJECT_UPDATE",
+            "/guilds/:param/rooms/:param/objects/:param/update"
+        ],
+        [
+            "GUILD_ROOM_OBJECT_DELETE",
+            "/guilds/:param/rooms/:param/objects/:param"
+        ],
+        [
+            "VIBEGRATIONS_PROJECTS",
+            "/vibegrations/projects"
+        ],
+        [
+            "VIBEGRATIONS_PROJECT",
+            "/vibegrations/projects/:param"
+        ],
+        [
+            "VIBEGRATIONS_PROJECT_WS_TICKET",
+            "/vibegrations/projects/:param/ws-ticket"
+        ],
+        [
+            "VIBEGRATIONS_PROJECT_PUBLISH",
+            "/vibegrations/projects/:param/publish"
+        ],
+        [
+            "VIBEGRATIONS_PROJECT_PUBLISH_PREVIEW",
+            "/vibegrations/projects/:param/publish-preview"
+        ],
+        [
+            "GUILD_SPACE_IMAGE_TEXT_WIDGET_IMAGE",
+            "/guild-space/:param/image-text-widget/:param/:param./:param"
         ]
     ],
     "covered": [
@@ -935,8 +1355,44 @@
             "/users/:param/profile"
         ],
         [
+            "USER_PROFILE_WIDGETS",
+            "/users/@me/widgets"
+        ],
+        [
+            "USER_PROFILE_SUGGESTED_GAMES",
+            "/users/@me/widgets/suggested-games"
+        ],
+        [
+            "WIDGET_CONFIGS_FEATURED",
+            "/widget-configs/featured"
+        ],
+        [
+            "WIDGET_CONFIGS_DEVELOPER",
+            "/widget-configs/developer"
+        ],
+        [
+            "APPLICATION_WIDGET_CONFIGS",
+            "/applications/:param/widget-configs"
+        ],
+        [
             "USER_CHANNELS",
             "/users/@me/channels"
+        ],
+        [
+            "USER_CHANNELS_BULK_LEAVE",
+            "/users/@me/channels/bulk-leave"
+        ],
+        [
+            "USER_GROUP_DM_SHELL",
+            "/users/@me/channels/group-dm-shell"
+        ],
+        [
+            "USER_APPLICATION_IDENTITIES",
+            "/users/:param/application-identities"
+        ],
+        [
+            "SELF_APPLICATION_IDENTITY_CONFIG",
+            "/users/@me/application-identities/:param/:param/config"
         ],
         [
             "DM_CHANNEL",
@@ -1083,6 +1539,10 @@
             "/guilds/:param/onboarding"
         ],
         [
+            "GUILD_ONBOARDING_ALLOWED_APPLICATIONS",
+            "/guilds/:param/onboarding/allowed-applications"
+        ],
+        [
             "GUILD_ONBOARDING_RESPONSES",
             "/guilds/:param/onboarding-responses"
         ],
@@ -1183,14 +1643,6 @@
             "/guilds/:param/member-verification"
         ],
         [
-            "GUILD_JOIN_REQUEST_BY_ID",
-            "/join-requests/:param"
-        ],
-        [
-            "GUILD_JOIN_REQUESTS",
-            "/guilds/:param/requests"
-        ],
-        [
             "USER_JOIN_REQUEST_GUILDS",
             "/users/@me/join-request-guilds"
         ],
@@ -1199,23 +1651,27 @@
             "/guilds/:param/requests/@me"
         ],
         [
-            "GUILD_MEMBER_JOIN_REQUEST_COOLDOWN",
-            "/guilds/:param/requests/@me/cooldown"
+            "GUILD_JOIN_REQUESTS",
+            "/guilds/:param/requests"
         ],
         [
             "GUILD_JOIN_REQUEST",
             "/guilds/:param/requests/:param"
         ],
         [
-            "GUILD_JOIN_REQUEST_ID",
-            "/guilds/:param/requests/id/:param"
-        ],
-        [
             "GUILD_JOIN_REQUEST_ACK",
             "/guilds/:param/requests/:param/ack"
         ],
         [
-            "GUILD_JOIN_REQUEST_INTERVIEW",
+            "GUILD_JOIN_REQUESTS_FOR_USER",
+            "/guilds/:param/requests/users/:param"
+        ],
+        [
+            "JOIN_REQUEST",
+            "/join-requests/:param"
+        ],
+        [
+            "JOIN_REQUEST_INTERVIEW",
             "/join-requests/:param/interview"
         ],
         [
@@ -1263,8 +1719,20 @@
             "/collectibles-categories"
         ],
         [
+            "COLLECTIBLES_CATEGORIES_V2",
+            "/collectibles-categories/v2"
+        ],
+        [
+            "COLLECTIBLES_SEARCH",
+            "/shop/search"
+        ],
+        [
             "COLLECTIBLES_CLAIM",
             "/users/@me/claim-premium-collectibles-product"
+        ],
+        [
+            "COLLECTIBLES_CLAIM_CATEGORY_REWARD",
+            "/users/@me/claim-reward-category-product"
         ],
         [
             "COLLECTIBLES_PURCHASES",
@@ -1279,6 +1747,10 @@
             "/users/@me/valid-collectibles-gift-recipient"
         ],
         [
+            "COLLECTIBLES_VALID_GIFT_RECIPIENTS_BATCH",
+            "/users/@me/valid-collectibles-gift-recipients-batch"
+        ],
+        [
             "COLLECTIBLES_MARKETING",
             "/users/@me/collectibles-marketing"
         ],
@@ -1287,24 +1759,8 @@
             "/collectibles-shop"
         ],
         [
-            "CONSUMABLE_FETCH_PRICE",
-            "/store/consumable/pricing/:param"
-        ],
-        [
-            "CONSUME_HD_STREAMING_POTION",
-            "/users/@me/consumable/hd-streaming"
-        ],
-        [
-            "FETCH_HD_STREAMING_ENTITLEMENT",
-            "/users/@me/consumable/hd-streaming"
-        ],
-        [
-            "CONSUME_MESSAGE_CONFETTI_POTION",
-            "/users/@me/consumable/confetti"
-        ],
-        [
-            "FETCH_MESSAGE_CONFETTI_ENTITLEMENT",
-            "/users/@me/consumable/confetti"
+            "COLLECTIBLES_SHOP_TAB_LAYOUT",
+            "/collectibles-shop-tab-layouts/:param"
         ],
         [
             "MESSAGES",
@@ -1339,12 +1795,24 @@
             "/channels/:param/messages/:param/crosspost"
         ],
         [
-            "MESSAGE_PREVIEWS",
-            "/channels/preload-messages"
+            "AI_TITLE",
+            "/ai/title"
         ],
         [
-            "GUILD_FEED_MESSAGE_REMOVE",
-            "/channels/:param/messages/:param/hide-guild-feed"
+            "AI_TRANSLATE",
+            "/ai/translate"
+        ],
+        [
+            "AI_FIX_GRAMMAR",
+            "/ai/fix-grammar"
+        ],
+        [
+            "AI_SUMMARIZE_THREAD",
+            "/ai/summarize-thread/:param"
+        ],
+        [
+            "MESSAGE_PREVIEWS",
+            "/channels/preload-messages"
         ],
         [
             "PINS_ACK",
@@ -1352,7 +1820,11 @@
         ],
         [
             "PINS",
-            "/channels/:param/pins"
+            "/channels/:param/messages/pins"
+        ],
+        [
+            "PIN",
+            "/channels/:param/messages/pins/:param"
         ],
         [
             "INSTANT_INVITES",
@@ -1385,10 +1857,6 @@
         [
             "CHANNEL_FOLLOWERS",
             "/channels/:param/followers"
-        ],
-        [
-            "CHANNEL_INTEGRATIONS",
-            "/channels/:param/integrations"
         ],
         [
             "CHANNEL_INTEGRATION",
@@ -1583,6 +2051,10 @@
             "/invites/:param"
         ],
         [
+            "INVITE_FRIEND_MEMBERS",
+            "/invites/:param/friend-members"
+        ],
+        [
             "UNRESOLVED_GUILD_TEMPLATE",
             "/guilds/templates/:param"
         ],
@@ -1637,6 +2109,22 @@
         [
             "USER_GUILD_SETTINGS",
             "/users/@me/guilds/:param/settings"
+        ],
+        [
+            "GAMES_DETECTABLE",
+            "/games/detectable"
+        ],
+        [
+            "GAMES_BLOCKLIST",
+            "/games/detectable/exclusions"
+        ],
+        [
+            "NON_GAMES_DETECTABLE",
+            "/applications/non-games/detectable"
+        ],
+        [
+            "GAMES",
+            "/games"
         ],
         [
             "APPLICATION_ASSETS",
@@ -1791,6 +2279,22 @@
             "/guilds/:param/skus/:param"
         ],
         [
+            "GUILD_POWERUP_UPDATE",
+            "/guilds/:param/entitlements/:param"
+        ],
+        [
+            "GAME_SERVERS",
+            "/guilds/:param/game-servers"
+        ],
+        [
+            "GAME_SERVER_REGIONS",
+            "/guilds/:param/game-server-regions"
+        ],
+        [
+            "GAME_SERVER_WAKE",
+            "/guilds/:param/game-servers/:param/wake"
+        ],
+        [
             "SEARCH_CHANNEL",
             "/channels/:param/messages/search"
         ],
@@ -1879,8 +2383,20 @@
             "/users/@me/billing/subscriptions/:param/invoices/:param/pay"
         ],
         [
+            "BILLING_SUBSCRIPTION_PROMOTION_REWARD",
+            "/users/@me/billing/subscriptions/:param/promotion-reward"
+        ],
+        [
             "BILLING_COUNTRY_CODE",
             "/users/@me/billing/country-code"
+        ],
+        [
+            "BILLING_PAYMENT_SOURCE_CREATION_CONTEXT",
+            "/users/@me/billing/payment-source-creation-context"
+        ],
+        [
+            "BILLING_LOCATION",
+            "/users/@me/billing/location-info"
         ],
         [
             "BILLING_LOCALIZED_PROMO",
@@ -1905,6 +2421,18 @@
         [
             "STOREFRONT_PREMIUM_BUTTON",
             "/applications/storefront/interactions/premium-button/:param"
+        ],
+        [
+            "STOREFRONT_COLLECTION_WITH_PRODUCTS",
+            "/storefront/collections/:param"
+        ],
+        [
+            "STOREFRONT_PRODUCTS_BY_SKU_IDS",
+            "/storefront/products/skus"
+        ],
+        [
+            "STOREFRONT_PRODUCT_BY_SKU_ID",
+            "/storefront/products/sku/:param"
         ],
         [
             "STORE_EMAIL_RESEND_PAYMENT_VERIFICATION",
@@ -1943,8 +2471,36 @@
             "/store/skus/:param/listings"
         ],
         [
+            "SOCIAL_LAYER_APPLICATION_STOREFRONT",
+            "/partner-sdk/guilds/:param/application-storefront"
+        ],
+        [
+            "SOCIAL_LAYER_APPLICATION_STOREFRONT_SKU_BY_APPLICATION_ID",
+            "/partner-sdk/applications/:param/storefront/skus/:param"
+        ],
+        [
+            "SOCIAL_LAYER_APPLICATION_STOREFRONT_SKU",
+            "/partner-sdk/guilds/:param/application-storefront/skus/:param"
+        ],
+        [
+            "SOCIAL_LAYER_APPLICATION_STOREFRONT_SKU_ELIGIBILITY",
+            "/partner-sdk/applications/:param/storefront/skus/:param/eligibility"
+        ],
+        [
+            "SOCIAL_LAYER_STOREFRONT_ANNOUNCEMENT",
+            "/partner-sdk/guilds/:param/application-storefront/announcement"
+        ],
+        [
+            "SOCIAL_LAYER_STOREFRONT_CONFIG",
+            "/partner-sdk/storefront-config"
+        ],
+        [
             "APPLICATION_MANAGED_ACTIVITY_LINK",
             "/applications/:param/managed-links/:param"
+        ],
+        [
+            "APPLICATION_QUICK_ACTIVITY_LINK",
+            "/applications/:param/quick-links/:param"
         ],
         [
             "STORE_EULA",
@@ -1959,12 +2515,12 @@
             "/users/@me/entitlements"
         ],
         [
-            "ENTITLEMENTS_GIFTABLE",
-            "/users/@me/entitlements/gifts"
+            "USER_MEANINGFULLY_ONLINE",
+            "/users/@me/meaningfully-online"
         ],
         [
-            "HYPESQUAD_ONLINE",
-            "/hypesquad/online"
+            "ENTITLEMENTS_GIFTABLE",
+            "/users/@me/entitlements/gifts"
         ],
         [
             "APPLICATION_DISCLOSURES",
@@ -2191,6 +2747,10 @@
             "/reporting/unauthenticated/experiment"
         ],
         [
+            "DSA_CAPABILITIES",
+            "/reporting/unauthenticated/capabilities"
+        ],
+        [
             "SUBMIT_REPORT_SECOND_LOOK",
             "/reporting/review"
         ],
@@ -2223,8 +2783,12 @@
             "/guilds/:param/scheduled-events/:param/users/counts"
         ],
         [
+            "GUILD_EVENT_USERS",
+            "/guilds/:param/scheduled-events/:param/users"
+        ],
+        [
             "USER_GUILD_EVENT",
-            "/guilds/:param/scheduled-events/:param/:param/users/@me"
+            "/guilds/:param/scheduled-events/:param/users/@me"
         ],
         [
             "USER_GUILD_EVENTS",
@@ -2323,8 +2887,8 @@
             "/guilds/automations/email-domain-lookup/verify-code"
         ],
         [
-            "OUTBOUND_PROMOTIONS",
-            "/outbound-promotions"
+            "PROMOTIONS",
+            "/promotions"
         ],
         [
             "BOGO_PROMOTIONS",
@@ -2439,7 +3003,7 @@
             "/guilds/:param/profile"
         ],
         [
-            "USER_SET_CLAN_IDENTITY",
+            "USER_SET_GUILD_IDENTITY",
             "/users/@me/clan"
         ],
         [
@@ -2695,6 +3259,10 @@
             "/guilds/:param/bulk-ban"
         ],
         [
+            "BULK_GUILD_BAN_V2",
+            "/guilds/:param/bulk-ban/v2"
+        ],
+        [
             "EXPLICIT_MEDIA_SCAN_MESSAGES",
             "/channels/:param/explicit-media"
         ],
@@ -2725,6 +3293,10 @@
         [
             "QUEST",
             "/quests/:param"
+        ],
+        [
+            "QUEST_PREVIEW",
+            "/quests/:param/preview"
         ],
         [
             "QUESTS_ENROLL",
@@ -2769,6 +3341,14 @@
         [
             "QUESTS_PREVIEW_COMPLETE",
             "/quests/:param/preview/complete"
+        ],
+        [
+            "QUESTS_RESET_RECENT_QUEST_COMPLETIONS",
+            "/quests/reset-recent-quest-completions"
+        ],
+        [
+            "QUEST_FETCH_QUEST_TO_DELIVER",
+            "/quests/decision"
         ],
         [
             "ATTACHMENTS_REFRESH_URLS",
@@ -2821,6 +3401,38 @@
         [
             "IGNORE_USER",
             "/users/@me/relationships/:param/ignore"
+        ],
+        [
+            "APEX_EXPERIMENTS_METADATA",
+            "/apex/experiments/metadata"
+        ],
+        [
+            "APEX_EXPERIMENTS",
+            "/apex/experiments"
+        ],
+        [
+            "GUILD_MIGRATE_PIN_PERMISSION",
+            "/guilds/:param/migrate-pin-permission"
+        ],
+        [
+            "GUILD_MIGRATE_SLOWMODE_PERMISSION",
+            "/guilds/:param/migrate-bypass-slowmode-permission"
+        ],
+        [
+            "QUESTS_GET_DECISIONS",
+            "/quests/get-decisions"
+        ],
+        [
+            "QUESTS_CREATIVE_PREVIEW",
+            "/quests/preview"
+        ],
+        [
+            "QUESTS_CREATIVES_CLAIM_REWARD",
+            "/quests/creatives/:param/claim-reward"
+        ],
+        [
+            "GAME_ANNOUNCEMENTS",
+            "/games/:param/announcements"
         ]
     ]
 }
