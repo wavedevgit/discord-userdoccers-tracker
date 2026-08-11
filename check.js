@@ -4,12 +4,11 @@ import fs from "fs/promises"
 const parse = (routes) => {
     let result = {}
     for (let [key, value] of Object.entries(routes)) {
-        result[key] = value.url
+        result[key] = value 
     }
     return Object.entries(result)
 }
-// TODO: get a better source (this repo has missing routes)
-let routes = await (await fetch("https://raw.githubusercontent.com/xhyrom/discord-datamining/refs/heads/master/data/client/routes.json")).json()
+let routes = await (await fetch("https://raw.githubusercontent.com/Wumpus-Central/discrapper-canary/refs/heads/main/data/routes.json")).json()
 routes = parse(routes)
 
 // userdoccers
