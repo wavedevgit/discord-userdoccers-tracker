@@ -4502,6 +4502,9 @@ GUILD_MODERATION (1 << 2)
   - GUILD_AUDIT_LOG_ENTRY_CREATE
   - GUILD_BAN_ADD
   - GUILD_BAN_REMOVE
+  - GUILD_JOIN_REQUEST_CREATE
+  - GUILD_JOIN_REQUEST_UPDATE
+  - GUILD_JOIN_REQUEST_DELETE
 
 GUILD_EMOJIS_AND_STICKERS (1 << 3)
   - GUILD_EMOJIS_UPDATE
@@ -17091,7 +17094,7 @@ A guild's discovery settings.
 | reasons_to_join               | array[[discovery reason object](#discovery-reason-structure) object] | The reasons to join the guild shown in the discovery web page (max 4)                      |
 | social_links                  | ?array[string]                                                       | The guild's social media links shown in the discovery web page (max 256 characters, max 9) |
 | about                         | ?string                                                              | The guild's long description shown in the discovery web page (max 2400 characters)         |
-| category_ids                  | array[snowflake]                                                     | The IDs of [discovery subcategories](#discovery-category-object) set for the guild (max 5) |
+| category_ids                  | array[integer]                                                       | The IDs of [discovery subcategories](#discovery-category-object) set for the guild (max 5) |
 
 ###### Discovery Reason Structure
 
@@ -23183,20 +23186,20 @@ Modifies the current user's member in the guild. Returns the updated private [gu
 
 ###### JSON Params
 
-| Field                     | Type                                            | Description                                                                                                                                        | Permission        |
-| ------------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| nick?                     | ?string                                         | The guild-specific nickname of the member (1-32 characters)                                                                                        | `CHANGE_NICKNAME` |
-| avatar?                   | ?[image data](/reference#cdn-data)              | The member's guild avatar; can only be changed for premium users and bots                                                                          |
-| avatar_description?       | ?string                                         | The description of the new guild avatar, usually in the format "\{filename\}, added \{date\}" (max 1024 characters)                                |
-| avatar_id?                | string                                          | The ID of the recent avatar to use                                                                                                                 |
-| avatar_decoration_sku_id? | ?snowflake                                      | The SKU ID of the member's guild avatar decoration; can only be changed for premium users                                                          |
-| collectibles?             | ?[collectibles](#collectibles-structure) object | The member's equipped collectibles; can only be changed for premium users                                                                          |
-| display_name_font_id?     | ?integer                                        | The [display name font](/resources/user#display-name-font) to use; can only be changed for premium users                                           |
-| display_name_effect_id?   | ?integer                                        | The [display name effect](/resources/user#display-name-effect) to use; can only be changed for premium users                                       |
-| display_name_colors?      | ?array[integer]                                 | The display name colors to use encoded as an array of integers representing hexadecimal color codes (max 2); can only be changed for premium users |
-| pronouns?                 | ?string                                         | The member's guild pronouns (max 40 characters)                                                                                                    |
-| bio?                      | ?string                                         | The member's guild bio (max 190 characters); can only be changed for premium users and bots                                                        |
-| banner?                   | ?[image data](/reference#cdn-data)              | The member's guild banner; can only be changed for premium users and bots                                                                          |
+| Field                     | Type                                            | Description                                                                                                                                                 | Permission        |
+| ------------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| nick?                     | ?string                                         | The guild-specific nickname of the member (1-32 characters)                                                                                                 | `CHANGE_NICKNAME` |
+| avatar?                   | ?[image data](/reference#cdn-data)              | The member's guild avatar; can only be changed for premium users and bots                                                                                   |
+| avatar_description?       | ?string                                         | The description of the new guild avatar, usually in the format "\{filename\}, added \{date\}" (max 1024 characters)                                         |
+| avatar_id?                | string                                          | The ID of the recent avatar to use                                                                                                                          |
+| avatar_decoration_sku_id? | ?snowflake                                      | The SKU ID of the member's guild avatar decoration; can only be changed for premium users                                                                   |
+| collectibles?             | ?[collectibles](#collectibles-structure) object | The member's equipped collectibles; can only be changed for premium users                                                                                   |
+| display_name_font_id?     | ?integer                                        | The [display name font](/resources/user#display-name-font) to use; can only be changed for premium users and bots                                           |
+| display_name_effect_id?   | ?integer                                        | The [display name effect](/resources/user#display-name-effect) to use; can only be changed for premium users and bots                                       |
+| display_name_colors?      | ?array[integer]                                 | The display name colors to use encoded as an array of integers representing hexadecimal color codes (max 2); can only be changed for premium users and bots |
+| pronouns?                 | ?string                                         | The member's guild pronouns (max 40 characters)                                                                                                             |
+| bio?                      | ?string                                         | The member's guild bio (max 190 characters); can only be changed for premium users and bots                                                                 |
+| banner?                   | ?[image data](/reference#cdn-data)              | The member's guild banner; can only be changed for premium users and bots                                                                                   |
 
 ###### Collectibles Structure
 
@@ -23230,16 +23233,16 @@ Modifies the current user's profile in the guild. Returns a [profile metadata](/
 
 ###### JSON Params
 
-| Field                           | Type                               | Description                                                                                                                                     |
-| ------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| pronouns?                       | ?string                            | The member's guild pronouns (max 40 characters)                                                                                                 |
-| bio?                            | ?string                            | The member's guild bio (max 190 characters); can only be changed for premium users                                                              |
-| banner?                         | ?[image data](/reference#cdn-data) | The member's guild banner; can only be changed for premium users                                                                                |
-| accent_color?                   | ?integer                           | The member's guild accent color as a hex integer; can only be changed for premium users                                                         |
-| theme_colors?                   | ?array[integer, integer]           | The member's two guild theme colors encoded as an array of integers representing hexadecimal color codes; can only be changed for premium users |
-| popout_animation_particle_type? | ?snowflake                         | The member's guild profile popout animation particle type; can only be changed for premium users                                                |
-| emoji_id?                       | ?snowflake                         | The member's guild profile emoji ID; can only be changed for premium users                                                                      |
-| profile_effect_id?              | ?snowflake                         | The member's guild profile effect ID; can only be changed for premium users                                                                     |
+| Field                                            | Type                               | Description                                                                                                                                     |
+| ------------------------------------------------ | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| pronouns?                                        | ?string                            | The member's guild pronouns (max 40 characters)                                                                                                 |
+| bio?                                             | ?string                            | The member's guild bio (max 190 characters); can only be changed for premium users                                                              |
+| banner?                                          | ?[image data](/reference#cdn-data) | The member's guild banner; can only be changed for premium users                                                                                |
+| accent_color?                                    | ?integer                           | The member's guild accent color as a hex integer; can only be changed for premium users                                                         |
+| theme_colors?                                    | ?array[integer, integer]           | The member's two guild theme colors encoded as an array of integers representing hexadecimal color codes; can only be changed for premium users |
+| popout_animation_particle_type? **(deprecated)** | ?snowflake                         | The member's guild profile popout animation particle type; can only be changed for premium users                                                |
+| emoji_id? **(deprecated)**                       | ?snowflake                         | The member's guild profile emoji ID; can only be changed for premium users                                                                      |
+| profile_effect_id?                               | ?snowflake                         | The member's guild profile effect ID; can only be changed for premium users                                                                     |
 
 <RouteHeader method="PUT" url="/guilds/{guild.id}/members/{user.id}/roles/{role.id}" supportsAuditReason supportsBot>
   Add Guild Member Role
@@ -37627,17 +37630,17 @@ A user's profile metadata.
 
 ###### Profile Metadata Structure
 
-| Field                           | Type                                                | Description                                                                                               |
-| ------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| guild_id?                       | snowflake                                           | The guild ID this profile applies to, if it is a guild profile                                            |
-| pronouns                        | string                                              | The user's pronouns (max 40 characters)                                                                   |
-| bio?                            | string                                              | The user's bio (max 190 characters)                                                                       |
-| banner?                         | ?string                                             | The user's [banner hash](/reference#cdn-formatting)                                                       |
-| accent_color? ^1^               | ?integer                                            | The user's banner color encoded as an integer representation of a hexadecimal color code                  |
-| theme_colors?                   | ?array[integer, integer]                            | The user's two theme colors encoded as an array of integers representing hexadecimal color codes          |
-| popout_animation_particle_type? | ?snowflake                                          | The user's profile popout animation particle type                                                         |
-| emoji?                          | ?[emoji](/resources/emoji#emoji-object) object      | The user's profile emoji                                                                                  |
-| profile_effect?                 | ?[profile effect](#profile-effect-structure) object | The user's [profile effect](https://support.discord.com/hc/en-us/articles/17828465914263-Profile-Effects) |
+| Field                                            | Type                                                | Description                                                                                               |
+| ------------------------------------------------ | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| guild_id?                                        | snowflake                                           | The guild ID this profile applies to, if it is a guild profile                                            |
+| pronouns                                         | string                                              | The user's pronouns (max 40 characters)                                                                   |
+| bio?                                             | string                                              | The user's bio (max 190 characters)                                                                       |
+| banner?                                          | ?string                                             | The user's [banner hash](/reference#cdn-formatting)                                                       |
+| accent_color? ^1^                                | ?integer                                            | The user's banner color encoded as an integer representation of a hexadecimal color code                  |
+| theme_colors?                                    | ?array[integer, integer]                            | The user's two theme colors encoded as an array of integers representing hexadecimal color codes          |
+| popout_animation_particle_type? **(deprecated)** | ?snowflake                                          | The user's profile popout animation particle type                                                         |
+| emoji? **(deprecated)**                          | ?[emoji](/resources/emoji#emoji-object) object      | The user's profile emoji                                                                                  |
+| profile_effect?                                  | ?[profile effect](#profile-effect-structure) object | The user's [profile effect](https://support.discord.com/hc/en-us/articles/17828465914263-Profile-Effects) |
 
 ^1^ Not respected on guild profiles.
 
@@ -38328,16 +38331,16 @@ Modifies the current user's profile. Returns the updated [profile metadata](#pro
 
 ###### JSON Params
 
-| Field                           | Type                               | Description                                                                                                                             |
-| ------------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| pronouns?                       | ?string                            | The user's pronouns (max 40 characters)                                                                                                 |
-| bio?                            | ?string                            | The user's bio (max 190 characters)                                                                                                     |
-| banner?                         | ?[image data](/reference#cdn-data) | The user's banner; can only be changed for premium users                                                                                |
-| accent_color?                   | ?integer                           | The user's banner color encoded as an integer representation of a hexadecimal color code                                                |
-| theme_colors?                   | ?array[integer, integer]           | The user's two theme colors encoded as an array of integers representing hexadecimal color codes; can only be changed for premium users |
-| popout_animation_particle_type? | ?snowflake                         | The user's profile popout animation particle type; can only be changed for premium users                                                |
-| emoji_id?                       | ?snowflake                         | The user's profile emoji ID; can only be changed for premium users                                                                      |
-| profile_effect_id?              | ?snowflake                         | The user's profile effect ID; can only be changed for premium users                                                                     |
+| Field                                            | Type                               | Description                                                                                                                             |
+| ------------------------------------------------ | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| pronouns?                                        | ?string                            | The user's pronouns (max 40 characters)                                                                                                 |
+| bio?                                             | ?string                            | The user's bio (max 190 characters)                                                                                                     |
+| banner?                                          | ?[image data](/reference#cdn-data) | The user's banner; can only be changed for premium users                                                                                |
+| accent_color?                                    | ?integer                           | The user's banner color encoded as an integer representation of a hexadecimal color code                                                |
+| theme_colors?                                    | ?array[integer, integer]           | The user's two theme colors encoded as an array of integers representing hexadecimal color codes; can only be changed for premium users |
+| popout_animation_particle_type? **(deprecated)** | ?snowflake                         | The user's profile popout animation particle type; can only be changed for premium users                                                |
+| emoji_id? **(deprecated)**                       | ?snowflake                         | The user's profile emoji ID; can only be changed for premium users                                                                      |
+| profile_effect_id?                               | ?snowflake                         | The user's profile effect ID; can only be changed for premium users                                                                     |
 
 <RouteHeader method="GET" url="/users/{user.id}/relationships">
   List Mutual Relationships
