@@ -1327,6 +1327,10 @@
         [
             "GUILD_SPACE_IMAGE_TEXT_WIDGET_IMAGE",
             "/guild-space/:param/image-text-widget/:param/:param./:param"
+        ],
+        [
+            "GUILD_SPACE_BANNER",
+            "/guild-space/:param/banner/:param./:param"
         ]
     ],
     "covered": [

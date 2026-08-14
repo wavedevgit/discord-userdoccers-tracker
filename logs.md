@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 332 |
+| Missing | 333 |
 ## Missing routes
-total: 332
+total: 333
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -338,6 +338,7 @@ total: 332
 - [ ] **VIBEGRATIONS_PROJECT_PUBLISH**: `/vibegrations/projects/:param/publish`
 - [ ] **VIBEGRATIONS_PROJECT_PUBLISH_PREVIEW**: `/vibegrations/projects/:param/publish-preview`
 - [ ] **GUILD_SPACE_IMAGE_TEXT_WIDGET_IMAGE**: `/guild-space/:param/image-text-widget/:param/:param./:param`
+- [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
 ## Covered routes
 total: 526
