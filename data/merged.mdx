@@ -12910,7 +12910,7 @@ For Community guilds, the Rules or Guidelines channel and the Community Updates 
 | silent? | boolean | Whether to leave the group DM without sending a system message (default false) |
 
 <RouteHeader method="POST" url="/users/@me/channels/bulk-leave">
-  Bulk Leave Group DMs 
+  Bulk Leave Group DMs
 </RouteHeader>
 
 Leave multiple group DMs. Returns a 204 empty response on success. Fires multiple [Channel Delete](/gateway/gateway-events#channel-delete) Gateway events.
@@ -37590,11 +37590,11 @@ How a user's name gets displayed, such as font, colors, gradient, glow.
 
 ###### Display Name Style Structure
 
-| Field     | Type           | Description                                                                                    |
-| --------- | -------------- | ---------------------------------------------------------------------------------------------- |
-| font_id   | integer        | The [font](#display-name-font) to use                                                          |
-| effect_id | integer        | The [effect](#display-name-effect) to use                                                      |
-| colors    | array[integer] | The colors to use encoded as an array of integers representing hexadecimal color codes (max 2) |
+| Field     | Type           | Description                                                                                                           |
+| --------- | -------------- | --------------------------------------------------------------------------------------------------------------------- |
+| font_id   | integer        | The [font](#display-name-font) to use                                                                                 |
+| effect_id | integer        | The [effect](#display-name-effect) to use                                                                             |
+| colors    | array[integer] | The colors to use encoded as an array of integers representing hexadecimal color codes (amount depends on the effect) |
 
 ###### Display Name Font
 
@@ -37619,20 +37619,20 @@ How a user's name gets displayed, such as font, colors, gradient, glow.
 
 ###### Display Name Effect
 
-| Value | Name     | Description                                    |
-| ----- | -------- | ---------------------------------------------- |
-| 1     | SOLID    | Displays the first color provided              |
-| 2     | GRADIENT | Two color gradient                             |
-| 3     | NEON     | Glow around the name                           |
-| 4     | TOON     | Subtle vertical gradient and stroke            |
-| 5     | POP      | Colored dropshadow                             |
-| 6     | GLOW     | Alternate gradient style                       |
-| 7     | PRISM    | Scrolling five color gradient                  |
-| 8     | GUMMY    | Four color pattern, letters squash and stretch |
-| 1001  | TEST_1   | Falls back to solid                            |
-| 1002  | TEST_2   | Falls back to solid                            |
-| 1003  | TEST_3   | Falls back to solid                            |
-| 1004  | TEST_4   | Falls back to solid                            |
+| Value | Name     | Description                                    | Colors |
+| ----- | -------- | ---------------------------------------------- | ------ |
+| 1     | SOLID    | Displays the first color provided              | 1      |
+| 2     | GRADIENT | Two color gradient                             | 1-5    |
+| 3     | NEON     | Glow around the name                           | 1      |
+| 4     | TOON     | Subtle vertical gradient and stroke            | 1      |
+| 5     | POP      | Colored dropshadow                             | 1      |
+| 6     | GLOW     | Falls back to gradient                         | 1-5    |
+| 7     | PRISM    | Scrolling five color gradient                  | 1-5    |
+| 8     | GUMMY    | Four color pattern, letters squash and stretch | 1-5    |
+| 1001  | TEST_1   | Falls back to solid                            | 1      |
+| 1002  | TEST_2   | Falls back to solid                            | 1      |
+| 1003  | TEST_3   | Falls back to solid                            | 1      |
+| 1004  | TEST_4   | Falls back to solid                            | 1      |
 
 ### Profile Metadata Object
 
