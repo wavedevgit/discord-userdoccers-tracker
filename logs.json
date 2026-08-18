@@ -1005,6 +1005,10 @@
             "/guilds/automations/email-domain-lookup/verify"
         ],
         [
+            "GIFTING_PROMOTION_SUMMER_2026_GOGO_CAMPAIGN_ELIGIBILITY",
+            "/users/@me/gifting-promotion-summer-2026-gogo-campaign-eligibility"
+        ],
+        [
             "CREATOR_MONETIZATION_ACCEPT_TERMS",
             "/guilds/:param/creator-monetization/enable-requests/:param/accept-terms"
         ],

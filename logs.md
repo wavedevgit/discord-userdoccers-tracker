@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 333 |
+| Missing | 334 |
 ## Missing routes
-total: 333
+total: 334
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -257,6 +257,7 @@ total: 333
 - [ ] **GUILD_EVENT_EXCEPTIONS**: `/guilds/:param/scheduled-events/:param/exceptions`
 - [ ] **GUILD_EVENT_EXCEPTION**: `/guilds/:param/scheduled-events/:param/exceptions/:param`
 - [ ] **HUB_EMAIL_VERIFY**: `/guilds/automations/email-domain-lookup/verify`
+- [ ] **GIFTING_PROMOTION_SUMMER_2026_GOGO_CAMPAIGN_ELIGIBILITY**: `/users/@me/gifting-promotion-summer-2026-gogo-campaign-eligibility`
 - [ ] **CREATOR_MONETIZATION_ACCEPT_TERMS**: `/guilds/:param/creator-monetization/enable-requests/:param/accept-terms`
 - [ ] **CREATOR_MONETIZATION_ACCEPT_NEW_TERMS**: `/guilds/:param/creator-monetization/accept-new-terms`
 - [ ] **SUBSCRIPTION_PLAN_GUILD_ROLE_GROUP_LISTING**: `/subscription-plans/:param/guild-role-subscription-group-listing`
