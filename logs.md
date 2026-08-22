@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 334 |
+| Missing | 333 |
 ## Missing routes
-total: 334
+total: 333
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -302,7 +302,6 @@ total: 334
 - [ ] **SAFETY_HUB_GET_SUSPENDED_AGE_VERIFICATION_METHODS**: `/age-verification/suspended/methods`
 - [ ] **INITIATE_CHANNEL_PROMPTS**: `/initiate-prompts`
 - [ ] **FORCE_SEND_PROMPT**: `/:param/force-send-prompt`
-- [ ] **MARKETING_CAMPAIGN_ELIGIBILITY**: `/premium-marketing/@me/campaigns/:param/eligibility`
 - [ ] **QUEST_EARNED_DECISION**: `/quests/earned-decision?quest_ids=:param&content=:param`
 - [ ] **MY_CONTENT_INVENTORY**: `/content-inventory/users/@me/:param`
 - [ ] **CONTENT_INVENTORY_OUTBOX**: `/content-inventory/users/:param/outbox`

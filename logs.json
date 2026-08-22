@@ -1185,10 +1185,6 @@
             "/:param/force-send-prompt"
         ],
         [
-            "MARKETING_CAMPAIGN_ELIGIBILITY",
-            "/premium-marketing/@me/campaigns/:param/eligibility"
-        ],
-        [
             "QUEST_EARNED_DECISION",
             "/quests/earned-decision?quest_ids=:param&content=:param"
         ],
