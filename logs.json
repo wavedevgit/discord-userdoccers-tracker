@@ -1317,6 +1317,10 @@
             "/vibegrations/projects/:param/ws-ticket"
         ],
         [
+            "VIBEGRATIONS_PROJECT_REMIX_TICKET",
+            "/vibegrations/projects/:param/remix-ticket"
+        ],
+        [
             "VIBEGRATIONS_PROJECT_PUBLISH",
             "/vibegrations/projects/:param/publish"
         ],
