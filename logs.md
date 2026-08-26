@@ -2,15 +2,16 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 334 |
+| Missing | 337 |
 ## Missing routes
-total: 334
+total: 337
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
 - [ ] **USER_BADGE_SETTINGS**: `/users/@me/badges/settings`
 - [ ] **USER_PROFILE_WIDGET_ASSET_UPLOAD**: `/users/@me/widgets/assets/upload`
 - [ ] **USER_PROFILE_WIDGET_CLIP_UPLOAD**: `/users/@me/widgets/clips/upload`
+- [ ] **APPLICATION_WIDGET_REFRESH**: `/applications/:param/widget/refresh`
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
 - [ ] **USER_WISHLIST**: `/wishlists/:param`
 - [ ] **USER_WISHLIST_PATCH**: `/users/@me/wishlists/:param`
@@ -230,6 +231,7 @@ total: 334
 - [ ] **PARTNER_PROMOTIONS**: `/entitlements/partner-promotions/:param`
 - [ ] **GIFT_INTENTS_DISMISS**: `/users/@me/gift-intents/dismiss`
 - [ ] **REACTIVATION_OFFER_REDEEM**: `/users/@me/billing/subscriptions/:param/reactivation-offers/:param/redeem`
+- [ ] **USER_OFFER_TRIGGER**: `/users/@me/billing/user-offer/trigger`
 - [ ] **USER_PERKS_DEMOS**: `/users/@me/perks-demos`
 - [ ] **USER_PERKS_DEMOS_ACTIVATE**: `/users/@me/activate-perk-demo/:param`
 - [ ] **PARTNER_PERK**: `/users/@me/partner-perks/:param`
@@ -271,6 +273,7 @@ total: 334
 - [ ] **GIPHY_ASSET_PATH**: `/giphy`
 - [ ] **KLIPY_ASSET_PATH**: `/klipy`
 - [ ] **VIDEO_FILTER_ASSET_STORAGE**: `/users/:param/video-filter-assets/:param/:param./:param`
+- [ ] **TOP_SOUNDBOARD_SOUNDS_FOR_GUILD**: `/guilds/:param/top-soundboard-sounds`
 - [ ] **SOUNDBOARD_SOUND**: `/soundboard-sounds/:param`
 - [ ] **SEND_CLIPS_REMOTE_TRIGGER**: `/channels/:param/clips-remote-trigger`
 - [ ] **APPLICATION_COMMANDS_SEARCH**: `/channels/:param/application-commands/search`
