@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 337 |
+| Missing | 339 |
 ## Missing routes
-total: 337
+total: 339
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -315,6 +315,8 @@ total: 337
 - [ ] **CAMPAIGN_CONTEXT**: `/users/@me/billing/campaign-context`
 - [ ] **SIMILAR_GAMES**: `/content-inventory/users/@me/similar-games/:param`
 - [ ] **ACCOUNT_REVERT**: `/auth/revert`
+- [ ] **ORB_USER_CHALLENGES_LIST**: `/users/@me/achievements/list?reward_type=orbs`
+- [ ] **ORB_USER_CHALLENGE_CLAIM**: `/users/@me/achievements/:param/claim`
 - [ ] **SCHEDULED_MESSAGES**: `/users/@me/scheduled-messages`
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 - [ ] **HOLIDAY_REDEEM_PRIZE**: `/holidays/redeem-prize`

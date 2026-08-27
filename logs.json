@@ -1237,6 +1237,14 @@
             "/auth/revert"
         ],
         [
+            "ORB_USER_CHALLENGES_LIST",
+            "/users/@me/achievements/list?reward_type=orbs"
+        ],
+        [
+            "ORB_USER_CHALLENGE_CLAIM",
+            "/users/@me/achievements/:param/claim"
+        ],
+        [
             "SCHEDULED_MESSAGES",
             "/users/@me/scheduled-messages"
         ],
