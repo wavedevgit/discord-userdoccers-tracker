@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 339 |
+| Missing | 343 |
 ## Missing routes
-total: 339
+total: 343
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -105,6 +105,7 @@ total: 339
 - [ ] **CAPTCHA_TEST**: `/captcha/decider`
 - [ ] **AGE_ASSURANCE_TEST**: `/age-verification/test`
 - [ ] **VERIFY_AGE_V2**: `/age-verification/verify/v2`
+- [ ] **AGE_VERIFICATION_MANUAL_REVIEW**: `/age-verification/manual-review`
 - [ ] **REGISTER_INCODE_INTERVIEW**: `/age-verification/incode/interview`
 - [ ] **CREATE_INCODE_SESSION**: `/age-verification/incode/session`
 - [ ] **AGE_VERIFICATION_METHODS**: `/age-verification/methods`
@@ -222,6 +223,7 @@ total: 339
 - [ ] **ORDER_CANCEL_SIGNING**: `/billing/orders/:param/cancel-signing`
 - [ ] **ORDER_DISCARD**: `/billing/orders/:param/discard`
 - [ ] **ORDER_ENTITLEMENTS**: `/billing/orders/:param/entitlements`
+- [ ] **DEBUG_TEMPORAL_INFRA_PROOF_OF_CONCEPT**: `/debug/temporal/infra-proof-of-concept`
 - [ ] **APPLICATION_SKUS**: `/applications/:param/skus`
 - [ ] **ENTITLEMENT_TICKET**: `/users/@me/applications/:param/entitlement-ticket`
 - [ ] **APPLICATION_TICKET**: `/users/@me/applications/:param/ticket`
@@ -305,6 +307,7 @@ total: 339
 - [ ] **SAFETY_HUB_GET_SUSPENDED_AGE_VERIFICATION_METHODS**: `/age-verification/suspended/methods`
 - [ ] **INITIATE_CHANNEL_PROMPTS**: `/initiate-prompts`
 - [ ] **FORCE_SEND_PROMPT**: `/:param/force-send-prompt`
+- [ ] **ADS_IOS_ATTRIBUTION_SIGN_PAYLOAD**: `/ads/ios-attributions/sign-payload`
 - [ ] **QUEST_EARNED_DECISION**: `/quests/earned-decision?quest_ids=:param&content=:param`
 - [ ] **MY_CONTENT_INVENTORY**: `/content-inventory/users/@me/:param`
 - [ ] **CONTENT_INVENTORY_OUTBOX**: `/content-inventory/users/:param/outbox`
@@ -319,6 +322,7 @@ total: 339
 - [ ] **ORB_USER_CHALLENGE_CLAIM**: `/users/@me/achievements/:param/claim`
 - [ ] **SCHEDULED_MESSAGES**: `/users/@me/scheduled-messages`
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
+- [ ] **SCHEDULED_MESSAGE_SEND**: `/users/@me/scheduled-messages/:param/send`
 - [ ] **HOLIDAY_REDEEM_PRIZE**: `/holidays/redeem-prize`
 - [ ] **APPLIED_BOOST_MODIFY_END_DATE**: `/debug/applied-boosts/ends-at`
 - [ ] **SEND_POWERUPS_SYSTEM_MESSAGE**: `/guilds/:param/powerups-system-message`
