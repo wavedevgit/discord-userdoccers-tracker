@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 343 |
+| Missing | 347 |
 ## Missing routes
-total: 343
+total: 347
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -110,6 +110,7 @@ total: 343
 - [ ] **CREATE_INCODE_SESSION**: `/age-verification/incode/session`
 - [ ] **AGE_VERIFICATION_METHODS**: `/age-verification/methods`
 - [ ] **AGE_VERIFICATION_METHODS_V2**: `/age-verification/methods/v2`
+- [ ] **AGE_VERIFICATION_SUSPENDED_METHODS_V2**: `/age-verification/suspended/methods/v2`
 - [ ] **GOOGLE_WALLET_REQUEST**: `/age-verification/google-wallet/request`
 - [ ] **GOOGLE_WALLET_VERIFY**: `/age-verification/google-wallet/verify`
 - [ ] **AGE_SIGNAL**: `/users/@me/age-signal`
@@ -304,6 +305,7 @@ total: 343
 - [ ] **UPDATE_USER_OFFER**: `/user-offers/:param/:param`
 - [ ] **USER_OFFERS**: `/user-offers`
 - [ ] **USER_OFFER_IDS**: `/user-offer-ids`
+- [ ] **SAFETY_HUB_REQUEST_SUSPENDED_AGE_VERIFICATION_V2**: `/safety-hub/suspended/request-verification/v2`
 - [ ] **SAFETY_HUB_GET_SUSPENDED_AGE_VERIFICATION_METHODS**: `/age-verification/suspended/methods`
 - [ ] **INITIATE_CHANNEL_PROMPTS**: `/initiate-prompts`
 - [ ] **FORCE_SEND_PROMPT**: `/:param/force-send-prompt`
@@ -320,6 +322,8 @@ total: 343
 - [ ] **ACCOUNT_REVERT**: `/auth/revert`
 - [ ] **ORB_USER_CHALLENGES_LIST**: `/users/@me/achievements/list?reward_type=orbs`
 - [ ] **ORB_USER_CHALLENGE_CLAIM**: `/users/@me/achievements/:param/claim`
+- [ ] **ORB_USER_CHALLENGES_UNREAD_STATE**: `/users/@me/achievements/unread-state`
+- [ ] **ORB_USER_CHALLENGES_UNREAD_STATE_ACK**: `/users/@me/achievements/unread-state/ack`
 - [ ] **SCHEDULED_MESSAGES**: `/users/@me/scheduled-messages`
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 - [ ] **SCHEDULED_MESSAGE_SEND**: `/users/@me/scheduled-messages/:param/send`
