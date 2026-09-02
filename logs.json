@@ -605,6 +605,10 @@
             "/changelogs/@me/messages"
         ],
         [
+            "GUILD_EMBEDDED_APPLICATIONS",
+            "/guilds/:param/embedded-applications"
+        ],
+        [
             "GAME_SERVER_MY_REGIONS",
             "/users/@me/game-server-regions"
         ],

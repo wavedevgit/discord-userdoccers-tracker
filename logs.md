@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 347 |
+| Missing | 348 |
 ## Missing routes
-total: 347
+total: 348
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -157,6 +157,7 @@ total: 347
 - [ ] **REACTION**: `/channels/:param/messages/:param/reactions/:param/:param`
 - [ ] **REACTION_WITH_TYPE**: `/channels/:param/messages/:param/reactions/:param/:param/:param`
 - [ ] **CHANGELOG_MESSAGES**: `/changelogs/@me/messages`
+- [ ] **GUILD_EMBEDDED_APPLICATIONS**: `/guilds/:param/embedded-applications`
 - [ ] **GAME_SERVER_MY_REGIONS**: `/users/@me/game-server-regions`
 - [ ] **GAME_SERVERS_ME**: `/users/@me/game-servers`
 - [ ] **GAME_SERVER_ME**: `/users/@me/game-servers/:param`
