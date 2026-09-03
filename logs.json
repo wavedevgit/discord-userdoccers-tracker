@@ -429,6 +429,14 @@
             "/age-verification/google-wallet/verify"
         ],
         [
+            "GOOGLE_WALLET_REQUEST_SUSPENDED_USER",
+            "/age-verification/google-wallet/suspended/request"
+        ],
+        [
+            "GOOGLE_WALLET_VERIFY_SUSPENDED_USER",
+            "/age-verification/google-wallet/suspended/verify"
+        ],
+        [
             "AGE_SIGNAL",
             "/users/@me/age-signal"
         ],
@@ -1205,6 +1213,10 @@
             "/safety-hub/suspended/request-verification/v2"
         ],
         [
+            "SAFETY_HUB_CHECK_SUSPENDED_AGE_VERIFICATION_V2",
+            "/safety-hub/suspended/check-verification/v2"
+        ],
+        [
             "SAFETY_HUB_GET_SUSPENDED_AGE_VERIFICATION_METHODS",
             "/age-verification/suspended/methods"
         ],
@@ -1274,7 +1286,7 @@
         ],
         [
             "ORB_USER_CHALLENGES_UNREAD_STATE_ACK",
-            "/users/@me/achievements/unread-state/ack"
+            "/users/@me/achievements/unread-ack"
         ],
         [
             "SCHEDULED_MESSAGES",
@@ -1331,6 +1343,10 @@
         [
             "CONFERENCE_MODE_CONFERENCES",
             "/conference-mode/conference"
+        ],
+        [
+            "QUESTS_CREATIVES_DISMISS",
+            "/quests/creatives/:param/dismiss"
         ],
         [
             "QUESTS_APP_STORE_METADATA",

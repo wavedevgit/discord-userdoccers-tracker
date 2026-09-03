@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 348 |
+| Missing | 352 |
 ## Missing routes
-total: 348
+total: 352
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -113,6 +113,8 @@ total: 348
 - [ ] **AGE_VERIFICATION_SUSPENDED_METHODS_V2**: `/age-verification/suspended/methods/v2`
 - [ ] **GOOGLE_WALLET_REQUEST**: `/age-verification/google-wallet/request`
 - [ ] **GOOGLE_WALLET_VERIFY**: `/age-verification/google-wallet/verify`
+- [ ] **GOOGLE_WALLET_REQUEST_SUSPENDED_USER**: `/age-verification/google-wallet/suspended/request`
+- [ ] **GOOGLE_WALLET_VERIFY_SUSPENDED_USER**: `/age-verification/google-wallet/suspended/verify`
 - [ ] **AGE_SIGNAL**: `/users/@me/age-signal`
 - [ ] **AGE_SIGNAL_CHALLENGE**: `/users/@me/age-signal/challenge`
 - [ ] **AGE_VERIFICATION_REACTIVE_CHECK**: `/users/@me/age-verification/check`
@@ -307,6 +309,7 @@ total: 348
 - [ ] **USER_OFFERS**: `/user-offers`
 - [ ] **USER_OFFER_IDS**: `/user-offer-ids`
 - [ ] **SAFETY_HUB_REQUEST_SUSPENDED_AGE_VERIFICATION_V2**: `/safety-hub/suspended/request-verification/v2`
+- [ ] **SAFETY_HUB_CHECK_SUSPENDED_AGE_VERIFICATION_V2**: `/safety-hub/suspended/check-verification/v2`
 - [ ] **SAFETY_HUB_GET_SUSPENDED_AGE_VERIFICATION_METHODS**: `/age-verification/suspended/methods`
 - [ ] **INITIATE_CHANNEL_PROMPTS**: `/initiate-prompts`
 - [ ] **FORCE_SEND_PROMPT**: `/:param/force-send-prompt`
@@ -324,7 +327,7 @@ total: 348
 - [ ] **ORB_USER_CHALLENGES_LIST**: `/users/@me/achievements/list?reward_type=orbs`
 - [ ] **ORB_USER_CHALLENGE_CLAIM**: `/users/@me/achievements/:param/claim`
 - [ ] **ORB_USER_CHALLENGES_UNREAD_STATE**: `/users/@me/achievements/unread-state`
-- [ ] **ORB_USER_CHALLENGES_UNREAD_STATE_ACK**: `/users/@me/achievements/unread-state/ack`
+- [ ] **ORB_USER_CHALLENGES_UNREAD_STATE_ACK**: `/users/@me/achievements/unread-ack`
 - [ ] **SCHEDULED_MESSAGES**: `/users/@me/scheduled-messages`
 - [ ] **SCHEDULED_MESSAGE**: `/users/@me/scheduled-messages/:param`
 - [ ] **SCHEDULED_MESSAGE_SEND**: `/users/@me/scheduled-messages/:param/send`
@@ -339,6 +342,7 @@ total: 348
 - [ ] **CONFERENCE_MODE_VOICE_CHANNEL_USERS**: `/conference-mode/channels/:param/users`
 - [ ] **CONFERENCE_MODE_EVENTS**: `/conference-mode/events`
 - [ ] **CONFERENCE_MODE_CONFERENCES**: `/conference-mode/conference`
+- [ ] **QUESTS_CREATIVES_DISMISS**: `/quests/creatives/:param/dismiss`
 - [ ] **QUESTS_APP_STORE_METADATA**: `/quests/appstore-metadata`
 - [ ] **GUILD_ROOM**: `/guilds/:param/rooms/:param`
 - [ ] **GUILD_ROOM_CONNECT**: `/guilds/:param/rooms/:param/connect`
