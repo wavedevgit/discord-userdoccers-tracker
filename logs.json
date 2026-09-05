@@ -401,6 +401,10 @@
             "/age-verification/manual-review"
         ],
         [
+            "AGE_VERIFICATION_SUSPENDED_MANUAL_REVIEW",
+            "/age-verification/suspended/manual-review"
+        ],
+        [
             "REGISTER_INCODE_INTERVIEW",
             "/age-verification/incode/interview"
         ],
@@ -915,6 +919,10 @@
         [
             "PARTNER_PROMOTIONS",
             "/entitlements/partner-promotions/:param"
+        ],
+        [
+            "USER_GIFT_CODE_DELIVERIES",
+            "/users/@me/gift-code-deliveries"
         ],
         [
             "GIFT_INTENTS_DISMISS",

@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 352 |
+| Missing | 354 |
 ## Missing routes
-total: 352
+total: 354
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -106,6 +106,7 @@ total: 352
 - [ ] **AGE_ASSURANCE_TEST**: `/age-verification/test`
 - [ ] **VERIFY_AGE_V2**: `/age-verification/verify/v2`
 - [ ] **AGE_VERIFICATION_MANUAL_REVIEW**: `/age-verification/manual-review`
+- [ ] **AGE_VERIFICATION_SUSPENDED_MANUAL_REVIEW**: `/age-verification/suspended/manual-review`
 - [ ] **REGISTER_INCODE_INTERVIEW**: `/age-verification/incode/interview`
 - [ ] **CREATE_INCODE_SESSION**: `/age-verification/incode/session`
 - [ ] **AGE_VERIFICATION_METHODS**: `/age-verification/methods`
@@ -235,6 +236,7 @@ total: 352
 - [ ] **APPLICATION_ASSET**: `/applications/:param/app-assets/:param./:param`
 - [ ] **APPLICATION_STORAGE**: `/applications/:param/branches/:param/storage`
 - [ ] **PARTNER_PROMOTIONS**: `/entitlements/partner-promotions/:param`
+- [ ] **USER_GIFT_CODE_DELIVERIES**: `/users/@me/gift-code-deliveries`
 - [ ] **GIFT_INTENTS_DISMISS**: `/users/@me/gift-intents/dismiss`
 - [ ] **REACTIVATION_OFFER_REDEEM**: `/users/@me/billing/subscriptions/:param/reactivation-offers/:param/redeem`
 - [ ] **USER_OFFER_TRIGGER**: `/users/@me/billing/user-offer/trigger`
