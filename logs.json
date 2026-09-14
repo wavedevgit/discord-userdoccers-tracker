@@ -1073,6 +1073,10 @@
             "/clips/module-assets"
         ],
         [
+            "CLIPS_AUTOCLIPS_GAME_CAPABILITIES",
+            "/clips/autoclips/game-capabilities/:param"
+        ],
+        [
             "PAYMENT_PAYOUT_GROUPS",
             "/applications/:param/payment-payout-groups"
         ],

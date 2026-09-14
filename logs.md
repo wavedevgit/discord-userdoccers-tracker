@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 354 |
+| Missing | 355 |
 ## Missing routes
-total: 354
+total: 355
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -274,6 +274,7 @@ total: 354
 - [ ] **BUG_REPORTS**: `/private/bug-reports`
 - [ ] **CLIP_FEEDBACK**: `/private/clip-feedback`
 - [ ] **CLIPS_MODULE_ASSETS**: `/clips/module-assets`
+- [ ] **CLIPS_AUTOCLIPS_GAME_CAPABILITIES**: `/clips/autoclips/game-capabilities/:param`
 - [ ] **PAYMENT_PAYOUT_GROUPS**: `/applications/:param/payment-payout-groups`
 - [ ] **GUILD_PROFILE_VISIBILITY**: `/guilds/:param/profile/visibility`
 - [ ] **GUILD_THEME**: `/guilds/:param/theme`
