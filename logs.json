@@ -221,6 +221,10 @@
             "/guilds/:param/users/:param/banners/:param./:param"
         ],
         [
+            "INTELLIGENCE_LAYER_SEARCH",
+            "/guilds/:param/intelligence/search"
+        ],
+        [
             "CHANNEL_CONVERSATIONS",
             "/channels/:param/conversations"
         ],
