@@ -229,6 +229,10 @@
             "/channels/:param/conversations"
         ],
         [
+            "CHANNEL_CONVERSATION",
+            "/channels/:param/conversations/:param"
+        ],
+        [
             "CHANNEL_CONVERSATION_MESSAGES",
             "/channels/:param/conversations/:param/messages"
         ],

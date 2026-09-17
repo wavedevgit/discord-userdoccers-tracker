@@ -2,9 +2,9 @@
 
 | Covered | 526 |
 |---------|------------|
-| Missing | 356 |
+| Missing | 357 |
 ## Missing routes
-total: 356
+total: 357
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -63,6 +63,7 @@ total: 356
 - [ ] **GUILD_MEMBER_BANNER**: `/guilds/:param/users/:param/banners/:param./:param`
 - [ ] **INTELLIGENCE_LAYER_SEARCH**: `/guilds/:param/intelligence/search`
 - [ ] **CHANNEL_CONVERSATIONS**: `/channels/:param/conversations`
+- [ ] **CHANNEL_CONVERSATION**: `/channels/:param/conversations/:param`
 - [ ] **CHANNEL_CONVERSATION_MESSAGES**: `/channels/:param/conversations/:param/messages`
 - [ ] **MESSAGES_ANNOUNCEMENT**: `/channels/:param/messages/announcement`
 - [ ] **CHANNEL_VOICE_HANGOUT**: `/channels/:param/voice-hangout`
