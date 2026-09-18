@@ -1,6 +1,6 @@
 # Results
 
-| Covered | 526 |
+| Covered | 525 |
 |---------|------------|
 | Missing | 357 |
 ## Missing routes
@@ -365,7 +365,7 @@ total: 357
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
 ## Covered routes
-total: 526
+total: 525
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -757,7 +757,6 @@ total: 526
 - [x] **HUB_WAITLIST_SIGNUP**: `/hub-waitlist/signup`
 - [x] **HUB_EMAIL_VERIFY_CODE**: `/guilds/automations/email-domain-lookup/verify-code`
 - [x] **PROMOTIONS**: `/promotions`
-- [x] **BOGO_PROMOTIONS**: `/bogo-promotions`
 - [x] **CLAIMED_OUTBOUND_PROMOTION_CODES**: `/users/@me/outbound-promotions/codes`
 - [x] **CLAIM_OUTBOUND_PROMOTION_CODE**: `/outbound-promotions/:param/claim`
 - [x] **HUB_EMAIL_VERIFY_SEND**: `/guilds/automations/email-domain-lookup`
