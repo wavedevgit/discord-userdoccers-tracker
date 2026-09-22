@@ -457,6 +457,10 @@
             "/users/@me/age-signal/challenge"
         ],
         [
+            "AGE_SIGNAL_ATTEST_KEY",
+            "/users/@me/age-signal/attest-key"
+        ],
+        [
             "AGE_VERIFICATION_REACTIVE_CHECK",
             "/users/@me/age-verification/check"
         ],
@@ -3345,10 +3349,6 @@
         [
             "EXPLICIT_MEDIA_SENDER_REPORT_FALSE_POSITIVE",
             "/attachments/sender-report-false-positive"
-        ],
-        [
-            "BULK_GUILD_BAN",
-            "/guilds/:param/bulk-ban"
         ],
         [
             "BULK_GUILD_BAN_V2",

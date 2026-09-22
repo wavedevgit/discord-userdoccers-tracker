@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 525 |
+| Covered | 524 |
 |---------|------------|
-| Missing | 356 |
+| Missing | 357 |
 ## Missing routes
-total: 356
+total: 357
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -120,6 +120,7 @@ total: 356
 - [ ] **GOOGLE_WALLET_VERIFY_SUSPENDED_USER**: `/age-verification/google-wallet/suspended/verify`
 - [ ] **AGE_SIGNAL**: `/users/@me/age-signal`
 - [ ] **AGE_SIGNAL_CHALLENGE**: `/users/@me/age-signal/challenge`
+- [ ] **AGE_SIGNAL_ATTEST_KEY**: `/users/@me/age-signal/attest-key`
 - [ ] **AGE_VERIFICATION_REACTIVE_CHECK**: `/users/@me/age-verification/check`
 - [ ] **AGE_VERIFICATION_RESET**: `/users/@me/age-verification/reset`
 - [ ] **LOGIN**: `/auth/login`
@@ -364,7 +365,7 @@ total: 356
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
 ## Covered routes
-total: 525
+total: 524
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -846,7 +847,6 @@ total: 525
 - [x] **SAFETY_HUB_CHECK_SUSPENDED_AGE_VERIFICATION**: `/safety-hub/suspended/check-verification`
 - [x] **EXPLICIT_MEDIA_REPORT_FALSE_POSITIVE**: `/attachments/report-false-positive`
 - [x] **EXPLICIT_MEDIA_SENDER_REPORT_FALSE_POSITIVE**: `/attachments/sender-report-false-positive`
-- [x] **BULK_GUILD_BAN**: `/guilds/:param/bulk-ban`
 - [x] **BULK_GUILD_BAN_V2**: `/guilds/:param/bulk-ban/v2`
 - [x] **EXPLICIT_MEDIA_SCAN_MESSAGES**: `/channels/:param/explicit-media`
 - [x] **EXPLICIT_MEDIA_SCAN_MULTI_CHANNEL_MESSAGES**: `/messages/explicit-media`
