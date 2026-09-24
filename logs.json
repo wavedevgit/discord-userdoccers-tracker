@@ -849,6 +849,10 @@
             "/storefront/promotions"
         ],
         [
+            "STOREFRONT_PROMOTION_CLAIM",
+            "/storefront/promotions/:param/claim"
+        ],
+        [
             "STOREFRONT_PRICES",
             "/storefront/pricing"
         ],
@@ -1267,6 +1271,10 @@
         [
             "FORCE_SEND_PROMPT",
             "/:param/force-send-prompt"
+        ],
+        [
+            "DISMISSIBLE_CONTENT_ARBITRATE",
+            "/dismissible-content/arbitrate"
         ],
         [
             "ADS_IOS_ATTRIBUTION_SIGN_PAYLOAD",

@@ -2,9 +2,9 @@
 
 | Covered | 524 |
 |---------|------------|
-| Missing | 362 |
+| Missing | 364 |
 ## Missing routes
-total: 362
+total: 364
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -218,6 +218,7 @@ total: 362
 - [ ] **STOREFRONT_COLLECTIONS_FOR_APPLICATION**: `/storefront/collections/applications`
 - [ ] **STOREFRONT_PRODUCTS_WITH_SKUS**: `/storefront/products`
 - [ ] **STOREFRONT_PROMOTIONS**: `/storefront/promotions`
+- [ ] **STOREFRONT_PROMOTION_CLAIM**: `/storefront/promotions/:param/claim`
 - [ ] **STOREFRONT_PRICES**: `/storefront/pricing`
 - [ ] **STORE_DIRECTORY_LAYOUT**: `/store/directory-layouts/:param`
 - [ ] **STORE_DIRECTORY**: `/store/directory/:param`
@@ -323,6 +324,7 @@ total: 362
 - [ ] **SAFETY_HUB_GET_SUSPENDED_AGE_VERIFICATION_METHODS**: `/age-verification/suspended/methods`
 - [ ] **INITIATE_CHANNEL_PROMPTS**: `/initiate-prompts`
 - [ ] **FORCE_SEND_PROMPT**: `/:param/force-send-prompt`
+- [ ] **DISMISSIBLE_CONTENT_ARBITRATE**: `/dismissible-content/arbitrate`
 - [ ] **ADS_IOS_ATTRIBUTION_SIGN_PAYLOAD**: `/ads/ios-attributions/sign-payload`
 - [ ] **QUEST_EARNED_DECISION**: `/quests/earned-decision?quest_ids=:param&content=:param`
 - [ ] **MY_CONTENT_INVENTORY**: `/content-inventory/users/@me/:param`
