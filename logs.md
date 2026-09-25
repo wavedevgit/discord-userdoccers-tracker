@@ -2,9 +2,9 @@
 
 | Covered | 524 |
 |---------|------------|
-| Missing | 364 |
+| Missing | 366 |
 ## Missing routes
-total: 364
+total: 366
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -355,6 +355,8 @@ total: 364
 - [ ] **CONFERENCE_MODE_EVENTS**: `/conference-mode/events`
 - [ ] **CONFERENCE_MODE_CONFERENCES**: `/conference-mode/conference`
 - [ ] **QUESTS_CREATIVES_DISMISS**: `/quests/creatives/:param/dismiss`
+- [ ] **ADS_CREATIVES_PREVIEW_DELIVERY_STATE**: `/ads/creatives/:param/preview/delivery-state`
+- [ ] **ADS_CREATIVES_PREVIEW_DELIVERY_STATE_LOOKBACK**: `/ads/creatives/preview/delivery-state`
 - [ ] **QUESTS_APP_STORE_METADATA**: `/quests/appstore-metadata`
 - [ ] **GUILD_ROOM**: `/guilds/:param/rooms/:param`
 - [ ] **GUILD_ROOM_CONNECT**: `/guilds/:param/rooms/:param/connect`

@@ -1397,6 +1397,14 @@
             "/quests/creatives/:param/dismiss"
         ],
         [
+            "ADS_CREATIVES_PREVIEW_DELIVERY_STATE",
+            "/ads/creatives/:param/preview/delivery-state"
+        ],
+        [
+            "ADS_CREATIVES_PREVIEW_DELIVERY_STATE_LOOKBACK",
+            "/ads/creatives/preview/delivery-state"
+        ],
+        [
             "QUESTS_APP_STORE_METADATA",
             "/quests/appstore-metadata"
         ],
