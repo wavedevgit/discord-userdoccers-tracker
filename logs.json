@@ -1273,6 +1273,14 @@
             "/:param/force-send-prompt"
         ],
         [
+            "CHECKPOINT_COMPLETE",
+            "/checkpoint/complete"
+        ],
+        [
+            "CHECKPOINT_RESET",
+            "/checkpoint/reset"
+        ],
+        [
             "DISMISSIBLE_CONTENT_ARBITRATE",
             "/dismissible-content/arbitrate"
         ],
@@ -3409,6 +3417,10 @@
         [
             "POLL_ANSWER_VOTERS",
             "/channels/:param/polls/:param/answers/:param"
+        ],
+        [
+            "CHECKPOINT",
+            "/checkpoint"
         ],
         [
             "QUESTS_CURRENT_QUESTS",

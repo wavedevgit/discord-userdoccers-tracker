@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 524 |
+| Covered | 525 |
 |---------|------------|
-| Missing | 366 |
+| Missing | 368 |
 ## Missing routes
-total: 366
+total: 368
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -324,6 +324,8 @@ total: 366
 - [ ] **SAFETY_HUB_GET_SUSPENDED_AGE_VERIFICATION_METHODS**: `/age-verification/suspended/methods`
 - [ ] **INITIATE_CHANNEL_PROMPTS**: `/initiate-prompts`
 - [ ] **FORCE_SEND_PROMPT**: `/:param/force-send-prompt`
+- [ ] **CHECKPOINT_COMPLETE**: `/checkpoint/complete`
+- [ ] **CHECKPOINT_RESET**: `/checkpoint/reset`
 - [ ] **DISMISSIBLE_CONTENT_ARBITRATE**: `/dismissible-content/arbitrate`
 - [ ] **ADS_IOS_ATTRIBUTION_SIGN_PAYLOAD**: `/ads/ios-attributions/sign-payload`
 - [ ] **QUEST_EARNED_DECISION**: `/quests/earned-decision?quest_ids=:param&content=:param`
@@ -374,7 +376,7 @@ total: 366
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
 ## Covered routes
-total: 524
+total: 525
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -862,6 +864,7 @@ total: 524
 - [x] **POLL_ANSWERS**: `/channels/:param/polls/:param/answers/@me`
 - [x] **POLL_EXPIRE**: `/channels/:param/polls/:param/expire`
 - [x] **POLL_ANSWER_VOTERS**: `/channels/:param/polls/:param/answers/:param`
+- [x] **CHECKPOINT**: `/checkpoint`
 - [x] **QUESTS_CURRENT_QUESTS**: `/quests/@me`
 - [x] **QUESTS_CLAIMED_QUESTS**: `/quests/@me/claimed`
 - [x] **QUEST**: `/quests/:param`
