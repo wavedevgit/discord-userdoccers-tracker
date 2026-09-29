@@ -221,8 +221,12 @@
             "/guilds/:param/users/:param/banners/:param./:param"
         ],
         [
-            "INTELLIGENCE_LAYER_SEARCH",
+            "SMART_SEARCH",
             "/guilds/:param/intelligence/search"
+        ],
+        [
+            "SUGGESTED_SEARCHES",
+            "/guilds/:param/intelligence/search/suggestions"
         ],
         [
             "CHANNEL_CONVERSATIONS",
@@ -1873,10 +1877,6 @@
         [
             "COLLECTIBLES_CLAIM",
             "/users/@me/claim-premium-collectibles-product"
-        ],
-        [
-            "COLLECTIBLES_CLAIM_CATEGORY_REWARD",
-            "/users/@me/claim-reward-category-product"
         ],
         [
             "COLLECTIBLES_PURCHASES",

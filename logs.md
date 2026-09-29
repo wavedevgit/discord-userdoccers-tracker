@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 525 |
+| Covered | 524 |
 |---------|------------|
-| Missing | 368 |
+| Missing | 369 |
 ## Missing routes
-total: 368
+total: 369
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -61,7 +61,8 @@ total: 368
 - [ ] **LAYOUT_SYSTEM**: `/layouts/:param/:param`
 - [ ] **LAYOUT_SYSTEM_TEMPLATE**: `/templates/:param/:param`
 - [ ] **GUILD_MEMBER_BANNER**: `/guilds/:param/users/:param/banners/:param./:param`
-- [ ] **INTELLIGENCE_LAYER_SEARCH**: `/guilds/:param/intelligence/search`
+- [ ] **SMART_SEARCH**: `/guilds/:param/intelligence/search`
+- [ ] **SUGGESTED_SEARCHES**: `/guilds/:param/intelligence/search/suggestions`
 - [ ] **CHANNEL_CONVERSATIONS**: `/channels/:param/conversations`
 - [ ] **CHANNEL_CONVERSATION**: `/channels/:param/conversations/:param`
 - [ ] **CHANNEL_CONVERSATION_MESSAGES**: `/channels/:param/conversations/:param/messages`
@@ -376,7 +377,7 @@ total: 368
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
 ## Covered routes
-total: 525
+total: 524
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -478,7 +479,6 @@ total: 525
 - [x] **COLLECTIBLES_CATEGORIES_V2**: `/collectibles-categories/v2`
 - [x] **COLLECTIBLES_SEARCH**: `/shop/search`
 - [x] **COLLECTIBLES_CLAIM**: `/users/@me/claim-premium-collectibles-product`
-- [x] **COLLECTIBLES_CLAIM_CATEGORY_REWARD**: `/users/@me/claim-reward-category-product`
 - [x] **COLLECTIBLES_PURCHASES**: `/users/@me/collectibles-purchases`
 - [x] **COLLECTIBLES_PRODUCTS**: `/collectibles-products/:param`
 - [x] **COLLECTIBLES_VALID_GIFT_RECIPIENT**: `/users/@me/valid-collectibles-gift-recipient`
