@@ -1149,6 +1149,10 @@
             "/soundboard-sounds/:param"
         ],
         [
+            "SEND_SOUNDBOARD_ECHO",
+            "/channels/:param/send-soundboard-echo"
+        ],
+        [
             "SEND_CLIPS_REMOTE_TRIGGER",
             "/channels/:param/clips-remote-trigger"
         ],
@@ -1331,6 +1335,10 @@
         [
             "ACCOUNT_REVERT",
             "/auth/revert"
+        ],
+        [
+            "VIRTUAL_CURRENCY_USER_TOTAL_REDEEMED",
+            "/users/@me/virtual-currency/total-redeemed"
         ],
         [
             "ORB_USER_CHALLENGES_LIST",

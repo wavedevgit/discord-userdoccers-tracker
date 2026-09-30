@@ -2,9 +2,9 @@
 
 | Covered | 524 |
 |---------|------------|
-| Missing | 369 |
+| Missing | 371 |
 ## Missing routes
-total: 369
+total: 371
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -293,6 +293,7 @@ total: 369
 - [ ] **VIDEO_FILTER_ASSET_STORAGE**: `/users/:param/video-filter-assets/:param/:param./:param`
 - [ ] **TOP_SOUNDBOARD_SOUNDS_FOR_GUILD**: `/guilds/:param/top-soundboard-sounds`
 - [ ] **SOUNDBOARD_SOUND**: `/soundboard-sounds/:param`
+- [ ] **SEND_SOUNDBOARD_ECHO**: `/channels/:param/send-soundboard-echo`
 - [ ] **SEND_CLIPS_REMOTE_TRIGGER**: `/channels/:param/clips-remote-trigger`
 - [ ] **APPLICATION_COMMANDS_SEARCH**: `/channels/:param/application-commands/search`
 - [ ] **GUILD_COMMANDS_FOR_APPLICATION**: `/guilds/:param/application-commands/:param`
@@ -339,6 +340,7 @@ total: 369
 - [ ] **CAMPAIGN_CONTEXT**: `/users/@me/billing/campaign-context`
 - [ ] **SIMILAR_GAMES**: `/content-inventory/users/@me/similar-games/:param`
 - [ ] **ACCOUNT_REVERT**: `/auth/revert`
+- [ ] **VIRTUAL_CURRENCY_USER_TOTAL_REDEEMED**: `/users/@me/virtual-currency/total-redeemed`
 - [ ] **ORB_USER_CHALLENGES_LIST**: `/users/@me/achievements/list?reward_type=orbs`
 - [ ] **ORB_USER_CHALLENGE_CLAIM**: `/users/@me/achievements/:param/claim`
 - [ ] **ORB_USER_CHALLENGES_UNREAD_STATE**: `/users/@me/achievements/unread-state`
