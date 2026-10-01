@@ -77,6 +77,10 @@
             "/roblox-applications-supplemental-data"
         ],
         [
+            "VIBEGRATIONS_PROJECT_ACK",
+            "/conjuring/projects/:param/ack/:param"
+        ],
+        [
             "GUILD_MEMBER_NICK",
             "/guilds/:param/members/:param/nick"
         ],

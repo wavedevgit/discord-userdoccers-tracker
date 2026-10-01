@@ -2,9 +2,9 @@
 
 | Covered | 524 |
 |---------|------------|
-| Missing | 371 |
+| Missing | 372 |
 ## Missing routes
-total: 371
+total: 372
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -25,6 +25,7 @@ total: 371
 - [ ] **USER_GAMES_NOTIFICATIONS_OVERRIDES**: `/users/@me/settings/game-notifications/overrides`
 - [ ] **PLATFORM_APPLICATION**: `/platform-application`
 - [ ] **ROBLOX_APPLICATIONS_SUPPLEMENTAL_DATA**: `/roblox-applications-supplemental-data`
+- [ ] **VIBEGRATIONS_PROJECT_ACK**: `/conjuring/projects/:param/ack/:param`
 - [ ] **GUILD_MEMBER_NICK**: `/guilds/:param/members/:param/nick`
 - [ ] **GUILD_MEMBER_AVATAR**: `/guilds/:param/users/:param/avatars/:param./:param`
 - [ ] **GAME_NOTIFICATION_SETTINGS**: `/users/@me/notification-settings/muted-games`
