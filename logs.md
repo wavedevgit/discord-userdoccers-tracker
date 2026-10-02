@@ -2,9 +2,9 @@
 
 | Covered | 524 |
 |---------|------------|
-| Missing | 372 |
+| Missing | 373 |
 ## Missing routes
-total: 372
+total: 373
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -372,6 +372,7 @@ total: 372
 - [ ] **GUILD_ROOM_OBJECT_DELETE**: `/guilds/:param/rooms/:param/objects/:param`
 - [ ] **VIBEGRATIONS_PROJECTS**: `/vibegrations/projects`
 - [ ] **VIBEGRATIONS_PROJECT**: `/vibegrations/projects/:param`
+- [ ] **VIBEGRATIONS_PROJECT_LIMIT**: `/vibegrations/project-limit`
 - [ ] **VIBEGRATIONS_PROJECT_WS_TICKET**: `/vibegrations/projects/:param/ws-ticket`
 - [ ] **VIBEGRATIONS_PROJECT_REMIX_TICKET**: `/vibegrations/projects/:param/remix-ticket`
 - [ ] **VIBEGRATIONS_PROJECT_PUBLISH**: `/vibegrations/projects/:param/publish`

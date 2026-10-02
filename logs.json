@@ -1465,6 +1465,10 @@
             "/vibegrations/projects/:param"
         ],
         [
+            "VIBEGRATIONS_PROJECT_LIMIT",
+            "/vibegrations/project-limit"
+        ],
+        [
             "VIBEGRATIONS_PROJECT_WS_TICKET",
             "/vibegrations/projects/:param/ws-ticket"
         ],
