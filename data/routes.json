@@ -10638,6 +10638,7 @@
         "title": "Exchange Provisional Account Child Token",
         "method": "POST",
         "url": "/partner-sdk/child-token",
+        "unauthenticated": true,
         "urls": [
             "/partner-sdk/child-token"
         ],
@@ -10649,6 +10650,7 @@
         "title": "Get Provisional Account Token with Bot",
         "method": "POST",
         "url": "/partner-sdk/token/bot",
+        "supportsBot": true,
         "urls": [
             "/partner-sdk/token/bot"
         ],
@@ -10672,6 +10674,7 @@
         "title": "Unmerge Provisional Account with Bot",
         "method": "POST",
         "url": "/partner-sdk/provisional-accounts/unmerge/bot",
+        "supportsBot": true,
         "urls": [
             "/partner-sdk/provisional-accounts/unmerge/bot"
         ],
