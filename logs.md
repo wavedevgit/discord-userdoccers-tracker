@@ -25,7 +25,7 @@ total: 373
 - [ ] **USER_GAMES_NOTIFICATIONS_OVERRIDES**: `/users/@me/settings/game-notifications/overrides`
 - [ ] **PLATFORM_APPLICATION**: `/platform-application`
 - [ ] **ROBLOX_APPLICATIONS_SUPPLEMENTAL_DATA**: `/roblox-applications-supplemental-data`
-- [ ] **VIBEGRATIONS_PROJECT_ACK**: `/conjuring/projects/:param/ack/:param`
+- [ ] **CONJURE_PROJECT_ACK**: `/conjuring/projects/:param/ack/:param`
 - [ ] **GUILD_MEMBER_NICK**: `/guilds/:param/members/:param/nick`
 - [ ] **GUILD_MEMBER_AVATAR**: `/guilds/:param/users/:param/avatars/:param./:param`
 - [ ] **GAME_NOTIFICATION_SETTINGS**: `/users/@me/notification-settings/muted-games`
@@ -370,13 +370,13 @@ total: 373
 - [ ] **GUILD_ROOM_OBJECT_CREATE**: `/guilds/:param/rooms/:param/objects`
 - [ ] **GUILD_ROOM_OBJECT_UPDATE**: `/guilds/:param/rooms/:param/objects/:param/update`
 - [ ] **GUILD_ROOM_OBJECT_DELETE**: `/guilds/:param/rooms/:param/objects/:param`
-- [ ] **VIBEGRATIONS_PROJECTS**: `/vibegrations/projects`
-- [ ] **VIBEGRATIONS_PROJECT**: `/vibegrations/projects/:param`
-- [ ] **VIBEGRATIONS_PROJECT_LIMIT**: `/vibegrations/project-limit`
-- [ ] **VIBEGRATIONS_PROJECT_WS_TICKET**: `/vibegrations/projects/:param/ws-ticket`
-- [ ] **VIBEGRATIONS_PROJECT_REMIX_TICKET**: `/vibegrations/projects/:param/remix-ticket`
-- [ ] **VIBEGRATIONS_PROJECT_PUBLISH**: `/vibegrations/projects/:param/publish`
-- [ ] **VIBEGRATIONS_PROJECT_PUBLISH_PREVIEW**: `/vibegrations/projects/:param/publish-preview`
+- [ ] **CONJURE_PROJECTS**: `/vibegrations/projects`
+- [ ] **CONJURE_PROJECT**: `/vibegrations/projects/:param`
+- [ ] **CONJURE_PROJECT_LIMIT**: `/vibegrations/project-limit`
+- [ ] **CONJURE_PROJECT_WS_TICKET**: `/vibegrations/projects/:param/ws-ticket`
+- [ ] **CONJURE_PROJECT_REMIX_TICKET**: `/vibegrations/projects/:param/remix-ticket`
+- [ ] **CONJURE_PROJECT_PUBLISH**: `/vibegrations/projects/:param/publish`
+- [ ] **CONJURE_PROJECT_PUBLISH_PREVIEW**: `/vibegrations/projects/:param/publish-preview`
 - [ ] **GUILD_SPACE_IMAGE_TEXT_WIDGET_IMAGE**: `/guild-space/:param/image-text-widget/:param/:param./:param`
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 

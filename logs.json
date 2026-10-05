@@ -77,7 +77,7 @@
             "/roblox-applications-supplemental-data"
         ],
         [
-            "VIBEGRATIONS_PROJECT_ACK",
+            "CONJURE_PROJECT_ACK",
             "/conjuring/projects/:param/ack/:param"
         ],
         [
@@ -1457,31 +1457,31 @@
             "/guilds/:param/rooms/:param/objects/:param"
         ],
         [
-            "VIBEGRATIONS_PROJECTS",
+            "CONJURE_PROJECTS",
             "/vibegrations/projects"
         ],
         [
-            "VIBEGRATIONS_PROJECT",
+            "CONJURE_PROJECT",
             "/vibegrations/projects/:param"
         ],
         [
-            "VIBEGRATIONS_PROJECT_LIMIT",
+            "CONJURE_PROJECT_LIMIT",
             "/vibegrations/project-limit"
         ],
         [
-            "VIBEGRATIONS_PROJECT_WS_TICKET",
+            "CONJURE_PROJECT_WS_TICKET",
             "/vibegrations/projects/:param/ws-ticket"
         ],
         [
-            "VIBEGRATIONS_PROJECT_REMIX_TICKET",
+            "CONJURE_PROJECT_REMIX_TICKET",
             "/vibegrations/projects/:param/remix-ticket"
         ],
         [
-            "VIBEGRATIONS_PROJECT_PUBLISH",
+            "CONJURE_PROJECT_PUBLISH",
             "/vibegrations/projects/:param/publish"
         ],
         [
-            "VIBEGRATIONS_PROJECT_PUBLISH_PREVIEW",
+            "CONJURE_PROJECT_PUBLISH_PREVIEW",
             "/vibegrations/projects/:param/publish-preview"
         ],
         [
