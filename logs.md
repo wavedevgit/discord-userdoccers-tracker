@@ -164,7 +164,6 @@ total: 373
 - [ ] **DISABLE_SERVER_HIGHLIGHT_NOTIFICATIONS**: `/users/disable-server-highlight-notifications`
 - [ ] **REACTION**: `/channels/:param/messages/:param/reactions/:param/:param`
 - [ ] **REACTION_WITH_TYPE**: `/channels/:param/messages/:param/reactions/:param/:param/:param`
-- [ ] **CHANGELOG_MESSAGES**: `/changelogs/@me/messages`
 - [ ] **GUILD_EMBEDDED_APPLICATIONS**: `/guilds/:param/embedded-applications`
 - [ ] **GAME_SERVER_MY_REGIONS**: `/users/@me/game-server-regions`
 - [ ] **GAME_SERVERS_ME**: `/users/@me/game-servers`
@@ -172,6 +171,7 @@ total: 373
 - [ ] **GAME_SERVER_ME_WAKE**: `/users/@me/game-servers/:param/wake`
 - [ ] **BILLING_STRIPE_SETUP_INTENT_SECRET_FOR_PAYMENT_ELEMENTS**: `/users/@me/billing/stripe/payment-elements/setup-intents`
 - [ ] **BILLING_WALLET_INFORMATION**: `/users/@me/billing/wallet/:param/information`
+- [ ] **BILLING_HISTORY**: `/users/@me/billing/history`
 - [ ] **BILLING_INVOICE_PDF**: `/users/@me/billing/invoice`
 - [ ] **BILLING_STRIPE_PAYMENT_INTENTS**: `/users/@me/billing/stripe/payment-intents/payments/:param`
 - [ ] **BILLING_STRIPE_PAYMENT_INTENTS_VIA_ID**: `/users/@me/billing/stripe/payment-intents/:param`

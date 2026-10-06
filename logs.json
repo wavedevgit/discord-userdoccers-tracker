@@ -633,10 +633,6 @@
             "/channels/:param/messages/:param/reactions/:param/:param/:param"
         ],
         [
-            "CHANGELOG_MESSAGES",
-            "/changelogs/@me/messages"
-        ],
-        [
             "GUILD_EMBEDDED_APPLICATIONS",
             "/guilds/:param/embedded-applications"
         ],
@@ -663,6 +659,10 @@
         [
             "BILLING_WALLET_INFORMATION",
             "/users/@me/billing/wallet/:param/information"
+        ],
+        [
+            "BILLING_HISTORY",
+            "/users/@me/billing/history"
         ],
         [
             "BILLING_INVOICE_PDF",
