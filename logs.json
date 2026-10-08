@@ -1433,6 +1433,10 @@
             "/quests/appstore-metadata"
         ],
         [
+            "GAME_ORGANIZATION_INVITES",
+            "/game-organizations/:param/:param/invites"
+        ],
+        [
             "GUILD_ROOM",
             "/guilds/:param/rooms/:param"
         ],
@@ -1463,6 +1467,10 @@
         [
             "CONJURE_PROJECT",
             "/vibegrations/projects/:param"
+        ],
+        [
+            "CONJURE_PROJECT_UNPUBLISH",
+            "/vibegrations/projects/:param/unpublish"
         ],
         [
             "CONJURE_PROJECT_LIMIT",

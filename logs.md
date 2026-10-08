@@ -2,9 +2,9 @@
 
 | Covered | 524 |
 |---------|------------|
-| Missing | 373 |
+| Missing | 375 |
 ## Missing routes
-total: 373
+total: 375
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -364,6 +364,7 @@ total: 373
 - [ ] **ADS_CREATIVES_PREVIEW_DELIVERY_STATE**: `/ads/creatives/:param/preview/delivery-state`
 - [ ] **ADS_CREATIVES_PREVIEW_DELIVERY_STATE_LOOKBACK**: `/ads/creatives/preview/delivery-state`
 - [ ] **QUESTS_APP_STORE_METADATA**: `/quests/appstore-metadata`
+- [ ] **GAME_ORGANIZATION_INVITES**: `/game-organizations/:param/:param/invites`
 - [ ] **GUILD_ROOM**: `/guilds/:param/rooms/:param`
 - [ ] **GUILD_ROOM_CONNECT**: `/guilds/:param/rooms/:param/connect`
 - [ ] **GUILD_ROOM_UPDATE**: `/guilds/:param/rooms/:param/update`
@@ -372,6 +373,7 @@ total: 373
 - [ ] **GUILD_ROOM_OBJECT_DELETE**: `/guilds/:param/rooms/:param/objects/:param`
 - [ ] **CONJURE_PROJECTS**: `/vibegrations/projects`
 - [ ] **CONJURE_PROJECT**: `/vibegrations/projects/:param`
+- [ ] **CONJURE_PROJECT_UNPUBLISH**: `/vibegrations/projects/:param/unpublish`
 - [ ] **CONJURE_PROJECT_LIMIT**: `/vibegrations/project-limit`
 - [ ] **CONJURE_PROJECT_WS_TICKET**: `/vibegrations/projects/:param/ws-ticket`
 - [ ] **CONJURE_PROJECT_REMIX_TICKET**: `/vibegrations/projects/:param/remix-ticket`
