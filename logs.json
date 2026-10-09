@@ -1197,6 +1197,10 @@
             "/applications/:param/subscription-group-listings/:param"
         ],
         [
+            "GET_BOOKMARKS",
+            "/users/@me/saved-messages/bookmarks"
+        ],
+        [
             "FAMILY_CENTER_TEEN_ACTIVITY",
             "/family-center/:param/activity"
         ],

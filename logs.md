@@ -2,9 +2,9 @@
 
 | Covered | 524 |
 |---------|------------|
-| Missing | 375 |
+| Missing | 376 |
 ## Missing routes
-total: 375
+total: 376
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -305,6 +305,7 @@ total: 375
 - [ ] **AUTH_SESSION_NOTIFICATIONS_DEBUG**: `/auth/sessions/debug/notifications`
 - [ ] **AUTH_SESSIONS_LOGOUT**: `/auth/sessions/logout`
 - [ ] **APPLICATION_SUBSCRIPTION_GROUP_LISTING**: `/applications/:param/subscription-group-listings/:param`
+- [ ] **GET_BOOKMARKS**: `/users/@me/saved-messages/bookmarks`
 - [ ] **FAMILY_CENTER_TEEN_ACTIVITY**: `/family-center/:param/activity`
 - [ ] **FAMILY_CENTER_TEEN_ACTIVITY_MORE**: `/family-center/more-activity/:param/:param/:param/:param`
 - [ ] **FAMILY_CENTER_CONNECTION_PREREQUISITES**: `/family-center/connection-prerequisites`
