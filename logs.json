@@ -1441,6 +1441,10 @@
             "/game-organizations/:param/:param/invites"
         ],
         [
+            "GAME_ORGANIZATION_INVITE",
+            "/game-organization-invites/:param"
+        ],
+        [
             "GUILD_ROOM",
             "/guilds/:param/rooms/:param"
         ],
@@ -1466,35 +1470,35 @@
         ],
         [
             "CONJURE_PROJECTS",
-            "/vibegrations/projects"
+            "/conjure/projects"
         ],
         [
             "CONJURE_PROJECT",
-            "/vibegrations/projects/:param"
+            "/conjure/projects/:param"
         ],
         [
             "CONJURE_PROJECT_UNPUBLISH",
-            "/vibegrations/projects/:param/unpublish"
+            "/conjure/projects/:param/unpublish"
         ],
         [
             "CONJURE_PROJECT_LIMIT",
-            "/vibegrations/project-limit"
+            "/conjure/project-limit"
         ],
         [
             "CONJURE_PROJECT_WS_TICKET",
-            "/vibegrations/projects/:param/ws-ticket"
+            "/conjure/projects/:param/ws-ticket"
         ],
         [
             "CONJURE_PROJECT_REMIX_TICKET",
-            "/vibegrations/projects/:param/remix-ticket"
+            "/conjure/projects/:param/remix-ticket"
         ],
         [
             "CONJURE_PROJECT_PUBLISH",
-            "/vibegrations/projects/:param/publish"
+            "/conjure/projects/:param/publish"
         ],
         [
             "CONJURE_PROJECT_PUBLISH_PREVIEW",
-            "/vibegrations/projects/:param/publish-preview"
+            "/conjure/projects/:param/publish-preview"
         ],
         [
             "GUILD_SPACE_IMAGE_TEXT_WIDGET_IMAGE",

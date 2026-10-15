@@ -2,9 +2,9 @@
 
 | Covered | 524 |
 |---------|------------|
-| Missing | 376 |
+| Missing | 377 |
 ## Missing routes
-total: 376
+total: 377
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -366,20 +366,21 @@ total: 376
 - [ ] **ADS_CREATIVES_PREVIEW_DELIVERY_STATE_LOOKBACK**: `/ads/creatives/preview/delivery-state`
 - [ ] **QUESTS_APP_STORE_METADATA**: `/quests/appstore-metadata`
 - [ ] **GAME_ORGANIZATION_INVITES**: `/game-organizations/:param/:param/invites`
+- [ ] **GAME_ORGANIZATION_INVITE**: `/game-organization-invites/:param`
 - [ ] **GUILD_ROOM**: `/guilds/:param/rooms/:param`
 - [ ] **GUILD_ROOM_CONNECT**: `/guilds/:param/rooms/:param/connect`
 - [ ] **GUILD_ROOM_UPDATE**: `/guilds/:param/rooms/:param/update`
 - [ ] **GUILD_ROOM_OBJECT_CREATE**: `/guilds/:param/rooms/:param/objects`
 - [ ] **GUILD_ROOM_OBJECT_UPDATE**: `/guilds/:param/rooms/:param/objects/:param/update`
 - [ ] **GUILD_ROOM_OBJECT_DELETE**: `/guilds/:param/rooms/:param/objects/:param`
-- [ ] **CONJURE_PROJECTS**: `/vibegrations/projects`
-- [ ] **CONJURE_PROJECT**: `/vibegrations/projects/:param`
-- [ ] **CONJURE_PROJECT_UNPUBLISH**: `/vibegrations/projects/:param/unpublish`
-- [ ] **CONJURE_PROJECT_LIMIT**: `/vibegrations/project-limit`
-- [ ] **CONJURE_PROJECT_WS_TICKET**: `/vibegrations/projects/:param/ws-ticket`
-- [ ] **CONJURE_PROJECT_REMIX_TICKET**: `/vibegrations/projects/:param/remix-ticket`
-- [ ] **CONJURE_PROJECT_PUBLISH**: `/vibegrations/projects/:param/publish`
-- [ ] **CONJURE_PROJECT_PUBLISH_PREVIEW**: `/vibegrations/projects/:param/publish-preview`
+- [ ] **CONJURE_PROJECTS**: `/conjure/projects`
+- [ ] **CONJURE_PROJECT**: `/conjure/projects/:param`
+- [ ] **CONJURE_PROJECT_UNPUBLISH**: `/conjure/projects/:param/unpublish`
+- [ ] **CONJURE_PROJECT_LIMIT**: `/conjure/project-limit`
+- [ ] **CONJURE_PROJECT_WS_TICKET**: `/conjure/projects/:param/ws-ticket`
+- [ ] **CONJURE_PROJECT_REMIX_TICKET**: `/conjure/projects/:param/remix-ticket`
+- [ ] **CONJURE_PROJECT_PUBLISH**: `/conjure/projects/:param/publish`
+- [ ] **CONJURE_PROJECT_PUBLISH_PREVIEW**: `/conjure/projects/:param/publish-preview`
 - [ ] **GUILD_SPACE_IMAGE_TEXT_WIDGET_IMAGE**: `/guild-space/:param/image-text-widget/:param/:param./:param`
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
