@@ -2,9 +2,9 @@
 
 | Covered | 524 |
 |---------|------------|
-| Missing | 377 |
+| Missing | 380 |
 ## Missing routes
-total: 377
+total: 380
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -39,6 +39,7 @@ total: 377
 - [ ] **GUILD_OFFICIAL_MESSAGES**: `/guilds/:param/messages/official`
 - [ ] **GUILD_ANALYTICS_OVERVIEW**: `/guilds/:param/analytics/overview`
 - [ ] **EMOJI**: `/emojis/:param./:param`
+- [ ] **EMOJI_PACKS**: `/emoji-packs`
 - [ ] **GUILD_SPLASH**: `/guilds/:param/splashes/:param.jpg`
 - [ ] **GUILD_DISCOVERY_SPLASH**: `/guilds/:param/discovery-splashes/:param.jpg`
 - [ ] **GUILD_BANNER**: `/guilds/:param/banners/:param./:param`
@@ -306,6 +307,7 @@ total: 377
 - [ ] **AUTH_SESSIONS_LOGOUT**: `/auth/sessions/logout`
 - [ ] **APPLICATION_SUBSCRIPTION_GROUP_LISTING**: `/applications/:param/subscription-group-listings/:param`
 - [ ] **GET_BOOKMARKS**: `/users/@me/saved-messages/bookmarks`
+- [ ] **CONTEXTUAL_REFERRAL_UPSELL_DISMISSALS**: `/users/@me/contextual-referral-upsell-dismissals`
 - [ ] **FAMILY_CENTER_TEEN_ACTIVITY**: `/family-center/:param/activity`
 - [ ] **FAMILY_CENTER_TEEN_ACTIVITY_MORE**: `/family-center/more-activity/:param/:param/:param/:param`
 - [ ] **FAMILY_CENTER_CONNECTION_PREREQUISITES**: `/family-center/connection-prerequisites`
@@ -381,6 +383,7 @@ total: 377
 - [ ] **CONJURE_PROJECT_REMIX_TICKET**: `/conjure/projects/:param/remix-ticket`
 - [ ] **CONJURE_PROJECT_PUBLISH**: `/conjure/projects/:param/publish`
 - [ ] **CONJURE_PROJECT_PUBLISH_PREVIEW**: `/conjure/projects/:param/publish-preview`
+- [ ] **CONJURE_APPLICATION_CHANNELS**: `/conjure/applications/:param/channels`
 - [ ] **GUILD_SPACE_IMAGE_TEXT_WIDGET_IMAGE**: `/guild-space/:param/image-text-widget/:param/:param./:param`
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 

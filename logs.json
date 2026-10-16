@@ -133,6 +133,10 @@
             "/emojis/:param./:param"
         ],
         [
+            "EMOJI_PACKS",
+            "/emoji-packs"
+        ],
+        [
             "GUILD_SPLASH",
             "/guilds/:param/splashes/:param.jpg"
         ],
@@ -1201,6 +1205,10 @@
             "/users/@me/saved-messages/bookmarks"
         ],
         [
+            "CONTEXTUAL_REFERRAL_UPSELL_DISMISSALS",
+            "/users/@me/contextual-referral-upsell-dismissals"
+        ],
+        [
             "FAMILY_CENTER_TEEN_ACTIVITY",
             "/family-center/:param/activity"
         ],
@@ -1499,6 +1507,10 @@
         [
             "CONJURE_PROJECT_PUBLISH_PREVIEW",
             "/conjure/projects/:param/publish-preview"
+        ],
+        [
+            "CONJURE_APPLICATION_CHANNELS",
+            "/conjure/applications/:param/channels"
         ],
         [
             "GUILD_SPACE_IMAGE_TEXT_WIDGET_IMAGE",
