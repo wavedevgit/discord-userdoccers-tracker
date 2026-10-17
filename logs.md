@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 524 |
+| Covered | 523 |
 |---------|------------|
-| Missing | 380 |
+| Missing | 382 |
 ## Missing routes
-total: 380
+total: 382
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -257,6 +257,7 @@ total: 380
 - [ ] **PARTNER_PERK**: `/users/@me/partner-perks/:param`
 - [ ] **PARTNER_PERK_ACTIVATION_STATUS**: `/users/@me/partner-perks/:param/activation-status`
 - [ ] **MOBILE_GAME_COMMUNITIES**: `/discoverable-guilds/mobile-game-communities`
+- [ ] **GUILD_WEB_PAGE**: `/index/servers/:param`
 - [ ] **CHANNEL_AFFINITIES_V2**: `/users/@me/affinities/v2/channels`
 - [ ] **PARTNERS_CONNECTIONS**: `/partners/connections`
 - [ ] **PARTNERS_APPLY**: `/partners/apply`
@@ -292,6 +293,7 @@ total: 380
 - [ ] **TENOR_ASSET_PATH**: `/tenor`
 - [ ] **GIPHY_ASSET_PATH**: `/giphy`
 - [ ] **KLIPY_ASSET_PATH**: `/klipy`
+- [ ] **ACCOUNT_NOTIFICATION_DECLARATIVE_SETTINGS**: `/users/@me/notification-settings/declarative`
 - [ ] **VIDEO_FILTER_ASSET_STORAGE**: `/users/:param/video-filter-assets/:param/:param./:param`
 - [ ] **TOP_SOUNDBOARD_SOUNDS_FOR_GUILD**: `/guilds/:param/top-soundboard-sounds`
 - [ ] **SOUNDBOARD_SOUND**: `/soundboard-sounds/:param`
@@ -388,7 +390,7 @@ total: 380
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
 ## Covered routes
-total: 524
+total: 523
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -708,7 +710,6 @@ total: 524
 - [x] **GUILD_DISCOVERY**: `/discoverable-guilds`
 - [x] **GUILD_DISCOVERY_SEARCH**: `/discoverable-guilds/search`
 - [x] **GUILD_DISCOVERY_CATEGORIES**: `/discovery/categories`
-- [x] **GUILD_DISCOVERY_SLUG**: `/discovery/:param`
 - [x] **GUILD_DISCOVERY_METADATA**: `/guilds/:param/discovery-metadata`
 - [x] **GUILD_DISCOVERY_UPDATE_CATEGORY**: `/guilds/:param/discovery-categories/:param`
 - [x] **STREAM_PREVIEW**: `/streams/:param/preview`

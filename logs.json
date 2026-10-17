@@ -1005,6 +1005,10 @@
             "/discoverable-guilds/mobile-game-communities"
         ],
         [
+            "GUILD_WEB_PAGE",
+            "/index/servers/:param"
+        ],
+        [
             "CHANNEL_AFFINITIES_V2",
             "/users/@me/affinities/v2/channels"
         ],
@@ -1143,6 +1147,10 @@
         [
             "KLIPY_ASSET_PATH",
             "/klipy"
+        ],
+        [
+            "ACCOUNT_NOTIFICATION_DECLARATIVE_SETTINGS",
+            "/users/@me/notification-settings/declarative"
         ],
         [
             "VIDEO_FILTER_ASSET_STORAGE",
@@ -2793,10 +2801,6 @@
         [
             "GUILD_DISCOVERY_CATEGORIES",
             "/discovery/categories"
-        ],
-        [
-            "GUILD_DISCOVERY_SLUG",
-            "/discovery/:param"
         ],
         [
             "GUILD_DISCOVERY_METADATA",
