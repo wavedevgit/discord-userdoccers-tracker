@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 523 |
+| Covered | 521 |
 |---------|------------|
-| Missing | 382 |
+| Missing | 385 |
 ## Missing routes
-total: 382
+total: 385
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -334,6 +334,9 @@ total: 382
 - [ ] **FORCE_SEND_PROMPT**: `/:param/force-send-prompt`
 - [ ] **CHECKPOINT_COMPLETE**: `/checkpoint/complete`
 - [ ] **CHECKPOINT_RESET**: `/checkpoint/reset`
+- [ ] **ORBS_ARCADE_GAMES**: `/orbs-arcade/games/@me`
+- [ ] **ORBS_ARCADE_CLAIM_REWARDS**: `/orbs-arcade/games/:param/rewards/claim`
+- [ ] **ORBS_ARCADE_RESET_GAME**: `/orbs-arcade/games/:param/reset`
 - [ ] **DISMISSIBLE_CONTENT_ARBITRATE**: `/dismissible-content/arbitrate`
 - [ ] **ADS_IOS_ATTRIBUTION_SIGN_PAYLOAD**: `/ads/ios-attributions/sign-payload`
 - [ ] **QUEST_EARNED_DECISION**: `/quests/earned-decision?quest_ids=:param&content=:param`
@@ -390,7 +393,7 @@ total: 382
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
 ## Covered routes
-total: 523
+total: 521
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -415,8 +418,6 @@ total: 523
 - [x] **USER_ACTIVITY_SUBSCRIBE**: `/users/@me/activities/subscribe`
 - [x] **APPLICATION_ACTIVITY_STATISTICS**: `/activities/statistics/applications/:param`
 - [x] **ACTIVITIES**: `/activities`
-- [x] **UNVERIFIED_APPLICATIONS**: `/unverified-applications`
-- [x] **UNVERIFIED_APPLICATIONS_ICONS**: `/unverified-applications/icons`
 - [x] **GUILD_FEATURE_ACK**: `/guilds/:param/ack/:param/:param`
 - [x] **USER_NON_CHANNEL_ACK**: `/users/@me/:param/:param/ack`
 - [x] **BULK_ACK**: `/read-states/ack-bulk`

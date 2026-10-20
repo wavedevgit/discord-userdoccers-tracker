@@ -1313,6 +1313,18 @@
             "/checkpoint/reset"
         ],
         [
+            "ORBS_ARCADE_GAMES",
+            "/orbs-arcade/games/@me"
+        ],
+        [
+            "ORBS_ARCADE_CLAIM_REWARDS",
+            "/orbs-arcade/games/:param/rewards/claim"
+        ],
+        [
+            "ORBS_ARCADE_RESET_GAME",
+            "/orbs-arcade/games/:param/reset"
+        ],
+        [
             "DISMISSIBLE_CONTENT_ARBITRATE",
             "/dismissible-content/arbitrate"
         ],
@@ -1621,14 +1633,6 @@
         [
             "ACTIVITIES",
             "/activities"
-        ],
-        [
-            "UNVERIFIED_APPLICATIONS",
-            "/unverified-applications"
-        ],
-        [
-            "UNVERIFIED_APPLICATIONS_ICONS",
-            "/unverified-applications/icons"
         ],
         [
             "GUILD_FEATURE_ACK",
