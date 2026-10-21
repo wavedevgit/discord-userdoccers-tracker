@@ -1529,6 +1529,10 @@
             "/conjure/projects/:param/publish-preview"
         ],
         [
+            "CONJURE_PROJECT_PREVIEW_DM",
+            "/conjure/projects/:param/preview-dm"
+        ],
+        [
             "CONJURE_APPLICATION_CHANNELS",
             "/conjure/applications/:param/channels"
         ],
@@ -1957,10 +1961,6 @@
         [
             "COLLECTIBLES_SHOP",
             "/collectibles-shop"
-        ],
-        [
-            "COLLECTIBLES_SHOP_TAB_LAYOUT",
-            "/collectibles-shop-tab-layouts/:param"
         ],
         [
             "MESSAGES",

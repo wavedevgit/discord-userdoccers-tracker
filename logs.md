@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 521 |
+| Covered | 520 |
 |---------|------------|
-| Missing | 385 |
+| Missing | 386 |
 ## Missing routes
-total: 385
+total: 386
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -388,12 +388,13 @@ total: 385
 - [ ] **CONJURE_PROJECT_REMIX_TICKET**: `/conjure/projects/:param/remix-ticket`
 - [ ] **CONJURE_PROJECT_PUBLISH**: `/conjure/projects/:param/publish`
 - [ ] **CONJURE_PROJECT_PUBLISH_PREVIEW**: `/conjure/projects/:param/publish-preview`
+- [ ] **CONJURE_PROJECT_PREVIEW_DM**: `/conjure/projects/:param/preview-dm`
 - [ ] **CONJURE_APPLICATION_CHANNELS**: `/conjure/applications/:param/channels`
 - [ ] **GUILD_SPACE_IMAGE_TEXT_WIDGET_IMAGE**: `/guild-space/:param/image-text-widget/:param/:param./:param`
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
 ## Covered routes
-total: 521
+total: 520
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -499,7 +500,6 @@ total: 521
 - [x] **COLLECTIBLES_VALID_GIFT_RECIPIENTS_BATCH**: `/users/@me/valid-collectibles-gift-recipients-batch`
 - [x] **COLLECTIBLES_MARKETING**: `/users/@me/collectibles-marketing`
 - [x] **COLLECTIBLES_SHOP**: `/collectibles-shop`
-- [x] **COLLECTIBLES_SHOP_TAB_LAYOUT**: `/collectibles-shop-tab-layouts/:param`
 - [x] **MESSAGES**: `/channels/:param/messages`
 - [x] **MESSAGES_GREET**: `/channels/:param/greet`
 - [x] **MESSAGE**: `/channels/:param/messages/:param`
