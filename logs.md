@@ -2,9 +2,9 @@
 
 | Covered | 520 |
 |---------|------------|
-| Missing | 386 |
+| Missing | 385 |
 ## Missing routes
-total: 386
+total: 385
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -264,7 +264,6 @@ total: 386
 - [ ] **STORE_DIRECTORY_LAYOUT_STICKER_PACKS**: `/sticker-packs/directory-v2/:param`
 - [ ] **STICKER_ASSET**: `/stickers/:param./:param`
 - [ ] **ACTIVITY_JOIN_INSTANCE**: `/activities/applications/:param/activity-instances/:param/join`
-- [ ] **ACTIVITIES_DISCORD_CONFIG**: `/activities/discord-config/:param`
 - [ ] **ACTIVITIES_TRUSTED_LINKS**: `/applications/:param/trusted-links/check`
 - [ ] **APPLICATION_PROXY_TICKET**: `/applications/:param/proxy-tickets`
 - [ ] **APPLICATION_BOT_GUILD_COMMAND_PERMISSIONS**: `/applications/:param/guilds/:param/commands/:param/permissions`
