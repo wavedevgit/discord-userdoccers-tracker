@@ -2,9 +2,9 @@
 
 | Covered | 520 |
 |---------|------------|
-| Missing | 385 |
+| Missing | 386 |
 ## Missing routes
-total: 385
+total: 386
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -373,6 +373,7 @@ total: 385
 - [ ] **QUESTS_APP_STORE_METADATA**: `/quests/appstore-metadata`
 - [ ] **GAME_ORGANIZATION_INVITES**: `/game-organizations/:param/:param/invites`
 - [ ] **GAME_ORGANIZATION_INVITE**: `/game-organization-invites/:param`
+- [ ] **GAME_ORGANIZATIONS_INVITABLE**: `/game-organizations/invitable/@me`
 - [ ] **GUILD_ROOM**: `/guilds/:param/rooms/:param`
 - [ ] **GUILD_ROOM_CONNECT**: `/guilds/:param/rooms/:param/connect`
 - [ ] **GUILD_ROOM_UPDATE**: `/guilds/:param/rooms/:param/update`
