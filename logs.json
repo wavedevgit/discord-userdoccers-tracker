@@ -1321,6 +1321,10 @@
             "/orbs-arcade/games/:param/reset"
         ],
         [
+            "ORBS_ARCADE_GAME_ENROLLMENT",
+            "/orbs-arcade/games/:param/enrollment"
+        ],
+        [
             "DISMISSIBLE_CONTENT_ARBITRATE",
             "/dismissible-content/arbitrate"
         ],
@@ -1467,6 +1471,10 @@
         [
             "GAME_ORGANIZATION_INVITE",
             "/game-organization-invites/:param"
+        ],
+        [
+            "GAME_ORGANIZATION_INVITE_JOIN",
+            "/game-organization-invites/:param/join"
         ],
         [
             "GAME_ORGANIZATIONS_INVITABLE",

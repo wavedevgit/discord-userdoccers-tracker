@@ -2,9 +2,9 @@
 
 | Covered | 520 |
 |---------|------------|
-| Missing | 386 |
+| Missing | 388 |
 ## Missing routes
-total: 386
+total: 388
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -336,6 +336,7 @@ total: 386
 - [ ] **ORBS_ARCADE_GAMES**: `/orbs-arcade/games/@me`
 - [ ] **ORBS_ARCADE_CLAIM_REWARDS**: `/orbs-arcade/games/:param/rewards/claim`
 - [ ] **ORBS_ARCADE_RESET_GAME**: `/orbs-arcade/games/:param/reset`
+- [ ] **ORBS_ARCADE_GAME_ENROLLMENT**: `/orbs-arcade/games/:param/enrollment`
 - [ ] **DISMISSIBLE_CONTENT_ARBITRATE**: `/dismissible-content/arbitrate`
 - [ ] **ADS_IOS_ATTRIBUTION_SIGN_PAYLOAD**: `/ads/ios-attributions/sign-payload`
 - [ ] **QUEST_EARNED_DECISION**: `/quests/earned-decision?quest_ids=:param&content=:param`
@@ -373,6 +374,7 @@ total: 386
 - [ ] **QUESTS_APP_STORE_METADATA**: `/quests/appstore-metadata`
 - [ ] **GAME_ORGANIZATION_INVITES**: `/game-organizations/:param/:param/invites`
 - [ ] **GAME_ORGANIZATION_INVITE**: `/game-organization-invites/:param`
+- [ ] **GAME_ORGANIZATION_INVITE_JOIN**: `/game-organization-invites/:param/join`
 - [ ] **GAME_ORGANIZATIONS_INVITABLE**: `/game-organizations/invitable/@me`
 - [ ] **GUILD_ROOM**: `/guilds/:param/rooms/:param`
 - [ ] **GUILD_ROOM_CONNECT**: `/guilds/:param/rooms/:param/connect`
