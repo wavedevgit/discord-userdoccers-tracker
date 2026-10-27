@@ -409,10 +409,6 @@
             "/captcha/decider"
         ],
         [
-            "AGE_ASSURANCE_TEST",
-            "/age-verification/test"
-        ],
-        [
             "VERIFY_AGE_V2",
             "/age-verification/verify/v2"
         ],
@@ -879,6 +875,10 @@
         [
             "STORE_PUBLISHED_LISTINGS_SKU_JOIN_GUILD",
             "/store/published-listings/skus/:param/guild/join"
+        ],
+        [
+            "STORE_SKU_PUBLIC",
+            "/store/skus/:param/public"
         ],
         [
             "STORE_LISTING",

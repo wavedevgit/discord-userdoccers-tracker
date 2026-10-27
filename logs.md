@@ -108,7 +108,6 @@ total: 388
 - [ ] **CONNECTIONS_LINK_DISPATCH_AUTH_CALLBACK**: `/connections/:param/link-dispatch-auth-callback`
 - [ ] **XBOX_HANDOFF**: `/consoles/xbox-handoff`
 - [ ] **CAPTCHA_TEST**: `/captcha/decider`
-- [ ] **AGE_ASSURANCE_TEST**: `/age-verification/test`
 - [ ] **VERIFY_AGE_V2**: `/age-verification/verify/v2`
 - [ ] **AGE_VERIFICATION_MANUAL_REVIEW**: `/age-verification/manual-review`
 - [ ] **AGE_VERIFICATION_SUSPENDED_MANUAL_REVIEW**: `/age-verification/suspended/manual-review`
@@ -226,6 +225,7 @@ total: 388
 - [ ] **STORE_DIRECTORY_LAYOUT**: `/store/directory-layouts/:param`
 - [ ] **STORE_DIRECTORY**: `/store/directory/:param`
 - [ ] **STORE_PUBLISHED_LISTINGS_SKU_JOIN_GUILD**: `/store/published-listings/skus/:param/guild/join`
+- [ ] **STORE_SKU_PUBLIC**: `/store/skus/:param/public`
 - [ ] **STORE_LISTING**: `/store/listings/:param`
 - [ ] **SOCIAL_LAYER_STOREFRONT_BY_APPLICATION_ID**: `/partner-sdk/applications/:param/application-storefront`
 - [ ] **SOCIAL_LAYER_STOREFRONTS_ALL**: `/partner-sdk/applications/:param/storefronts/preview`
