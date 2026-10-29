@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 520 |
+| Covered | 519 |
 |---------|------------|
-| Missing | 388 |
+| Missing | 389 |
 ## Missing routes
-total: 388
+total: 389
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -375,6 +375,7 @@ total: 388
 - [ ] **GAME_ORGANIZATION_INVITES**: `/game-organizations/:param/:param/invites`
 - [ ] **GAME_ORGANIZATION_INVITE**: `/game-organization-invites/:param`
 - [ ] **GAME_ORGANIZATION_INVITE_JOIN**: `/game-organization-invites/:param/join`
+- [ ] **GAME_ORGANIZATION_INVITE_CHARACTERS**: `/game-organization-invites/:param/characters`
 - [ ] **GAME_ORGANIZATIONS_INVITABLE**: `/game-organizations/invitable/@me`
 - [ ] **GUILD_ROOM**: `/guilds/:param/rooms/:param`
 - [ ] **GUILD_ROOM_CONNECT**: `/guilds/:param/rooms/:param/connect`
@@ -396,7 +397,7 @@ total: 388
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
 ## Covered routes
-total: 520
+total: 519
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -642,7 +643,6 @@ total: 520
 - [x] **BILLING_PAYMENT_SOURCES**: `/users/@me/billing/payment-sources`
 - [x] **BILLING_PAYMENT_SOURCES_VALIDATE_BILLING_ADDRESS**: `/users/@me/billing/payment-sources/validate-billing-address`
 - [x] **BILLING_PAYMENT_SOURCE**: `/users/@me/billing/payment-sources/:param`
-- [x] **BILLING_PAYMENTS**: `/users/@me/billing/payments`
 - [x] **BILLING_PAYMENT**: `/users/@me/billing/payments/:param`
 - [x] **BILLING_PAYMENTS_VOID**: `/users/@me/billing/payments/:param/void`
 - [x] **BILLING_INVOICE_BREAKDOWN**: `/users/@me/billing/invoice/breakdown`

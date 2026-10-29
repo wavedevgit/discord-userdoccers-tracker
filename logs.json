@@ -1477,6 +1477,10 @@
             "/game-organization-invites/:param/join"
         ],
         [
+            "GAME_ORGANIZATION_INVITE_CHARACTERS",
+            "/game-organization-invites/:param/characters"
+        ],
+        [
             "GAME_ORGANIZATIONS_INVITABLE",
             "/game-organizations/invitable/@me"
         ],
@@ -2529,10 +2533,6 @@
         [
             "BILLING_PAYMENT_SOURCE",
             "/users/@me/billing/payment-sources/:param"
-        ],
-        [
-            "BILLING_PAYMENTS",
-            "/users/@me/billing/payments"
         ],
         [
             "BILLING_PAYMENT",
