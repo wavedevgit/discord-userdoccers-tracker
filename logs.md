@@ -2,9 +2,9 @@
 
 | Covered | 519 |
 |---------|------------|
-| Missing | 389 |
+| Missing | 390 |
 ## Missing routes
-total: 389
+total: 390
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -123,6 +123,7 @@ total: 389
 - [ ] **AGE_SIGNAL**: `/users/@me/age-signal`
 - [ ] **AGE_SIGNAL_CHALLENGE**: `/users/@me/age-signal/challenge`
 - [ ] **AGE_SIGNAL_ATTEST_KEY**: `/users/@me/age-signal/attest-key`
+- [ ] **APP_STORE_CONSENT_REINSTATE**: `/users/@me/app-store-consent/reinstate`
 - [ ] **AGE_VERIFICATION_REACTIVE_CHECK**: `/users/@me/age-verification/check`
 - [ ] **AGE_VERIFICATION_RESET**: `/users/@me/age-verification/reset`
 - [ ] **LOGIN**: `/auth/login`

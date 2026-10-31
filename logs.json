@@ -469,6 +469,10 @@
             "/users/@me/age-signal/attest-key"
         ],
         [
+            "APP_STORE_CONSENT_REINSTATE",
+            "/users/@me/app-store-consent/reinstate"
+        ],
+        [
             "AGE_VERIFICATION_REACTIVE_CHECK",
             "/users/@me/age-verification/check"
         ],
