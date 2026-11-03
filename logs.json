@@ -1469,6 +1469,10 @@
             "/quests/appstore-metadata"
         ],
         [
+            "GAME_ORGANIZATION",
+            "/guilds/:param/game-organizations"
+        ],
+        [
             "GAME_ORGANIZATION_INVITES",
             "/game-organizations/:param/:param/invites"
         ],
