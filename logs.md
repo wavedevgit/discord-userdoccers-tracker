@@ -2,13 +2,14 @@
 
 | Covered | 519 |
 |---------|------------|
-| Missing | 391 |
+| Missing | 392 |
 ## Missing routes
-total: 391
+total: 392
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
 - [ ] **USER_BADGE_SETTINGS**: `/users/@me/badges/settings`
+- [ ] **USER_BADGE_ACK**: `/users/@me/badges/:param/ack`
 - [ ] **USER_PROFILE_WIDGET_ASSET_UPLOAD**: `/users/@me/widgets/assets/upload`
 - [ ] **USER_PROFILE_WIDGET_CLIP_UPLOAD**: `/users/@me/widgets/clips/upload`
 - [ ] **APPLICATION_WIDGET_REFRESH**: `/applications/:param/widget/refresh`

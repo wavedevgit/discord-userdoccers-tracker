@@ -13,6 +13,10 @@
             "/users/@me/badges/settings"
         ],
         [
+            "USER_BADGE_ACK",
+            "/users/@me/badges/:param/ack"
+        ],
+        [
             "USER_PROFILE_WIDGET_ASSET_UPLOAD",
             "/users/@me/widgets/assets/upload"
         ],
