@@ -2,9 +2,9 @@
 
 | Covered | 519 |
 |---------|------------|
-| Missing | 392 |
+| Missing | 393 |
 ## Missing routes
-total: 392
+total: 393
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -375,6 +375,7 @@ total: 392
 - [ ] **ADS_CREATIVES_PREVIEW_DELIVERY_STATE_LOOKBACK**: `/ads/creatives/preview/delivery-state`
 - [ ] **QUESTS_APP_STORE_METADATA**: `/quests/appstore-metadata`
 - [ ] **GAME_ORGANIZATION**: `/guilds/:param/game-organizations`
+- [ ] **LINKABLE_GAME_ORGANIZATIONS**: `/game-organizations/linkable/@me/:param`
 - [ ] **GAME_ORGANIZATION_INVITES**: `/game-organizations/:param/:param/invites`
 - [ ] **GAME_ORGANIZATION_INVITE**: `/game-organization-invites/:param`
 - [ ] **GAME_ORGANIZATION_INVITE_JOIN**: `/game-organization-invites/:param/join`

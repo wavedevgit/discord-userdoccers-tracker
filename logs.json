@@ -1477,6 +1477,10 @@
             "/guilds/:param/game-organizations"
         ],
         [
+            "LINKABLE_GAME_ORGANIZATIONS",
+            "/game-organizations/linkable/@me/:param"
+        ],
+        [
             "GAME_ORGANIZATION_INVITES",
             "/game-organizations/:param/:param/invites"
         ],
