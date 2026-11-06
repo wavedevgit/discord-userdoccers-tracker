@@ -2,9 +2,9 @@
 
 | Covered | 519 |
 |---------|------------|
-| Missing | 393 |
+| Missing | 394 |
 ## Missing routes
-total: 393
+total: 394
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -153,6 +153,7 @@ total: 393
 - [ ] **DEBUG_LOGS**: `/debug-logs/multi/:param`
 - [ ] **INTEGRATIONS**: `/integrations`
 - [ ] **GAMES_AUTOCOMPLETE**: `/games/autocomplete`
+- [ ] **GAMES_TRENDING**: `/games/trending`
 - [ ] **APPLICATION_ICON**: `/applications/:param/app-icons/:param.png`
 - [ ] **APPLICATION_RPC**: `/oauth2/applications/:param/rpc`
 - [ ] **OWNED_APPLICATION_BRANCHES**: `/applications/:param/branches`

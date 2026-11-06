@@ -589,6 +589,10 @@
             "/games/autocomplete"
         ],
         [
+            "GAMES_TRENDING",
+            "/games/trending"
+        ],
+        [
             "APPLICATION_ICON",
             "/applications/:param/app-icons/:param.png"
         ],
