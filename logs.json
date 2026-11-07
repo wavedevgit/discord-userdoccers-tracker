@@ -14,7 +14,7 @@
         ],
         [
             "USER_BADGE_ACK",
-            "/users/@me/badges/:param/ack"
+            "/users/@me/badges/:param/acknowledge"
         ],
         [
             "USER_PROFILE_WIDGET_ASSET_UPLOAD",
@@ -591,6 +591,10 @@
         [
             "GAMES_TRENDING",
             "/games/trending"
+        ],
+        [
+            "GAMES_SEARCH",
+            "/games/search"
         ],
         [
             "APPLICATION_ICON",

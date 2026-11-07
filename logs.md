@@ -2,14 +2,14 @@
 
 | Covered | 519 |
 |---------|------------|
-| Missing | 394 |
+| Missing | 395 |
 ## Missing routes
-total: 394
+total: 395
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
 - [ ] **USER_BADGE_SETTINGS**: `/users/@me/badges/settings`
-- [ ] **USER_BADGE_ACK**: `/users/@me/badges/:param/ack`
+- [ ] **USER_BADGE_ACK**: `/users/@me/badges/:param/acknowledge`
 - [ ] **USER_PROFILE_WIDGET_ASSET_UPLOAD**: `/users/@me/widgets/assets/upload`
 - [ ] **USER_PROFILE_WIDGET_CLIP_UPLOAD**: `/users/@me/widgets/clips/upload`
 - [ ] **APPLICATION_WIDGET_REFRESH**: `/applications/:param/widget/refresh`
@@ -154,6 +154,7 @@ total: 394
 - [ ] **INTEGRATIONS**: `/integrations`
 - [ ] **GAMES_AUTOCOMPLETE**: `/games/autocomplete`
 - [ ] **GAMES_TRENDING**: `/games/trending`
+- [ ] **GAMES_SEARCH**: `/games/search`
 - [ ] **APPLICATION_ICON**: `/applications/:param/app-icons/:param.png`
 - [ ] **APPLICATION_RPC**: `/oauth2/applications/:param/rpc`
 - [ ] **OWNED_APPLICATION_BRANCHES**: `/applications/:param/branches`
