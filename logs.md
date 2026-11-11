@@ -2,9 +2,9 @@
 
 | Covered | 519 |
 |---------|------------|
-| Missing | 395 |
+| Missing | 396 |
 ## Missing routes
-total: 395
+total: 396
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -63,6 +63,7 @@ total: 395
 - [ ] **AVATAR_DECORATION_PRESETS**: `/avatar-decoration-presets/:param./:param`
 - [ ] **LAYOUT_SYSTEM**: `/layouts/:param/:param`
 - [ ] **LAYOUT_SYSTEM_TEMPLATE**: `/templates/:param/:param`
+- [ ] **COLLECTIBLES_COLLECTION_SEQUENCED_OFFERS**: `/collectibles-collection-sequenced-offers`
 - [ ] **GUILD_MEMBER_BANNER**: `/guilds/:param/users/:param/banners/:param./:param`
 - [ ] **SMART_SEARCH**: `/guilds/:param/intelligence/search`
 - [ ] **SUGGESTED_SEARCHES**: `/guilds/:param/intelligence/search/suggestions`

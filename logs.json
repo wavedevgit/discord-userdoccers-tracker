@@ -229,6 +229,10 @@
             "/templates/:param/:param"
         ],
         [
+            "COLLECTIBLES_COLLECTION_SEQUENCED_OFFERS",
+            "/collectibles-collection-sequenced-offers"
+        ],
+        [
             "GUILD_MEMBER_BANNER",
             "/guilds/:param/users/:param/banners/:param./:param"
         ],
