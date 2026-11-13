@@ -1321,6 +1321,10 @@
             "/:param/force-send-prompt"
         ],
         [
+            "BULK_GUILD_ROLE",
+            "/guilds/:param/bulk/role"
+        ],
+        [
             "CHECKPOINT_COMPLETE",
             "/checkpoint/complete"
         ],

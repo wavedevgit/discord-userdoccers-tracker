@@ -2,9 +2,9 @@
 
 | Covered | 519 |
 |---------|------------|
-| Missing | 396 |
+| Missing | 397 |
 ## Missing routes
-total: 396
+total: 397
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -336,6 +336,7 @@ total: 396
 - [ ] **SAFETY_HUB_GET_SUSPENDED_AGE_VERIFICATION_METHODS**: `/age-verification/suspended/methods`
 - [ ] **INITIATE_CHANNEL_PROMPTS**: `/initiate-prompts`
 - [ ] **FORCE_SEND_PROMPT**: `/:param/force-send-prompt`
+- [ ] **BULK_GUILD_ROLE**: `/guilds/:param/bulk/role`
 - [ ] **CHECKPOINT_COMPLETE**: `/checkpoint/complete`
 - [ ] **CHECKPOINT_RESET**: `/checkpoint/reset`
 - [ ] **ORBS_ARCADE_GAMES**: `/orbs-arcade/games/@me`
