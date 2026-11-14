@@ -2,9 +2,9 @@
 
 | Covered | 519 |
 |---------|------------|
-| Missing | 397 |
+| Missing | 400 |
 ## Missing routes
-total: 397
+total: 400
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -199,6 +199,7 @@ total: 397
 - [ ] **BILLING_STORE_COUNTRY**: `/billing/store-country`
 - [ ] **BILLING_PAST_DUE_PAYMENT_INVOICE**: `/billing/past-due-payment/invoice`
 - [ ] **BILLING_PAST_DUE_PAYMENT_PAY**: `/billing/past-due-payment/pay`
+- [ ] **BILLING_PAST_DUE_PAYMENT_PAYMENT_INTENT**: `/billing/past-due-payment/payment-intent`
 - [ ] **BILLING_PAST_DUE_PAYMENT_SETUP_INTENT**: `/billing/past-due-payment/setup-intent`
 - [ ] **BILLING_PAST_DUE_PAYMENT_VALIDATE_BILLING_ADDRESS**: `/billing/past-due-payment/validate-billing-address`
 - [ ] **BILLING_PAST_DUE_PAYMENT_PAYMENT_SOURCE**: `/billing/past-due-payment/payment-source`
@@ -279,6 +280,8 @@ total: 397
 - [ ] **EMBEDDED_SURVEY**: `/users/@me/embedded-survey/:param`
 - [ ] **EMBEDDED_SURVEY_RESPONSE**: `/users/@me/embedded-surveys/:param/responses`
 - [ ] **EMBEDDED_SURVEY_ACTION**: `/users/@me/embedded-survey/action`
+- [ ] **SURVEY_SESSION**: `/surveys/:param/session`
+- [ ] **SURVEY_SESSION_SUBMIT**: `/surveys/:param/session/submit`
 - [ ] **GUILD_EVENTS**: `/guild-events`
 - [ ] **GUILD_EVENT_IMAGE**: `/guild-events/:param/images/:param./:param`
 - [ ] **GUILD_EVENT_EXCEPTIONS**: `/guilds/:param/scheduled-events/:param/exceptions`
