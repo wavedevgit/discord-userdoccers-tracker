@@ -1501,6 +1501,10 @@
             "/quests/appstore-metadata"
         ],
         [
+            "GAME_ANNOUNCEMENTS_LATEST",
+            "/games/announcements/latest"
+        ],
+        [
             "GAME_ORGANIZATION",
             "/guilds/:param/game-organizations"
         ],
