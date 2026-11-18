@@ -17,10 +17,6 @@
             "/users/@me/badges/:param/acknowledge"
         ],
         [
-            "USER_PROFILE_WIDGET_ASSET_UPLOAD",
-            "/users/@me/widgets/assets/upload"
-        ],
-        [
             "USER_PROFILE_WIDGET_CLIP_UPLOAD",
             "/users/@me/widgets/clips/upload"
         ],
@@ -1335,6 +1331,14 @@
         [
             "BULK_GUILD_ROLE",
             "/guilds/:param/bulk/role"
+        ],
+        [
+            "BULK_GUILD_KICK",
+            "/guilds/:param/bulk/kick"
+        ],
+        [
+            "BULK_GUILD_TIMEOUT",
+            "/guilds/:param/bulk/timeout"
         ],
         [
             "CHECKPOINT_COMPLETE",

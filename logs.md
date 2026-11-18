@@ -2,15 +2,14 @@
 
 | Covered | 519 |
 |---------|------------|
-| Missing | 401 |
+| Missing | 402 |
 ## Missing routes
-total: 401
+total: 402
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
 - [ ] **USER_BADGE_SETTINGS**: `/users/@me/badges/settings`
 - [ ] **USER_BADGE_ACK**: `/users/@me/badges/:param/acknowledge`
-- [ ] **USER_PROFILE_WIDGET_ASSET_UPLOAD**: `/users/@me/widgets/assets/upload`
 - [ ] **USER_PROFILE_WIDGET_CLIP_UPLOAD**: `/users/@me/widgets/clips/upload`
 - [ ] **APPLICATION_WIDGET_REFRESH**: `/applications/:param/widget/refresh`
 - [ ] **USER_GUILD_PROFILE**: `/guilds/:param/profile/:param`
@@ -340,6 +339,8 @@ total: 401
 - [ ] **INITIATE_CHANNEL_PROMPTS**: `/initiate-prompts`
 - [ ] **FORCE_SEND_PROMPT**: `/:param/force-send-prompt`
 - [ ] **BULK_GUILD_ROLE**: `/guilds/:param/bulk/role`
+- [ ] **BULK_GUILD_KICK**: `/guilds/:param/bulk/kick`
+- [ ] **BULK_GUILD_TIMEOUT**: `/guilds/:param/bulk/timeout`
 - [ ] **CHECKPOINT_COMPLETE**: `/checkpoint/complete`
 - [ ] **CHECKPOINT_RESET**: `/checkpoint/reset`
 - [ ] **ORBS_ARCADE_GAMES**: `/orbs-arcade/games/@me`
