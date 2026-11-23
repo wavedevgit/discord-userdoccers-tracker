@@ -1,10 +1,10 @@
 # Results
 
-| Covered | 519 |
+| Covered | 518 |
 |---------|------------|
-| Missing | 402 |
+| Missing | 403 |
 ## Missing routes
-total: 402
+total: 403
 
 - [ ] **USER_BADGES**: `/users/:param/badges`
 - [ ] **USER_BADGE**: `/users/:param/badges/:param`
@@ -303,6 +303,7 @@ total: 402
 - [ ] **VIDEO_FILTER_ASSET_STORAGE**: `/users/:param/video-filter-assets/:param/:param./:param`
 - [ ] **TOP_SOUNDBOARD_SOUNDS_FOR_GUILD**: `/guilds/:param/top-soundboard-sounds`
 - [ ] **SOUNDBOARD_SOUND**: `/soundboard-sounds/:param`
+- [ ] **SOUNDBOARD_SOUNDS_CATALOG**: `/soundboard-sounds/catalog`
 - [ ] **SEND_SOUNDBOARD_ECHO**: `/channels/:param/send-soundboard-echo`
 - [ ] **SEND_CLIPS_REMOTE_TRIGGER**: `/channels/:param/clips-remote-trigger`
 - [ ] **APPLICATION_COMMANDS_SEARCH**: `/channels/:param/application-commands/search`
@@ -410,7 +411,7 @@ total: 402
 - [ ] **GUILD_SPACE_BANNER**: `/guild-space/:param/banner/:param./:param`
 
 ## Covered routes
-total: 519
+total: 518
 
 - [x] **USER**: `/users/:param`
 - [x] **USER_RELATIONSHIPS**: `/users/:param/relationships`
@@ -832,7 +833,6 @@ total: 519
 - [x] **GUILD_SOUNDBOARD_SOUNDS**: `/guilds/:param/soundboard-sounds`
 - [x] **GUILD_SOUNDBOARD_SOUND**: `/guilds/:param/soundboard-sounds/:param`
 - [x] **SOUNDBOARD_SOUND_GUILD_DATA**: `/soundboard-sounds/:param/guild/:param`
-- [x] **SOUNDBOARD_DEFAULT_SOUNDS**: `/soundboard-default-sounds`
 - [x] **SEND_SOUNDBOARD_SOUND**: `/channels/:param/send-soundboard-sound`
 - [x] **APPLICATION_COMMAND_INDEX_CHANNEL**: `/channels/:param/application-command-index`
 - [x] **APPLICATION_COMMAND_INDEX_GUILD**: `/guilds/:param/application-command-index`
